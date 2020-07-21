@@ -15,13 +15,13 @@ set "zip_fold=NSCB_zips"
 ::OPTION 2: PROGRAM ROUTES
 ::--------------------------------------------------------------
 set "nut=ztools\squirrel.py"
-set "xci_lib=ztools\XCI.bat"
-set "nsp_lib=ztools\NSP.bat"
+set "xci_lib=zcmd\XCI.bat"
+set "nsp_lib=zcmd\NSP.bat"
 set "zip=ztools\squirrel.py"
 set "listmanager=ztools\squirrel.py"
-set "batconfig=ztools\NSCB_config.bat"
-set "batdepend=ztools\install_dependencies.bat"
-set "infobat=ztools\info.bat"
+set "batconfig=zcmd\NSCB_config.bat"
+set "batdepend=zcmd\install_dependencies.bat"
+set "infobat=zcmd\info.bat"
 ::--------------------------------------------------------------
 ::OPTION 3: SQUIRREL OPTIONS
 ::--------------------------------------------------------------

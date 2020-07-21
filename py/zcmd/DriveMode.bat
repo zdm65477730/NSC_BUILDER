@@ -29,11 +29,11 @@ if /i "%bs%"=="0" goto OPT_CONFIG
 goto MAIN
 
 :LegacyMode
-call "%prog_dir%ztools\LEGACY.bat"
+call "%prog_dir%zcmd\LEGACY.bat"
 exit /B
 
 :MTPMode
-call "%prog_dir%ztools\MtpMode.bat"
+call "%prog_dir%zcmd\MtpMode.bat"
 exit /B
 
 :DOWNLOADMODE

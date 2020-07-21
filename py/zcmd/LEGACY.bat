@@ -308,11 +308,11 @@ if /i "%bs%"=="M" goto MTPMode
 goto manual_Reentry
 
 :MTPMode
-call "%prog_dir%ztools\MtpMode.bat"
+call "%prog_dir%zcmd\MtpMode.bat"
 exit /B
 
 :GDMode
-call "%prog_dir%ztools\DriveMode.bat"
+call "%prog_dir%zcmd\DriveMode.bat"
 exit /B
 
 REM //////////////////////////////////////////////////

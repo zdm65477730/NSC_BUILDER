@@ -38,11 +38,11 @@ if /i "%bs%"=="0" goto OPT_CONFIG
 goto MAIN
 
 :LegacyMode
-call "%prog_dir%ztools\LEGACY.bat"
+call "%prog_dir%zcmd\LEGACY.bat"
 exit /B
 
 :GDMode
-call "%prog_dir%ztools\DriveMode.bat"
+call "%prog_dir%zcmd\DriveMode.bat"
 exit /B
 
 :G_INST
@@ -70,7 +70,7 @@ if /i "%bs%"=="2" goto G_INST_GDRIVE
 goto G_INST
 
 :G_INST_GDRIVE
-call "%prog_dir%ztools\MtpInstallRemote.bat"
+call "%prog_dir%zcmd\MtpInstallRemote.bat"
 goto MAIN
 
 :G_INST_LOCAL
@@ -332,16 +332,16 @@ if /i "%bs%"=="4" goto F_TR_C_mxci_Transfer
 goto F_TR
 
 :F_TR_LOCAL
-call "%prog_dir%ztools\MtpFTLocal.bat"
+call "%prog_dir%zcmd\MtpFTLocal.bat"
 goto MAIN
 :F_TR_GD
-call "%prog_dir%ztools\MtpTransferRemote.bat"
+call "%prog_dir%zcmd\MtpTransferRemote.bat"
 goto MAIN
 :F_TR_C_xci_Transfer
-call "%prog_dir%ztools\MtpCxciFTLocal.bat"
+call "%prog_dir%zcmd\MtpCxciFTLocal.bat"
 goto MAIN
 :F_TR_C_mxci_Transfer
-call "%prog_dir%ztools\MtpCmxciFTLocal.bat"
+call "%prog_dir%zcmd\MtpCmxciFTLocal.bat"
 goto MAIN
 
 :AUTOUPDATE

@@ -40,7 +40,7 @@ set bs=%bs:"=%
 if /i "%bs%"=="3" goto showlist
 if /i "%bs%"=="2" goto delist
 if /i "%bs%"=="1" goto start_1transfer
-if /i "%bs%"=="0" call "%prog_dir%ztools\MtpMode.bat"
+if /i "%bs%"=="0" call "%prog_dir%zcmd\MtpMode.bat"
 echo.
 echo BAD CHOICE
 goto prevlist0
@@ -73,7 +73,7 @@ set eval=%eval:"=%
 setlocal enabledelayedexpansion
 echo+ >"%uinput%"
 endlocal
-if /i "%eval%"=="0" call "%prog_dir%ztools\MtpMode.bat"
+if /i "%eval%"=="0" call "%prog_dir%zcmd\MtpMode.bat"
 if /i "%eval%"=="1" ( %pycommand% "%squirrel%" -lib_call listmanager selector2list -xarg "%prog_dir%MTP2.txt" mode=folder ext="False" ) 2>&1>NUL
 if /i "%eval%"=="2" ( %pycommand% "%squirrel%" -lib_call listmanager selector2list -xarg "%prog_dir%MTP2.txt" mode=file ext="False" )  2>&1>NUL
 if /i "%eval%"=="3" ( %pycommand% "%squirrel%" -lib_call mtp.mtpinstaller select_from_local_libraries -xarg "%prog_dir%MTP2.txt" "mode=transfer" )
@@ -107,7 +107,7 @@ setlocal enabledelayedexpansion
 echo+ >"%uinput%"
 endlocal
 
-if /i "%eval%"=="0" call "%prog_dir%ztools\MtpMode.bat"
+if /i "%eval%"=="0" call "%prog_dir%zcmd\MtpMode.bat"
 if /i "%eval%"=="1" goto start_1transfer
 if /i "%eval%"=="2" ( %pycommand% "%squirrel%" -lib_call listmanager selector2list -xarg "%prog_dir%MTP2.txt" mode=folder ext="False" ) 2>&1>NUL
 if /i "%eval%"=="3" ( %pycommand% "%squirrel%" -lib_call listmanager selector2list -xarg "%prog_dir%MTP2.txt" mode=file ext="False" )  2>&1>NUL

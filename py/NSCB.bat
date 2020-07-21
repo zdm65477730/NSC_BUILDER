@@ -737,7 +737,7 @@ goto manual_Reentry
 
 :manual_Reentry
 cls
-if "%NSBMODE%" EQU "legacy" call "%prog_dir%ztools\LEGACY.bat"
+if "%NSBMODE%" EQU "legacy" call "%prog_dir%zcmd\LEGACY.bat"
 call :program_logo
 ECHO .......................................................
 echo Input "1"  to process files INDIVIDUALLY
@@ -780,28 +780,28 @@ if /i "%bs%"=="0" goto OPT_CONFIG
 goto manual_Reentry
 
 :ADVmode
-call "%prog_dir%ztools\ADV.bat"
+call "%prog_dir%zcmd\ADV.bat"
 goto manual_Reentry
 :JOINmode
-call "%prog_dir%ztools\JOINER.bat"
+call "%prog_dir%zcmd\JOINER.bat"
 goto manual_Reentry
 :ZSTDmode
-call "%prog_dir%ztools\ZSTD.bat"
+call "%prog_dir%zcmd\ZSTD.bat"
 goto manual_Reentry
 :RSTmode
-call "%prog_dir%ztools\RST.bat"
+call "%prog_dir%zcmd\RST.bat"
 goto manual_Reentry
 :MNGmode
-call "%prog_dir%ztools\MNG.bat"
+call "%prog_dir%zcmd\MNG.bat"
 goto manual_Reentry
 :LegacyMode
-call "%prog_dir%ztools\LEGACY.bat"
+call "%prog_dir%zcmd\LEGACY.bat"
 goto manual_Reentry
 :MTPMode
-call "%prog_dir%ztools\MtpMode.bat"
+call "%prog_dir%zcmd\MtpMode.bat"
 goto manual_Reentry
 :DriveMode
-call "%prog_dir%ztools\DriveMode.bat"
+call "%prog_dir%zcmd\DriveMode.bat"
 goto manual_Reentry
 :InterfaceTrigger
 call Interface.bat
