@@ -1,35 +1,16 @@
-import aes128
 import Print
 import os
 import shutil
-import json
-from Fs import Nsp as squirrelNSP
-from Fs import Xci as squirrelXCI
-from Fs.Nca import NcaHeader
-from Fs.File import MemoryFile
 import sq_tools
 import io
-from Fs import Type as FsType
-from Fs import factory
-import Keys
-from binascii import hexlify as hx, unhexlify as uhx
-from DBmodule import Exchange as exchangefile
-import math
 import sys
 import subprocess
-from mtp.wpd import is_switch_connected
 import listmanager
 import csv
-from colorama import Fore, Back, Style
-import time
-from secondary import clear_Screen
-from python_pick import pick
-from python_pick import Picker
 from Drive import Private as DrivePrivate
 from Drive import Public as DrivePublic
 from Drive import DriveTools
 import requests
-from Drive import Download as Drv
 from workers import concurrent_scrapper
 from mtpinstaller import get_storage_info
 try:
@@ -37,26 +18,8 @@ try:
 except:
 	import json
 	
-def About():	
-	print('                                       __          _ __    __                         ')
-	print('                 ____  _____ ____     / /_  __  __(_) /___/ /__  _____                ')
-	print('                / __ \/ ___/ ___/    / __ \/ / / / / / __  / _ \/ ___/                ')
-	print('               / / / (__  ) /__     / /_/ / /_/ / / / /_/ /  __/ /                    ')
-	print('              /_/ /_/____/\___/____/_.___/\__,_/_/_/\__,_/\___/_/                     ')
-	print('                             /_____/                                                  ')
-	print('------------------------------------------------------------------------------------- ')
-	print('                        NINTENDO SWITCH CLEANER AND BUILDER                           ')
-	print('------------------------------------------------------------------------------------- ')
-	print('=============================     BY JULESONTHEROAD     ============================= ')
-	print('------------------------------------------------------------------------------------- ')
-	print('"                                POWERED BY SQUIRREL                                " ')
-	print('"                    BASED ON THE WORK OF BLAWAR AND LUCA FRAGA                     " ')
-	print('------------------------------------------------------------------------------------- ')                   
-	print("Program's github: https://github.com/julesontheroad/NSC_BUILDER                       ")
-	print('Cheats and Eshop information from nutdb and http://tinfoil.io                         ')
-	print('------------------------------------------------------------------------------------- ')	
-
 def check_connection():
+	from mtp.wpd import is_switch_connected
 	if not is_switch_connected():
 		sys.exit("Switch device isn't connected.\nCheck if mtp responder is running!!!")	
 	
@@ -163,193 +126,6 @@ def addtodrive(filename,truecopy=True):
 				globalremote=remote
 		return filename	
 
-def interface_filter(path=None):
-	title = 'Add a search filter?: '
-	options = ['Yes','No']	
-	selected = pick(options, title, min_selection_count=1)
-	response=selected[0]
-	if response=='No':
-		return None
-	else:
-		clear_Screen()
-		About()
-		if path != None:
-			print("Filepath {}\n".format(str(path)))
-		ck=input('INPUT SEARCH FILTER: ')
-		return ck		
-
-def pick_order():
-	title = 'Select order to list the files: \n + Press enter or intro to select \n + Press E to scape back to menu'
-	db=libraries(download_lib_file)
-	options = ['name_ascending','name_descending','size_ascending','size_descending','date_ascending','date_descending']
-	picker = Picker(options, title, min_selection_count=1)	
-	def end_selection(picker):
-		return False,-1	
-	picker.register_custom_handler(ord('e'),  end_selection)
-	picker.register_custom_handler(ord('E'),  end_selection)		
-	selected = picker.start()	
-	if selected[0]==False:
-		return False
-	order=selected[0]
-	return order		
-
-def interface_filter_local(filelist):
-	title = 'Add a search filter?: '
-	options = ['Yes','No']	
-	selected = pick(options, title, min_selection_count=1)
-	response=selected[0]
-	if response=='No':
-		return filelist
-	else:
-		clear_Screen()
-		About()
-		ck=input('INPUT SEARCH FILTER: ')
-		filelist=listmanager.filter_vlist(filelist,token=ck,Print=False)
-	return filelist	
-	
-def eval_link(tfile,userfile):
-	link=input("Enter your choice: ")
-	link=link.strip()
-	if '&' in link:
-		varout='999'
-	elif len(link)<2:
-		varout=link
-	else:
-		varout='999'
-	with open(userfile,"w", encoding='utf8') as userinput:
-		userinput.write(varout)		
-	if link.startswith('https://1fichier.com'):
-		with open(tfile,"a", encoding='utf8') as textfile:
-			textfile.write(link+'\n')				
-	elif link.startswith('https://drive.google.com'):
-		with open(tfile,"a", encoding='utf8') as textfile:
-			textfile.write(link+'\n')	
-
-def select_from_libraries(tfile):	
-	db=libraries(remote_lib_file)
-	if db==False:
-		sys.exit(f"Missing {remote_lib_file}")
-	paths,TDs=Drv.pick_libraries()
-	if paths==False:
-		return False	
-	filter=interface_filter()	
-	order=pick_order()
-	if order==False:
-		return False
-	print("  * Parsing files from Google Drive. Please Wait...")		
-	if isinstance(paths, list):
-		db={}
-		for i in range(len(paths)):
-			db[paths[i]]={'path':paths[i],'TD_name':TDs[i]}		
-		files=concurrent_scrapper(filter=filter,order=order,remotelib='all',db=db)
-	else:
-		db={}
-		db[paths]={'path':paths,'TD_name':TDs}			
-		files=concurrent_scrapper(filter=filter,order=order,remotelib='all',db=db)	
-	print("  * Entering File Picker")	
-	title = 'Select content to install or transfer: \n + Press space or right to select content \n + Press Enter to confirm selection \n + Press E to exit selection'
-	filenames=[]
-	for f in files:
-		filenames.append(f[0])
-	options=filenames
-	picker = Picker(options, title, multi_select=True, min_selection_count=1)
-	def end_selection(picker):
-		return False,-1
-	picker.register_custom_handler(ord('e'),  end_selection);picker.register_custom_handler(ord('E'),  end_selection)
-	selected=picker.start()
-	if selected[0]==False:
-		print("    User didn't select any files")
-		return False
-	with open(tfile,'a') as  textfile:		
-		for f in selected:
-			textfile.write((files[f[1]])[2]+'/'+(files[f[1]])[0]+'\n')
-
-def select_from_cache(tfile):	
-	cache_is_setup=False
-	if not os.path.exists(remote_lib_cache):
-		os.makedirs(remote_lib_cache)
-	jsonlist=listmanager.folder_to_list(remote_lib_cache,extlist=['json'])	
-	if not jsonlist:
-		print("Cache wasn't found. Generating cache up...")
-		from workers import concurrent_cache
-		concurrent_cache()
-	jsonlist=listmanager.folder_to_list(remote_lib_cache,extlist=['json'])			
-	if not jsonlist:
-		sys.exit("Can't setup remote cache. Are libraries set up?")
-	libnames=[]
-	for j in jsonlist:
-		bname=os.path.basename(j) 
-		bname=bname.replace('.json','')
-		libnames.append(bname)
-	title = 'Select libraries to search:  \n + Press space or right to select content \n + Press Enter to confirm selection \n + Press E to exit selection \n + Press A to select all libraries'
-	db=libraries(remote_lib_file)
-	options = libnames
-	picker = Picker(options, title,multi_select=True,min_selection_count=1)	
-	def end_selection(picker):
-		return False,-1	
-	def select_all(picker):
-		return True,libnames
-	picker.register_custom_handler(ord('e'),  end_selection)
-	picker.register_custom_handler(ord('E'),  end_selection)	
-	picker.register_custom_handler(ord('a'),  select_all)
-	picker.register_custom_handler(ord('A'),  select_all)	
-	selected = picker.start()	
-	if selected[0]==False:
-		print("User didn't select any libraries")
-		return False,False		
-	if selected[0]==True:	
-		cachefiles=jsonlist
-	else:
-		cachefiles=[]
-		for entry in selected:
-			fname=entry[0]+'.json'
-			fpath=os.path.join(remote_lib_cache,fname)
-			cachefiles.append(fpath)
-	cachedict={}
-	for cach in cachefiles:
-		with open(cach) as json_file:					
-			data = json.load(json_file)		
-		for entry in data:
-			if not entry in cachedict:
-				cachedict[entry]=data[entry]
-	# for k in cachedict.keys():
-		# print(k)
-	order=pick_order()
-	if order==False:
-		return False	
-	options=[]	
-	if order=='name_ascending':
-		options=sorted(cachedict,key=lambda x:cachedict[x]['filepath'])
-	elif order=='name_descending':	
-		options=sorted(cachedict,key=lambda x:cachedict[x]['filepath'])
-		options.reverse()
-	elif order=='size_ascending':
-		options=sorted(cachedict,key=lambda x:cachedict[x]['size'])
-	elif order=='size_descending':	
-		options=sorted(cachedict,key=lambda x:cachedict[x]['size'])
-		options.reverse()	
-	elif order=='date_ascending':
-		options=sorted(cachedict,key=lambda x:cachedict[x]['date'])
-	elif order=='date_descending':	
-		options=sorted(cachedict,key=lambda x:cachedict[x]['date'])
-		options.reverse()	
-	options=interface_filter_local(options)	
-	print("  * Entering File Picker")	
-	title = 'Select content to install or transfer: \n + Press space or right to select content \n + Press Enter to confirm selection \n + Press E to exit selection'
-	picker = Picker(options, title, multi_select=True, min_selection_count=1)
-	def end_selection(picker):
-		return False,-1
-	picker.register_custom_handler(ord('e'),  end_selection);picker.register_custom_handler(ord('E'),  end_selection)
-	selected=picker.start()
-	if selected[0]==False:
-		print("    User didn't select any files")
-		return False
-	with open(tfile,'a') as  textfile:		
-		for f in selected:
-			fpath=(cachedict[f[0]])['filepath']
-			textfile.write(fpath+'\n')
-			
-
 def loop_install(tfile,destiny="SD",outfolder=None,ch_medium=True,check_fw=True,patch_keygen=False,ch_base=False,ch_other=False,truecopy=True,checked=False):	
 	check_connection()
 	if not os.path.exists(tfile):
@@ -385,7 +161,8 @@ def loop_install(tfile,destiny="SD",outfolder=None,ch_medium=True,check_fw=True,
 				else:
 					print("Couldn't find file. Skipping...")					
 			else:	
-				gdrive_install(item,destiny,outfolder=outfolder,ch_medium=ch_medium,check_fw=check_fw,patch_keygen=patch_keygen,ch_base=ch_base,ch_other=ch_other,checked=checked,installed_list=installed)			
+				gdrive_install(item,destiny,outfolder=outfolder,ch_medium=ch_medium,check_fw=check_fw,patch_keygen=patch_keygen,ch_base=ch_base,ch_other=ch_other,checked=checked,installed_list=installed)	
+		print("")				
 	
 def get_library_from_path(tfile=None,filename=None):
 	if tfile==None:
@@ -868,6 +645,7 @@ def loop_transfer(tfile):
 			if lib!=None:
 				print("Item is a remote library link. Redirecting...")
 				gdrive_transfer(item,destiny)
+		print("")		
 				
 def get_libs_remote_source(lib=remote_lib_file):
 	libraries={}
@@ -1080,6 +858,7 @@ def update_console_from_gd(libraries="all",destiny="SD",exclude_xci=True,priorit
 				cstring=f"{g0} [{fileid}][{fileversion}] [{cctag}] - {(bname[-3:]).upper()}"
 				options.append(cstring)
 			if options:
+				from python_pick import Picker
 				title = 'Select content to install: \n + Press space or right to select entries \n + Press Enter to confirm selection \n + Press E to exit selection \n + Press A to select all entries'				
 				picker = Picker(options, title, multi_select=True, min_selection_count=1)
 				def end_selection(picker):
@@ -1122,53 +901,4 @@ def update_console_from_gd(libraries="all",destiny="SD",exclude_xci=True,priorit
 		print("   Note:If you interrupt the list use normal install mode to continue list")	
 		loop_install(tfile,destiny=destiny,outfolder=None,ch_medium=ch_medium,check_fw=True,patch_keygen=False,ch_base=False,ch_other=False,checked=True)
 	else:
-		print("\n   --- DEVICE IS UP TO DATE ---")		
-	
-def select_from_walker(tfile,types='all'):	
-	ext=[]
-	if types!='all':
-		items=types.split(' ')
-		for x in items:
-			ext.append(str(x).lower())	
-	folder,TeamDrive=DrivePrivate.folder_walker()	
-	if TeamDrive=="" or TeamDrive==False:
-		TeamDrive=None
-	if folder==False:
-		return False
-	filt=interface_filter()			
-	order=pick_order()
-	if order==False:
-		return False	
-	print(f"- Checking {folder}")
-	print("  * Parsing files from Google Drive. Please Wait...")		
-	db={}
-	db[folder]={'path':folder,'TD_name':TeamDrive}			
-	files=concurrent_scrapper(filter=filt,order=order,remotelib='all',db=db)			
-	if files==False:
-		return False			
-	print("  * Entering File Picker")	
-	title = 'Select content to install or transfer: \n + Press space or right to select content \n + Press Enter to confirm selection \n + Press E to exit selection'
-	filenames=[]
-	for f in files:
-		if types=='all':	
-			filenames.append(f[0])
-		else:
-			for x in ext:
-				if (str(f[0]).lower()).endswith(x):
-					filenames.append(f[0])
-					break
-	if filenames==[]:
-		print("  * Request didn't retrieve any files")
-		return False
-	options=filenames
-	picker = Picker(options, title, multi_select=True, min_selection_count=1)
-	def end_selection(picker):
-		return False,-1
-	picker.register_custom_handler(ord('e'),  end_selection);picker.register_custom_handler(ord('E'),  end_selection)
-	selected=picker.start()
-	if selected[0]==False:
-		print("    User didn't select any files")
-		return False
-	with open(tfile,'a') as  textfile:		
-		for f in selected:
-			textfile.write((files[f[1]])[2]+'/'+(files[f[1]])[0]+'|'+str(TeamDrive)+'\n')				
+		print("\n   --- DEVICE IS UP TO DATE ---")					

@@ -617,7 +617,10 @@ def get_installed_info(tfile=None,search_new=True,excludehb=True):
 				if k in installed.keys() or k.endswith('000') or k.endswith('800'):
 					continue
 				else:
-					baseid=get_dlc_baseid(k)
+					try:
+						baseid=get_dlc_baseid(k)
+					except:
+						baseid=k
 					updid=baseid[:-3]+'800'
 					if baseid in installed.keys() or updid in installed.keys():
 						fileid,fileversion,cctag,nG,nU,nD,baseid,g0,g=installed[baseid]
@@ -749,6 +752,10 @@ def get_archived_info(search_new=True,excludehb=True):
 				g0=g0[0:30]+'...'
 			else:
 				g0=g0+(33-len(g0))*' '
+			verprint=str(fileversion)
+			fillver=''
+			if len(verprint)<6:
+				fillver=(6-len(verprint))*' '						
 			v=0;
 			updateid=fileid[:-3]+'800'
 			if updateid in dbi_dict.keys() and fileid.endswith('000'):				
@@ -764,9 +771,9 @@ def get_archived_info(search_new=True,excludehb=True):
 			if int(v)>int(fileversion):
 				if fileid.endswith('000') or fileid.endswith('800'):
 					updid=fileid[:-3]+'800'
-					print(f"{g0} [{baseid}][{fileversion}] -> "+forecombo+  f"[{updid}] [v{v}]"+Style.RESET_ALL)
+					print(f"{g0} [{baseid}][{verprint}]{fillver} -> "+forecombo+  f"[{updid}] [v{v}]"+Style.RESET_ALL)
 				else:
-					print(f"{g0} [{fileid}][{fileversion}] -> "+forecombo+  f"[{fileid}] [v{v}]"+Style.RESET_ALL)	
+					print(f"{g0} [{fileid}][{verprint}]{fillver} -> "+forecombo+  f"[{fileid}] [v{v}]"+Style.RESET_ALL)	
 		print("..........................................................")
 		print("NEW DLCS")
 		print("..........................................................")	
@@ -774,7 +781,10 @@ def get_archived_info(search_new=True,excludehb=True):
 			if k in dbi_dict.keys() or k.endswith('000') or k.endswith('800'):
 				continue
 			else:
-				baseid=get_dlc_baseid(k)
+				try:
+					baseid=get_dlc_baseid(k)
+				except:
+					baseid=k
 				updid=baseid[:-3]+'800'
 				if baseid in dbi_dict.keys() or updid in dbi_dict.keys():
 					fileid,fileversion,g0=dbi_dict[baseid]
@@ -782,9 +792,9 @@ def get_archived_info(search_new=True,excludehb=True):
 						g0=g0[0:30]+'...'	
 					else:
 						g0=g0+((33-len(g0))*' ')						
-					print(f"{g0} [{baseid}] -> "+forecombo+ f"[{k}] [v{versiondict[k]}]"+Style.RESET_ALL)			
+					print(f"{g0} [{baseid}] -> "+forecombo+ f"[{k}] [v{versiondict[k]}]"+Style.RESET_ALL)	
+		
 			
-
 def update_console(libraries="all",destiny="SD",exclude_xci=True,prioritize_nsz=True,tfile=None,verification=True,ch_medium=True,ch_other=False,autoupd_aut=True):	
 	check_connection()
 	if tfile==None:
