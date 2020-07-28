@@ -1,19 +1,19 @@
-# NSC_Builder v1.00c - Changelog
+# NSC_Builder v1.00d - Changelog
 
 ![DeviceTag](https://img.shields.io/badge/Device-SWITCH-e60012.svg)  ![LanguageTag](https://img.shields.io/badge/languages-python_batch_html5_javascript-blue.svg)
 
 ## *Further improvements over the MTP features*
 **Resources**
 
-DBI 135 was launched, you can get it directly from the kefir pack:
+DBI 138 was launched, you can get it directly from the kefir pack:
 
 https://github.com/rashevskyv/switch/releases/tag/462
 
 It can also be downloaded individually as nro or nsp here.
 
-[DBI_1.35.nsp](https://github.com/julesontheroad/NSC_BUILDER/raw/master/py/Documentation%20and%20Resources/DBI/135/DBI_0591703820420000.nsp)
+[DBI_138.nsp](https://github.com/julesontheroad/NSC_BUILDER/raw/master/py/Documentation%20and%20Resources/DBI/138/DBI_0591703820420000.nsp)
 
-[DBI_1.35.nro](https://github.com/julesontheroad/NSC_BUILDER/raw/master/py/Documentation%20and%20Resources/DBI/135/DBI.nro)
+[DBI_138.nro](https://github.com/julesontheroad/NSC_BUILDER/raw/master/py/Documentation%20and%20Resources/DBI/138/DBI.nro)
 
 You can find information on how to setup NSCB libraries, google drive auth tokens and 1 fichier auth tokens here:
 
@@ -24,6 +24,16 @@ Here's also a little readme with some DBI information:
 https://github.com/julesontheroad/NSC_BUILDER/tree/master/py/Documentation%20and%20Resources/DBI
 
 ## *Changelog*
+### 1.00d Fixes
+
+Fixed issue where autoupdater from google drive may not show messages in some system triggered by windows-curses.
+
+Fixed issue #183 where window selector wasn't working. Added file extension filter to window selector dependent of the mode it is called from.
+
+Added exceptions to handle possible situations when parsing non tagged xci files on SD. These files are ignored when id,version,etc.. can't be parsed correctly from name (missing tags).
+
+Fixed issue where generating or updating cache libraries from google drive will except when the google api called doesn't return any data.
+
 ### 1.00c Fixes
 
 Fixes to functions in mtp_gdrive.py where the use of curses prevented some prints on filters.
@@ -36,7 +46,7 @@ Fixed issue where on some systems some search filters wouldn't show the message 
 
 Fixed bug introduced by 1.00 that would stop the databases update in the middle of the process.
 
-If you already setup 1.00 just override ztools by the 1.00c version. There's no changes in the config files.
+If you already setup 1.00 just override ztools by the 1.00d version. There's no changes in the config files.
 
 ### 1. Added NSCB.exe
 

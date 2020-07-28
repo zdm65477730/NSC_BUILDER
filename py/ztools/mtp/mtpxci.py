@@ -7,16 +7,11 @@ import listmanager
 from Fs import Nsp as squirrelNSP
 from Fs import Xci as squirrelXCI
 from Fs import factory
-from Fs.Nca import NcaHeader
 from Fs import Nca
-from Fs.File import MemoryFile
-from Fs import Ticket
 import sq_tools
 import io
-from Fs import Type as FsType
 import Keys
 from binascii import hexlify as hx, unhexlify as uhx
-from DBmodule import Exchange as exchangefile
 import math
 import subprocess
 import sys
@@ -739,7 +734,7 @@ def gen_xci_parts_spec0(filepath,target_cnmt=None,cachefolder=None,keypatch=Fals
 					csvfile.write("{}|{}|{}|{}|{}|{}\n".format("step","filepath","size","targetsize","off1","off2"))
 					i+=1
 				if i==1:	
-					csvfile.write("{}|{}|{}|{}|{}|{}\n".format(0,outfile,( bucketsize*multiplier),( bucketsize*multiplier),0,( bucketsize*multiplier)))		
+					csvfile.write("{}|{}|{}|{}|{}|{}\n".format(0,outfile,os.path.getsize(outfile),os.path.getsize(outfile),0,os.path.getsize(outfile)))		
 					i+=1				
 				if i==2:	
 					csvfile.write("{}|{}|{}|{}|{}|{}".format(1,filepath,( os.path.getsize(filepath)),targetsize,off1,off2))		
