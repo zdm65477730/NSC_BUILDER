@@ -3,20 +3,20 @@
 set "prog_dir=%~dp0"
 set "bat_name=%~n0"
 set "ofile_name=%bat_name%_options.cmd"
-Title NSC_Builder v1.00d -- Profile: %ofile_name% -- by JulesOnTheRoad
+Title NSC_Builder v1.01 -- Profile: %ofile_name% -- by JulesOnTheRoad
 set "list_folder=%prog_dir%lists"
 ::-----------------------------------------------------
-::±à¼­´Ë±äÁ¿ÒÔÁ´½ÓÆäËûÑ¡ÏîÎÄ¼þ
+::ç¼–è¾‘æ­¤å˜é‡ä»¥é“¾æŽ¥å…¶ä»–é€‰é¡¹æ–‡ä»¶
 ::-----------------------------------------------------
 set "op_file=%~dp0zconfig\%ofile_name%"
 
 ::-----------------------------------------------------
-::´ÓÑ¡ÏîÎÄ¼þ¸´ÖÆÑ¡Ïî
+::ä»Žé€‰é¡¹æ–‡ä»¶å¤åˆ¶é€‰é¡¹
 ::-----------------------------------------------------
 setlocal
 if exist "%op_file%" call "%op_file%"
 endlocal & (
-REM »·¾³±äÁ¿
+REM çŽ¯å¢ƒå˜é‡
 set "pycommand=%pycommand%"
 set "start_minimized=%start_minimized%"
 set "videoplayback=%videoplayback%"
@@ -25,20 +25,20 @@ set "host=%host%"
 set "noconsole=%noconsole%"
 set "pycommandw=%pycommandw%"
 set "ssl=%ssl%"
-REM ³ÌÐò
+REM ç¨‹åº
 set "squirrel=%nut%"
-REM ÎÄ¼þ
+REM æ–‡ä»¶
 set "dec_keys=%dec_keys%"
 )
 ::-----------------------------------------------------
-::ÉèÖÃ¾ø¶ÔÂ·¾¶
+::è®¾ç½®ç»å¯¹è·¯å¾„
 ::-----------------------------------------------------
-::³ÌÐòÍêÕûÂ·¾¶
+::ç¨‹åºå®Œæ•´è·¯å¾„
 if exist "%~dp0%squirrel%" set "squirrel=%~dp0%squirrel%"
 
 ::Important files full route
 if exist "%~dp0%dec_keys%"  set "dec_keys=%~dp0%dec_keys%"
-::Êä³öÎÄ¼þ¼Ð
+::è¾“å‡ºæ–‡ä»¶å¤¹
 CD /d "%~dp0"
 if not exist "%dec_keys%" ( goto missing_things )
 
@@ -55,14 +55,14 @@ goto salida
 
 :missing_things
 echo ....................................
-echo ÄúÈ±ÉÙÒÔÏÂÄÚÈÝ                     :
+echo æ‚¨ç¼ºå°‘ä»¥ä¸‹å†…å®¹                     :
 echo ....................................
 echo.
-::ÎÄ¼þÍêÕûÂ·¾¶
-if not exist "%dec_keys%" echo - "keys.txt"ÎÄ¼þÖ¸Ïò²»ÕýÈ·»òÕßÈ±Ê§¡£
+::æ–‡ä»¶å®Œæ•´è·¯å¾„
+if not exist "%dec_keys%" echo - "keys.txt"æ–‡ä»¶æŒ‡å‘ä¸æ­£ç¡®æˆ–è€…ç¼ºå¤±ã€‚
 echo.
 pause
-echo ³ÌÐò¼´½«ÍË³ö
+echo ç¨‹åºå³å°†é€€å‡º
 PING -n 2 127.0.0.1 >NUL 2>&1
 goto salida
 :salida
