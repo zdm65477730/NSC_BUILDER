@@ -503,6 +503,7 @@ ECHO ******************************************
 echo.
 echo 1. DUMP所有存档
 echo 2. 选择要DUMP的存档
+echo 3. 仅备份当前安装的存档（要求DBI 155或更新的版本）
 echo.
 ECHO ******************************************
 echo 或者输入”0“，返回列表选项
@@ -511,10 +512,14 @@ echo.
 set /p bs="输入您的选择："
 set bs=%bs:"=%
 set backup_all=none
+set onlyinstalled=none
 if /i "%bs%"=="0" goto MAIN
 if /i "%bs%"=="1" set "backup_all=True"
+if /i "%bs%"=="1" set "onlyinstalled=False"
 if /i "%bs%"=="2" set "backup_all=False"
-if /i "%bs%"=="3" goto delete_archived
+if /i "%bs%"=="2" set "onlyinstalled=False"
+if /i "%bs%"=="3" set "backup_all=True"
+if /i "%bs%"=="3" set "onlyinstalled=True"
 if %backup_all%=="none" goto SAVES_wrongchoice
 
 %pycommand% "%squirrel_lb%" -lib_call mtp.mtp_game_manager back_up_saves -xarg  %backup_all% %MTP_saves_Inline% %MTP_saves_AddTIDandVer% %romaji% "" %onlyinstalled%
