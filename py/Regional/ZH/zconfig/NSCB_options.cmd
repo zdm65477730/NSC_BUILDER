@@ -94,7 +94,7 @@ set "zip_restore=false"
 :: "7.0.0 - 8.01"          -> vkey = 8
 :: "8.1.0 "                -> vkey = 9
 :: "9.0.0 - 9.0.1 "        -> vkey = 10
-:: "9.1.0"                 -> vkey = 11
+:: "9.1.0 - 10.2.0"        -> vkey = 11
 set "vkey=-kp false"
 
 ::--------------------------------------------------------------
@@ -182,8 +182,7 @@ set "MTP_pdrive_truecopy=True"
 :: 高级安装选项
 set "MTP_stc_installs=False"
 set "MTP_ptch_inst_spec=spec1"
-set "MTP_ptch_inst_spec=spec1"
 ::--------------------------------------------------------------
 :: 调用库
 ::--------------------------------------------------------------
-set "squirrel_lb=ztools\squirrel_lib_call.py" 
+set "squirrel_lb=ztools\squirrel_lib_call.py"

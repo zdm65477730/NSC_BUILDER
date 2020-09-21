@@ -230,7 +230,7 @@ echo 输入"7"，魔改版本FW 6.2.0
 echo 输入"8"，魔改版本FW 7.0.0-7.0.1
 echo 输入"9"，魔改版本FW 8.1.0
 echo 输入"10"，魔改版本FW 9.0.0-9.0.1
-echo 输入"11"，魔改版本FW 9.1.0
+echo 输入"11"，魔改版本FW 9.1.0-10.2.0
 echo.
 echo 输入"b"，返回自动模式-配置
 echo 输入"c"，返回配置菜单
@@ -1399,7 +1399,7 @@ echo ***************************************************************************
 echo 强制NUT_DB更新
 echo ***************************************************************************
 
-%pycommand% "%squirrel%" -lib_call nutdb force_refresh
+%pycommand% "%squirrel_lb%" -lib_call nutdb force_refresh
 
 echo ...........................................................................
 echo 输入"0"，返回配置菜单
@@ -1427,7 +1427,7 @@ echo .......................................................
 echo.
 set /p bs="输入您的选择： "
 if /i "%bs%"=="1" goto op_google_drive_account
-if /i "%bs%"=="2" ( %pycommand% "%squirrel%" -lib_call workers concurrent_cache )
+if /i "%bs%"=="2" ( %pycommand% "%squirrel_lb%" -lib_call workers concurrent_cache )
 if /i "%bs%"=="2" goto google_drive
 
 if /i "%bs%"=="0" goto sc1
@@ -1453,7 +1453,7 @@ echo.
 set /p bs="输入令牌使用的完整路径: "
 set "token=%bs%"
 echo.
-%pycommand% "%squirrel%" -lib_call Drive.Private create_token -xarg "%token%" headless="False"
+%pycommand% "%squirrel_lb%" -lib_call Drive.Private create_token -xarg "%token%" headless="False"
 pause
 goto google_drive
 
@@ -2712,7 +2712,7 @@ ECHO =============================     BY JULESONTHEROAD     ===================
 ECHO -------------------------------------------------------------------------------------
 ECHO "                                POWERED BY SQUIRREL                                "
 ECHO "                    BASED IN THE WORK OF BLAWAR AND LUCA FRAGA                     "
-ECHO                                    VERSION 1.00d
+ECHO                                    VERSION 1.01
 ECHO -------------------------------------------------------------------------------------
 ECHO Program's github: https://github.com/julesontheroad/NSC_BUILDER
 ECHO Blawar's github:  https://github.com/blawar

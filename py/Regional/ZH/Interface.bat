@@ -73,5 +73,5 @@ echo 程序即将退出
 PING -n 2 127.0.0.1 >NUL 2>&1
 goto salida
 :salida
-REM暂停
+REM 暂停
 exit
