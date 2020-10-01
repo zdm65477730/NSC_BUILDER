@@ -549,7 +549,7 @@ echo ÔöÁ¿²¿·Ö¶ÔÓÚxci¶øÑÔÊÇ²»±ØÒªµÄ£¬µ«ËüÃÇ¿ÉÓÃÓÚ°²×°¸ü¿ìµÄnsp²¢½«ÏÈÇ°µÄ¸üÐÂ×ª»»Î
 echo Ã»ÓÐÔöÁ¿¸üÐÂ£¬ÄúµÄ¾É¸üÐÂ½«±£ÁôÔÚÏµÍ³ÖÐ£¬ÄúÐèÒª½«ÆäÐ¶ÔØ¡£
 echo.
 echo ÊäÈë"1"£¬Ìø¹ýÔöÁ¿£¨Ä¬ÈÏÅäÖÃ£©
-echo ÊäÈë"2"£¬ÖØÐÂ´ò°üDelta
+echo ÊäÈë"2"£¬ÖØÐÂ´ò°üÔöÁ¿²¿·Ö
 echo.
 echo ÊäÈë"b"£¬·µ»ØÈ«¾ÖÑ¡Ïî
 echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥

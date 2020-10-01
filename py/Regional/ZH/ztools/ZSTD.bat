@@ -201,7 +201,7 @@ if /i "%bs%"=="b" goto checkagain
 if /i "%bs%"=="1" goto compression_presets_menu
 if /i "%bs%"=="2" goto pararell_compress
 if /i "%bs%"=="3" goto decompress
-if %choice%=="none" goto s_cl_wrongchoice
+if "%choice%"=="none" goto s_cl_wrongchoice
 
 
 :compression_presets_wrongchoice
@@ -286,7 +286,7 @@ if /i "%bs%"=="x" goto checkagain
 if /i "%bs%"=="b" goto compression_presets_menu
 if /i "%bs%"=="d" set "bs=17"
 set "level=%bs%"
-if %choice%=="none" goto levels_wrongchoice
+if "%choice%"=="none" goto levels_wrongchoice
 goto threads
 :threads_wrongchoice
 echo 错误的选择
@@ -297,7 +297,7 @@ echo 输入要使用的线程数
 echo *******************************************************
 echo 输入要在0和4之间使用的线程数
 echo 注意：建议保持默认
-echo   通过使用线程，您可能会获得一些减速，但会降低压缩率
+echo   + 通过使用线程，您可能会获得一些减速，但会损失压缩率
 echo   + 22级和4个线程可能会耗尽您的内存
 echo   + 建议最大线程压缩级别为17，但会损失压缩率
 echo   + -1将其设置为您的逻辑线程数
@@ -310,12 +310,12 @@ ECHO *********************************************
 echo.
 set /p bs="输入压缩线程数："
 set bs=%bs:"=%
-set choice=none
+set workers=none
 if /i "%bs%"=="x" goto checkagain
 if /i "%bs%"=="b" goto levels
 if /i "%bs%"=="d" set "bs=0"
 set "workers=%bs%"
-if %choice%=="none" goto threads_wrongchoice
+if "%workers%"=="none" goto threads_wrongchoice
 
 :compress
 cls
@@ -361,12 +361,13 @@ ECHO *********************************************
 echo.
 set /p bs="输入实例数目 [>1]: "
 set bs=%bs:"=%
-set choice=none
+set workers=none
 if /i "%bs%"=="x" goto checkagain
 if /i "%bs%"=="b" goto start
 if /i "%bs%"=="d" set "bs=4"
 set "workers=%bs%"
-if %choice%=="none" goto pararell_compress_wrongchoice
+if "%workers%"=="none" goto pararell_compress_wrongchoice
+goto pararell_levels
 
 :pararell_levels_wrongchoice
 echo 错误的选择
@@ -390,12 +391,12 @@ ECHO ******************************************
 echo.
 set /p bs="输入级别数 [1-22]: "
 set bs=%bs:"=%
-set choice=none
+set level=none
 if /i "%bs%"=="x" goto checkagain
 if /i "%bs%"=="b" goto pararell_compress
 if /i "%bs%"=="d" set "bs=17"
 set "level=%bs%"
-if %choice%=="none" goto pararell_levels_wrongchoice
+if "%level%"=="none" goto pararell_levels_wrongchoice
 goto pcompress
 :pcompress
 cls
