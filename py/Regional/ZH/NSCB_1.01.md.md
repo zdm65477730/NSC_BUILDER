@@ -16,9 +16,9 @@ https://github.com/rashevskyv/switch/releases/
 
 也可以在此处单独下载为nro或nsp。
 
-[DBI_156.nsp]（https://github.com/julesontheroad/NSC_BUILDER/raw/master/py/Documentation%20and%20Resources/DBI/138/DBI_0591703820420000.nsp）
+[DBI_156.nsp](https://github.com/julesontheroad/NSC_BUILDER/raw/master/py/Documentation%20and%20Resources/DBI/156/DBI_0591703820420000.nsp)
 
-[DBI_156.nro]（https://github.com/julesontheroad/NSC_BUILDER/raw/master/py/Documentation%20and%20Resources/DBI/138/DBI.nro）
+[DBI_156.nro](https://github.com/julesontheroad/NSC_BUILDER/raw/master/py/Documentation%20and%20Resources/DBI/156/DBI.nro)
 
 您可以在此处找到有关如何设置NSCB库，Google网盘身份验证令牌和1个文件身份验证令牌的信息：
 
@@ -28,7 +28,18 @@ https://github.com/julesontheroad/NSC_BUILDER/blob/master/py/Documentation%20and
 
 https://github.com/julesontheroad/NSC_BUILDER/tree/master/py/Documentation%20and%20Resources/DBI
 
-## *更改日志*
+## *1.01-b - 更改日志*
+### 1. 修复了界面中nsz和xcz文件不显示文件选择器的问题
+### 2. 改进了数据库之间的titledb版本的合并
+
+*修复了从tinfoil.io而不是从我的titledb存储库下载versions.txt的问题
+*添加了nutdb.json作为versions.txt合并的源
+
+### 3.对mtp上的Google网盘请求进行了更改
+
+### 4.修复了批量验证不会对xcz文件进行哈希处理的问题
+
+## *1.01 - 更改日志*
 
 ### 1.支持DBI 155和156版本的新mtp设置
 

@@ -332,19 +332,11 @@ https://gbatemp.net/attachments/2-0-0-8-1-0-zip.170607/
 http://tinfoil.io/Download
 -Blawar的tinfoil或者Lithium：
 http://tinfoil.io/Download
-- DuckBill的DBI安装器
-https://github.com/rashevskyv/switch/releases/tag/456
-- Awoo安装器
-https://github.com/Huntereb/Awoo-Installer
 
 要安装ncz文件，您需要：
 -SX OS安装程序
 -Blawar的Tinfoil：
 http://tinfoil.io/Download
-- DuckBill的DBI安装器
-https://github.com/rashevskyv/switch/releases/tag/456
-- Awoo安装器
-https://github.com/Huntereb/Awoo-Installer
 
 ## 10.要求
 
