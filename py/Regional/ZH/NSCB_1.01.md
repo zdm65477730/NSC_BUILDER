@@ -28,7 +28,7 @@ https://github.com/julesontheroad/NSC_BUILDER/blob/master/py/Documentation%20and
 
 https://github.com/julesontheroad/NSC_BUILDER/tree/master/py/Documentation%20and%20Resources/DBI
 
-## *1.01-b - 更改日志*
+## *1.01-b - 更新日志*
 ### 1. 修复了界面中nsz和xcz文件不显示文件选择器的问题
 ### 2. 改进了数据库之间的titledb版本的合并
 
@@ -39,7 +39,7 @@ https://github.com/julesontheroad/NSC_BUILDER/tree/master/py/Documentation%20and
 
 ### 4.修复了批量验证不会对xcz文件进行哈希处理的问题
 
-## *1.01 - 更改日志*
+## *1.01 - 更新日志*
 
 ### 1.支持DBI 155和156版本的新mtp设置
 
