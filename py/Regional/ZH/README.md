@@ -305,12 +305,12 @@ urllib3 unidecode tqdm bs4 tqdm请求图像pycryptodome pykakasi googletrans cha
   *与之前忽略NSCB用于在文件夹中设置存档位的pywin32相同
   *将鳗鱼文件替换为上面说明的master文件中的文件。
   *运行松鼠：
-squirrel.py -lib_call接口启动
+squirrel.py -lib_callInterface start
   *或者，如果您不喜欢python，请等待几天进行构建
 
 ## 8. File_Info Gui示例：
 
-！[图片]（https://i.ibb.co/12kCsDk/FI1.png）
+！[Picture]（https://i.ibb.co/12kCsDk/FI1.png）
 ！[Picture2]（https://i.ibb.co/R93H02v/FI3.png）
 ！[Picture3]（https://i.ibb.co/HCfTdxj/FI11.png）
 
