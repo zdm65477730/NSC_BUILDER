@@ -164,7 +164,8 @@ def loop_install(tfile,destiny="SD",outfolder=None,ch_medium=True,check_fw=True,
 						print("Couldn't find file. Skipping...")					
 				else:	
 					gdrive_install(item,destiny,outfolder=outfolder,ch_medium=ch_medium,check_fw=check_fw,patch_keygen=patch_keygen,ch_base=ch_base,ch_other=ch_other,checked=checked,installed_list=installed)	
-			except:
+			except BaseException as e:
+				Print.error('Exception: ' + str(e))
 				print(f"Couldn't find {test[0]}. Skipping...")
 		print("")					
 		listmanager.striplines(tfile,1,True)						
@@ -201,7 +202,7 @@ def get_library_from_path(tfile=None,filename=None):
 	return lib,TD,libpath	
 	
 def gdrive_install(filename,destiny="SD",outfolder=None,ch_medium=True,check_fw=True,patch_keygen=False,ch_base=False,ch_other=False,checked=False,installed_list=False):
-	check_connection();ID=None	
+	check_connection();ID=None;gvID=None
 	test=filename.split('|')
 	if len(test)<2:
 		filename=test[0]		
@@ -219,13 +220,32 @@ def gdrive_install(filename,destiny="SD",outfolder=None,ch_medium=True,check_fw=
 		ID=test[2]			
 		if str(ID).upper()=="NONE":
 			ID=None		
+	gvID=ID			
 	if ID==None:			
 		ID,name,type,size,md5,remote=DrivePrivate.get_Data(filename,TD=TD,Print=False)
 	else:
 		try:
-			ID,name,type,size,md5,remote=DrivePrivate.get_Data(filename,TD=TD,Print=False,ID=ID)	
+			ID,name,type,size,md5,remote=DrivePrivate.get_Data(filename,TD=TD,Print=False,ID=ID)
+			if ID==None:
+				try:
+					ID,name,type,size,md5,remote=DrivePrivate.get_Data(filename,TD=TD,Print=False)
+					if ID==None:
+						lib,TD,libpath=get_library_from_path(remote_lib_file,filename)
+						ID,name,type,size,md5,remote=DrivePrivate.get_Data(filename,TD=TD,Print=False)					
+				except:
+					lib,TD,libpath=get_library_from_path(remote_lib_file,filename)
+					ID,name,type,size,md5,remote=DrivePrivate.get_Data(filename,TD=TD,Print=False)						
 		except:
-			ID,name,type,size,md5,remote=DrivePrivate.get_Data(filename,TD=TD,Print=False)
+			try:
+				ID,name,type,size,md5,remote=DrivePrivate.get_Data(filename,TD=TD,Print=False)
+				if ID==None:
+					lib,TD,libpath=get_library_from_path(remote_lib_file,filename)
+					ID,name,type,size,md5,remote=DrivePrivate.get_Data(filename,TD=TD,Print=False)
+			except:
+				lib,TD,libpath=get_library_from_path(remote_lib_file,filename)
+				ID,name,type,size,md5,remote=DrivePrivate.get_Data(filename,TD=TD,Print=False)
+	if ID==None and gvID!=None:
+		remote.ID=gvID
 	# header=DrivePrivate.get_html_header(remote.access_token)
 	token=remote.access_token
 	name=remote.name
