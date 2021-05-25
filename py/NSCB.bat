@@ -526,7 +526,7 @@ if not exist "%list_folder%" MD "%list_folder%" >NUL 2>&1
 if not exist "%mlistfol%" MD "%mlistfol%" >NUL 2>&1
 
 echo - Generating filelist
-%pycommand% "%squirrel%" -t nsp xci -tfile "%prog_dir%mlist.txt" -ff "%~1"
+%pycommand% "%squirrel%" -t nsp nsz xci -tfile "%prog_dir%mlist.txt" -ff "%~1"
 echo   DONE
 echo - Splitting filelist
 %pycommand% "%squirrel%" -splid "%mlistfol%" -tfile "%prog_dir%mlist.txt"
@@ -2939,7 +2939,7 @@ goto DBs_exit_choice
 
 :DBGeneration
 if not exist "%dbdir%" MD "%dbdir%">NUL 2>&1
-%pycommand% "%squirrel%" --dbformat "%dbformat%" -dbfile "%db_file%" -tfile "%prog_dir%DBL.txt" -nscdb "%orinput%" %workers%
+%pycommand% "%squirrel%" --dbformat "%dbformat%" -dbfile "%db_file%" -tfile "%prog_dir%DBL.txt" --romanize %romaji% -nscdb "%orinput%" %workers%
 exit /B
 
 :DBcheck

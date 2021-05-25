@@ -1169,7 +1169,7 @@ def getverificationdata(filename,remotelocation=False):
 	eel.set_ver_data(feed)
 	return	
 
-def server(port='0.0.0.0',host='localhost',videoplayback=True,ssl=False,noconsole=False,overwrite=False):
+def server(port=8000,host='localhost',videoplayback=True,ssl=False,noconsole=False,overwrite=False):
 	ssl_cert= os.path.join(zconfig_dir, 'certificate.pem')
 	ssl_key= os.path.join(zconfig_dir, 'key.pem')
 	web_folder=os.path.join(ztools_dir,'web')
@@ -1240,6 +1240,8 @@ def server(port='0.0.0.0',host='localhost',videoplayback=True,ssl=False,noconsol
 		except:pass
 			
 def start(browserpath='auto',videoplayback=True,height=800,width=740,port=8000,host='localhost',noconsole=False):
+	if not (sys.platform in ['win32', 'win64']) and browserpath=='auto':
+		browserpath='default'
 	flag_file=os.path.join(debug_folder,'flag')	
 	with open(flag_file,'wt') as tfile:
 		if noconsole==True:	
