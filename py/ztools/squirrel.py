@@ -3594,7 +3594,7 @@ if __name__ == '__main__':
 							outfile = os.path.join(ofolder, filename)
 							#print(f.path)
 							f.open(filepath, 'rb')
-							f.c_xci_direct(buffer,outfile,ofolder,fat,delta,metapatch,RSV_cap,vkeypatch)
+							f.c_xci_direct(buffer,outfile,ofolder,fat,fx,delta,metapatch,RSV_cap,vkeypatch)
 							f.flush()
 							f.close()
 						except BaseException as e:
@@ -3621,7 +3621,7 @@ if __name__ == '__main__':
 							outfile = os.path.join(ofolder, filename)
 							#print(f.path)
 							f.open(filepath, 'rb')
-							f.c_xci_direct(buffer,outfile,ofolder,fat,delta,metapatch,RSV_cap,vkeypatch)
+							f.c_xci_direct(buffer,outfile,ofolder,fat,fx,delta,metapatch,RSV_cap,vkeypatch)
 							f.flush()
 							f.close()
 						except BaseException as e:
@@ -3651,7 +3651,7 @@ if __name__ == '__main__':
 							outfile = os.path.join(ofolder, filename)
 							#print(f.path)
 							f.open(filepath, 'rb')
-							temp=f.c_xci_direct(buffer,outfile,ofolder,fat,delta,metapatch,RSV_cap,vkeypatch)
+							temp=f.c_xci_direct(buffer,outfile,ofolder,fat,fx,delta,metapatch,RSV_cap,vkeypatch)
 							f.flush()
 							f.close()
 						except BaseException as e:
@@ -3678,7 +3678,7 @@ if __name__ == '__main__':
 							outfile = os.path.join(ofolder, filename)
 							#print(f.path)
 							f.open(filepath, 'rb')
-							f.c_xci_direct(buffer,outfile,ofolder,fat,delta,metapatch,RSV_cap,vkeypatch)
+							f.c_xci_direct(buffer,outfile,ofolder,fat,fx,delta,metapatch,RSV_cap,vkeypatch)
 							f.flush()
 							f.close()
 						except BaseException as e:
@@ -5830,7 +5830,8 @@ if __name__ == '__main__':
 		if args.patchversion:
 			for input in args.patchversion:
 				try:
-					number = input
+					number = int(input)
+					break
 				except BaseException as e:
 					Print.error('Exception: ' + str(e))
 			else:
@@ -7494,21 +7495,36 @@ if __name__ == '__main__':
 		# Verify. File verification
 		# ...................................................	
 		if args.verify_key:		
+			orig_kg=False
 			if isinstance(args.verify_key, list):
 				filepath=args.verify_key[0]
 				userkey=args.verify_key[1]
-				print(args.verify_key[2])
-				if args.verify_key[2]:
-					if str(args.verify_key[2]).lower()=="true":
-						unlock=True
-				else:
+				# print(args.verify_key[2])
+				try:
+					if args.verify_key[2]:
+						if str(args.verify_key[2]).lower()=="true":
+							unlock=True
+					else:
+						unlock=False
+				except:		
 					unlock=False
+				try:	
+					if args.verify_key[3]:
+						try:
+							orig_kg=int(args.verify_key[3])
+						except:
+							orig_kg=False	
+				except:
+					orig_kg=False	
 				userkey=str(userkey).upper()
 				if filepath.endswith('.nsp') or filepath.endswith('.nsx'):
 					basename=str(os.path.basename(os.path.abspath(filepath)))
 					try:
 						f = Fs.Nsp(filepath, 'rb')
-						check=f.verify_input_key(userkey)
+						if orig_kg==False:
+							check=f.verify_input_key(userkey)
+						else:
+							check,userkey=f.verify_input_key_m2(userkey,orig_kg)
 						f.flush()
 						f.close()
 						if check==True:
