@@ -227,10 +227,11 @@ echo 输入"4"，魔改版本FW 4.0.0-4.1.0
 echo 输入"5"，魔改版本FW 5.0.0-5.1.0
 echo 输入"6"，魔改版本FW 6.0.0-6.1.0
 echo 输入"7"，魔改版本FW 6.2.0
-echo 输入"8"，魔改版本FW 7.0.0-7.0.1
+echo 输入"8"，魔改版本FW 7.0.0-8.0.1
 echo 输入"9"，魔改版本FW 8.1.0
 echo 输入"10"，魔改版本FW 9.0.0-9.0.1
-echo 输入"11"，魔改版本FW 9.1.0-10.2.0
+echo 输入"11"，魔改版本FW 9.1.0-11.0.3
+echo 输入"12"，魔改版本FW 12.1.0-
 echo.
 echo 输入"b"，返回自动模式-配置
 echo 输入"c"，返回配置菜单
@@ -239,7 +240,7 @@ echo ...........................................................................
 echo.
 set /p bs="输入您的选择： "
 set "v_KGEN=none"
-set "v_CAPRSV=0"
+set "v_CAPRSV="
 if /i "%bs%"=="f" set "v_KGEN=-kp false"
 if /i "%bs%"=="0" set "v_KGEN=-kp 0"
 if /i "%bs%"=="0" set "v_CAPRSV=--RSVcap 0"
@@ -265,14 +266,16 @@ if /i "%bs%"=="10" set "v_KGEN=-kp 10"
 if /i "%bs%"=="10" set "v_CAPRSV=--RSVcap 603979776"
 if /i "%bs%"=="11" set "v_KGEN=-kp 11"
 if /i "%bs%"=="11" set "v_CAPRSV=--RSVcap 605028352"
+if /i "%bs%"=="12" set "v_KGEN=-kp 12"
+if /i "%bs%"=="12" set "v_CAPRSV=--RSVcap 806354944"
 
 if /i "%bs%"=="b" goto sc2
 if /i "%bs%"=="c" goto sc1
 if /i "%bs%"=="e" goto salida
 
-if "%v_RSV%"=="none" echo 错误的选择
-if "%v_RSV%"=="none" echo.
-if "%v_RSV%"=="none" goto op_RSV
+if "%v_KGEN%"=="none" echo 错误的选择
+if "%v_KGEN%"=="none" echo.
+if "%v_KGEN%"=="none" goto op_KGEN
 
 set v_KGEN="vkey=%v_KGEN%"
 set v_KGEN="%v_KGEN%"

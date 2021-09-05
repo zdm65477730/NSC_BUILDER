@@ -565,7 +565,8 @@ echo 输入"7"，魔改版本FW 6.2.0
 echo 输入"8"，魔改版本FW 7.0.0-8.0.1
 echo 输入"9"，魔改版本FW 8.1.0
 echo 输入"10"，魔改版本FW 9.0.0-9.0.1
-echo 输入"11"，魔改版本FW 9.1.0-10.2.0
+echo 输入"11"，魔改版本FW 9.1.0-11.0.3
+echo 输入"12"，魔改版本FW 12.1.0-
 echo.
 ECHO ******************************************
 echo 或输入"b"，返回列表选项
@@ -600,6 +601,8 @@ if /i "%bs%"=="10" set "vkey=-kp 10"
 if /i "%bs%"=="10" set "capRSV=--RSVcap 603979776"
 if /i "%bs%"=="11" set "vkey=-kp 11"
 if /i "%bs%"=="11" set "capRSV=--RSVcap 605028352"
+if /i "%bs%"=="12" set "vkey=-kp 12"
+if /i "%bs%"=="12" set "capRSV=--RSVcap 806354944"
 if /i "%vkey%"=="none" echo 错误的选择
 if /i "%vkey%"=="none" goto s_KeyChange_wrongchoice
 
@@ -981,7 +984,8 @@ echo 输入"7"，魔改版本FW 6.2.0
 echo 输入"8"，魔改版本FW 7.0.0-8.0.1
 echo 输入"9"，魔改版本FW 8.1.0
 echo 输入"10"，魔改版本FW 9.0.0-9.0.1
-echo 输入"11"，魔改版本FW 9.1.0-10.2.0
+echo 输入"11"，魔改版本FW 9.1.0-11.0.3
+echo 输入"12"，魔改版本FW 12.1.0-
 echo.
 ECHO *****************************************
 echo 或输入"b"，返回选项列表
@@ -1016,6 +1020,8 @@ if /i "%bs%"=="10" set "vkey=-kp 10"
 if /i "%bs%"=="10" set "capRSV=--RSVcap 603979776"
 if /i "%bs%"=="11" set "vkey=-kp 11"
 if /i "%bs%"=="11" set "capRSV=--RSVcap 605028352"
+if /i "%bs%"=="12" set "vkey=-kp 12"
+if /i "%bs%"=="12" set "capRSV=--RSVcap 806354944"
 if /i "%vkey%"=="none" echo 错误的选择
 if /i "%vkey%"=="none" goto m_KeyChange_wrongchoice
 
@@ -1805,7 +1811,8 @@ echo 输入"7"，魔改版本FW 6.2.0
 echo 输入"8"，魔改版本FW 7.0.0-8.0.1
 echo 输入"9"，魔改版本FW 8.1.0
 echo 输入"10"，魔改版本FW 9.0.0-9.0.1
-echo 输入"11"，魔改版本FW 9.1.0-10.2.0
+echo 输入"11"，魔改版本FW 9.1.0-11.0.3
+echo 输入"12"，魔改版本FW 12.1.0-
 echo.
 ECHO ******************************************
 echo 或输入"b"，返回列表选项
@@ -1840,6 +1847,8 @@ if /i "%bs%"=="10" set "vkey=-kp 10"
 if /i "%bs%"=="10" set "capRSV=--RSVcap 603979776"
 if /i "%bs%"=="11" set "vkey=-kp 11"
 if /i "%bs%"=="11" set "capRSV=--RSVcap 605028352"
+if /i "%bs%"=="12" set "vkey=-kp 12"
+if /i "%bs%"=="12" set "capRSV=--RSVcap 806354944"
 if /i "%vkey%"=="none" echo 错误的选择
 if /i "%vkey%"=="none" goto m_KeyChange_wrongchoice
 

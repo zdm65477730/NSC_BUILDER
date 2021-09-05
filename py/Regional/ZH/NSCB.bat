@@ -526,7 +526,7 @@ if not exist "%list_folder%" MD "%list_folder%" >NUL 2>&1
 if not exist "%mlistfol%" MD "%mlistfol%" >NUL 2>&1
 
 echo - Generating filelist
-%pycommand% "%squirrel%" -t nsp xci -tfile "%prog_dir%mlist.txt" -ff "%~1"
+%pycommand% "%squirrel%" -t nsp nsz xci -tfile "%prog_dir%mlist.txt" -ff "%~1"
 echo   完成
 echo - 正在分割文件列表
 %pycommand% "%squirrel%" -splid "%mlistfol%" -tfile "%prog_dir%mlist.txt"
@@ -1071,7 +1071,8 @@ echo 输入"7"，魔改版本FW 6.2.0
 echo 输入"8"，魔改版本FW 7.0.0-8.0.1
 echo 输入"9"，魔改版本FW 8.1.0
 echo 输入"10"，魔改版本FW 9.0.0-9.0.1
-echo 输入"11"，魔改版本FW 9.1.0-10.2.0
+echo 输入"11"，魔改版本FW 9.1.0-11.0.3
+echo 输入"12"，魔改版本FW 12.1.0-
 echo.
 ECHO ******************************************
 echo 或输入"b"，返回列表选项
@@ -1106,6 +1107,8 @@ if /i "%bs%"=="10" set "vkey=-kp 10"
 if /i "%bs%"=="10" set "capRSV=--RSVcap 603979776"
 if /i "%bs%"=="11" set "vkey=-kp 11"
 if /i "%bs%"=="11" set "capRSV=--RSVcap 605028352"
+if /i "%bs%"=="12" set "vkey=-kp 12"
+if /i "%bs%"=="12" set "capRSV=--RSVcap 806354944"
 if /i "%vkey%"=="none" echo 错误的选择
 if /i "%vkey%"=="none" goto s_KeyChange_wrongchoice
 goto s_KeyChange_skip
@@ -1247,7 +1250,7 @@ if /i "%bs%"=="3" set "renmode=skip_if_tid"
 if /i "%bs%"=="3" set "oaid=false"
 if /i "%bs%"=="4" set "renmode=skip_corr_tid"
 if /i "%bs%"=="4" set "oaid=true"
-if /i "%bs%"=="5" set "renmode=skip_corr_tid"
+if /i "%bs%"=="5" set "renmode=force"
 if /i "%bs%"=="5" set "oaid=idtag"
 if /i "%bs%"=="6" goto sanitize
 if /i "%bs%"=="7" goto romaji
@@ -1874,10 +1877,11 @@ echo 输入"4"，魔改版本FW 4.0.0-4.1.0
 echo 输入"5"，魔改版本FW 5.0.0-5.1.0
 echo 输入"6"，魔改版本FW 6.0.0-6.1.0
 echo 输入"7"，魔改版本FW 6.2.0
-echo 输入"8"，魔改版本FW 7.0.0-8.0.1)
-echo 输入"9"，魔改版本FW 8.1.0)
-echo 输入"10"，魔改版本FW 9.0.0-9.0.1)
-echo 输入"11"，魔改版本FW 9.1.0-10.2.0)
+echo 输入"8"，魔改版本FW 7.0.0-8.0.1
+echo 输入"9"，魔改版本FW 8.1.0
+echo 输入"10"，魔改版本FW 9.0.0-9.0.1
+echo 输入"11"，魔改版本FW 9.1.0-11.0.3
+echo 输入"12"，魔改版本FW 12.1.0-
 echo.
 ECHO *****************************************
 echo 或输入"b"，返回选项列表
@@ -1912,6 +1916,8 @@ if /i "%bs%"=="10" set "vkey=-kp 10"
 if /i "%bs%"=="10" set "capRSV=--RSVcap 603979776"
 if /i "%bs%"=="11" set "vkey=-kp 11"
 if /i "%bs%"=="11" set "capRSV=--RSVcap 605028352"
+if /i "%bs%"=="12" set "vkey=-kp 12"
+if /i "%bs%"=="12" set "capRSV=--RSVcap 806354944"
 if /i "%vkey%"=="none" echo 错误的选择
 if /i "%vkey%"=="none" goto m_KeyChange_wrongchoice
 
@@ -2920,7 +2926,7 @@ goto DBs_exit_choice
 
 :DBGeneration
 if not exist "%dbdir%" MD "%dbdir%">NUL 2>&1
-%pycommand% "%squirrel%" --dbformat "%dbformat%" -dbfile "%db_file%" -tfile "%prog_dir%DBL.txt" -nscdb "%orinput%" %workers%
+%pycommand% "%squirrel%" --dbformat "%dbformat%" -dbfile "%db_file%" -tfile "%prog_dir%DBL.txt" --romanize %romaji% -nscdb "%orinput%" %workers%
 exit /B
 
 :DBcheck
