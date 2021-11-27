@@ -231,7 +231,8 @@ echo 输入"8"，魔改版本FW 7.0.0-8.0.1
 echo 输入"9"，魔改版本FW 8.1.0
 echo 输入"10"，魔改版本FW 9.0.0-9.0.1
 echo 输入"11"，魔改版本FW 9.1.0-11.0.3
-echo 输入"12"，魔改版本FW 12.1.0-
+echo 输入"12"，魔改版本FW 12.1.0
+echo 输入"13"，魔改版本FW 13.0.0-
 echo.
 echo 输入"b"，返回自动模式-配置
 echo 输入"c"，返回配置菜单
@@ -268,6 +269,8 @@ if /i "%bs%"=="11" set "v_KGEN=-kp 11"
 if /i "%bs%"=="11" set "v_CAPRSV=--RSVcap 605028352"
 if /i "%bs%"=="12" set "v_KGEN=-kp 12"
 if /i "%bs%"=="12" set "v_CAPRSV=--RSVcap 806354944"
+if /i "%bs%"=="13" set "vkey=-kp 13"
+if /i "%bs%"=="13" set "capRSV=--RSVcap 872415232"
 
 if /i "%bs%"=="b" goto sc2
 if /i "%bs%"=="c" goto sc1
