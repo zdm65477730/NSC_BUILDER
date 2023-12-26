@@ -569,8 +569,32 @@ def verify_nkeys(fileName):
 		print("master_key_09 is Missing")
 	else:
 		counter+=1
-	if 'master_key_10' not in checkkeys and 'master_key_0a' not in checkkeys:
-		print("master_key_10|master_key_0a is Missing")
+	if 'master_key_0a' not in checkkeys:
+		print("master_key_0a is Missing")
+	else:
+		counter+=1
+	if 'master_key_0b' not in checkkeys:
+		print("master_key_0b is Missing")
+	else:
+		counter+=1
+	if 'master_key_0c' not in checkkeys:
+		print("master_key_0c is Missing")
+	else:
+		counter+=1
+	if 'master_key_0d' not in checkkeys:
+		print("master_key_0d is Missing")
+	else:
+		counter+=1
+	if 'master_key_0e' not in checkkeys:
+		print("master_key_0e is Missing")
+	else:
+		counter+=1
+	if 'master_key_0f' not in checkkeys:
+		print("master_key_0f is Missing")
+	else:
+		counter+=1
+	if 'master_key_10' not in checkkeys:
+		print("master_key_10 is Missing")
 	else:
 		counter+=1
 
@@ -772,12 +796,78 @@ def verify_nkeys(fileName):
 				print(tabs+'> Key is invalid!!! -> PLEASE CHECK YOUR KEYS.TXT!!!')
 			print('')
 
-		if i == 'master_key_10' or i == 'master_key_0a':
-			master_key_10=checkkeys[i][:]
-			print('master_key_10|master_key_0a: '+master_key_10)
-			sha=sha256(uhx(master_key_10)).hexdigest()
+		if i == 'master_key_0a':
+			master_key_0a=checkkeys[i][:]
+			print('master_key_0a: '+master_key_0a)
+			sha=sha256(uhx(master_key_0a)).hexdigest()
 			print('  > HEX SHA256: '+sha)
 			if sha == '4ec5a237a75a083a9c5f6cf615601522a7f822d06bd4ba32612c9cebbb29bd45':
+				print(tabs+'> Key is valid!!!')
+			else:
+				print(tabs+'> Key is invalid!!! -> PLEASE CHECK YOUR KEYS.TXT!!!')
+			print('')
+			
+		if i == 'master_key_0b':
+			master_key_0b=checkkeys[i][:]
+			print('master_key_0b: '+master_key_0b)
+			sha=sha256(uhx(master_key_0b)).hexdigest()
+			print('  > HEX SHA256: '+sha)
+			if sha == '7f72f59a2784cf94b521ee114d68f100217a6fdb6fefc770b7c5267db7b148b0':
+				print(tabs+'> Key is valid!!!')
+			else:
+				print(tabs+'> Key is invalid!!! -> PLEASE CHECK YOUR KEYS.TXT!!!')
+			print('')
+			
+		if i == 'master_key_0c':
+			master_key_0c=checkkeys[i][:]
+			print('master_key_0c: '+master_key_0c)
+			sha=sha256(uhx(master_key_0c)).hexdigest()
+			print('  > HEX SHA256: '+sha)
+			if sha == 'f7f14661a41870d882570d4afa951077e57a2c951a2cc3ba279fb9ac12be6fce':
+				print(tabs+'> Key is valid!!!')
+			else:
+				print(tabs+'> Key is invalid!!! -> PLEASE CHECK YOUR KEYS.TXT!!!')
+			print('')
+			
+		if i == 'master_key_0d':
+			master_key_0d=checkkeys[i][:]
+			print('master_key_0d: '+master_key_0d)
+			sha=sha256(uhx(master_key_0d)).hexdigest()
+			print('  > HEX SHA256: '+sha)
+			if sha == '5dcc229fc0ad897af8c1cead84aedecb6d621d5d9f67486e60e1acf1b85bf4ba':
+				print(tabs+'> Key is valid!!!')
+			else:
+				print(tabs+'> Key is invalid!!! -> PLEASE CHECK YOUR KEYS.TXT!!!')
+			print('')
+			
+		if i == 'master_key_0e':
+			master_key_0e=checkkeys[i][:]
+			print('master_key_0e: '+master_key_0e)
+			sha=sha256(uhx(master_key_0e)).hexdigest()
+			print('  > HEX SHA256: '+sha)
+			if sha == '4c0e48bf968f4c50920f35abfc7e68b3a46a682db4729b8e7f21d2e2efbcf909':
+				print(tabs+'> Key is valid!!!')
+			else:
+				print(tabs+'> Key is invalid!!! -> PLEASE CHECK YOUR KEYS.TXT!!!')
+			print('')
+			
+		if i == 'master_key_0f':
+			master_key_0f=checkkeys[i][:]
+			print('master_key_0f: '+master_key_0f)
+			sha=sha256(uhx(master_key_0f)).hexdigest()
+			print('  > HEX SHA256: '+sha)
+			if sha == '7badc190f34e6fa0b8c3343aa6594a9f22cfbbeb0dda1439a65af568b685d71e':
+				print(tabs+'> Key is valid!!!')
+			else:
+				print(tabs+'> Key is invalid!!! -> PLEASE CHECK YOUR KEYS.TXT!!!')
+			print('')
+			
+		if i == 'master_key_10':
+			master_key_10=checkkeys[i][:]
+			print('master_key_10: '+master_key_10)
+			sha=sha256(uhx(master_key_10)).hexdigest()
+			print('  > HEX SHA256: '+sha)
+			if sha == '4a9b09a4c4923fd0d71054d3b4b9e839a0281d5f049bfdd717f29819d5663b67':
 				print(tabs+'> Key is valid!!!')
 			else:
 				print(tabs+'> Key is invalid!!! -> PLEASE CHECK YOUR KEYS.TXT!!!')
@@ -908,14 +998,56 @@ def verify_nkeys_startup(fileName):
 	if 'master_key_09' not in checkkeys:
 		print("master_key_09 is Missing!!!")
 		print("The program won't be able to decrypt games content that uses this key")
-		print("This key represents FW 9.0 requirement")
+		print("This key represents FW 8.1.0 requirement")
 		startup=True
 	else:
 		counter+=1
-	if 'master_key_10' not in checkkeys and 'master_key_0a' not in checkkeys:
-		print("master_key_10|master_key_0a is Missing!!!")
+	if 'master_key_0a' not in checkkeys:
+		print("master_key_0a is Missing!!!")
 		print("The program won't be able to decrypt games content that uses this key")
-		print("This key represents FW 9.1-10.04 requirement")
+		print("This key represents FW 9.0-9.0.1 requirement")
+		startup=True
+	else:
+		counter+=1
+	if 'master_key_0b' not in checkkeys:
+		print("master_key_0b is Missing!!!")
+		print("The program won't be able to decrypt games content that uses this key")
+		print("This key represents FW 9.1-12.0.3 requirement")
+		startup=True
+	else:
+		counter+=1
+	if 'master_key_0c' not in checkkeys:
+		print("master_key_0c is Missing!!!")
+		print("The program won't be able to decrypt games content that uses this key")
+		print("This key represents FW 13.0.0-13.2.1 requirement")
+		startup=True
+	else:
+		counter+=1
+	if 'master_key_0d' not in checkkeys:
+		print("master_key_0d is Missing!!!")
+		print("The program won't be able to decrypt games content that uses this key")
+		print("This key represents FW 14.0.0-14.1.2 requirement")
+		startup=True
+	else:
+		counter+=1
+	if 'master_key_0e' not in checkkeys:
+		print("master_key_0e is Missing!!!")
+		print("The program won't be able to decrypt games content that uses this key")
+		print("This key represents FW 15.0.0-15.0.1 requirement")
+		startup=True
+	else:
+		counter+=1
+	if 'master_key_0f' not in checkkeys:
+		print("master_key_0f is Missing!!!")
+		print("The program won't be able to decrypt games content that uses this key")
+		print("This key represents FW 16.0.0-16.1.0 requirement")
+		startup=True
+	else:
+		counter+=1
+	if 'master_key_10' not in checkkeys:
+		print("master_key_10 is Missing!!!")
+		print("The program won't be able to decrypt games content that uses this key")
+		print("This key represents FW 17.0.0-17.0.1 requirement")
 		startup=True
 	else:
 		counter+=1
@@ -1104,11 +1236,71 @@ def verify_nkeys_startup(fileName):
 				startup=True
 			print('')
 
-		if (i == 'master_key_10' or i=='master_key_0a'):
+		if (i=='master_key_0a'):
+			master_key_0a=checkkeys[i][:]
+			sha=sha256(uhx(master_key_0a)).hexdigest()
+			if sha != '4ec5a237a75a083a9c5f6cf615601522a7f822d06bd4ba32612c9cebbb29bd45':
+				print('master_key_0a: '+aes_kek_generation_source )
+				print('  > HEX SHA256: '+sha)
+				print(tabs+'> Key is invalid!!! -> PLEASE CHECK YOUR KEYS.TXT!!!')
+				startup=True
+			print('')
+			
+		if (i=='master_key_0b'):
+			master_key_0b=checkkeys[i][:]
+			sha=sha256(uhx(master_key_0b)).hexdigest()
+			if sha != '7f72f59a2784cf94b521ee114d68f100217a6fdb6fefc770b7c5267db7b148b0':
+				print('master_key_0b: '+aes_kek_generation_source )
+				print('  > HEX SHA256: '+sha)
+				print(tabs+'> Key is invalid!!! -> PLEASE CHECK YOUR KEYS.TXT!!!')
+				startup=True
+			print('')
+			
+		if (i=='master_key_0c'):
+			master_key_0c=checkkeys[i][:]
+			sha=sha256(uhx(master_key_0c)).hexdigest()
+			if sha != 'f7f14661a41870d882570d4afa951077e57a2c951a2cc3ba279fb9ac12be6fce':
+				print('master_key_0c: '+aes_kek_generation_source )
+				print('  > HEX SHA256: '+sha)
+				print(tabs+'> Key is invalid!!! -> PLEASE CHECK YOUR KEYS.TXT!!!')
+				startup=True
+			print('')
+			
+		if (i=='master_key_0d'):
+			master_key_0d=checkkeys[i][:]
+			sha=sha256(uhx(master_key_0d)).hexdigest()
+			if sha != '5dcc229fc0ad897af8c1cead84aedecb6d621d5d9f67486e60e1acf1b85bf4ba':
+				print('master_key_0d: '+aes_kek_generation_source )
+				print('  > HEX SHA256: '+sha)
+				print(tabs+'> Key is invalid!!! -> PLEASE CHECK YOUR KEYS.TXT!!!')
+				startup=True
+			print('')
+			
+		if (i=='master_key_0e'):
+			master_key_0e=checkkeys[i][:]
+			sha=sha256(uhx(master_key_0e)).hexdigest()
+			if sha != '4c0e48bf968f4c50920f35abfc7e68b3a46a682db4729b8e7f21d2e2efbcf909':
+				print('master_key_0e: '+aes_kek_generation_source )
+				print('  > HEX SHA256: '+sha)
+				print(tabs+'> Key is invalid!!! -> PLEASE CHECK YOUR KEYS.TXT!!!')
+				startup=True
+			print('')
+			
+		if (i=='master_key_0f'):
+			master_key_0f=checkkeys[i][:]
+			sha=sha256(uhx(master_key_0f)).hexdigest()
+			if sha != '7badc190f34e6fa0b8c3343aa6594a9f22cfbbeb0dda1439a65af568b685d71e':
+				print('master_key_0f: '+aes_kek_generation_source )
+				print('  > HEX SHA256: '+sha)
+				print(tabs+'> Key is invalid!!! -> PLEASE CHECK YOUR KEYS.TXT!!!')
+				startup=True
+			print('')
+			
+		if (i=='master_key_10'):
 			master_key_10=checkkeys[i][:]
 			sha=sha256(uhx(master_key_10)).hexdigest()
-			if sha != '4ec5a237a75a083a9c5f6cf615601522a7f822d06bd4ba32612c9cebbb29bd45':
-				print('master_key_10|master_key_0a: '+aes_kek_generation_source )
+			if sha != '4a9b09a4c4923fd0d71054d3b4b9e839a0281d5f049bfdd717f29819d5663b67':
+				print('master_key_10: '+aes_kek_generation_source )
 				print('  > HEX SHA256: '+sha)
 				print(tabs+'> Key is invalid!!! -> PLEASE CHECK YOUR KEYS.TXT!!!')
 				startup=True
