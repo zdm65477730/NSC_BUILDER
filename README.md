@@ -1,7 +1,7 @@
 # Nintendo Switch Cleaner and Builder (NSC_Builder)
 ![DeviceTag](https://img.shields.io/badge/Device-SWITCH-e60012.svg)  ![LanguageTag](https://img.shields.io/badge/languages-python_batch_html5_javascript-blue.svg)
 
-**Currently Updating for KG17 support**
+**Updated for KG18 support**
 
 ## 1. Description
 
