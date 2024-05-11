@@ -1079,7 +1079,10 @@ echo Input "11" to change top keygeneration to 11 (FW 9.1.0-11.0.3)
 echo Input "12" to change top keygeneration to 12 (FW 12.1.0)
 echo Input "13" to change top keygeneration to 13 (FW 13.0.0-13.2.1)
 echo Input "14" to change top keygeneration to 14 (FW 14.0.0-14.1.2)
-echo Input "15" to change top keygeneration to 15 (>FW 15.0.0)
+echo Input "15" to change top keygeneration to 15 (FW 15.0.0-15.0.1)
+echo Input "16" to change top keygeneration to 16 (FW 16.0.0-16.1.0)
+echo Input "17" to change top keygeneration to 17 (FW 17.0.0-17.0.1)
+echo Input "18" to change top keygeneration to 18 (>FW 18.0.0)
 echo.
 ECHO ******************************************
 echo Or Input "b" to return to the list options
@@ -1122,6 +1125,12 @@ if /i "%bs%"=="14" set "vkey=-kp 14"
 if /i "%bs%"=="14" set "capRSV=--RSVcap 939524096"
 if /i "%bs%"=="15" set "vkey=-kp 15"
 if /i "%bs%"=="15" set "capRSV=--RSVcap 1006632960"
+if /i "%bs%"=="16" set "vkey=-kp 16"
+if /i "%bs%"=="16" set "capRSV=--RSVcap 1073741824"
+if /i "%bs%"=="17" set "vkey=-kp 17"
+if /i "%bs%"=="17" set "capRSV=--RSVcap 1140851708"
+if /i "%bs%"=="18" set "vkey=-kp 18"
+if /i "%bs%"=="18" set "capRSV=--RSVcap 1207960692"
 if /i "%vkey%"=="none" echo WRONG CHOICE
 if /i "%vkey%"=="none" goto s_KeyChange_wrongchoice
 goto s_KeyChange_skip
@@ -1909,7 +1918,10 @@ echo Input "11" to change top keygeneration to 11 (FW 9.1.0-11.0.3)
 echo Input "12" to change top keygeneration to 12 (FW 12.1.0)
 echo Input "13" to change top keygeneration to 13 (FW 13.0.0-13.2.1)
 echo Input "14" to change top keygeneration to 14 (FW 14.0.0-14.1.2)
-echo Input "15" to change top keygeneration to 15 (>FW 15.0.0)
+echo Input "15" to change top keygeneration to 15 (FW 15.0.0-15.0.1)
+echo Input "16" to change top keygeneration to 16 (FW 16.0.0-16.1.0)
+echo Input "17" to change top keygeneration to 17 (FW 17.0.0-17.0.1)
+echo Input "18" to change top keygeneration to 18 (>FW 18.0.0)
 echo.
 ECHO *****************************************
 echo Or Input "b" to return to the option list
@@ -1952,6 +1964,12 @@ if /i "%bs%"=="14" set "vkey=-kp 14"
 if /i "%bs%"=="14" set "capRSV=--RSVcap 939524096"
 if /i "%bs%"=="15" set "vkey=-kp 15"
 if /i "%bs%"=="15" set "capRSV=--RSVcap 1006632960"
+if /i "%bs%"=="16" set "vkey=-kp 16"
+if /i "%bs%"=="16" set "capRSV=--RSVcap 1073741824"
+if /i "%bs%"=="17" set "vkey=-kp 17"
+if /i "%bs%"=="17" set "capRSV=--RSVcap 1140851708"
+if /i "%bs%"=="18" set "vkey=-kp 18"
+if /i "%bs%"=="18" set "capRSV=--RSVcap 1207960692"
 if /i "%vkey%"=="none" echo WRONG CHOICE
 if /i "%vkey%"=="none" goto m_KeyChange_wrongchoice
 
