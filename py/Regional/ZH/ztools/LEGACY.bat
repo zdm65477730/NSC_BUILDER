@@ -563,7 +563,12 @@ echo 输入"9"，魔改版本FW 8.1.0
 echo 输入"10"，魔改版本FW 9.0.0-9.0.1
 echo 输入"11"，魔改版本FW 9.1.0-11.0.3
 echo 输入"12"，魔改版本FW 12.1.0
-echo 输入"13"，魔改版本FW 13.0.0-
+echo 输入"13"，魔改版本FW 13.0.0-13.2.1
+echo 输入"14"，魔改版本FW 14.0.0-14.1.2
+echo 输入"15"，魔改版本FW 15.0.0-15.0.1
+echo 输入"16"，魔改版本FW 16.0.0-16.1.0
+echo 输入"17"，魔改版本FW 17.0.0-17.0.1
+echo 输入"18"，魔改版本FW 18.0.0-
 echo.
 ECHO ******************************************
 echo 或输入"b"，返回列表选项
@@ -602,6 +607,16 @@ if /i "%bs%"=="12" set "vkey=-kp 12"
 if /i "%bs%"=="12" set "capRSV=--RSVcap 806354944"
 if /i "%bs%"=="13" set "vkey=-kp 13"
 if /i "%bs%"=="13" set "capRSV=--RSVcap 872415232"
+if /i "%bs%"=="14" set "vkey=-kp 14"
+if /i "%bs%"=="14" set "capRSV=--RSVcap 939524096"
+if /i "%bs%"=="15" set "vkey=-kp 15"
+if /i "%bs%"=="15" set "capRSV=--RSVcap 1006632960"
+if /i "%bs%"=="16" set "vkey=-kp 16"
+if /i "%bs%"=="16" set "capRSV=--RSVcap 1073741824"
+if /i "%bs%"=="17" set "vkey=-kp 17"
+if /i "%bs%"=="17" set "capRSV=--RSVcap 1140851708"
+if /i "%bs%"=="18" set "vkey=-kp 18"
+if /i "%bs%"=="18" set "capRSV=--RSVcap 1207960692"
 if /i "%vkey%"=="none" echo 错误的选项
 if /i "%vkey%"=="none" goto s_KeyChange_wrongchoice
 
