@@ -912,10 +912,10 @@ def verify_nkeys(fileName):
 		
 		if i == 'master_key_11':
 			master_key_11=checkkeys[i][:]
-			print('master_key_11: '+master_key_10)
+			print('master_key_11: '+master_key_11)
 			sha=sha256(uhx(master_key_11)).hexdigest()
 			print('  > HEX SHA256: '+sha)
-			if sha == '46b70df580b337a29a4280709b4f048bcead5001825b70aec7b227c725a423f2':
+			if sha == '21235cdedccd725bd07726aaff7673869c48ba5d691a751ae2c3a4701792cf62':
 				print(tabs+'> Key is valid!!!')
 			else:
 				print(tabs+'> Key is invalid!!! -> PLEASE CHECK YOUR KEYS.TXT!!!')
@@ -1364,7 +1364,7 @@ def verify_nkeys_startup(fileName):
 		if (i=='master_key_11'):
 			master_key_11=checkkeys[i][:]
 			sha=sha256(uhx(master_key_11)).hexdigest()
-			if sha != '46b70df580b337a29a4280709b4f048bcead5001825b70aec7b227c725a423f2':
+			if sha != '21235cdedccd725bd07726aaff7673869c48ba5d691a751ae2c3a4701792cf62':
 				print('master_key_11: '+aes_kek_generation_source )
 				print('  > HEX SHA256: '+sha)
 				print(tabs+'> Key is invalid!!! -> PLEASE CHECK YOUR KEYS.TXT!!!')
