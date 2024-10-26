@@ -581,8 +581,7 @@ def consolidate_versiondb():
 					tid=str(row[id]).upper() 
 					v_=str(row[ver])
 					if v_=="" and tid.endswith('800'):
-						continue
-						# v_=65536
+						v_=65536
 					elif v_=="":
 						v_=0					
 					if tid.endswith('800'):
@@ -601,8 +600,7 @@ def consolidate_versiondb():
 					tid=tid[:-3]+'000'
 				for j in (data[i]).keys():
 					if j=="" and i.endswith('800'):
-						continue
-						# j=65536
+						j=65536
 					elif j=="":
 						j=0							
 					try:
@@ -625,16 +623,13 @@ def consolidate_versiondb():
 					try:
 						j=entry['version']
 					except:
-						continue
-						# j=65536
+						j=65536
 				else:
 					try:
 						j=entry['version']
 					except:
 						j=0	
 				try:
-					if j is None:
-						continue
 					if not tid in ver_txt_dict:
 						ver_txt_dict[tid]=j
 					else:
@@ -654,8 +649,7 @@ def consolidate_versiondb():
 					try:
 						j=version
 					except:
-						continue
-						# j=65536
+						j=65536
 				else:
 					try:
 						j=version
@@ -680,7 +674,7 @@ def consolidate_versiondb():
 			if not updid in newdict:
 				newdict[i]='0'
 				newdict[updid]=v_	
-	ver_txt_dict=newdict
+	ver_txt_dict=newdict		
 	for i in data:
 		tid=i.upper()
 		if i.endswith('000'):

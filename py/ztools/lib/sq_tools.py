@@ -17,6 +17,7 @@ tabs = '\t' * indent
 '''
 versions =
     0:           "1.0.0",       ->   keygeneration = 0
+    450:         "1.0.0",       ->   keygeneration = 0
     65536:       "2.0.0",       ->   keygeneration = 1
     131072:      "2.1.0",       ->   keygeneration = 1
     196608:      "2.2.0",       ->   keygeneration = 1
@@ -61,8 +62,8 @@ versions =
 	806354944:   "12.1.0"       ->   keygeneration = 12
 	872415232:   "13.0.0"       ->   keygeneration = 13
 	873463808:   "13.1.0"       ->   keygeneration = 13
-	874512404:   "13.2.0"       ->   keygeneration = 13
-	874578000:   "13.2.1"       ->   keygeneration = 13
+	874512384:   "13.2.0"       ->   keygeneration = 13
+	874577920:   "13.2.1"       ->   keygeneration = 13
 	939524096:   "14.0.0"       ->   keygeneration = 14
 	940572672:   "14.1.0"       ->   keygeneration = 14
 	940638208:   "14.1.1"       ->   keygeneration = 14
@@ -77,6 +78,7 @@ versions =
 	1140850688:  "17.0.0"       ->   keygeneration = 17
 	1140916224:  "17.0.1"       ->   keygeneration = 17
 	1207959552:  "18.0.0"       ->   keygeneration = 18
+    1208025088:  "18.0.1"       ->   keygeneration = 18
 	1209008128:  "18.1.0"       ->   keygeneration = 18
 	1275068416:  "19.0.0"       ->   keygeneration = 19
 	
@@ -84,12 +86,12 @@ versions =
 def kgstring():
 	kg=list()
 	kg19=[1275068416];kg.append(kg19)
-	kg18=[1209008128,1207959552];kg.append(kg18)
+	kg18=[1209008128,1208025088,1207959552];kg.append(kg18)
 	kg17=[1140916224,1140850688];kg.append(kg17)
 	kg16=[1074790400,1073938432,1073872896,1073807360,1073741824];kg.append(kg16)
 	kg15=[1006698496,1006632960];kg.append(kg15)
 	kg14=[940703744,940638208,940572672,939524096];kg.append(kg14)
-	kg13=[874578000,874512404,873463808,872415232];kg.append(kg13)	
+	kg13=[874577920,874512384,873463808,872415232];kg.append(kg13)	
 	kg12=[806354944];kg.append(kg12)
 	kg11=[805502976,805437440,805371904,805306368,738263040,738197504,673185792,672202752,672137216,671350784,671285248,671219712,671154176,671088640,606076928,605028352];kg.append(kg11)
 	kg10=[604045312,603979776];kg.append(kg10)
@@ -102,7 +104,7 @@ def kgstring():
 	kg3=[201457664,201392128];kg.append(kg3)
 	kg2=[201326592];kg.append(kg2)
 	kg1=[262144,196608,131072,65536];kg.append(kg1)
-	kg0=[0];kg.append(kg0)
+	kg0=[450,0];kg.append(kg0)
 	return kg
 
 def kg_by_RSV(RSV):
@@ -119,7 +121,7 @@ def kg_by_RSV(RSV):
 def transform_fw_string(FW):
 	FW=FW.split('-');rem=0;RRSV=0
 	if len(FW)>1:
-		rem=int(FW[1])
+		rem=FW[1]
 	else:
 		rem=0
 	FW=FW[0]
