@@ -1078,7 +1078,8 @@ echo 输入"14"，魔改版本FW 14.0.0-14.1.2
 echo 输入"15"，魔改版本FW 15.0.0-15.0.1
 echo 输入"16"，魔改版本FW 16.0.0-16.1.0
 echo 输入"17"，魔改版本FW 17.0.0-17.0.1
-echo 输入"18"，魔改版本FW 18.0.0-
+echo 输入"18"，魔改版本FW 18.0.0-18.1.0
+echo 输入"19"，魔改版本FW 19.0.0-
 echo.
 ECHO ******************************************
 echo 或输入"b"，返回列表选项
@@ -1092,17 +1093,17 @@ if /i "%bs%"=="f" set "vkey=-kp false"
 if /i "%bs%"=="0" set "vkey=-kp 0"
 if /i "%bs%"=="0" set "capRSV=--RSVcap 0"
 if /i "%bs%"=="1" set "vkey=-kp 1"
-if /i "%bs%"=="1" set "capRSV=--RSVcap 65796"
+if /i "%bs%"=="1" set "capRSV=--RSVcap 65536"
 if /i "%bs%"=="2" set "vkey=-kp 2"
-if /i "%bs%"=="2" set "capRSV=--RSVcap 201327002"
+if /i "%bs%"=="2" set "capRSV=--RSVcap 201326592"
 if /i "%bs%"=="3" set "vkey=-kp 3"
-if /i "%bs%"=="3" set "capRSV=--RSVcap 201392178"
+if /i "%bs%"=="3" set "capRSV=--RSVcap 201392128"
 if /i "%bs%"=="4" set "vkey=-kp 4"
-if /i "%bs%"=="4" set "capRSV=--RSVcap 268435656"
+if /i "%bs%"=="4" set "capRSV=--RSVcap 268435456"
 if /i "%bs%"=="5" set "vkey=-kp 5"
-if /i "%bs%"=="5" set "capRSV=--RSVcap 335544750"
+if /i "%bs%"=="5" set "capRSV=--RSVcap 335544320"
 if /i "%bs%"=="6" set "vkey=-kp 6"
-if /i "%bs%"=="6" set "capRSV=--RSVcap 402653494"
+if /i "%bs%"=="6" set "capRSV=--RSVcap 402653184"
 if /i "%bs%"=="7" set "vkey=-kp 7"
 if /i "%bs%"=="7" set "capRSV=--RSVcap 404750336"
 if /i "%bs%"=="8" set "vkey=-kp 8"
@@ -1124,9 +1125,11 @@ if /i "%bs%"=="15" set "capRSV=--RSVcap 1006632960"
 if /i "%bs%"=="16" set "vkey=-kp 16"
 if /i "%bs%"=="16" set "capRSV=--RSVcap 1073741824"
 if /i "%bs%"=="17" set "vkey=-kp 17"
-if /i "%bs%"=="17" set "capRSV=--RSVcap 1140851708"
+if /i "%bs%"=="17" set "capRSV=--RSVcap 1140850688"
 if /i "%bs%"=="18" set "vkey=-kp 18"
-if /i "%bs%"=="18" set "capRSV=--RSVcap 1207960692"
+if /i "%bs%"=="18" set "capRSV=--RSVcap 1207959552"
+if /i "%bs%"=="19" set "vkey=-kp 19"
+if /i "%bs%"=="19" set "capRSV=--RSVcap 1275068416"
 if /i "%vkey%"=="none" echo 错误的选择
 if /i "%vkey%"=="none" goto s_KeyChange_wrongchoice
 goto s_KeyChange_skip
@@ -1905,7 +1908,8 @@ echo 输入"14"，魔改版本FW 14.0.0-14.1.2
 echo 输入"15"，魔改版本FW 15.0.0-15.0.1
 echo 输入"16"，魔改版本FW 16.0.0-16.1.0
 echo 输入"17"，魔改版本FW 17.0.0-17.0.1
-echo 输入"18"，魔改版本FW 18.0.0-
+echo 输入"18"，魔改版本FW 18.0.0-18.1.0
+echo 输入"19"，魔改版本FW 19.0.0
 echo.
 ECHO *****************************************
 echo 或输入"b"，返回选项列表
@@ -1919,17 +1923,17 @@ if /i "%bs%"=="f" set "vkey=-kp false"
 if /i "%bs%"=="0" set "vkey=-kp 0"
 if /i "%bs%"=="0" set "capRSV=--RSVcap 0"
 if /i "%bs%"=="1" set "vkey=-kp 1"
-if /i "%bs%"=="1" set "capRSV=--RSVcap 65796"
+if /i "%bs%"=="1" set "capRSV=--RSVcap 65536"
 if /i "%bs%"=="2" set "vkey=-kp 2"
-if /i "%bs%"=="2" set "capRSV=--RSVcap 201327002"
+if /i "%bs%"=="2" set "capRSV=--RSVcap 201326592"
 if /i "%bs%"=="3" set "vkey=-kp 3"
-if /i "%bs%"=="3" set "capRSV=--RSVcap 201392178"
+if /i "%bs%"=="3" set "capRSV=--RSVcap 201392128"
 if /i "%bs%"=="4" set "vkey=-kp 4"
-if /i "%bs%"=="4" set "capRSV=--RSVcap 268435656"
+if /i "%bs%"=="4" set "capRSV=--RSVcap 268435456"
 if /i "%bs%"=="5" set "vkey=-kp 5"
-if /i "%bs%"=="5" set "capRSV=--RSVcap 335544750"
+if /i "%bs%"=="5" set "capRSV=--RSVcap 335544320"
 if /i "%bs%"=="6" set "vkey=-kp 6"
-if /i "%bs%"=="6" set "capRSV=--RSVcap 402653494"
+if /i "%bs%"=="6" set "capRSV=--RSVcap 402653184"
 if /i "%bs%"=="7" set "vkey=-kp 7"
 if /i "%bs%"=="7" set "capRSV=--RSVcap 404750336"
 if /i "%bs%"=="8" set "vkey=-kp 8"
@@ -1951,9 +1955,11 @@ if /i "%bs%"=="15" set "capRSV=--RSVcap 1006632960"
 if /i "%bs%"=="16" set "vkey=-kp 16"
 if /i "%bs%"=="16" set "capRSV=--RSVcap 1073741824"
 if /i "%bs%"=="17" set "vkey=-kp 17"
-if /i "%bs%"=="17" set "capRSV=--RSVcap 1140851708"
+if /i "%bs%"=="17" set "capRSV=--RSVcap 1140850688"
 if /i "%bs%"=="18" set "vkey=-kp 18"
-if /i "%bs%"=="18" set "capRSV=--RSVcap 1207960692"
+if /i "%bs%"=="18" set "capRSV=--RSVcap 1207959552"
+if /i "%bs%"=="19" set "vkey=-kp 19"
+if /i "%bs%"=="19" set "capRSV=--RSVcap 1275068416"
 if /i "%vkey%"=="none" echo 错误的选择
 if /i "%vkey%"=="none" goto m_KeyChange_wrongchoice
 
