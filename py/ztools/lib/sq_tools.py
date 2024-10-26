@@ -17,7 +17,6 @@ tabs = '\t' * indent
 '''
 versions =
     0:           "1.0.0",       ->   keygeneration = 0
-    450:         "1.0.0",       ->   keygeneration = 0
     65536:       "2.0.0",       ->   keygeneration = 1
     131072:      "2.1.0",       ->   keygeneration = 1
     196608:      "2.2.0",       ->   keygeneration = 1
@@ -75,22 +74,25 @@ versions =
 	1073872896:  "16.0.2"       ->   keygeneration = 16
 	1073938432:  "16.0.3"       ->   keygeneration = 16
 	1074790400:  "16.1.0"       ->   keygeneration = 16
-	1140851708:  "17.0.0"       ->   keygeneration = 17
-	1140916284:  "17.0.1"       ->   keygeneration = 17
-	1207960692:  "18.0.0"       ->   keygeneration = 18
+	1140850688:  "17.0.0"       ->   keygeneration = 17
+	1140916224:  "17.0.1"       ->   keygeneration = 17
+	1207959552:  "18.0.0"       ->   keygeneration = 18
+	1209008128:  "18.1.0"       ->   keygeneration = 18
+	1275068416:  "19.0.0"       ->   keygeneration = 19
 	
 '''
 def kgstring():
 	kg=list()
-	kg18=[1207960692];kg.append(kg18)
-	kg17=[1140851708,1140916284];kg.append(kg17)
-	kg16=[1073741824,1073807360,1073872896,1073938432,1074790400];kg.append(kg16)
-	kg15=[1006632960,1006698496];kg.append(kg15)
-	kg14=[939524096,940572672,940638208,940703744];kg.append(kg14)
-	kg13=[872415232,873463808,874512404,874578000];kg.append(kg13)	
+	kg19=[1275068416];kg.append(kg19)
+	kg18=[1209008128,1207959552];kg.append(kg18)
+	kg17=[1140916224,1140850688];kg.append(kg17)
+	kg16=[1074790400,1073938432,1073872896,1073807360,1073741824];kg.append(kg16)
+	kg15=[1006698496,1006632960];kg.append(kg15)
+	kg14=[940703744,940638208,940572672,939524096];kg.append(kg14)
+	kg13=[874578000,874512404,873463808,872415232];kg.append(kg13)	
 	kg12=[806354944];kg.append(kg12)
-	kg11=[605028352,606076928,671088640,671154176,671219712,671285248,671350784,672137216,672202752,673185792,738197504,738263040,805306368,805371904,805437440,805502976];kg.append(kg11)
-	kg10=[603979776,604045312];kg.append(kg10)
+	kg11=[805502976,805437440,805371904,805306368,738263040,738197504,673185792,672202752,672137216,671350784,671285248,671219712,671154176,671088640,606076928,605028352];kg.append(kg11)
+	kg10=[604045312,603979776];kg.append(kg10)
 	kg9=[537919488];kg.append(kg9)
 	kg8=[536936448,536870912,469827584,469762048];kg.append(kg8)
 	kg7=[404750336];kg.append(kg7)
@@ -100,7 +102,7 @@ def kgstring():
 	kg3=[201457664,201392128];kg.append(kg3)
 	kg2=[201326592];kg.append(kg2)
 	kg1=[262144,196608,131072,65536];kg.append(kg1)
-	kg0=[450,0];kg.append(kg0)
+	kg0=[0];kg.append(kg0)
 	return kg
 
 def kg_by_RSV(RSV):
@@ -117,7 +119,7 @@ def kg_by_RSV(RSV):
 def transform_fw_string(FW):
 	FW=FW.split('-');rem=0;RRSV=0
 	if len(FW)>1:
-		rem=FW[1]
+		rem=int(FW[1])
 	else:
 		rem=0
 	FW=FW[0]
@@ -146,105 +148,16 @@ def kg2masterkey(kg):
 		return kg-1
 
 def getTopRSV(keygeneration, RSV):
-	if keygeneration == 0:
-		return 450
-	if keygeneration == 1:
-		return 262164
-	if keygeneration == 2:
-		return 201327002
-	if keygeneration == 3:
-		return 201457684
-	if keygeneration == 4:
-		return 269484082
-	if keygeneration == 5:
-		return 336592976
-	if keygeneration == 6:
-		return 403701850
-	if keygeneration == 7:
-		return 404750376
-	if keygeneration == 8:
-		return 536936448
-	if keygeneration == 9:
-		return 537919488
-	if keygeneration == 10:
-		return 603979776
-	if keygeneration == 11:
-		return 605028352
-	if keygeneration == 12:
-		return 806354944		
-	if keygeneration == 13:
-		return 872415232
-	if keygeneration == 14:
-		return 939524096
-	if keygeneration == 15:
-		return 1006632960	
-	if keygeneration == 16:
-		return 1073741824
-	if keygeneration == 17:
-		return 1140851708
-	if keygeneration == 18:
-		return 1207960692
-	else:
-		return RSV
+	kgs=kgstring()
+	if keygeneration in range(len(kgs)):
+		return kgs[keygeneration][0]
+	return RSV
 
 def getMinRSV(keygeneration, RSV):
-	if keygeneration == 0:
-		return 0
-	if keygeneration == 1:
-		return 65796
-	if keygeneration == 2:
-		RSV=3*67108864
-		return RSV
-	if keygeneration == 3:
-		RSV=3*67108864+1*65536
-		return RSV
-	if keygeneration == 4:
-		RSV=4*67108864
-		return RSV
-	if keygeneration == 5:
-		RSV=5*67108864
-		return RSV
-	if keygeneration == 6:
-		RSV=6*67108864
-		return RSV
-	if keygeneration == 7:
-		RSV=6*67108864+2*1048576
-		return RSV
-	if keygeneration == 8:
-		RSV=7*67108864
-		return RSV
-	if keygeneration == 9:
-		RSV=8*67108864+1*1048576
-		return RSV
-	if keygeneration == 10:
-		RSV=9*67108864
-		return RSV
-	if keygeneration == 11:
-		RSV=9*67108864+1*1048576+0*65796+0*1
-		return RSV
-	if keygeneration == 12:
-		RSV=12*67108864+1*1048576+0*65796+0*1
-		return RSV
-	if keygeneration == 13:
-		RSV=13*67108864+0*1048576+0*65796+0*1
-		return RSV
-	if keygeneration == 14:
-		RSV=14*67108864+0*1048576+0*65796+0*1
-		return RSV
-	if keygeneration == 15:
-		RSV=15*67108864+0*1048576+0*65796+0*1
-		return RSV
-	if keygeneration == 16:
-		RSV=16*67108864+0*1048576+0*65796+0*1
-		return RSV
-	if keygeneration == 17:
-		RSV=17*67108864+0*1048576+0*65796+0*1
-		return RSV
-	if keygeneration == 18:
-		RSV=18*67108864+0*1048576+0*65796+0*1
-		return RSV
-	else:
-		return RSV
+	kgs=kgstring()
+	if keygeneration in range(len(kgs)):
+		return kgs[keygeneration][len(kgs[keygeneration])-1]
+	return RSV
 
 def getFWRangeKG(keygeneration):
 	if keygeneration == 0:
@@ -284,7 +197,9 @@ def getFWRangeKG(keygeneration):
 	if keygeneration == 17:
 		return "(17.0.0 - 17.0.1)"
 	if keygeneration == 18:
-		return "(>= 18.0.0)"
+		return "(18.0.0 - 18.1.1)"
+	if keygeneration == 19:
+		return "(19.0.0 -)"
 	else:
 		return "UNKNOWN"
 
@@ -634,6 +549,10 @@ def verify_nkeys(fileName):
 		print("master_key_11 is Missing")
 	else:
 		counter+=1
+	if 'master_key_12' not in checkkeys:
+		print("master_key_12 is Missing")
+	else:
+		counter+=1
 
 	if 'header_key' not in checkkeys:
 		print("header_key is Missing")
@@ -921,6 +840,17 @@ def verify_nkeys(fileName):
 				print(tabs+'> Key is invalid!!! -> PLEASE CHECK YOUR KEYS.TXT!!!')
 			print('')
 
+		if i == 'master_key_12':
+			master_key_12=checkkeys[i][:]
+			print('master_key_12: '+master_key_11)
+			sha=sha256(uhx(master_key_12)).hexdigest()
+			print('  > HEX SHA256: '+sha)
+			if sha == '8c049dbea115d7c5dee618e0dcc4b95387462da30464dc11e28f6ee8184b033b':
+				print(tabs+'> Key is valid!!!')
+			else:
+				print(tabs+'> Key is invalid!!! -> PLEASE CHECK YOUR KEYS.TXT!!!')
+			print('')
+
 		if i == 'header_key':
 			header_key=checkkeys[i][:]
 			print('header_key: '+header_key)
@@ -1102,7 +1032,14 @@ def verify_nkeys_startup(fileName):
 	if 'master_key_11' not in checkkeys:
 		print("master_key_11 is Missing!!!")
 		print("The program won't be able to decrypt games content that uses this key")
-		print("This key represents FW 18.0.0+ requirement")
+		print("This key represents FW 18.0.0-18.1.0 requirement")
+		startup=True
+	else:
+		counter+=1
+	if 'master_key_12' not in checkkeys:
+		print("master_key_12 is Missing!!!")
+		print("The program won't be able to decrypt games content that uses this key")
+		print("This key represents FW 19.0.0+ requirement")
 		startup=True
 	else:
 		counter+=1
@@ -1366,6 +1303,16 @@ def verify_nkeys_startup(fileName):
 			sha=sha256(uhx(master_key_11)).hexdigest()
 			if sha != '21235cdedccd725bd07726aaff7673869c48ba5d691a751ae2c3a4701792cf62':
 				print('master_key_11: '+aes_kek_generation_source )
+				print('  > HEX SHA256: '+sha)
+				print(tabs+'> Key is invalid!!! -> PLEASE CHECK YOUR KEYS.TXT!!!')
+				startup=True
+			print('')
+
+		if (i=='master_key_12'):
+			master_key_12=checkkeys[i][:]
+			sha=sha256(uhx(master_key_12)).hexdigest()
+			if sha != '8c049dbea115d7c5dee618e0dcc4b95387462da30464dc11e28f6ee8184b033b':
+				print('master_key_12: '+aes_kek_generation_source )
 				print('  > HEX SHA256: '+sha)
 				print(tabs+'> Key is invalid!!! -> PLEASE CHECK YOUR KEYS.TXT!!!')
 				startup=True
