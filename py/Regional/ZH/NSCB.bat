@@ -8,18 +8,18 @@ set "opt_server=Server_options.cmd"
 Title NSC_Builder v1.01-b -- Profile: %ofile_name% -- by JulesOnTheRoad
 set "list_folder=%prog_dir%lists"
 ::-----------------------------------------------------
-::ç¼–è¾‘æ­¤å˜é‡ä»¥é“¾æ¥å…¶ä»–é€‰é¡¹æ–‡ä»¶
+::±à¼­´Ë±äÁ¿ÒÔÁ´½ÓÆäËûÑ¡ÏîÎÄ¼ş
 ::-----------------------------------------------------
 set "op_file=%~dp0zconfig\%ofile_name%"
 set "opt_interface=%~dp0zconfig\%opt_interface%"
 set "opt_server=%~dp0zconfig\%opt_server%"
 ::-----------------------------------------------------
-::ä»é€‰é¡¹æ–‡ä»¶å¤åˆ¶é€‰é¡¹
+::´ÓÑ¡ÏîÎÄ¼ş¸´ÖÆÑ¡Ïî
 ::-----------------------------------------------------
 setlocal
 if exist "%op_file%" call "%op_file%"
 endlocal & (
-REM å˜é‡
+REM ±äÁ¿
 set "safe_var=%safe_var%"
 set "vrepack=%vrepack%"
 set "vrename=%vrename%"
@@ -50,7 +50,7 @@ set "MTP_pdrive_truecopy=%MTP_pdrive_truecopy%"
 set "MTP_stc_installs=%MTP_stc_installs%"
 set "MTP_ptch_inst_spec=%MTP_ptch_inst_spec%"
 
-REM æ‹·è´åŠŸèƒ½
+REM ¿½±´¹¦ÄÜ
 set "pycommand=%pycommand%"
 set "buffer=%buffer%"
 set "nf_cleaner=%nf_cleaner%"
@@ -60,7 +60,7 @@ set "capRSV=%capRSV%"
 set "fatype=%fatype%"
 set "fexport=%fexport%"
 set "skdelta=%skdelta%"
-REM ç¨‹åº
+REM ³ÌĞò
 set "squirrel=%nut%"
 set "squirrel_lb=%squirrel_lb%"
 set "MTP=%MTP%"
@@ -72,18 +72,18 @@ set "listmanager=%listmanager%"
 set "batconfig=%batconfig%"
 set "batdepend=%batdepend%"
 set "infobat=%infobat%"
-REM æ–‡ä»¶
+REM ÎÄ¼ş
 set "uinput=%uinput%"
 set "dec_keys=%dec_keys%"
-REM æ–‡ä»¶å¤¹
+REM ÎÄ¼ş¼Ğ
 set "w_folder=%~dp0%w_folder%"
 set "fold_output=%fold_output%"
 set "zip_fold=%~dp0%zip_fold%"
 )
 ::-----------------------------------------------------
-::è®¾ç½®ç»å¯¹è·¯å¾„
+::ÉèÖÃ¾ø¶ÔÂ·¾¶
 ::-----------------------------------------------------
-::ç¨‹åºå®Œæ•´è·¯å¾„
+::³ÌĞòÍêÕûÂ·¾¶
 if exist "%~dp0%squirrel%" set "squirrel=%~dp0%squirrel%"
 if exist "%~dp0%squirrel_lb%" set "squirrel_lb=%~dp0%squirrel_lb%"
 if exist "%~dp0%xci_lib%"  set "xci_lib=%~dp0%xci_lib%"
@@ -95,20 +95,20 @@ if exist "%~dp0%listmanager%"  set "listmanager=%~dp0%listmanager%"
 if exist "%~dp0%batconfig%"  set "batconfig=%~dp0%batconfig%"
 if exist "%~dp0%batdepend%"  set "batdepend=%~dp0%batdepend%"
 if exist "%~dp0%infobat%"  set "infobat=%~dp0%infobat%"
-::é‡è¦æ–‡ä»¶å®Œæ•´è·¯å¾„
+::ÖØÒªÎÄ¼şÍêÕûÂ·¾¶
 if exist "%~dp0%uinput%"  set "uinput=%~dp0%uinput%"
 if exist "%~dp0%dec_keys%"  set "dec_keys=%~dp0%dec_keys%"
-::è¾“å‡ºæ–‡ä»¶å¤¹
+::Êä³öÎÄ¼ş¼Ğ
 CD /d "%~dp0"
 if not exist "%fold_output%" MD "%fold_output%"
 if not exist "%fold_output%" MD "%~dp0%fold_output%"
 if exist "%~dp0%fold_output%"  set "fold_output=%~dp0%fold_output%"
 ::-----------------------------------------------------
-::å¤šé¡¹æ£€æŸ¥
+::¶àÏî¼ì²é
 ::-----------------------------------------------------
-::é€‰é¡¹æ–‡ä»¶æ£€æŸ¥
+::Ñ¡ÏîÎÄ¼ş¼ì²é
 if not exist "%op_file%" ( goto missing_things )
-::ç¨‹åºæ£€æŸ¥
+::³ÌĞò¼ì²é
 if not exist "%squirrel%" ( goto missing_things )
 if not exist "%xci_lib%" ( goto missing_things )
 if not exist "%nsp_lib%" ( goto missing_things )
@@ -118,12 +118,12 @@ if not exist "%hacbuild%" ( goto missing_things )
 if not exist "%listmanager%" ( goto missing_things )
 if not exist "%batconfig%" ( goto missing_things )
 if not exist "%infobat%" ( goto missing_things )
-::é‡è¦æ–‡ä»¶æ£€æŸ¥
+::ÖØÒªÎÄ¼ş¼ì²é
 if not exist "%dec_keys%" ( goto missing_things )
 ::-----------------------------------------------------
 if exist "%w_folder%" rmdir /s /q "%w_folder%" >NUL 2>&1
 
-::æ£€æŸ¥ç”¨æˆ·æ˜¯å¦æ‹–åŠ¨æ–‡ä»¶å¤¹æˆ–æ–‡ä»¶
+::¼ì²éÓÃ»§ÊÇ·ñÍÏ¶¯ÎÄ¼ş¼Ğ»òÎÄ¼ş
 if "%~1"=="" goto manual
 if "%vrepack%" EQU "nodelta" goto aut_rebuild_nodeltas
 if "%vrepack%" EQU "rebuild" goto aut_rebuild_nsp
@@ -137,16 +137,16 @@ if "%fi_rep%" EQU "multi" goto folder_mult_mode
 if "%fi_rep%" EQU "baseid" goto folder_packbyid
 goto folder_ind_mode
 
-::è‡ªåŠ¨æ¨¡å¼ã€‚ å•æ–‡ä»¶é‡æ‰“åŒ…å¤„ç†é€‰é¡¹
+::×Ô¶¯Ä£Ê½¡£ µ¥ÎÄ¼şÖØ´ò°ü´¦ÀíÑ¡Ïî
 :folder_ind_mode
 rem if "%fatype%" EQU "-fat fat32" goto folder_ind_mode_fat32
 call :program_logo
 echo --------------------------------------
-echo è‡ªåŠ¨æ¨¡å¼ã€‚å•æ–‡ä»¶æ‰“åŒ…å·²è®¾ç½®
+echo ×Ô¶¯Ä£Ê½¡£µ¥ÎÄ¼ş´ò°üÒÑÉèÖÃ
 echo --------------------------------------
 echo.
 ::*************
-::NSPæ–‡ä»¶
+::NSPÎÄ¼ş
 ::*************
 for /r "%~1" %%f in (*.nsp) do (
 set "target=%%f"
@@ -185,12 +185,12 @@ move "%w_folder%\*.zip" "%zip_fold%" >NUL 2>&1
 if exist "%w_folder%\archfolder" ( %pycommand% "%squirrel%" -ifo "%w_folder%\archfolder" -archive "%fold_output%\%filename%.nsp" )
 
 RD /S /Q "%w_folder%" >NUL 2>&1
-echo å®Œæˆ
+echo Íê³É
 call :thumbup
 )
 
 ::*************
-::NSZæ–‡ä»¶
+::NSZÎÄ¼ş
 ::*************
 for /r "%~1" %%f in (*.nsz) do (
 set "target=%%f"
@@ -229,11 +229,11 @@ move "%w_folder%\*.zip" "%zip_fold%" >NUL 2>&1
 if exist "%w_folder%\archfolder" ( %pycommand% "%squirrel%" -ifo "%w_folder%\archfolder" -archive "%fold_output%\%filename%.nsp" )
 
 RD /S /Q "%w_folder%" >NUL 2>&1
-echo å®Œæˆ
+echo Íê³É
 call :thumbup
 )
 
-::XCIæ–‡ä»¶
+::XCIÎÄ¼ş
 for /r "%~1" %%f in (*.xci) do (
 if exist "%w_folder%" rmdir /s /q "%w_folder%" >NUL 2>&1
 set "filename=%%~nf"
@@ -259,15 +259,15 @@ move "%w_folder%\*.zip" "%zip_fold%" >NUL 2>&1
 if exist "%w_folder%\archfolder" ( %pycommand% "%squirrel%" -ifo "%w_folder%\archfolder" -archive "%fold_output%\%filename%.nsp" )
 
 RD /S /Q "%w_folder%" >NUL 2>&1
-echo å®Œæˆ
+echo Íê³É
 call :thumbup
 )
 ECHO ---------------------------------------------------
-ECHO *********** æ‰€æœ‰æ–‡ä»¶éƒ½å·²å¤„ç†! *************
+ECHO *********** ËùÓĞÎÄ¼ş¶¼ÒÑ´¦Àí! *************
 ECHO ---------------------------------------------------
 goto aut_exit_choice
 
-::XCZæ–‡ä»¶
+::XCZÎÄ¼ş
 for /r "%~1" %%f in (*.xcz) do (
 if exist "%w_folder%" rmdir /s /q "%w_folder%" >NUL 2>&1
 set "filename=%%~nf"
@@ -293,11 +293,11 @@ move "%w_folder%\*.zip" "%zip_fold%" >NUL 2>&1
 if exist "%w_folder%\archfolder" ( %pycommand% "%squirrel%" -ifo "%w_folder%\archfolder" -archive "%fold_output%\%filename%.nsp" )
 
 RD /S /Q "%w_folder%" >NUL 2>&1
-echo å®Œæˆ
+echo Íê³É
 call :thumbup
 )
 ECHO ---------------------------------------------------
-ECHO *********** æ‰€æœ‰æ–‡ä»¶éƒ½å·²å¤„ç†! *************
+ECHO *********** ËùÓĞÎÄ¼ş¶¼ÒÑ´¦Àí! *************
 ECHO ---------------------------------------------------
 goto aut_exit_choice
 
@@ -305,11 +305,11 @@ goto aut_exit_choice
 CD /d "%prog_dir%"
 call :program_logo
 echo --------------------------------------
-echo è‡ªåŠ¨æ¨¡å¼ã€‚å•æ–‡ä»¶æ‰“åŒ…å·²è®¾ç½®
+echo ×Ô¶¯Ä£Ê½¡£µ¥ÎÄ¼ş´ò°üÒÑÉèÖÃ
 echo --------------------------------------
 echo.
 ::*************
-::NSPæ–‡ä»¶
+::NSPÎÄ¼ş
 ::*************
 for /r "%~1" %%f in (*.nsp) do (
 set "target=%%f"
@@ -353,11 +353,11 @@ move "%w_folder%\*.zip" "%zip_fold%" >NUL 2>&1
 if exist "%w_folder%\archfolder" ( %pycommand% "%squirrel%" -ifo "%w_folder%\archfolder" -archive "%gefolder%\%filename%.nsp" )
 endlocal
 RD /S /Q "%w_folder%" >NUL 2>&1
-echo å®Œæˆ
+echo Íê³É
 call :thumbup
 )
 
-::XCIæ–‡ä»¶
+::XCIÎÄ¼ş
 for /r "%~1" %%f in (*.xci) do (
 if exist "%w_folder%" rmdir /s /q "%w_folder%" >NUL 2>&1
 set "filename=%%~nf"
@@ -368,10 +368,10 @@ MD "%w_folder%"
 MD "%w_folder%\secure"
 call :getname
 echo -------------------------------------
-echo ä»XCIæå–å®‰å…¨åˆ†åŒº
+echo ´ÓXCIÌáÈ¡°²È«·ÖÇø
 echo -------------------------------------
 %pycommand% "%squirrel%" %buffer% %patchRSV% %vkey% %capRSV% -o "%w_folder%\secure" %nf_cleaner% "%%f"
-echo å®Œæˆ
+echo Íê³É
 if "%vrename%" EQU "true" ( call :addtags_from_xci )
 if "%vrepack%" EQU "nsp" ( call "%nsp_lib%" "convert" "%w_folder%" )
 if "%vrepack%" EQU "xci" ( call "%xci_lib%" "repack" "%w_folder%" )
@@ -386,49 +386,49 @@ move "%w_folder%\*.ns*" "%fold_output%\!end_folder!" >NUL 2>&1
 if exist "%w_folder%\archfolder" ( %pycommand% "%squirrel%" -ifo "%w_folder%\archfolder" -archive "%fold_output%\!end_folder!\%filename%.nsp" )
 endlocal
 RD /S /Q "%w_folder%" >NUL 2>&1
-echo å®Œæˆ
+echo Íê³É
 call :thumbup
 )
 ECHO ---------------------------------------------------
-ECHO *********** æ‰€æœ‰æ–‡ä»¶éƒ½å·²å¤„ç†ï¼ *************
+ECHO *********** ËùÓĞÎÄ¼ş¶¼ÒÑ´¦Àí£¡ *************
 ECHO ---------------------------------------------------
 goto aut_exit_choice
 
-::è‡ªåŠ¨æ¨¡å¼ã€‚å¤šæ–‡ä»¶å¤„ç†é€‰é¡¹
+::×Ô¶¯Ä£Ê½¡£¶àÎÄ¼ş´¦ÀíÑ¡Ïî
 :folder_mult_mode
 rem if "%fatype%" EQU "-fat fat32" goto folder_mult_mode_fat32
 call :program_logo
 echo --------------------------------------
-echo è‡ªåŠ¨æ¨¡å¼ã€‚å¤šæ–‡ä»¶å¤„ç†å·²è®¾ç½®
+echo ×Ô¶¯Ä£Ê½¡£¶àÎÄ¼ş´¦ÀíÒÑÉèÖÃ
 echo --------------------------------------
 if exist "%w_folder%" rmdir /s /q "%w_folder%" >NUL 2>&1
 MD "%w_folder%"
 if exist "%prog_dir%mlist.txt" del "%prog_dir%mlist.txt" >NUL 2>&1
 
-echo -æ­£åœ¨ç”Ÿæˆæ–‡ä»¶åˆ—è¡¨
+echo -ÕıÔÚÉú³ÉÎÄ¼şÁĞ±í
 %pycommand% "%squirrel%" -t nsp xci nsz xcz -tfile "%prog_dir%mlist.txt" -ff "%~1"
-echo   å®Œæˆ
+echo   Íê³É
 
 if "%vrepack%" EQU "nsp" echo ......................................
-if "%vrepack%" EQU "nsp" echo æ­£åœ¨æ‰“åŒ…æ–‡ä»¶å¤¹å†…å®¹åˆ°NSP
+if "%vrepack%" EQU "nsp" echo ÕıÔÚ´ò°üÎÄ¼ş¼ĞÄÚÈİµ½NSP
 if "%vrepack%" EQU "nsp" echo ......................................
 if "%vrepack%" EQU "nsp" ( %pycommand% "%squirrel%" %buffer% %patchRSV% %vkey% %capRSV% %fatype% %fexport% %skdelta% -t cnsp -o "%w_folder%" -tfile "%prog_dir%mlist.txt" -roma %romaji% -dmul "calculate" )
 if "%vrepack%" EQU "nsp" echo.
 
 if "%vrepack%" EQU "xci" echo ......................................
-if "%vrepack%" EQU "xci" echo æ­£åœ¨æ‰“åŒ…æ–‡ä»¶å¤¹å†…å®¹åˆ°XCI
+if "%vrepack%" EQU "xci" echo ÕıÔÚ´ò°üÎÄ¼ş¼ĞÄÚÈİµ½XCI
 if "%vrepack%" EQU "xci" echo ......................................
 if "%vrepack%" EQU "xci" ( %pycommand% "%squirrel%" %buffer% %patchRSV% %vkey% %capRSV% %fatype% %fexport% %skdelta% -t xci -o "%w_folder%" -tfile "%prog_dir%mlist.txt" -roma %romaji% -dmul "calculate" )
 if "%vrepack%" EQU "xci" echo.
 
 if "%vrepack%" EQU "both" echo ......................................
-if "%vrepack%" EQU "both" echo æ­£åœ¨æ‰“åŒ…æ–‡ä»¶å¤¹å†…å®¹åˆ°NSP
+if "%vrepack%" EQU "both" echo ÕıÔÚ´ò°üÎÄ¼ş¼ĞÄÚÈİµ½NSP
 if "%vrepack%" EQU "both" echo ......................................
 if "%vrepack%" EQU "both" ( %pycommand% "%squirrel%" %buffer% %patchRSV% %vkey% %capRSV% %fatype% %fexport% %skdelta% -t cnsp -o "%w_folder%" -tfile "%prog_dir%mlist.txt" -roma %romaji% -dmul "calculate" )
 if "%vrepack%" EQU "both" echo.
 
 if "%vrepack%" EQU "both" echo ......................................
-if "%vrepack%" EQU "both" echo æ­£åœ¨æ‰“åŒ…æ–‡ä»¶å¤¹å†…å®¹åˆ°XCI
+if "%vrepack%" EQU "both" echo ÕıÔÚ´ò°üÎÄ¼ş¼ĞÄÚÈİµ½XCI
 if "%vrepack%" EQU "both" echo ......................................
 if "%vrepack%" EQU "both" ( %pycommand% "%squirrel%" %buffer% %patchRSV% %vkey% %capRSV% %fatype% %fexport% %skdelta% -t xci -o "%w_folder%" -tfile "%prog_dir%mlist.txt" -roma %romaji% -dmul "calculate" )
 if "%vrepack%" EQU "both" echo.
@@ -448,7 +448,7 @@ if exist "%w_folder%\archfolder" ( %pycommand% "%squirrel%" -tfile "%w_folder%\f
 endlocal
 RD /S /Q "%w_folder%" >NUL 2>&1
 ECHO ---------------------------------------------------
-ECHO *********** æ‰€æœ‰æ–‡ä»¶éƒ½å·²å¤„ç†ï¼ *************
+ECHO *********** ËùÓĞÎÄ¼ş¶¼ÒÑ´¦Àí£¡ *************
 ECHO ---------------------------------------------------
 call :thumbup
 goto aut_exit_choice
@@ -457,7 +457,7 @@ goto aut_exit_choice
 CD /d "%prog_dir%"
 call :program_logo
 echo --------------------------------------
-echo è‡ªåŠ¨æ¨¡å¼ã€‚å¤šæ–‡ä»¶å¤„ç†å·²è®¾ç½®
+echo ×Ô¶¯Ä£Ê½¡£¶àÎÄ¼ş´¦ÀíÒÑÉèÖÃ
 echo --------------------------------------
 echo.
 set "filename=%~n1"
@@ -467,7 +467,7 @@ MD "%w_folder%"
 MD "%w_folder%\secure"
 set "end_folder=%filename%"
 set "filename=%filename%[multi]"
-::NSPæ–‡ä»¶
+::NSPÎÄ¼ş
 for /r "%~1" %%f in (*.nsp) do (
 set "showname=%orinput%"
 call :processing_message
@@ -478,13 +478,13 @@ if "%zip_restore%" EQU "true" ( set "ziptarget=%%f" )
 if "%zip_restore%" EQU "true" ( call :makezip )
 )
 
-::XCIæ–‡ä»¶
+::XCIÎÄ¼ş
 for /r "%~1" %%f in (*.xci) do (
 echo ------------------------------------
-echo ä»XCIæå–å®‰å…¨åˆ†åŒº
+echo ´ÓXCIÌáÈ¡°²È«·ÖÇø
 echo ------------------------------------
 %pycommand% "%squirrel%" %buffer% %patchRSV% %vkey% %capRSV% -o "%w_folder%\secure" %nf_cleaner% "%%f"
-echo å®Œæˆ
+echo Íê³É
 )
 if "%vrepack%" EQU "nsp" ( call "%nsp_lib%" "convert" "%w_folder%" )
 if "%vrepack%" EQU "xci" ( call "%xci_lib%" "repack" "%w_folder%" )
@@ -504,11 +504,11 @@ move "%w_folder%\*.zip" "%zip_fold%" >NUL 2>&1
 if exist "%w_folder%\archfolder" ( %pycommand% "%squirrel%" -ifo "%w_folder%\archfolder" -archive "%gefolder%\%filename%.nsp" )
 endlocal
 RD /S /Q "%w_folder%" >NUL 2>&1
-echo å®Œæˆ
+echo Íê³É
 call :thumbup
 )
 ECHO ---------------------------------------------------
-ECHO *********** æ‰€æœ‰æ–‡ä»¶éƒ½å·²å¤„ç†ï¼ *************
+ECHO *********** ËùÓĞÎÄ¼ş¶¼ÒÑ´¦Àí£¡ *************
 ECHO ---------------------------------------------------
 goto aut_exit_choice
 
@@ -516,7 +516,7 @@ goto aut_exit_choice
 rem if "%fatype%" EQU "-fat fat32" goto folder_mult_mode_fat32
 call :program_logo
 echo --------------------------------------
-echo è‡ªåŠ¨æ¨¡å¼ã€‚é€šè¿‡IDæ‰“åŒ…å·²è®¾ç½®
+echo ×Ô¶¯Ä£Ê½¡£Í¨¹ıID´ò°üÒÑÉèÖÃ
 echo --------------------------------------
 if exist "%w_folder%" rmdir /s /q "%w_folder%" >NUL 2>&1
 MD "%w_folder%"
@@ -527,8 +527,8 @@ if not exist "%mlistfol%" MD "%mlistfol%" >NUL 2>&1
 
 echo - Generating filelist
 %pycommand% "%squirrel%" -t nsp nsz xci -tfile "%prog_dir%mlist.txt" -ff "%~1"
-echo   å®Œæˆ
-echo - æ­£åœ¨åˆ†å‰²æ–‡ä»¶åˆ—è¡¨
+echo   Íê³É
+echo - ÕıÔÚ·Ö¸îÎÄ¼şÁĞ±í
 %pycommand% "%squirrel%" -splid "%mlistfol%" -tfile "%prog_dir%mlist.txt"
 if "%vrepack%" EQU "nsp" set "vrepack=cnsp"
 if "%vrepack%" EQU "both" set "vrepack=cboth"
@@ -537,25 +537,25 @@ goto m_process_jobs2
 :aut_rebuild_nodeltas
 call :program_logo
 echo --------------------------------------
-echo è‡ªåŠ¨æ¨¡å¼ã€‚é‡å»ºä¸åŒ…å«å¢é‡éƒ¨åˆ†
+echo ×Ô¶¯Ä£Ê½¡£ÖØ½¨²»°üº¬ÔöÁ¿²¿·Ö
 echo --------------------------------------
 if exist "%w_folder%" rmdir /s /q "%w_folder%" >NUL 2>&1
 MD "%w_folder%"
 if exist "%prog_dir%list.txt" del "%prog_dir%list.txt" >NUL 2>&1
 %pycommand% "%squirrel%" -t nsp xci -tfile "%prog_dir%list.txt" -ff "%~1"
-echo   å®Œæˆ
+echo   Íê³É
 goto s_KeyChange_skip
 
 :aut_rebuild_nsp
 call :program_logo
 echo --------------------------------------
-echo è‡ªåŠ¨æ¨¡å¼ã€‚æŒ‰cnmté¡ºåºé‡æ–°ç”Ÿæˆnsp
+echo ×Ô¶¯Ä£Ê½¡£°´cnmtË³ĞòÖØĞÂÉú³Énsp
 echo --------------------------------------
 if exist "%w_folder%" rmdir /s /q "%w_folder%" >NUL 2>&1
 MD "%w_folder%"
 if exist "%prog_dir%list.txt" del "%prog_dir%list.txt" >NUL 2>&1
 %pycommand% "%squirrel%" -t nsp xci -tfile "%prog_dir%list.txt" -ff "%~1"
-echo   å®Œæˆ
+echo   Íê³É
 goto s_KeyChange_skip
 
 :file
@@ -566,8 +566,8 @@ if "%~x1"==".nsz" ( goto nsp )
 if "%~x1"==".xcz" ( goto xci )
 if "%~x1"==".*" ( goto other )
 :other
-echo æ‹–åŠ¨ä¸åŒ…å«æœ‰æ•ˆæ–‡ä»¶ã€‚ç¨‹åºåªæ¥å—XCIæˆ–NSPæ–‡ä»¶ã€‚
-echo æ‚¨å°†è¢«é‡å®šå‘åˆ°æ‰‹åŠ¨æ¨¡å¼ã€‚
+echo ÍÏ¶¯²»°üº¬ÓĞĞ§ÎÄ¼ş¡£³ÌĞòÖ»½ÓÊÜXCI»òNSPÎÄ¼ş¡£
+echo Äú½«±»ÖØ¶¨Ïòµ½ÊÖ¶¯Ä£Ê½¡£
 pause
 goto manual
 
@@ -602,7 +602,7 @@ move "%w_folder%\*.zip" "%zip_fold%" >NUL 2>&1
 if exist "%w_folder%\archfolder" ( %pycommand% "%squirrel%" -ifo "%w_folder%\archfolder" -archive "%fold_output%\%filename%.nsp" )
 
 RD /S /Q "%w_folder%" >NUL 2>&1
-echo å®Œæˆ
+echo Íê³É
 call :thumbup
 goto aut_exit_choice
 
@@ -640,7 +640,7 @@ move "%w_folder%\*.zip" "%zip_fold%" >NUL 2>&1
 if exist "%w_folder%\archfolder" ( %pycommand% "%squirrel%" -ifo "%w_folder%\archfolder" -archive "%gefolder%\%filename%.nsp" )
 endlocal
 RD /S /Q "%w_folder%" >NUL 2>&1
-echo å®Œæˆ
+echo Íê³É
 call :thumbup
 goto aut_exit_choice
 
@@ -672,7 +672,7 @@ move "%w_folder%\*.zip" "%zip_fold%" >NUL 2>&1
 if exist "%w_folder%\archfolder" ( %pycommand% "%squirrel%" -ifo "%w_folder%\archfolder" -archive "%fold_output%\%filename%.nsp" )
 
 RD /S /Q "%w_folder%" >NUL 2>&1
-echo å®Œæˆ
+echo Íê³É
 call :thumbup
 goto aut_exit_choice
 
@@ -687,10 +687,10 @@ MD "%w_folder%"
 MD "%w_folder%\secure"
 call :getname
 echo ------------------------------------
-echo ä»XCIæå–å®‰å…¨åˆ†åŒº
+echo ´ÓXCIÌáÈ¡°²È«·ÖÇø
 echo ------------------------------------
 %pycommand% "%squirrel%" %buffer% %patchRSV% %vkey% %capRSV% -o "%w_folder%\secure" %nf_cleaner% "%~1"
-echo å®Œæˆ
+echo Íê³É
 if "%vrename%" EQU "true" call :addtags_from_xci
 if "%vrepack%" EQU "nsp" ( call "%nsp_lib%" "convert" "%w_folder%" )
 if "%vrepack%" EQU "xci" ( call "%xci_lib%" "repack" "%w_folder%" )
@@ -706,19 +706,19 @@ move "%w_folder%\*.ns*" "%fold_output%\!end_folder!" >NUL 2>&1
 if exist "%w_folder%\archfolder" ( %pycommand% "%squirrel%" -ifo "%w_folder%\archfolder" -archive "%fold_output%\!end_folder!\%filename%.nsp" )
 endlocal
 RD /S /Q "%w_folder%" >NUL 2>&1
-echo å®Œæˆ
+echo Íê³É
 call :thumbup
 goto aut_exit_choice
 
 :aut_exit_choice
-if /i "%va_exit%"=="true" echo ç¨‹åºå°†ç«‹å³å…³é—­
+if /i "%va_exit%"=="true" echo ³ÌĞò½«Á¢¼´¹Ø±Õ
 if /i "%va_exit%"=="true" ( PING -n 2 127.0.0.1 >NUL 2>&1 )
 if /i "%va_exit%"=="true" goto salida
 echo.
-echo è¾“å…¥"0"ï¼Œè¿›å…¥æ¨¡å¼é€‰æ‹©
-echo è¾“å…¥"1"ï¼Œé€€å‡ºç¨‹åº
+echo ÊäÈë"0"£¬½øÈëÄ£Ê½Ñ¡Ôñ
+echo ÊäÈë"1"£¬ÍË³ö³ÌĞò
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set bs=%bs:"=%
 if /i "%bs%"=="0" goto manual_Reentry
 if /i "%bs%"=="1" goto salida
@@ -729,7 +729,7 @@ endlocal
 cls
 call :program_logo
 echo ********************************
-echo æ‚¨å·²è¿›å…¥æ‰‹åŠ¨æ¨¡å¼
+echo ÄúÒÑ½øÈëÊÖ¶¯Ä£Ê½
 echo ********************************
 if "%manual_intro%" EQU "indiv" ( goto normalmode )
 if "%manual_intro%" EQU "multi" ( goto multimode )
@@ -742,26 +742,26 @@ cls
 if "%NSBMODE%" EQU "legacy" call "%prog_dir%ztools\LEGACY.bat"
 call :program_logo
 ECHO .......................................................
-echo è¾“å…¥ "1"  å•æ–‡ä»¶å¤„ç†   ï¼ˆXCIå’ŒNSPäº’è½¬ï¼šå¸¸ç”¨åŠŸèƒ½ï¼‰
-echo è¾“å…¥ "2"  å¤šæ–‡ä»¶å¤„ç†   ï¼ˆXCIæ•´åˆç”¨ï¼šå¸¸ç”¨åŠŸèƒ½ï¼‰
-echo è¾“å…¥ "3"  æ–‡ä»¶æ‹†åˆ†     ï¼ˆXCIæˆ–NSPæ‹†åŒ…ï¼šå¸¸ç”¨åŠŸèƒ½ï¼‰
-echo è¾“å…¥ "4"  æ–‡ä»¶ä¿¡æ¯æŸ¥è¯¢ ï¼ˆæŸ¥è¯¢æ¸¸æˆç‰ˆæœ¬ä¿¡æ¯ï¼šå¸¸ç”¨åŠŸèƒ½ï¼‰
-echo è¾“å…¥ "5"  æ•°æ®åº“æ„å»º   ï¼ˆé‡å»ºæ¸¸æˆæ–‡ä»¶æ•°æ®åº“ï¼šä¸å¸¸ç”¨ï¼‰
-echo è¾“å…¥ "6"  é«˜çº§é€‰é¡¹     ï¼ˆä¿®è¡¥é“¾æ¥è´¦æˆ·ç­‰ï¼šå¸¸ç”¨åŠŸèƒ½ï¼‰
-echo è¾“å…¥ "7"  åˆå¹¶æ¨¡å¼     ï¼ˆæ–‡ä»¶åˆå¹¶ï¼šä¸å¸¸ç”¨ï¼‰
-echo è¾“å…¥ "8"  å‹ç¼©å’Œè§£å‹   ï¼ˆXCIå’ŒXCZä»¥åŠNSPå’ŒNSZçš„äº’è½¬ï¼šå¸¸ç”¨åŠŸèƒ½ï¼‰
-echo è¾“å…¥ "9"  æ–‡ä»¶è¿˜åŸ     ï¼ˆä»å¤‡ä»½æ–‡ä»¶æ¢å¤åŸå§‹åŒ…ï¼šä¸å¸¸ç”¨ï¼‰
-echo è¾“å…¥ "10" æ–‡ä»¶ç®¡ç†     ï¼ˆåŠŸèƒ½æš‚ä¸å®Œå–„ï¼‰
-echo è¾“å…¥ "0"  é…ç½®é€‰é¡¹     ï¼ˆç¨‹åºé…ç½®ï¼šå¸¸ç”¨åŠŸèƒ½ï¼‰
+echo ÊäÈë "1"  µ¥ÎÄ¼ş´¦Àí   £¨XCIºÍNSP»¥×ª£º³£ÓÃ¹¦ÄÜ£©
+echo ÊäÈë "2"  ¶àÎÄ¼ş´¦Àí   £¨XCIÕûºÏÓÃ£º³£ÓÃ¹¦ÄÜ£©
+echo ÊäÈë "3"  ÎÄ¼ş²ğ·Ö     £¨XCI»òNSP²ğ°ü£º³£ÓÃ¹¦ÄÜ£©
+echo ÊäÈë "4"  ÎÄ¼şĞÅÏ¢²éÑ¯ £¨²éÑ¯ÓÎÏ·°æ±¾ĞÅÏ¢£º³£ÓÃ¹¦ÄÜ£©
+echo ÊäÈë "5"  Êı¾İ¿â¹¹½¨   £¨ÖØ½¨ÓÎÏ·ÎÄ¼şÊı¾İ¿â£º²»³£ÓÃ£©
+echo ÊäÈë "6"  ¸ß¼¶Ñ¡Ïî     £¨ĞŞ²¹Á´½ÓÕË»§µÈ£º³£ÓÃ¹¦ÄÜ£©
+echo ÊäÈë "7"  ºÏ²¢Ä£Ê½     £¨ÎÄ¼şºÏ²¢£º²»³£ÓÃ£©
+echo ÊäÈë "8"  Ñ¹ËõºÍ½âÑ¹   £¨XCIºÍXCZÒÔ¼°NSPºÍNSZµÄ»¥×ª£º³£ÓÃ¹¦ÄÜ£©
+echo ÊäÈë "9"  ÎÄ¼ş»¹Ô­     £¨´Ó±¸·İÎÄ¼ş»Ö¸´Ô­Ê¼°ü£º²»³£ÓÃ£©
+echo ÊäÈë "10" ÎÄ¼ş¹ÜÀí     £¨¹¦ÄÜÔİ²»ÍêÉÆ£©
+echo ÊäÈë "0"  ÅäÖÃÑ¡Ïî     £¨³ÌĞòÅäÖÃ£º³£ÓÃ¹¦ÄÜ£©
 echo.
-echo è¾“å…¥"D"ï¼Œè¿›å…¥è°·æ­Œç½‘ç›˜æ¨¡å¼
-echo è¾“å…¥"M"ï¼Œè¿›å…¥MTPæ¨¡å¼
-echo è¾“å…¥"L"ï¼Œè¿›å…¥ä¼ ç»Ÿæ¨¡å¼
-echo è¾“å…¥"I"ï¼Œè¿›å…¥ç•Œé¢é…ç½®
-echo è¾“å…¥"S"ï¼Œè¿›å…¥æœåŠ¡å™¨é…ç½®
+echo ÊäÈë"D"£¬½øÈë¹È¸èÍøÅÌÄ£Ê½
+echo ÊäÈë"M"£¬½øÈëMTPÄ£Ê½
+echo ÊäÈë"L"£¬½øÈë´«Í³Ä£Ê½
+echo ÊäÈë"I"£¬½øÈë½çÃæÅäÖÃ
+echo ÊäÈë"S"£¬½øÈë·şÎñÆ÷ÅäÖÃ
 echo .......................................................
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set bs=%bs:"=%
 if /i "%bs%"=="1" goto normalmode
 if /i "%bs%"=="2" goto multimode
@@ -813,14 +813,14 @@ call Server.bat
 goto manual_Reentry
 REM //////////////////////////////////////////////////
 REM /////////////////////////////////////////////////
-REM æ‰‹åŠ¨æ¨¡å¼å¼€å§‹ã€‚å•æ–‡ä»¶å¤„ç†
+REM ÊÖ¶¯Ä£Ê½¿ªÊ¼¡£µ¥ÎÄ¼ş´¦Àí
 REM /////////////////////////////////////////////////
 REM ////////////////////////////////////////////////
 :normalmode
 cls
 call :program_logo
 echo -----------------------------------------------
-echo å•æ–‡ä»¶å¤„ç†å·²æ¿€æ´»
+echo µ¥ÎÄ¼ş´¦ÀíÒÑ¼¤»î
 echo -----------------------------------------------
 if exist "list.txt" goto prevlist
 goto manual_INIT
@@ -837,21 +837,21 @@ if !conta! LEQ 0 ( del list.txt )
 endlocal
 if not exist "list.txt" goto manual_INIT
 ECHO .......................................................
-ECHO å‘ç°äº†ä»¥å‰çš„åˆ—è¡¨, ä½ æƒ³åšä»€ä¹ˆï¼Ÿ
+ECHO ·¢ÏÖÁËÒÔÇ°µÄÁĞ±í, ÄãÏë×öÊ²Ã´£¿
 :prevlist0
 ECHO .......................................................
-echo è¾“å…¥"1"ï¼Œä»ä¸Šä¸€åˆ—è¡¨è‡ªåŠ¨å¼€å§‹å¤„ç†
-echo è¾“å…¥"2"ï¼Œåˆ é™¤åˆ—è¡¨å¹¶åˆ›å»ºæ–°åˆ—è¡¨.
-echo è¾“å…¥"3"ï¼Œç»§ç»­æ„å»ºä¸Šä¸€ä¸ªåˆ—è¡¨
+echo ÊäÈë"1"£¬´ÓÉÏÒ»ÁĞ±í×Ô¶¯¿ªÊ¼´¦Àí
+echo ÊäÈë"2"£¬É¾³ıÁĞ±í²¢´´½¨ĞÂÁĞ±í.
+echo ÊäÈë"3"£¬¼ÌĞø¹¹½¨ÉÏÒ»¸öÁĞ±í
 echo .......................................................
-echo æ³¨æ„: è¾“å…¥"3"ï¼Œåœ¨å¼€å§‹å¤„ç†æ–‡ä»¶ä¹‹å‰ï¼Œæ‚¨å°†çœ‹åˆ°ä¸Šä¸€ä¸ªåˆ—è¡¨ï¼Œå¹¶ä¸”
-echo æ‚¨å¯ä»¥æ·»åŠ æˆ–è€…åˆ é™¤å†…å®¹åˆ°åˆ—è¡¨é‡Œã€‚
+echo ×¢Òâ: ÊäÈë"3"£¬ÔÚ¿ªÊ¼´¦ÀíÎÄ¼şÖ®Ç°£¬Äú½«¿´µ½ÉÏÒ»¸öÁĞ±í£¬²¢ÇÒ
+echo Äú¿ÉÒÔÌí¼Ó»òÕßÉ¾³ıÄÚÈİµ½ÁĞ±íÀï¡£
 echo.
 ECHO *************************************************
-echo æˆ–è€…è¾“å…¥"0"ï¼Œä»¥è¿”å›æ¨¡å¼é€‰æ‹©èœå•
+echo »òÕßÊäÈë"0"£¬ÒÔ·µ»ØÄ£Ê½Ñ¡Ôñ²Ëµ¥
 ECHO *************************************************
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set bs=%bs:"=%
 if /i "%bs%"=="3" goto showlist
 if /i "%bs%"=="2" goto delist
@@ -865,19 +865,19 @@ del list.txt
 cls
 call :program_logo
 echo -----------------------------------------------
-echo å•æ–‡ä»¶å¤„ç†å·²æ¿€æ´»
+echo µ¥ÎÄ¼ş´¦ÀíÒÑ¼¤»î
 echo -----------------------------------------------
 echo ..................................
-echo æ‚¨å·²å†³å®šåˆ›å»ºä¸€ä¸ªæ–°çš„åˆ—è¡¨
+echo ÄúÒÑ¾ö¶¨´´½¨Ò»¸öĞÂµÄÁĞ±í
 echo ..................................
 :manual_INIT
 endlocal
 ECHO ***********************************************
-echo è¾“å…¥"1"ï¼Œå°†æ–‡ä»¶å¤¹æ·»åŠ åˆ°åˆ—è¡¨
-echo è¾“å…¥"2"ï¼Œå°†æ–‡ä»¶æ·»åŠ åˆ°åˆ—è¡¨
-echo è¾“å…¥"3"ï¼Œé€šè¿‡æœ¬åœ°æ–‡ä»¶åº“ï¼Œå°†æ–‡ä»¶æ·»åŠ åˆ°åˆ—è¡¨
-echo è¾“å…¥"4"ï¼Œé€šè¿‡folder-walkeré€’å½’çš„æ–¹å¼ï¼Œå°†æ–‡ä»¶æ·»åŠ åˆ°åˆ—è¡¨
-echo è¾“å…¥"0"ï¼Œè¿”å›æ¨¡å¼é€‰æ‹©èœå•
+echo ÊäÈë"1"£¬½«ÎÄ¼ş¼ĞÌí¼Óµ½ÁĞ±í
+echo ÊäÈë"2"£¬½«ÎÄ¼şÌí¼Óµ½ÁĞ±í
+echo ÊäÈë"3"£¬Í¨¹ı±¾µØÎÄ¼ş¿â£¬½«ÎÄ¼şÌí¼Óµ½ÁĞ±í
+echo ÊäÈë"4"£¬Í¨¹ıfolder-walkerµİ¹éµÄ·½Ê½£¬½«ÎÄ¼şÌí¼Óµ½ÁĞ±í
+echo ÊäÈë"0"£¬·µ»ØÄ£Ê½Ñ¡Ôñ²Ëµ¥
 ECHO ***********************************************
 echo.
 %pycommand% "%squirrel%" -t nsp xci nsz nsx xcz -tfile "%prog_dir%list.txt" -uin "%uinput%" -ff "uinput"
@@ -894,22 +894,22 @@ if /i "%eval%"=="4" ( %pycommand% "%squirrel_lb%" -lib_call picker_walker get_fi
 goto checkagain
 echo.
 :checkagain
-echo ä½ æƒ³åšä»€ä¹ˆï¼Ÿ
+echo ÄãÏë×öÊ²Ã´£¿
 echo ......................................................................
-echo "æ‹–åŠ¨å¦ä¸€ä¸ªæ–‡ä»¶æˆ–æ–‡ä»¶å¤¹ï¼Œç„¶åæŒ‰å›è½¦é”®å°†é¡¹ç›®æ·»åŠ åˆ°åˆ—è¡¨ä¸­"
+echo "ÍÏ¶¯ÁíÒ»¸öÎÄ¼ş»òÎÄ¼ş¼Ğ£¬È»ºó°´»Ø³µ¼ü½«ÏîÄ¿Ìí¼Óµ½ÁĞ±íÖĞ"
 echo.
-echo è¾“å…¥"1"ï¼Œå¼€å§‹å¤„ç†
-echo è¾“å…¥"2"ï¼Œå°†å¦ä¸€ä¸ªæ–‡ä»¶å¤¹æ·»åŠ åˆ°åˆ—è¡¨
-echo è¾“å…¥"3"ï¼Œå°†å¦ä¸€ä¸ªæ–‡ä»¶æ·»åŠ åˆ°åˆ—è¡¨
-echo è¾“å…¥"4"ï¼Œé€šè¿‡æœ¬åœ°æ–‡ä»¶åº“ï¼Œå°†æ–‡ä»¶æ·»åŠ åˆ°åˆ—è¡¨
-echo è¾“å…¥"5"ï¼Œé€šè¿‡folder-walkeré€’å½’çš„æ–¹å¼ï¼Œå°†æ–‡ä»¶æ·»åŠ åˆ°åˆ—è¡¨
-echo è¾“å…¥"e"ï¼Œé€€å‡º
-echo è¾“å…¥"i"ï¼ŒæŸ¥çœ‹è¦å¤„ç†çš„æ–‡ä»¶åˆ—è¡¨
-echo è¾“å…¥"r"ï¼Œåˆ é™¤ä¸€äº›æ–‡ä»¶ï¼ˆä»åº•éƒ¨å¼€å§‹è®¡æ•°ï¼‰
-echo è¾“å…¥"z"ï¼Œåˆ é™¤æ•´ä¸ªåˆ—è¡¨
+echo ÊäÈë"1"£¬¿ªÊ¼´¦Àí
+echo ÊäÈë"2"£¬½«ÁíÒ»¸öÎÄ¼ş¼ĞÌí¼Óµ½ÁĞ±í
+echo ÊäÈë"3"£¬½«ÁíÒ»¸öÎÄ¼şÌí¼Óµ½ÁĞ±í
+echo ÊäÈë"4"£¬Í¨¹ı±¾µØÎÄ¼ş¿â£¬½«ÎÄ¼şÌí¼Óµ½ÁĞ±í
+echo ÊäÈë"5"£¬Í¨¹ıfolder-walkerµİ¹éµÄ·½Ê½£¬½«ÎÄ¼şÌí¼Óµ½ÁĞ±í
+echo ÊäÈë"e"£¬ÍË³ö
+echo ÊäÈë"i"£¬²é¿´Òª´¦ÀíµÄÎÄ¼şÁĞ±í
+echo ÊäÈë"r"£¬É¾³ıÒ»Ğ©ÎÄ¼ş£¨´Óµ×²¿¿ªÊ¼¼ÆÊı£©
+echo ÊäÈë"z"£¬É¾³ıÕû¸öÁĞ±í
 echo ......................................................................
 ECHO *************************************************
-echo æˆ–è€…è¾“å…¥"0"ï¼Œè¿”å›æ¨¡å¼é€‰æ‹©èœå•
+echo »òÕßÊäÈë"0"£¬·µ»ØÄ£Ê½Ñ¡Ôñ²Ëµ¥
 ECHO *************************************************
 echo.
 %pycommand% "%squirrel%" -t nsp xci nsz nsx xcz -tfile "%prog_dir%list.txt" -uin "%uinput%" -ff "uinput"
@@ -933,7 +933,7 @@ if /i "%eval%"=="z" del list.txt
 goto checkagain
 
 :r_files
-set /p bs="è¾“å…¥è¦åˆ é™¤çš„æ–‡ä»¶æ•°ï¼ˆä»åº•éƒ¨å¼€å§‹ï¼‰ï¼š "
+set /p bs="ÊäÈëÒªÉ¾³ıµÄÎÄ¼şÊı£¨´Óµ×²¿¿ªÊ¼£©£º "
 set bs=%bs:"=%
 
 setlocal enabledelayedexpansion
@@ -966,10 +966,10 @@ endlocal
 cls
 call :program_logo
 echo -------------------------------------------------
-echo å•æ–‡ä»¶å¤„ç†å·²æ¿€æ´»
+echo µ¥ÎÄ¼ş´¦ÀíÒÑ¼¤»î
 echo -------------------------------------------------
 ECHO -------------------------------------------------
-ECHO                 è¦å¤„ç†çš„æ–‡ä»¶
+ECHO                 Òª´¦ÀíµÄÎÄ¼ş
 ECHO -------------------------------------------------
 for /f "tokens=*" %%f in (list.txt) do (
 echo %%f
@@ -980,35 +980,35 @@ for /f "tokens=*" %%f in (list.txt) do (
 set /a conta=!conta! + 1
 )
 echo .................................................
-echo æ‚¨å·²æ·»åŠ äº† !conta! ä¸ªè¦å¤„ç†çš„æ–‡ä»¶
+echo ÄúÒÑÌí¼ÓÁË !conta! ¸öÒª´¦ÀíµÄÎÄ¼ş
 echo .................................................
 endlocal
 
 goto checkagain
 
 :s_cl_wrongchoice
-echo é”™è¯¯çš„é€‰æ‹©
+echo ´íÎóµÄÑ¡Ôñ
 echo ............
 :start_cleaning
 echo *******************************************************
-echo æ¥ä¸‹æ¥é€‰æ‹©æ‚¨è¦æ‰§è¡Œçš„æ“ä½œ
+echo ½ÓÏÂÀ´Ñ¡ÔñÄúÒªÖ´ĞĞµÄ²Ù×÷
 echo *******************************************************
-echo è¾“å…¥"1"ï¼Œé‡æ–°æ‰“åŒ…ä¸ºNSP
-echo è¾“å…¥"2"ï¼Œé‡æ–°æ‰“åŒ…ä¸ºXCI
-echo è¾“å…¥"3"ï¼Œé‡æ–°æ‰“åŒ…NSPå’ŒXCI
+echo ÊäÈë"1"£¬ÖØĞÂ´ò°üÎªNSP
+echo ÊäÈë"2"£¬ÖØĞÂ´ò°üÎªXCI
+echo ÊäÈë"3"£¬ÖØĞÂ´ò°üNSPºÍXCI
 echo.
-echo ç‰¹æ®Šé€‰é¡¹ï¼š
-echo è¾“å…¥"4"ï¼Œåˆ é™¤NSPæ–‡ä»¶ä¸­çš„å¢é‡
-echo è¾“å…¥"5"ï¼Œé‡å‘½åXCIæˆ–NSPæ–‡ä»¶
-echo è¾“å…¥"6"ï¼ŒXCIè¶…çº§è£å‰ª\è£å‰ª\ä¸è£å‰ª
-echo è¾“å…¥"7"ï¼ŒæŒ‰cnmté¡ºåºé‡å»ºnsp
-echo è¾“å…¥"8"ï¼Œæ¿€æ´»éªŒè¯
+echo ÌØÊâÑ¡Ïî£º
+echo ÊäÈë"4"£¬É¾³ıNSPÎÄ¼şÖĞµÄÔöÁ¿
+echo ÊäÈë"5"£¬ÖØÃüÃûXCI»òNSPÎÄ¼ş
+echo ÊäÈë"6"£¬XCI³¬¼¶²Ã¼ô\²Ã¼ô\²»²Ã¼ô
+echo ÊäÈë"7"£¬°´cnmtË³ĞòÖØ½¨nsp
+echo ÊäÈë"8"£¬¼¤»îÑéÖ¤
 echo.
 ECHO ******************************************
-echo æˆ–è¾“å…¥"b"ï¼Œè¿”å›åˆ—è¡¨é€‰é¡¹
+echo »òÊäÈë"b"£¬·µ»ØÁĞ±íÑ¡Ïî
 ECHO ******************************************
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set bs=%bs:"=%
 set vrepack=none
 if /i "%bs%"=="b" goto checkagain
@@ -1029,63 +1029,63 @@ if %vrepack%=="none" goto s_cl_wrongchoice
 if /i "%skipRSVprompt%"=="true" set "patchRSV=-pv false"
 if /i "%skipRSVprompt%"=="true" goto s_KeyChange_skip
 echo *******************************************************
-echo æ˜¯å¦è¦é­”æ”¹æ¸¸æˆæ‰€éœ€çš„ç³»ç»Ÿç‰ˆæœ¬
+echo ÊÇ·ñÒªÄ§¸ÄÓÎÏ·ËùĞèµÄÏµÍ³°æ±¾
 echo *******************************************************
-echo å¦‚æœæ‚¨é€‰æ‹©é­”æ”¹ç³»ç»Ÿç‰ˆæœ¬ï¼Œå®ƒå°†ä¼šè¢«è®¾ç½®ä¸ºç›¸åº”çš„NCAåŠ å¯†
-echo æ‰€ä»¥ç³»ç»Ÿåªä¼šåœ¨ç³»ç»Ÿç‰ˆæœ¬å’Œé­”æ”¹è½¯ä»¶ç‰ˆæœ¬ä¸åŒ¹é…æ—¶ï¼Œè¯·æ±‚æ›´æ–°ç³»ç»Ÿ
+echo Èç¹ûÄúÑ¡ÔñÄ§¸ÄÏµÍ³°æ±¾£¬Ëü½«»á±»ÉèÖÃÎªÏàÓ¦µÄNCA¼ÓÃÜ
+echo ËùÒÔÏµÍ³Ö»»áÔÚÏµÍ³°æ±¾ºÍÄ§¸ÄÈí¼ş°æ±¾²»Æ¥ÅäÊ±£¬ÇëÇó¸üĞÂÏµÍ³
 echo.
-echo è¾“å…¥"0"ï¼Œä¸é­”æ”¹æ¸¸æˆæ‰€éœ€ç³»ç»Ÿç‰ˆæœ¬
-echo è¾“å…¥"1"ï¼Œé­”æ”¹æ¸¸æˆæ‰€éœ€ç³»ç»Ÿç‰ˆæœ¬
+echo ÊäÈë"0"£¬²»Ä§¸ÄÓÎÏ·ËùĞèÏµÍ³°æ±¾
+echo ÊäÈë"1"£¬Ä§¸ÄÓÎÏ·ËùĞèÏµÍ³°æ±¾
 echo.
 ECHO ******************************************
-echo æˆ–è¾“å…¥"b"ï¼Œè¿”å›åˆ—è¡¨é€‰é¡¹
+echo »òÊäÈë"b"£¬·µ»ØÁĞ±íÑ¡Ïî
 ECHO ******************************************
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set bs=%bs:"=%
 set "patchRSV=none"
 if /i "%bs%"=="b" goto checkagain
 if /i "%bs%"=="0" set "patchRSV=-pv false"
 if /i "%bs%"=="1" set "patchRSV=-pv true"
-if /i "%patchRSV%"=="none" echo é”™è¯¯çš„é€‰æ‹©
+if /i "%patchRSV%"=="none" echo ´íÎóµÄÑ¡Ôñ
 if /i "%patchRSV%"=="none" goto s_RSV_wrongchoice
 if /i "%bs%"=="0" goto s_KeyChange_skip
 
 :s_KeyChange_wrongchoice
 echo *******************************************************
-echo è®¾ç½®é­”æ”¹çš„æœ€å¤§ç³»ç»Ÿç‰ˆæœ¬
+echo ÉèÖÃÄ§¸ÄµÄ×î´óÏµÍ³°æ±¾
 echo *******************************************************
-echo å–å†³äºæ‚¨çš„é€‰æ‹©ï¼Œå¦‚æœé­”æ”¹çš„å¯†é’¥å€¼å¤§äºç¨‹åºä¸­æŒ‡å®šçš„å€¼ï¼Œ
-echo é­”æ”¹çš„å¯†é’¥å’ŒRSVå°†ä¼šä½äºç¨‹åºæœ€ä½ç³»ç»Ÿç‰ˆæœ¬è¦æ±‚ã€‚
-echo ç¨‹åºå°†æ°¸è¿œä¸èƒ½ä½äºç³»ç»Ÿå›ºä»¶è¦æ±‚è¿è¡Œã€‚
+echo È¡¾öÓÚÄúµÄÑ¡Ôñ£¬Èç¹ûÄ§¸ÄµÄÃÜÔ¿Öµ´óÓÚ³ÌĞòÖĞÖ¸¶¨µÄÖµ£¬
+echo Ä§¸ÄµÄÃÜÔ¿ºÍRSV½«»áµÍÓÚ³ÌĞò×îµÍÏµÍ³°æ±¾ÒªÇó¡£
+echo ³ÌĞò½«ÓÀÔ¶²»ÄÜµÍÓÚÏµÍ³¹Ì¼şÒªÇóÔËĞĞ¡£
 echo.
-echo è¾“å…¥"f"ï¼Œä¸é­”æ”¹
-echo è¾“å…¥"0"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 1.0
-echo è¾“å…¥"1"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 2.0-2.3
-echo è¾“å…¥"2"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 3.0
-echo è¾“å…¥"3"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 3.0.1-3.02
-echo è¾“å…¥"4"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 4.0.0-4.1.0
-echo è¾“å…¥"5"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 5.0.0-5.1.0
-echo è¾“å…¥"6"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 6.0.0-6.1.0
-echo è¾“å…¥"7"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 6.2.0
-echo è¾“å…¥"8"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 7.0.0-8.0.1
-echo è¾“å…¥"9"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 8.1.0
-echo è¾“å…¥"10"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 9.0.0-9.0.1
-echo è¾“å…¥"11"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 9.1.0-11.0.3
-echo è¾“å…¥"12"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 12.1.0
-echo è¾“å…¥"13"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 13.0.0-13.2.1
-echo è¾“å…¥"14"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 14.0.0-14.1.2
-echo è¾“å…¥"15"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 15.0.0-15.0.1
-echo è¾“å…¥"16"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 16.0.0-16.1.0
-echo è¾“å…¥"17"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 17.0.0-17.0.1
-echo è¾“å…¥"18"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 18.0.0-18.1.0
-echo è¾“å…¥"19"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 19.0.0-
+echo ÊäÈë"f"£¬²»Ä§¸Ä
+echo ÊäÈë"0"£¬Ä§¸Ä°æ±¾FW 1.0
+echo ÊäÈë"1"£¬Ä§¸Ä°æ±¾FW 2.0-2.3
+echo ÊäÈë"2"£¬Ä§¸Ä°æ±¾FW 3.0
+echo ÊäÈë"3"£¬Ä§¸Ä°æ±¾FW 3.0.1-3.02
+echo ÊäÈë"4"£¬Ä§¸Ä°æ±¾FW 4.0.0-4.1.0
+echo ÊäÈë"5"£¬Ä§¸Ä°æ±¾FW 5.0.0-5.1.0
+echo ÊäÈë"6"£¬Ä§¸Ä°æ±¾FW 6.0.0-6.1.0
+echo ÊäÈë"7"£¬Ä§¸Ä°æ±¾FW 6.2.0
+echo ÊäÈë"8"£¬Ä§¸Ä°æ±¾FW 7.0.0-8.0.1
+echo ÊäÈë"9"£¬Ä§¸Ä°æ±¾FW 8.1.0
+echo ÊäÈë"10"£¬Ä§¸Ä°æ±¾FW 9.0.0-9.0.1
+echo ÊäÈë"11"£¬Ä§¸Ä°æ±¾FW 9.1.0-11.0.3
+echo ÊäÈë"12"£¬Ä§¸Ä°æ±¾FW 12.1.0
+echo ÊäÈë"13"£¬Ä§¸Ä°æ±¾FW 13.0.0-13.2.1
+echo ÊäÈë"14"£¬Ä§¸Ä°æ±¾FW 14.0.0-14.1.2
+echo ÊäÈë"15"£¬Ä§¸Ä°æ±¾FW 15.0.0-15.0.1
+echo ÊäÈë"16"£¬Ä§¸Ä°æ±¾FW 16.0.0-16.1.0
+echo ÊäÈë"17"£¬Ä§¸Ä°æ±¾FW 17.0.0-17.0.1
+echo ÊäÈë"18"£¬Ä§¸Ä°æ±¾FW 18.0.0-18.1.0
+echo ÊäÈë"19"£¬Ä§¸Ä°æ±¾FW 19.0.0-
 echo.
 ECHO ******************************************
-echo æˆ–è¾“å…¥"b"ï¼Œè¿”å›åˆ—è¡¨é€‰é¡¹
+echo »òÊäÈë"b"£¬·µ»ØÁĞ±íÑ¡Ïî
 ECHO ******************************************
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set bs=%bs:"=%
 set "vkey=none"
 if /i "%bs%"=="b" goto checkagain
@@ -1130,73 +1130,73 @@ if /i "%bs%"=="18" set "vkey=-kp 18"
 if /i "%bs%"=="18" set "capRSV=--RSVcap 1207959552"
 if /i "%bs%"=="19" set "vkey=-kp 19"
 if /i "%bs%"=="19" set "capRSV=--RSVcap 1275068416"
-if /i "%vkey%"=="none" echo é”™è¯¯çš„é€‰æ‹©
+if /i "%vkey%"=="none" echo ´íÎóµÄÑ¡Ôñ
 if /i "%vkey%"=="none" goto s_KeyChange_wrongchoice
 goto s_KeyChange_skip
 
 :s_trimmer_selection
 echo *******************************************************
-echo è¶…çº§æ¸…ç†ã€æ¸…ç†ã€ä¸æ¸…ç†
+echo ³¬¼¶ÇåÀí¡¢ÇåÀí¡¢²»ÇåÀí
 echo *******************************************************
-echo æè¿°:
-echo - è¶…çº§æ¸…ç†
-echo   åˆ é™¤ç³»ç»Ÿå›ºä»¶æ›´æ–°ï¼Œæ¸…ç©ºæ›´æ–°åˆ†åŒºï¼Œ
-echo   åˆ é™¤æœ€ç»ˆå’Œä¸­é—´å¡«å……ï¼Œåˆ é™¤LOGOåˆ†åŒºï¼Œ
-echo   åˆ é™¤æ¸¸æˆæ›´æ–°ï¼Œä¿ç•™å·²æœ‰çš„æ¸¸æˆè¯ä¹¦ï¼ˆé€‚ç”¨äºtinfoilå®‰è£…ï¼‰
-echo - è¶…çº§æ¸…ç†ä½†ä¿ç•™æ¸¸æˆæ›´æ–°æ•°æ®
-echo   å’Œè¶…çº§æ¸…ç†ä¸€æ ·ï¼Œä½†ä¿ç•™æ¸¸æˆæ›´æ–°æ•°æ®
-echo - æ¸…ç†
-echo   åˆ é™¤æœ€åçš„å¡«å……ï¼ˆç©ºæ•°æ®ï¼‰
-echo - ä¸æ¸…ç†
-echo   ä¸æ‰§è¡Œæ•°æ®æ¸…ç†
+echo ÃèÊö:
+echo - ³¬¼¶ÇåÀí
+echo   É¾³ıÏµÍ³¹Ì¼ş¸üĞÂ£¬Çå¿Õ¸üĞÂ·ÖÇø£¬
+echo   É¾³ı×îÖÕºÍÖĞ¼äÌî³ä£¬É¾³ıLOGO·ÖÇø£¬
+echo   É¾³ıÓÎÏ·¸üĞÂ£¬±£ÁôÒÑÓĞµÄÓÎÏ·Ö¤Êé£¨ÊÊÓÃÓÚtinfoil°²×°£©
+echo - ³¬¼¶ÇåÀíµ«±£ÁôÓÎÏ·¸üĞÂÊı¾İ
+echo   ºÍ³¬¼¶ÇåÀíÒ»Ñù£¬µ«±£ÁôÓÎÏ·¸üĞÂÊı¾İ
+echo - ÇåÀí
+echo   É¾³ı×îºóµÄÌî³ä£¨¿ÕÊı¾İ£©
+echo - ²»ÇåÀí
+echo   ²»Ö´ĞĞÊı¾İÇåÀí
 echo.
-echo è¾“å…¥"1"ï¼Œè¶…çº§æ¸…ç†
-echo è¾“å…¥"2"ï¼Œè¶…çº§æ¸…ç†ä½†ä¿ç•™æ¸¸æˆæ›´æ–°æ•°æ®
-echo è¾“å…¥"3"ï¼Œæ¸…ç†
-echo è¾“å…¥"4"ï¼Œä¸æ¸…ç†
+echo ÊäÈë"1"£¬³¬¼¶ÇåÀí
+echo ÊäÈë"2"£¬³¬¼¶ÇåÀíµ«±£ÁôÓÎÏ·¸üĞÂÊı¾İ
+echo ÊäÈë"3"£¬ÇåÀí
+echo ÊäÈë"4"£¬²»ÇåÀí
 echo.
 ECHO ******************************************
-echo æˆ–è¾“å…¥"b"ï¼Œè¿”å›åˆ—è¡¨é€‰é¡¹
+echo »òÊäÈë"b"£¬·µ»ØÁĞ±íÑ¡Ïî
 ECHO ******************************************
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set bs=%bs:"=%
 set "vrepack=none"
 if /i "%bs%"=="1" set "vrepack=xci_supertrimmer"
 if /i "%bs%"=="2" set "vrepack=xci_supertrimmer_keep_upd"
 if /i "%bs%"=="3" set "vrepack=xci_trimmer"
 if /i "%bs%"=="4" set "vrepack=xci_untrimmer"
-if /i "%vrepack%"=="none" echo é”™è¯¯çš„é€‰æ‹©
+if /i "%vrepack%"=="none" echo ´íÎóµÄÑ¡Ôñ
 if /i "%vrepack%"=="none" goto s_trimmer_selection
 goto s_KeyChange_skip
 
 :s_vertype
 echo *******************************************************
-echo éªŒè¯ç±»å‹
+echo ÑéÖ¤ÀàĞÍ
 echo *******************************************************
-echo é€‰æ‹©éªŒè¯çš„çº§åˆ«.
-echo è§£å¯† - æ–‡ä»¶å¯è¯»ï¼Œç¥¨è¯æ­£ç¡®ï¼Œæ²¡æœ‰æ–‡ä»¶ä¸¢å¤±
-echo ç­¾å - æ£€æŸ¥Nintendoç­¾åçš„æ ‡å¤´ï¼Œä¸ºNSCBä¿®æ”¹è®¡ç®—åŸå§‹æ ‡å¤´
-echo å“ˆå¸Œ - æ£€æŸ¥ä¸æ–‡ä»¶ååŒ¹é…çš„æ–‡ä»¶å½“å‰å’ŒåŸå§‹å“ˆå¸Œå€¼æ˜¯å¦ä¸€è‡´
+echo Ñ¡ÔñÑéÖ¤µÄ¼¶±ğ.
+echo ½âÃÜ - ÎÄ¼ş¿É¶Á£¬Æ±Ö¤ÕıÈ·£¬Ã»ÓĞÎÄ¼ş¶ªÊ§
+echo Ç©Ãû - ¼ì²éNintendoÇ©ÃûµÄ±êÍ·£¬ÎªNSCBĞŞ¸Ä¼ÆËãÔ­Ê¼±êÍ·
+echo ¹şÏ£ - ¼ì²éÓëÎÄ¼şÃûÆ¥ÅäµÄÎÄ¼şµ±Ç°ºÍÔ­Ê¼¹şÏ£ÖµÊÇ·ñÒ»ÖÂ
 echo.
-echo æ³¨æ„ï¼šå¦‚æœæ‚¨é€šè¿‡æ–‡ä»¶æµæ–¹æ³•è¯»å–è¿œç¨‹æœåŠ¡ä¸Šçš„æ–‡ä»¶ï¼Œåˆ™æ¨èä½¿ç”¨è§£å¯†æˆ–ç­¾å
+echo ×¢Òâ£ºÈç¹ûÄúÍ¨¹ıÎÄ¼şÁ÷·½·¨¶ÁÈ¡Ô¶³Ì·şÎñÉÏµÄÎÄ¼ş£¬ÔòÍÆ¼öÊ¹ÓÃ½âÃÜ»òÇ©Ãû
 echo.
-echo è¾“å…¥ "1" ä½¿ç”¨è§£å¯†éªŒè¯ï¼ˆå¿«é€Ÿï¼‰
-echo è¾“å…¥ "2" ä½¿ç”¨è§£å¯†+ç­¾åéªŒè¯ï¼ˆå¿«é€Ÿï¼‰
-echo è¾“å…¥ "3" ä½¿ç”¨è§£å¯†+ç­¾å+HASHéªŒè¯ï¼ˆæ…¢ï¼‰
+echo ÊäÈë "1" Ê¹ÓÃ½âÃÜÑéÖ¤£¨¿ìËÙ£©
+echo ÊäÈë "2" Ê¹ÓÃ½âÃÜ+Ç©ÃûÑéÖ¤£¨¿ìËÙ£©
+echo ÊäÈë "3" Ê¹ÓÃ½âÃÜ+Ç©Ãû+HASHÑéÖ¤£¨Âı£©
 echo.
 ECHO ******************************************
-echo æˆ–è¾“å…¥"b"ï¼Œè¿”å›åˆ—è¡¨é€‰é¡¹
+echo »òÊäÈë"b"£¬·µ»ØÁĞ±íÑ¡Ïî
 ECHO ******************************************
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set bs=%bs:"=%
 set "verif=none"
 if /i "%bs%"=="b" goto checkagain
 if /i "%bs%"=="1" set "verif=lv1"
 if /i "%bs%"=="2" set "verif=lv2"
 if /i "%bs%"=="3" set "verif=lv3"
-if /i "%verif%"=="none" echo é”™è¯¯çš„é€‰æ‹©
+if /i "%verif%"=="none" echo ´íÎóµÄÑ¡Ôñ
 if /i "%verif%"=="none" echo.
 if /i "%verif%"=="none" goto s_vertype
 
@@ -1227,7 +1227,7 @@ if "%%~nxf"=="%%~nf.xcz" call :xci_manual
 rem call :contador_NF
 )
 ECHO ---------------------------------------------------
-ECHO *********** æ‰€æœ‰æ–‡ä»¶éƒ½å·²å¤„ç†ï¼ *************
+ECHO *********** ËùÓĞÎÄ¼ş¶¼ÒÑ´¦Àí£¡ *************
 ECHO ---------------------------------------------------
 goto s_exit_choice
 
@@ -1235,31 +1235,31 @@ goto s_exit_choice
 :s_rename_wrongchoice1
 echo.
 echo *******************************************************
-echo é‡å‘½åç±»å‹
+echo ÖØÃüÃûÀàĞÍ
 echo *******************************************************
-echo æ­£å¸¸æ¨¡å¼ï¼š
-echo è¾“å…¥"1"ï¼Œå§‹ç»ˆé‡å‘½å
-echo è¾“å…¥"2"ï¼Œå¦‚æœå­˜åœ¨[TITLEID]åˆ™ä¸é‡å‘½å
-echo è¾“å…¥"3"ï¼Œå¦‚æœ[TITLEID]ç­‰äºè®¡ç®—å€¼ä¸é‡å‘½å
-echo è¾“å…¥"4"ï¼Œä»…æ·»åŠ ID
-echo è¾“å…¥"5"ï¼Œæ·»åŠ ID+æ ‡è®°å¹¶å°†åç§°ä¿ç•™åˆ°[
+echo Õı³£Ä£Ê½£º
+echo ÊäÈë"1"£¬Ê¼ÖÕÖØÃüÃû
+echo ÊäÈë"2"£¬Èç¹û´æÔÚ[TITLEID]Ôò²»ÖØÃüÃû
+echo ÊäÈë"3"£¬Èç¹û[TITLEID]µÈÓÚ¼ÆËãÖµ²»ÖØÃüÃû
+echo ÊäÈë"4"£¬½öÌí¼ÓID
+echo ÊäÈë"5"£¬Ìí¼ÓID+±ê¼Ç²¢½«Ãû³Æ±£Áôµ½[
 echo.
 echo Sanitize:
-echo è¾“å…¥"6"ï¼Œä»æ–‡ä»¶åä¸­åˆ é™¤é”™è¯¯å­—ç¬¦
-echo è¾“å…¥"7"ï¼Œå°†æ—¥è¯­/æ±‰è¯­è½¬æ¢ä¸ºç½—é©¬å­—
+echo ÊäÈë"6"£¬´ÓÎÄ¼şÃûÖĞÉ¾³ı´íÎó×Ö·û
+echo ÊäÈë"7"£¬½«ÈÕÓï/ººÓï×ª»»ÎªÂŞÂí×Ö
 echo.
-echo æ¸…ç†æ ‡ç­¾ï¼š
-echo è¾“å…¥"8"ï¼Œä»æ–‡ä»¶åä¸­åˆ é™¤[]æ ‡ç­¾
-echo è¾“å…¥"9"ï¼Œä»æ–‡ä»¶åä¸­åˆ é™¤()æ ‡ç­¾
-echo è¾“å…¥"10"ï¼Œä»æ–‡ä»¶åä¸­åˆ é™¤[]å’Œ()æ ‡ç­¾
-echo è¾“å…¥"11"ï¼Œä»ç¬¬ä¸€ä¸ª[æ ‡ç­¾å¼€å§‹åˆ é™¤TITLE
-echo è¾“å…¥"12"ï¼Œä»ç¬¬ä¸€ä¸ª(æ ‡ç­¾å¼€å§‹åˆ é™¤TITLE
+echo ÇåÀí±êÇ©£º
+echo ÊäÈë"8"£¬´ÓÎÄ¼şÃûÖĞÉ¾³ı[]±êÇ©
+echo ÊäÈë"9"£¬´ÓÎÄ¼şÃûÖĞÉ¾³ı()±êÇ©
+echo ÊäÈë"10"£¬´ÓÎÄ¼şÃûÖĞÉ¾³ı[]ºÍ()±êÇ©
+echo ÊäÈë"11"£¬´ÓµÚÒ»¸ö[±êÇ©¿ªÊ¼É¾³ıTITLE
+echo ÊäÈë"12"£¬´ÓµÚÒ»¸ö(±êÇ©¿ªÊ¼É¾³ıTITLE
 echo.
 ECHO ******************************************
-echo æˆ–è¾“å…¥"0"ï¼Œè¿”å›åˆ—è¡¨é€‰é¡¹
+echo »òÊäÈë"0"£¬·µ»ØÁĞ±íÑ¡Ïî
 ECHO ******************************************
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set bs=%bs:"=%
 set "renmode=none"
 if /i "%bs%"=="0" goto checkagain
@@ -1287,25 +1287,25 @@ if /i "%bs%"=="11" goto filecleantags
 if /i "%bs%"=="12" set "tagtype=("
 if /i "%bs%"=="12" goto filecleantags
 
-if /i "%renmode%"=="none" echo é”™è¯¯çš„é€‰æ‹©
+if /i "%renmode%"=="none" echo ´íÎóµÄÑ¡Ôñ
 if /i "%renmode%"=="none" goto s_rename_wrongchoice1
 echo.
 :s_rename_wrongchoice2
 echo *******************************************************
-echo æ·»åŠ ç‰ˆæœ¬å·
+echo Ìí¼Ó°æ±¾ºÅ
 echo *******************************************************
-echo å°†å†…å®¹ç‰ˆæœ¬å·æ·»åŠ åˆ°æ–‡ä»¶å
+echo ½«ÄÚÈİ°æ±¾ºÅÌí¼Óµ½ÎÄ¼şÃû
 echo.
-echo è¾“å…¥"1"ï¼Œæ·»åŠ ç‰ˆæœ¬å·
-echo è¾“å…¥"2"ï¼Œä¸æ·»åŠ ç‰ˆæœ¬å·
-echo è¾“å…¥"3"ï¼Œå¦‚æœç‰ˆæœ¬=0ï¼Œä¸åœ¨XCIä¸­æ·»åŠ ç‰ˆæœ¬
+echo ÊäÈë"1"£¬Ìí¼Ó°æ±¾ºÅ
+echo ÊäÈë"2"£¬²»Ìí¼Ó°æ±¾ºÅ
+echo ÊäÈë"3"£¬Èç¹û°æ±¾=0£¬²»ÔÚXCIÖĞÌí¼Ó°æ±¾
 echo.
 ECHO *********************************************
-echo æˆ–è¾“å…¥"b"ï¼Œè¿”å›é‡å‘½åç±»å‹
-echo æˆ–è¾“å…¥"0"ï¼Œè¿”å›åˆ—è¡¨é€‰é¡¹
+echo »òÊäÈë"b"£¬·µ»ØÖØÃüÃûÀàĞÍ
+echo »òÊäÈë"0"£¬·µ»ØÁĞ±íÑ¡Ïî
 ECHO *********************************************
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set bs=%bs:"=%
 set "nover=none"
 if /i "%bs%"=="0" goto checkagain
@@ -1313,56 +1313,56 @@ if /i "%bs%"=="b" goto s_rename_wrongchoice1
 if /i "%bs%"=="1" set "nover=false"
 if /i "%bs%"=="2" set "nover=true"
 if /i "%bs%"=="3" set "nover=xci_no_v0"
-if /i "%nover%"=="none" echo é”™è¯¯çš„é€‰æ‹©
+if /i "%nover%"=="none" echo ´íÎóµÄÑ¡Ôñ
 if /i "%nover%"=="none" goto s_rename_wrongchoice2
 echo.
 :s_rename_wrongchoice3
 echo *******************************************************
-echo æ·»åŠ è¯­è¨€å­—ç¬¦ä¸²
+echo Ìí¼ÓÓïÑÔ×Ö·û´®
 echo *******************************************************
-echo ä¸ºæ¸¸æˆå’Œæ›´æ–°æ·»åŠ è¯­è¨€æ ‡è®°
+echo ÎªÓÎÏ·ºÍ¸üĞÂÌí¼ÓÓïÑÔ±ê¼Ç
 echo.
-echo è¾“å…¥"1"ï¼Œä¸æ·»åŠ è¯­è¨€å­—ç¬¦ä¸²
-echo è¾“å…¥"2"ï¼Œæ·»åŠ è¯­è¨€å­—ç¬¦ä¸²
+echo ÊäÈë"1"£¬²»Ìí¼ÓÓïÑÔ×Ö·û´®
+echo ÊäÈë"2"£¬Ìí¼ÓÓïÑÔ×Ö·û´®
 echo.
-echo æ³¨æ„ï¼šæ— æ³•ä»DLCsä¸­è¯»å–è¯­è¨€,
-echo å› æ­¤æ­¤é€‰é¡¹ä¸ä¼šå½±å“å®ƒä»¬
+echo ×¢Òâ£ºÎŞ·¨´ÓDLCsÖĞ¶ÁÈ¡ÓïÑÔ,
+echo Òò´Ë´ËÑ¡Ïî²»»áÓ°ÏìËüÃÇ
 echo.
 ECHO *********************************************
-echo æˆ–è¾“å…¥"b"ï¼Œè¿”å›æ·»åŠ ç‰ˆæœ¬å·
-echo æˆ–è¾“å…¥"0"ï¼Œè¿”å›åˆ—è¡¨é€‰é¡¹
+echo »òÊäÈë"b"£¬·µ»ØÌí¼Ó°æ±¾ºÅ
+echo »òÊäÈë"0"£¬·µ»ØÁĞ±íÑ¡Ïî
 ECHO *********************************************
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set bs=%bs:"=%
 set "addlangue=none"
 if /i "%bs%"=="0" goto checkagain
 if /i "%bs%"=="b" goto s_rename_wrongchoice2
 if /i "%bs%"=="1" set "addlangue=false"
 if /i "%bs%"=="2" set "addlangue=true"
-if /i "%addlangue%"=="none" echo é”™è¯¯çš„é€‰æ‹©
+if /i "%addlangue%"=="none" echo ´íÎóµÄÑ¡Ôñ
 if /i "%addlangue%"=="none" goto s_rename_wrongchoice3
 echo.
 :s_rename_wrongchoice4
 echo *******************************************************
-echo DLCå‘½åå›æ»š
+echo DLCÃüÃû»Ø¹ö
 echo *******************************************************
-echo å½“å‰ç‰ˆæœ¬å°†dlcåç§°åœ¨nutdbæ£€ç´¢ï¼Œæ­¤é€‰é¡¹è¯´æ˜å¦‚æœæ— æ³•æ£€ç´¢åˆ°åç§°ï¼Œ
-echo åˆ™å›æ»šä¸ºç©ºã€‚
+echo µ±Ç°°æ±¾½«dlcÃû³ÆÔÚnutdb¼ìË÷£¬´ËÑ¡ÏîËµÃ÷Èç¹ûÎŞ·¨¼ìË÷µ½Ãû³Æ£¬
+echo Ôò»Ø¹öÎª¿Õ¡£
 echo.
-echo é€šå¸¸å‘½ä»¤æ ¼å¼ åŸºæœ¬å [å†…å®¹å]
-echo é€‰é¡¹3æ ¼å¼ åŸºæœ¬å [å†…å®¹å] [DLCå·]
+echo Í¨³£ÃüÁî¸ñÊ½ »ù±¾Ãû [ÄÚÈİÃû]
+echo Ñ¡Ïî3¸ñÊ½ »ù±¾Ãû [ÄÚÈİÃû] [DLCºÅ]
 echo.
-echo è¾“å…¥"1"ï¼Œä¿æŒDLCåç§°
-echo è¾“å…¥"2"ï¼Œé‡å‘½åä¸ºDLCç¼–å·
-echo è¾“å…¥"3"ï¼Œä»¥ä¿æŒåç§°å¹¶æ·»åŠ dlcç¼–å·ä¸ºæ ‡ç­¾
+echo ÊäÈë"1"£¬±£³ÖDLCÃû³Æ
+echo ÊäÈë"2"£¬ÖØÃüÃûÎªDLC±àºÅ
+echo ÊäÈë"3"£¬ÒÔ±£³ÖÃû³Æ²¢Ìí¼Ódlc±àºÅÎª±êÇ©
 echo.
 ECHO *********************************************
-echo æˆ–è¾“å…¥"b"ï¼Œè¿”å›æ·»åŠ ä¿ç•™DLCåç§°
-echo æˆ–è¾“å…¥"0"ï¼Œè¿”å›åˆ—è¡¨é€‰é¡¹
+echo »òÊäÈë"b"£¬·µ»ØÌí¼Ó±£ÁôDLCÃû³Æ
+echo »òÊäÈë"0"£¬·µ»ØÁĞ±íÑ¡Ïî
 ECHO *********************************************
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set bs=%bs:"=%
 set "dlcrname=none"
 if /i "%bs%"=="0" goto checkagain
@@ -1370,7 +1370,7 @@ if /i "%bs%"=="b" goto s_rename_wrongchoice3
 if /i "%bs%"=="1" set "dlcrname=false"
 if /i "%bs%"=="2" set "dlcrname=true"
 if /i "%bs%"=="3" set "dlcrname=tag"
-if /i "%dlcrname%"=="none" echo é”™è¯¯çš„é€‰æ‹©
+if /i "%dlcrname%"=="none" echo ´íÎóµÄÑ¡Ôñ
 if /i "%dlcrname%"=="none" goto s_rename_wrongchoice4
 echo.
 cls
@@ -1383,7 +1383,7 @@ if "%workers%" NEQ "-threads 1" ( call :renamecheck )
 rem call :contador_NF
 )
 ECHO ---------------------------------------------------
-ECHO *********** æ‰€æœ‰æ–‡ä»¶éƒ½å·²å¤„ç†ï¼ *************
+ECHO *********** ËùÓĞÎÄ¼ş¶¼ÒÑ´¦Àí£¡ *************
 ECHO ---------------------------------------------------
 goto s_exit_choice
 
@@ -1407,7 +1407,7 @@ for /f "tokens=*" %%f in (list.txt) do (
 rem call :contador_NF
 )
 ECHO ---------------------------------------------------
-ECHO *********** æ‰€æœ‰æ–‡ä»¶éƒ½å·²å¤„ç†ï¼ *************
+ECHO *********** ËùÓĞÎÄ¼ş¶¼ÒÑ´¦Àí£¡ *************
 ECHO ---------------------------------------------------
 goto s_exit_choice
 
@@ -1420,7 +1420,7 @@ for /f "tokens=*" %%f in (list.txt) do (
 rem call :contador_NF
 )
 ECHO ---------------------------------------------------
-ECHO *********** æ‰€æœ‰æ–‡ä»¶éƒ½å·²å¤„ç†ï¼ *************
+ECHO *********** ËùÓĞÎÄ¼ş¶¼ÒÑ´¦Àí£¡ *************
 ECHO ---------------------------------------------------
 goto s_exit_choice
 
@@ -1434,20 +1434,20 @@ for /f "tokens=*" %%f in (list.txt) do (
 rem call :contador_NF
 )
 ECHO ---------------------------------------------------
-ECHO *********** æ‰€æœ‰æ–‡ä»¶éƒ½å·²å¤„ç†ï¼ *************
+ECHO *********** ËùÓĞÎÄ¼ş¶¼ÒÑ´¦Àí£¡ *************
 ECHO ---------------------------------------------------
 goto s_exit_choice
 
 :s_exit_choice
 if exist list.txt del list.txt
-if /i "%va_exit%"=="true" echo  ç¨‹åºå°†ç«‹å³å…³é—­
+if /i "%va_exit%"=="true" echo  ³ÌĞò½«Á¢¼´¹Ø±Õ
 if /i "%va_exit%"=="true" ( PING -n 2 127.0.0.1 >NUL 2>&1 )
 if /i "%va_exit%"=="true" goto salida
 echo.
-echo è¾“å…¥"0"ï¼Œè¿”å›æ¨¡å¼é€‰æ‹©èœå•
-echo è¾“å…¥"1"ï¼Œé€€å‡ºç¨‹åº
+echo ÊäÈë"0"£¬·µ»ØÄ£Ê½Ñ¡Ôñ²Ëµ¥
+echo ÊäÈë"1"£¬ÍË³ö³ÌĞò
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set bs=%bs:"=%
 if /i "%bs%"=="0" goto manual_Reentry
 if /i "%bs%"=="1" goto salida
@@ -1481,7 +1481,7 @@ move "%w_folder%\*.zip" "%zip_fold%" >NUL 2>&1
 if exist "%w_folder%\archfolder" ( %pycommand% "%squirrel%" -ifo "%w_folder%\archfolder" -archive "%fold_output%\%filename%.nsp" )
 
 RD /S /Q "%w_folder%" >NUL 2>&1
-echo å®Œæˆ
+echo Íê³É
 call :thumbup
 call :delay
 goto end_nsp_manual
@@ -1524,7 +1524,7 @@ move "%w_folder%\*.zip" "%zip_fold%" >NUL 2>&1
 if exist "%w_folder%\archfolder" ( %pycommand% "%squirrel%" -ifo "%w_folder%\archfolder" -archive "%gefolder%\%filename%.nsp" )
 endlocal
 RD /S /Q "%w_folder%" >NUL 2>&1
-echo å®Œæˆ
+echo Íê³É
 call :thumbup
 call :delay
 goto end_nsp_manual
@@ -1534,7 +1534,7 @@ exit /B
 
 :xci_manual
 rem if "%fatype%" EQU "-fat fat32" goto xci_manual_fat32
-::XCIæ–‡ä»¶
+::XCIÎÄ¼ş
 if exist "%w_folder%" rmdir /s /q "%w_folder%" >NUL 2>&1
 MD "%w_folder%"
 
@@ -1562,14 +1562,14 @@ move "%w_folder%\*.zip" "%zip_fold%" >NUL 2>&1
 if exist "%w_folder%\archfolder" ( %pycommand% "%squirrel%" -ifo "%w_folder%\archfolder" -archive "%fold_output%\%filename%.nsp" )
 
 RD /S /Q "%w_folder%" >NUL 2>&1
-echo å®Œæˆ
+echo Íê³É
 call :thumbup
 call :delay
 goto end_xci_manual
 
 :xci_manual_fat32
 CD /d "%prog_dir%"
-::XCIæ–‡ä»¶
+::XCIÎÄ¼ş
 cls
 if "%vrepack%" EQU "zip" ( goto end_xci_manual )
 set "filename=%name%"
@@ -1581,10 +1581,10 @@ MD "%w_folder%"
 MD "%w_folder%\secure"
 call :getname
 echo ------------------------------------
-echo ä»XCIæå–å®‰å…¨åˆ†åŒº
+echo ´ÓXCIÌáÈ¡°²È«·ÖÇø
 echo ------------------------------------
 %pycommand% "%squirrel%" %buffer% %patchRSV% %vkey% %capRSV% -o "%w_folder%\secure" %nf_cleaner% "%orinput%"
-echo å®Œæˆ
+echo Íê³É
 if "%vrename%" EQU "true" call :addtags_from_xci
 if "%vrepack%" EQU "nsp" ( call "%nsp_lib%" "convert" "%w_folder%" )
 if "%vrepack%" EQU "xci" ( call "%xci_lib%" "repack" "%w_folder%" )
@@ -1600,7 +1600,7 @@ move "%w_folder%\*.ns*" "%fold_output%\!end_folder!" >NUL 2>&1
 if exist "%w_folder%\archfolder" ( %pycommand% "%squirrel%" -ifo "%w_folder%\archfolder" -archive "%fold_output%\!end_folder!\%filename%.nsp" )
 endlocal
 RD /S /Q "%w_folder%" >NUL 2>&1
-echo å®Œæˆ
+echo Íê³É
 call :thumbup
 call :delay
 goto end_xci_manual
@@ -1615,7 +1615,7 @@ for /f "tokens=*" %%f in (list.txt) do (
 set /a conta=!conta! + 1
 )
 echo ...................................................
-echo ä»æœ‰ !conta! ä¸ªæ–‡ä»¶è¦å¤„ç†
+echo ÈÔÓĞ !conta! ¸öÎÄ¼şÒª´¦Àí
 echo ...................................................
 PING -n 2 127.0.0.1 >NUL 2>&1
 set /a conta=0
@@ -1634,23 +1634,23 @@ if exist "%list_folder%\a_multi" RD /S /Q "%list_folder%\a_multi" >NUL 2>&1
 cls
 call :program_logo
 echo -----------------------------------------------
-echo å¤šæ–‡ä»¶å¤„ç†å·²æ¿€æ´»
+echo ¶àÎÄ¼ş´¦ÀíÒÑ¼¤»î
 echo -----------------------------------------------
 if exist "mlist.txt" del "mlist.txt"
 :multi_manual_INIT
 endlocal
 set skip_list_split="false"
 set "mlistfol=%list_folder%\m_multi"
-echo æ‹–æ”¾æ–‡ä»¶æˆ–æ–‡ä»¶å¤¹ä»¥åˆ›å»ºåˆ—è¡¨
-echo æ³¨æ„ï¼šè®°å¾—åœ¨æ‹–æ”¾æ–‡ä»¶æˆ–æ–‡ä»¶å¤¹åæŒ‰å›è½¦é”®
+echo ÍÏ·ÅÎÄ¼ş»òÎÄ¼ş¼ĞÒÔ´´½¨ÁĞ±í
+echo ×¢Òâ£º¼ÇµÃÔÚÍÏ·ÅÎÄ¼ş»òÎÄ¼ş¼Ğºó°´»Ø³µ¼ü
 echo.
 ECHO ***********************************************
-echo è¾“å…¥"1"ï¼Œå¤„ç†ä»¥å‰ä¿å­˜çš„ä½œä¸š
-echo è¾“å…¥"2"ï¼Œå°†å¦ä¸€ä¸ªæ–‡ä»¶å¤¹æ·»åŠ åˆ°åˆ—è¡¨ä¸­
-echo è¾“å…¥"3"ï¼Œå°†å¦ä¸€ä¸ªæ–‡ä»¶æ·»åŠ åˆ°åˆ—è¡¨ä¸­
-echo è¾“å…¥"4"ï¼Œé€šè¿‡æœ¬åœ°æ–‡ä»¶åº“ï¼Œå°†æ–‡ä»¶æ·»åŠ åˆ°åˆ—è¡¨
-echo è¾“å…¥"5"ï¼Œé€šè¿‡folder-walkeré€’å½’çš„æ–¹å¼ï¼Œå°†æ–‡ä»¶æ·»åŠ åˆ°åˆ—è¡¨
-echo è¾“å…¥"0"ï¼Œè¿”å›æ¨¡å¼é€‰æ‹©èœå•
+echo ÊäÈë"1"£¬´¦ÀíÒÔÇ°±£´æµÄ×÷Òµ
+echo ÊäÈë"2"£¬½«ÁíÒ»¸öÎÄ¼ş¼ĞÌí¼Óµ½ÁĞ±íÖĞ
+echo ÊäÈë"3"£¬½«ÁíÒ»¸öÎÄ¼şÌí¼Óµ½ÁĞ±íÖĞ
+echo ÊäÈë"4"£¬Í¨¹ı±¾µØÎÄ¼ş¿â£¬½«ÎÄ¼şÌí¼Óµ½ÁĞ±í
+echo ÊäÈë"5"£¬Í¨¹ıfolder-walkerµİ¹éµÄ·½Ê½£¬½«ÎÄ¼şÌí¼Óµ½ÁĞ±í
+echo ÊäÈë"0"£¬·µ»ØÄ£Ê½Ñ¡Ôñ²Ëµ¥
 ECHO ***********************************************
 echo.
 %pycommand% "%squirrel%" -t nsp xci nsz xcz -tfile "%prog_dir%mlist.txt" -uin "%uinput%" -ff "uinput"
@@ -1671,25 +1671,25 @@ goto multi_checkagain
 echo.
 :multi_checkagain
 set "mlistfol=%list_folder%\a_multi"
-echo ä½ æƒ³åšä»€ä¹ˆï¼Ÿ
+echo ÄãÏë×öÊ²Ã´£¿
 echo ......................................................................
-echo "æ‹–åŠ¨å¦ä¸€ä¸ªæ–‡ä»¶æˆ–æ–‡ä»¶å¤¹ï¼Œç„¶åæŒ‰å›è½¦é”®å°†é¡¹ç›®æ·»åŠ åˆ°åˆ—è¡¨ä¸­"
+echo "ÍÏ¶¯ÁíÒ»¸öÎÄ¼ş»òÎÄ¼ş¼Ğ£¬È»ºó°´»Ø³µ¼ü½«ÏîÄ¿Ìí¼Óµ½ÁĞ±íÖĞ"
 echo.
-echo è¾“å…¥"1"ï¼Œå¼€å§‹å¤„ç†å½“å‰åˆ—è¡¨
-echo è¾“å…¥"2"ï¼Œæ·»åŠ åˆ°ä¿å­˜çš„åˆ—è¡¨å¹¶å¤„ç†å®ƒä»¬
-echo è¾“å…¥"3"ï¼Œä¿å­˜åˆ—è¡¨ä»¥åå¤„ç†
-echo è¾“å…¥"4"ï¼Œæ·»åŠ å¦ä¸€ä¸ªæ–‡ä»¶å¤¹åˆ°åˆ—è¡¨
-echo è¾“å…¥"5"ï¼Œæ·»åŠ å¦ä¸€ä¸ªæ–‡ä»¶åˆ°åˆ—è¡¨
-echo è¾“å…¥"6"ï¼Œé€šè¿‡æœ¬åœ°æ–‡ä»¶åº“ï¼Œå°†æ–‡ä»¶æ·»åŠ åˆ°åˆ—è¡¨
-echo è¾“å…¥"7"ï¼Œé€šè¿‡folder-walkeré€’å½’çš„æ–¹å¼ï¼Œå°†æ–‡ä»¶æ·»åŠ åˆ°åˆ—è¡¨
+echo ÊäÈë"1"£¬¿ªÊ¼´¦Àíµ±Ç°ÁĞ±í
+echo ÊäÈë"2"£¬Ìí¼Óµ½±£´æµÄÁĞ±í²¢´¦ÀíËüÃÇ
+echo ÊäÈë"3"£¬±£´æÁĞ±íÒÔºó´¦Àí
+echo ÊäÈë"4"£¬Ìí¼ÓÁíÒ»¸öÎÄ¼ş¼Ğµ½ÁĞ±í
+echo ÊäÈë"5"£¬Ìí¼ÓÁíÒ»¸öÎÄ¼şµ½ÁĞ±í
+echo ÊäÈë"6"£¬Í¨¹ı±¾µØÎÄ¼ş¿â£¬½«ÎÄ¼şÌí¼Óµ½ÁĞ±í
+echo ÊäÈë"7"£¬Í¨¹ıfolder-walkerµİ¹éµÄ·½Ê½£¬½«ÎÄ¼şÌí¼Óµ½ÁĞ±í
 echo.
-echo è¾“å…¥"e"ï¼Œé€€å‡º
-echo è¾“å…¥"i"ï¼ŒæŸ¥çœ‹è¦å¤„ç†çš„æ–‡ä»¶åˆ—è¡¨
-echo è¾“å…¥"r"ï¼Œåˆ é™¤ä¸€äº›æ–‡ä»¶ï¼ˆä»åº•éƒ¨å¼€å§‹è®¡æ•°ï¼‰
-echo è¾“å…¥"z"ï¼Œåˆ é™¤æ•´ä¸ªåˆ—è¡¨
+echo ÊäÈë"e"£¬ÍË³ö
+echo ÊäÈë"i"£¬²é¿´Òª´¦ÀíµÄÎÄ¼şÁĞ±í
+echo ÊäÈë"r"£¬É¾³ıÒ»Ğ©ÎÄ¼ş£¨´Óµ×²¿¿ªÊ¼¼ÆÊı£©
+echo ÊäÈë"z"£¬É¾³ıÕû¸öÁĞ±í
 echo ......................................................................
 ECHO *************************************************
-echo æˆ–è¾“å…¥"0"ï¼Œè¿”å›æ¨¡å¼é€‰æ‹©èœå•
+echo »òÊäÈë"0"£¬·µ»ØÄ£Ê½Ñ¡Ôñ²Ëµ¥
 ECHO *************************************************
 echo.
 %pycommand% "%squirrel%" -t nsp xci nsz xcz -tfile "%prog_dir%mlist.txt" -uin "%uinput%" -ff "uinput"
@@ -1721,17 +1721,17 @@ goto multi_checkagain
 :multi_saved_for_later
 if not exist "%list_folder%" MD "%list_folder%" >NUL 2>&1
 if not exist "%mlistfol%" MD "%mlistfol%" >NUL 2>&1
-echo ä¿å­˜åˆ—è¡¨
+echo ±£´æÁĞ±í
 echo ......................................................................
-echo è¾“å…¥"1"ï¼Œä»¥å°†åˆ—è¡¨åˆå¹¶ä¿å­˜ï¼ˆå•ä¸ªå¤šæ–‡ä»¶åˆ—è¡¨ï¼‰
-echo è¾“å…¥"2"ï¼ŒæŒ‰æ–‡ä»¶çš„baseidä¿å­˜ä¸ºå¤šä¸ªåˆ—è¡¨
+echo ÊäÈë"1"£¬ÒÔ½«ÁĞ±íºÏ²¢±£´æ£¨µ¥¸ö¶àÎÄ¼şÁĞ±í£©
+echo ÊäÈë"2"£¬°´ÎÄ¼şµÄbaseid±£´æÎª¶à¸öÁĞ±í
 echo.
 ECHO *******************************************
-echo è¾“å…¥"b"ï¼Œç»§ç»­æ„å»ºåˆ—è¡¨
-echo è¾“å…¥"0"ï¼Œè¿”å›é€‰æ‹©èœå•
+echo ÊäÈë"b"£¬¼ÌĞø¹¹½¨ÁĞ±í
+echo ÊäÈë"0"£¬·µ»ØÑ¡Ôñ²Ëµ¥
 ECHO *******************************************
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set bs=%bs:"=%
 set vrepack=none
 if /i "%bs%"=="b" goto multi_checkagain
@@ -1740,26 +1740,26 @@ if /i "%bs%"=="1" goto multi_saved_for_later1
 if /i "%bs%"=="2" ( %pycommand% "%squirrel%" -splid "%mlistfol%" -tfile "%prog_dir%mlist.txt" )
 if /i "%bs%"=="2" del "%prog_dir%mlist.txt"
 if /i "%bs%"=="2" goto multi_saved_for_later2
-echo é”™è¯¯çš„é€‰æ‹©!!
+echo ´íÎóµÄÑ¡Ôñ!!
 goto multi_saved_for_later
 :multi_saved_for_later1
 echo.
-echo é€‰æ‹©åç§°
+echo Ñ¡ÔñÃû³Æ
 echo ......................................................................
-echo åˆ—è¡¨å°†ä¿å­˜åœ¨æ‚¨é€‰æ‹©çš„åˆ—è¡¨ç›®å½•åç§°( è·¯å¾„æ˜¯ "ç¨‹åºç›®å½•\list\m_multi")
+echo ÁĞ±í½«±£´æÔÚÄúÑ¡ÔñµÄÁĞ±íÄ¿Â¼Ãû³Æ( Â·¾¶ÊÇ "³ÌĞòÄ¿Â¼\list\m_multi")
 echo.
-set /p lname="è¯·ä¸ºåˆ—è¡¨å‘½å: "
+set /p lname="ÇëÎªÁĞ±íÃüÃû: "
 set lname=%lname:"=%
 move /y "%prog_dir%mlist.txt" "%mlistfol%\%lname%.txt" >nul
 echo.
 echo JOB SAVED!!!
 :multi_saved_for_later2
 echo.
-echo è¾“å…¥"0"ï¼Œè¿”å›æ¨¡å¼é€‰æ‹©èœå•
-echo è¾“å…¥"1"ï¼Œä»¥åˆ›å»ºå…¶ä»–åˆ—è¡¨
-echo è¾“å…¥"2"ï¼Œé€€å‡ºç¨‹åº
+echo ÊäÈë"0"£¬·µ»ØÄ£Ê½Ñ¡Ôñ²Ëµ¥
+echo ÊäÈë"1"£¬ÒÔ´´½¨ÆäËûÁĞ±í
+echo ÊäÈë"2"£¬ÍË³ö³ÌĞò
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set bs=%bs:"=%
 if /i "%bs%"=="0" goto manual_Reentry
 if /i "%bs%"=="1" echo.
@@ -1769,7 +1769,7 @@ if /i "%bs%"=="1" goto salida
 goto multi_saved_for_later2
 
 :multi_r_files
-set /p bs="è¾“å…¥è¦åˆ é™¤çš„æ–‡ä»¶æ•°ï¼ˆä»åº•éƒ¨å¼€å§‹ï¼‰ï¼š "
+set /p bs="ÊäÈëÒªÉ¾³ıµÄÎÄ¼şÊı£¨´Óµ×²¿¿ªÊ¼£©£º "
 set bs=%bs:"=%
 
 setlocal enabledelayedexpansion
@@ -1802,10 +1802,10 @@ endlocal
 cls
 call :program_logo
 echo -------------------------------------------------
-echo å¤šæ–‡ä»¶å¤„ç†å·²æ¿€æ´»
+echo ¶àÎÄ¼ş´¦ÀíÒÑ¼¤»î
 echo -------------------------------------------------
 ECHO -------------------------------------------------
-ECHO                è¦å¤„ç†çš„æ–‡ä»¶
+ECHO                Òª´¦ÀíµÄÎÄ¼ş
 ECHO -------------------------------------------------
 for /f "tokens=*" %%f in (mlist.txt) do (
 echo %%f
@@ -1816,33 +1816,33 @@ for /f "tokens=*" %%f in (mlist.txt) do (
 set /a conta=!conta! + 1
 )
 echo .................................................
-echo æ‚¨å·²æ·»åŠ äº† !conta! ä¸ªè¦å¤„ç†çš„æ–‡ä»¶
+echo ÄúÒÑÌí¼ÓÁË !conta! ¸öÒª´¦ÀíµÄÎÄ¼ş
 echo .................................................
 endlocal
 
 goto multi_checkagain
 
 :m_cl_wrongchoice
-echo é”™è¯¯çš„é€‰æ‹©
+echo ´íÎóµÄÑ¡Ôñ
 echo ............
 :multi_start_cleaning
 echo *******************************************************
-echo æ¥ä¸‹æ¥é€‰æ‹©æ‚¨è¦æ‰§è¡Œçš„æ“ä½œ
+echo ½ÓÏÂÀ´Ñ¡ÔñÄúÒªÖ´ĞĞµÄ²Ù×÷
 echo *******************************************************
-echo æ ‡å‡†åŠ å¯†é€‰é¡¹:
-echo è¾“å…¥"1"ï¼Œé‡æ–°æ‰“åŒ…åˆ—è¡¨ä¸ºæ— ç¥¨æ®çš„NSP
-echo è¾“å…¥"2"ï¼Œé‡æ–°æ‰“åŒ…åˆ—è¡¨ä¸ºXCI
-echo è¾“å…¥"3"ï¼Œé‡æ–°æ‰“åŒ…åˆ—è¡¨ä¸ºæ— ç¥¨æ®çš„NSPå’ŒXCI
+echo ±ê×¼¼ÓÃÜÑ¡Ïî:
+echo ÊäÈë"1"£¬ÖØĞÂ´ò°üÁĞ±íÎªÎŞÆ±¾İµÄNSP
+echo ÊäÈë"2"£¬ÖØĞÂ´ò°üÁĞ±íÎªXCI
+echo ÊäÈë"3"£¬ÖØĞÂ´ò°üÁĞ±íÎªÎŞÆ±¾İµÄNSPºÍXCI
 echo.
-echo ç‰¹æ®Šé€‰é¡¹ï¼š
-echo è¾“å…¥"4"ï¼Œé‡æ–°æ‰“åŒ…åˆ—è¡¨ä¸ºNSP(æœªä¿®æ”¹NCA)
-echo è¾“å…¥"5"ï¼Œé‡æ–°æ‰“åŒ…åˆ—è¡¨ä¸ºNSPå’ŒXCIï¼ˆæœªä¿®æ”¹NCAï¼‰
+echo ÌØÊâÑ¡Ïî£º
+echo ÊäÈë"4"£¬ÖØĞÂ´ò°üÁĞ±íÎªNSP(Î´ĞŞ¸ÄNCA)
+echo ÊäÈë"5"£¬ÖØĞÂ´ò°üÁĞ±íÎªNSPºÍXCI£¨Î´ĞŞ¸ÄNCA£©
 echo.
 ECHO *****************************************
-echo æˆ–è¾“å…¥"b"ï¼Œè¿”å›é€‰é¡¹åˆ—è¡¨
+echo »òÊäÈë"b"£¬·µ»ØÑ¡ÏîÁĞ±í
 ECHO *****************************************
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set bs=%bs:"=%
 set vrepack=none
 if /i "%bs%"=="b" goto multi_checkagain
@@ -1860,62 +1860,62 @@ if /i "%skipRSVprompt%"=="true" set "patchRSV=-pv false"
 if /i "%skipRSVprompt%"=="true" set "vkey=-kp false"
 if /i "%skipRSVprompt%"=="true" goto m_KeyChange_skip
 echo *******************************************************
-echo æ˜¯å¦è¦é­”æ”¹æ‰€éœ€çš„ç³»ç»Ÿç‰ˆæœ¬
+echo ÊÇ·ñÒªÄ§¸ÄËùĞèµÄÏµÍ³°æ±¾
 echo *******************************************************
-echo å¦‚æœæ‚¨é€‰æ‹©æ‰“è¡¥ä¸ï¼Œå®ƒå°†è¢«è®¾ç½®ä¸ºåŒ¹é…çš„ncaåŠ å¯†
-echo å› æ­¤ä»…åœ¨å¿…è¦æ—¶æ‰è¦æ±‚æ›´æ–°ç³»ç»Ÿ
+echo Èç¹ûÄúÑ¡Ôñ´ò²¹¶¡£¬Ëü½«±»ÉèÖÃÎªÆ¥ÅäµÄnca¼ÓÃÜ
+echo Òò´Ë½öÔÚ±ØÒªÊ±²ÅÒªÇó¸üĞÂÏµÍ³
 echo.
-echo è¾“å…¥"0"ï¼Œä¸é­”æ”¹
-echo è¾“å…¥"1"ï¼Œé­”æ”¹
+echo ÊäÈë"0"£¬²»Ä§¸Ä
+echo ÊäÈë"1"£¬Ä§¸Ä
 echo.
 ECHO *****************************************
-echo æˆ–è¾“å…¥"b"ï¼Œè¿”å›é€‰é¡¹åˆ—è¡¨
+echo »òÊäÈë"b"£¬·µ»ØÑ¡ÏîÁĞ±í
 ECHO *****************************************
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set bs=%bs:"=%
 set patchRSV=none
 if /i "%bs%"=="b" goto multi_checkagain
 if /i "%bs%"=="0" set "patchRSV=-pv false"
 if /i "%bs%"=="0" set "vkey=-kp false"
 if /i "%bs%"=="1" set "patchRSV=-pv true"
-if /i "%patchRSV%"=="none" echo é”™è¯¯çš„é€‰æ‹©
+if /i "%patchRSV%"=="none" echo ´íÎóµÄÑ¡Ôñ
 if /i "%patchRSV%"=="none" goto m_RSV_wrongchoice
 if /i "%bs%"=="0" goto m_KeyChange_skip
 
 :m_KeyChange_wrongchoice
 echo *******************************************************
-echo é­”æ”¹ç¨‹åºå·²æ¿€æ´»
+echo Ä§¸Ä³ÌĞòÒÑ¼¤»î
 echo *******************************************************
-echo è¿™å¹¶ä¸æ€»èƒ½é™ä½ç³»ç»Ÿè¦æ±‚ã€‚
+echo Õâ²¢²»×ÜÄÜ½µµÍÏµÍ³ÒªÇó¡£
 echo.
-echo è¾“å…¥"f"ï¼Œä¸é­”æ”¹
-echo è¾“å…¥"0"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 1.0
-echo è¾“å…¥"1"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 2.0-2.3
-echo è¾“å…¥"2"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 3.0
-echo è¾“å…¥"3"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 3.0.1-3.02
-echo è¾“å…¥"4"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 4.0.0-4.1.0
-echo è¾“å…¥"5"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 5.0.0-5.1.0
-echo è¾“å…¥"6"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 6.0.0-6.1.0
-echo è¾“å…¥"7"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 6.2.0
-echo è¾“å…¥"8"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 7.0.0-8.0.1
-echo è¾“å…¥"9"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 8.1.0
-echo è¾“å…¥"10"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 9.0.0-9.0.1
-echo è¾“å…¥"11"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 9.1.0-11.0.3
-echo è¾“å…¥"12"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 12.1.0
-echo è¾“å…¥"13"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 13.0.0-13.2.1
-echo è¾“å…¥"14"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 14.0.0-14.1.2
-echo è¾“å…¥"15"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 15.0.0-15.0.1
-echo è¾“å…¥"16"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 16.0.0-16.1.0
-echo è¾“å…¥"17"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 17.0.0-17.0.1
-echo è¾“å…¥"18"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 18.0.0-18.1.0
-echo è¾“å…¥"19"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 19.0.0
+echo ÊäÈë"f"£¬²»Ä§¸Ä
+echo ÊäÈë"0"£¬Ä§¸Ä°æ±¾FW 1.0
+echo ÊäÈë"1"£¬Ä§¸Ä°æ±¾FW 2.0-2.3
+echo ÊäÈë"2"£¬Ä§¸Ä°æ±¾FW 3.0
+echo ÊäÈë"3"£¬Ä§¸Ä°æ±¾FW 3.0.1-3.02
+echo ÊäÈë"4"£¬Ä§¸Ä°æ±¾FW 4.0.0-4.1.0
+echo ÊäÈë"5"£¬Ä§¸Ä°æ±¾FW 5.0.0-5.1.0
+echo ÊäÈë"6"£¬Ä§¸Ä°æ±¾FW 6.0.0-6.1.0
+echo ÊäÈë"7"£¬Ä§¸Ä°æ±¾FW 6.2.0
+echo ÊäÈë"8"£¬Ä§¸Ä°æ±¾FW 7.0.0-8.0.1
+echo ÊäÈë"9"£¬Ä§¸Ä°æ±¾FW 8.1.0
+echo ÊäÈë"10"£¬Ä§¸Ä°æ±¾FW 9.0.0-9.0.1
+echo ÊäÈë"11"£¬Ä§¸Ä°æ±¾FW 9.1.0-11.0.3
+echo ÊäÈë"12"£¬Ä§¸Ä°æ±¾FW 12.1.0
+echo ÊäÈë"13"£¬Ä§¸Ä°æ±¾FW 13.0.0-13.2.1
+echo ÊäÈë"14"£¬Ä§¸Ä°æ±¾FW 14.0.0-14.1.2
+echo ÊäÈë"15"£¬Ä§¸Ä°æ±¾FW 15.0.0-15.0.1
+echo ÊäÈë"16"£¬Ä§¸Ä°æ±¾FW 16.0.0-16.1.0
+echo ÊäÈë"17"£¬Ä§¸Ä°æ±¾FW 17.0.0-17.0.1
+echo ÊäÈë"18"£¬Ä§¸Ä°æ±¾FW 18.0.0-18.1.0
+echo ÊäÈë"19"£¬Ä§¸Ä°æ±¾FW 19.0.0
 echo.
 ECHO *****************************************
-echo æˆ–è¾“å…¥"b"ï¼Œè¿”å›é€‰é¡¹åˆ—è¡¨
+echo »òÊäÈë"b"£¬·µ»ØÑ¡ÏîÁĞ±í
 ECHO *****************************************
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set bs=%bs:"=%
 set "vkey=none"
 if /i "%bs%"=="b" goto multi_checkagain
@@ -1960,7 +1960,7 @@ if /i "%bs%"=="18" set "vkey=-kp 18"
 if /i "%bs%"=="18" set "capRSV=--RSVcap 1207959552"
 if /i "%bs%"=="19" set "vkey=-kp 19"
 if /i "%bs%"=="19" set "capRSV=--RSVcap 1275068416"
-if /i "%vkey%"=="none" echo é”™è¯¯çš„é€‰æ‹©
+if /i "%vkey%"=="none" echo ´íÎóµÄÑ¡Ôñ
 if /i "%vkey%"=="none" goto m_KeyChange_wrongchoice
 
 :m_KeyChange_skip
@@ -1968,19 +1968,19 @@ if not exist "%list_folder%" MD "%list_folder%" >NUL 2>&1
 if not exist "%mlistfol%" MD "%mlistfol%" >NUL 2>&1
 if %skip_list_split% EQU "true" goto m_process_jobs
 echo *******************************************************
-echo æ‚¨æƒ³å¦‚ä½•å¤„ç†è¿™äº›æ–‡ä»¶ï¼Ÿ
+echo ÄúÏëÈçºÎ´¦ÀíÕâĞ©ÎÄ¼ş£¿
 echo *******************************************************
-echo é€šè¿‡åŸºæœ¬IDåˆ†ç¦»çš„æ¨¡å¼èƒ½å¤Ÿè¯†åˆ«ä¸æ¯ä¸ªæ¸¸æˆç›¸å¯¹åº”çš„å†…å®¹ï¼Œ
-echo å¹¶ä»åŒä¸€åˆ—è¡¨æ–‡ä»¶åˆ›å»ºå¤šXCIæˆ–å¤šnspæ–‡ä»¶
+echo Í¨¹ı»ù±¾ID·ÖÀëµÄÄ£Ê½ÄÜ¹»Ê¶±ğÓëÃ¿¸öÓÎÏ·Ïà¶ÔÓ¦µÄÄÚÈİ£¬
+echo ²¢´ÓÍ¬Ò»ÁĞ±íÎÄ¼ş´´½¨¶àXCI»ò¶ànspÎÄ¼ş
 echo.
-echo è¾“å…¥"1"ï¼Œå°†æ‰€æœ‰æ–‡ä»¶åˆå¹¶ä¸ºä¸€ä¸ªæ–‡ä»¶
-echo è¾“å…¥"2"ï¼Œé€šè¿‡baseidåˆ†ç¦»æˆå¤šæ–‡ä»¶
+echo ÊäÈë"1"£¬½«ËùÓĞÎÄ¼şºÏ²¢ÎªÒ»¸öÎÄ¼ş
+echo ÊäÈë"2"£¬Í¨¹ıbaseid·ÖÀë³É¶àÎÄ¼ş
 echo.
 ECHO *****************************************
-echo æˆ–è¾“å…¥"b"ï¼Œè¿”å›é€‰é¡¹åˆ—è¡¨
+echo »òÊäÈë"b"£¬·µ»ØÑ¡ÏîÁĞ±í
 ECHO *****************************************
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set bs=%bs:"=%
 if /i "%bs%"=="b" goto multi_checkagain
 if /i "%bs%"=="1" move /y "%prog_dir%mlist.txt" "%mlistfol%\mlist.txt" >nul
@@ -2121,20 +2121,20 @@ exit /B
 
 :m_split_merge_list_name
 echo *******************************************************
-echo æ­£åœ¨å¤„ç†åˆ—è¡¨ %listname%
+echo ÕıÔÚ´¦ÀíÁĞ±í %listname%
 echo *******************************************************
 exit /B
 
 :m_normal_merge
 rem if "%fatype%" EQU "-fat fat32" goto m_KeyChange_skip_fat32
-REM å¯¹äºå½“å‰çš„betaç‰ˆï¼Œæ–‡ä»¶åæ˜¯è®¡ç®—å‡ºæ¥çš„ã€‚æ­¤ä»£ç å°†ä¿ç•™è¯„è®ºï¼Œä»¥ä¾¿å°†æ¥é‡æ–°é›†æˆ
+REM ¶ÔÓÚµ±Ç°µÄbeta°æ£¬ÎÄ¼şÃûÊÇ¼ÆËã³öÀ´µÄ¡£´Ë´úÂë½«±£ÁôÆÀÂÛ£¬ÒÔ±ã½«À´ÖØĞÂ¼¯³É
 rem echo *******************************************************
-rem echo è¾“å…¥è¾“å‡ºæ–‡ä»¶çš„æœ€ç»ˆæ–‡ä»¶å
+rem echo ÊäÈëÊä³öÎÄ¼şµÄ×îÖÕÎÄ¼şÃû
 rem echo *******************************************************
 rem echo.
-rem echo æˆ–è¾“å…¥"b"ï¼Œè¿”å›é€‰é¡¹åˆ—è¡¨
+rem echo »òÊäÈë"b"£¬·µ»ØÑ¡ÏîÁĞ±í
 rem echo.
-rem set /p bs="è¯·é”®å…¥ä¸å¸¦æ‰©å±•åçš„åç§°ï¼š "
+rem set /p bs="Çë¼üÈë²»´øÀ©Õ¹ÃûµÄÃû³Æ£º "
 rem set finalname=%bs:"=%
 rem if /i "%finalname%"=="b" goto multi_checkagain
 
@@ -2177,12 +2177,12 @@ goto m_exit_choice
 :m_KeyChange_skip_fat32
 CD /d "%prog_dir%"
 echo *******************************************************
-echo è¾“å…¥è¾“å‡ºæ–‡ä»¶çš„æœ€ç»ˆæ–‡ä»¶å
+echo ÊäÈëÊä³öÎÄ¼şµÄ×îÖÕÎÄ¼şÃû
 echo *******************************************************
 echo.
-echo æˆ–è¾“å…¥"b"ï¼Œè¿”å›é€‰é¡¹åˆ—è¡¨
+echo »òÊäÈë"b"£¬·µ»ØÑ¡ÏîÁĞ±í
 echo.
-set /p bs="è¯·é”®å…¥ä¸å¸¦æ‰©å±•åçš„åç§°ï¼š "
+set /p bs="Çë¼üÈë²»´øÀ©Õ¹ÃûµÄÃû³Æ£º "
 set finalname=%bs:"=%
 if /i "%finalname%"=="b" goto multi_checkagain
 
@@ -2224,17 +2224,17 @@ goto m_exit_choice
 
 :m_exit_choice
 ECHO ---------------------------------------------------
-ECHO *********** æ‰€æœ‰æ–‡ä»¶éƒ½å·²å¤„ç†ï¼ *************
+ECHO *********** ËùÓĞÎÄ¼ş¶¼ÒÑ´¦Àí£¡ *************
 ECHO ---------------------------------------------------
 if exist mlist.txt del mlist.txt
-if /i "%va_exit%"=="true" echo  ç¨‹åºå°†ç«‹å³å…³é—­
+if /i "%va_exit%"=="true" echo  ³ÌĞò½«Á¢¼´¹Ø±Õ
 if /i "%va_exit%"=="true" ( PING -n 2 127.0.0.1 >NUL 2>&1 )
 if /i "%va_exit%"=="true" goto salida
 echo.
-echo è¾“å…¥"0"ï¼Œè¿”å›æ¨¡å¼é€‰æ‹©èœå•
-echo è¾“å…¥"1"ï¼Œé€€å‡ºç¨‹åº
+echo ÊäÈë"0"£¬·µ»ØÄ£Ê½Ñ¡Ôñ²Ëµ¥
+echo ÊäÈë"1"£¬ÍË³ö³ÌĞò
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set bs=%bs:"=%
 if /i "%bs%"=="0" goto manual_Reentry
 if /i "%bs%"=="1" goto salida
@@ -2246,13 +2246,13 @@ set "showname=%orinput%"
 call :processing_message
 call :squirrell
 %pycommand% "%squirrel%" %buffer% %patchRSV% %vkey% %capRSV% -o "%w_folder%\secure" %nf_cleaner% "%orinput%"
-echo å®Œæˆ
+echo Íê³É
 call :thumbup
 call :delay
 exit /B
 
 :multi_xci_manual
-::XCIæ–‡ä»¶
+::XCIÎÄ¼ş
 set "showname=%orinput%"
 call :processing_message
 MD "%w_folder%" >NUL 2>&1
@@ -2261,7 +2261,7 @@ MD "%w_folder%\normal" >NUL 2>&1
 MD "%w_folder%\update" >NUL 2>&1
 call :getname
 echo ------------------------------------
-echo ä»XCIæå–å®‰å…¨åˆ†åŒº
+echo ´ÓXCIÌáÈ¡°²È«·ÖÇø
 echo ------------------------------------
 %pycommand% "%squirrel%" %buffer% %patchRSV% %vkey% %capRSV% -o "%w_folder%\secure" %nf_cleaner% "%orinput%"
 echo DONE
@@ -2276,7 +2276,7 @@ for /f "tokens=*" %%f in (mlist.txt) do (
 set /a conta=!conta! + 1
 )
 echo ...................................................
-echo ä»æœ‰ !conta! ä¸ªè¦å¤„ç†çš„æ–‡ä»¶
+echo ÈÔÓĞ !conta! ¸öÒª´¦ÀíµÄÎÄ¼ş
 echo ...................................................
 PING -n 2 127.0.0.1 >NUL 2>&1
 set /a conta=0
@@ -2289,16 +2289,16 @@ REM unaccessed for future modification and reintegration
 cls
 call :program_logo
 echo ------------------------------------------
-echo è‡ªå®šä¹‰å›¾æ ‡
+echo ×Ô¶¨ÒåÍ¼±ê
 echo ------------------------------------------
-echo é€‚ç”¨äºå¤šæ¸¸æˆXCIã€‚
-echo å½“å‰è®¾ç½®äº†è‡ªå®šä¹‰å›¾æ ‡å’Œåç§°ï¼Œæ‹–åŠ¨ä¸€ä¸ªNSPæˆ–control nca
-echo è¿™ç§æ–¹å¼ä¸‹ï¼Œç¨‹åºå°†åœ¨æ­£å¸¸åˆ†åŒºä¸­å¤åˆ¶control nca
-echo å¦‚æœæ‚¨ä¸æ·»åŠ è‡ªå®šä¹‰å›¾æ ‡ï¼Œåˆ™å°†ä»æ‚¨çš„ä¸€æ¬¾æ¸¸æˆä¸­è®¾ç½®å›¾æ ‡
+echo ÊÊÓÃÓÚ¶àÓÎÏ·XCI¡£
+echo µ±Ç°ÉèÖÃÁË×Ô¶¨ÒåÍ¼±êºÍÃû³Æ£¬ÍÏ¶¯Ò»¸öNSP»òcontrol nca
+echo ÕâÖÖ·½Ê½ÏÂ£¬³ÌĞò½«ÔÚÕı³£·ÖÇøÖĞ¸´ÖÆcontrol nca
+echo Èç¹ûÄú²»Ìí¼Ó×Ô¶¨ÒåÍ¼±ê£¬Ôò½«´ÓÄúµÄÒ»¿îÓÎÏ·ÖĞÉèÖÃÍ¼±ê
 echo ..........................................
-echo è¾“å…¥"b"ï¼Œè¿”å›åˆ—è¡¨ç”Ÿæˆå™¨
+echo ÊäÈë"b"£¬·µ»ØÁĞ±íÉú³ÉÆ÷
 echo ..........................................
-set /p bs="å°†NSPæˆ–NCAæ–‡ä»¶æ‹–åˆ°çª—å£ä¸Šï¼Œç„¶åæŒ‰å›è½¦é”®ï¼š "
+set /p bs="½«NSP»òNCAÎÄ¼şÍÏµ½´°¿ÚÉÏ£¬È»ºó°´»Ø³µ¼ü£º "
 set bs=%bs:"=%
 if /i "%bs%"=="b" ( goto multi_checkagain )
 if exist "%bs%" ( goto multi_checklogo )
@@ -2333,7 +2333,7 @@ if "%nsptype%" EQU "DLC" ( goto multi_set_clogo )
 MD "%w_folder%\normal" >NUL 2>&1
 %pycommand% "%squirrel%" %buffer% %patchRSV% %vkey% %capRSV% -o "%w_folder%\normal" --NSP_copy_nca_control "%custlogo%"
 echo ................
-echo "æå–LOGO"
+echo "ÌáÈ¡LOGO"
 echo ................
 echo.
 goto multi_checkagain
@@ -2358,7 +2358,7 @@ exit
 
 ::///////////////////////////////////////////////////
 ::///////////////////////////////////////////////////
-::æ‹†åˆ†æ¨¡å¼
+::²ğ·ÖÄ£Ê½
 ::///////////////////////////////////////////////////
 ::///////////////////////////////////////////////////
 
@@ -2367,7 +2367,7 @@ cls
 call :program_logo
 if exist %w_folder% RD /S /Q "%w_folder%" >NUL 2>&1
 echo -----------------------------------------------
-echo æ‹†åˆ†æ¨¡å¼å·²æ¿€æ´»
+echo ²ğ·ÖÄ£Ê½ÒÑ¼¤»î
 echo -----------------------------------------------
 if exist "splist.txt" goto sp_prevlist
 goto sp_manual_INIT
@@ -2384,47 +2384,47 @@ if !conta! LEQ 0 ( del splist.txt )
 endlocal
 if not exist "splist.txt" goto sp_manual_INIT
 ECHO .......................................................
-ECHO å‘ç°äº†ä»¥å‰çš„åˆ—è¡¨, ä½ æƒ³åšä»€ä¹ˆï¼Ÿ
+ECHO ·¢ÏÖÁËÒÔÇ°µÄÁĞ±í, ÄãÏë×öÊ²Ã´£¿
 :sp_prevlist0
 ECHO .......................................................
-echo è¾“å…¥"1"ï¼Œä»ä¸Šä¸€åˆ—è¡¨è‡ªåŠ¨å¼€å§‹å¤„ç†
-echo è¾“å…¥"2"ï¼Œåˆ é™¤åˆ—è¡¨å¹¶åˆ›å»ºæ–°åˆ—è¡¨.
-echo è¾“å…¥"3"ï¼Œç»§ç»­æ„å»ºä¸Šä¸€ä¸ªåˆ—è¡¨
+echo ÊäÈë"1"£¬´ÓÉÏÒ»ÁĞ±í×Ô¶¯¿ªÊ¼´¦Àí
+echo ÊäÈë"2"£¬É¾³ıÁĞ±í²¢´´½¨ĞÂÁĞ±í.
+echo ÊäÈë"3"£¬¼ÌĞø¹¹½¨ÉÏÒ»¸öÁĞ±í
 echo .......................................................
-echo æ³¨æ„ï¼šé€šè¿‡è¾“å…¥3ï¼Œæ‚¨å°†åœ¨å¼€å§‹å¤„ç†æ–‡ä»¶ä¹‹å‰çœ‹åˆ°å‰ä¸€ä¸ªåˆ—è¡¨ï¼Œ
-echo å¹¶ä¸”å¯ä»¥ä»åˆ—è¡¨ä¸­æ·»åŠ å’Œåˆ é™¤é¡¹ç›®
+echo ×¢Òâ£ºÍ¨¹ıÊäÈë3£¬Äú½«ÔÚ¿ªÊ¼´¦ÀíÎÄ¼şÖ®Ç°¿´µ½Ç°Ò»¸öÁĞ±í£¬
+echo ²¢ÇÒ¿ÉÒÔ´ÓÁĞ±íÖĞÌí¼ÓºÍÉ¾³ıÏîÄ¿
 echo.
 ECHO *************************************************
-echo æˆ–è¾“å…¥"0"ï¼Œè¿”å›æ¨¡å¼é€‰æ‹©èœå•
+echo »òÊäÈë"0"£¬·µ»ØÄ£Ê½Ñ¡Ôñ²Ëµ¥
 ECHO *************************************************
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set bs=%bs:"=%
 if /i "%bs%"=="3" goto sp_showlist
 if /i "%bs%"=="2" goto sp_delist
 if /i "%bs%"=="1" goto sp_start_cleaning
 if /i "%bs%"=="0" goto manual_Reentry
 echo.
-echo é”™è¯¯çš„é€‰æ‹©
+echo ´íÎóµÄÑ¡Ôñ
 goto sp_prevlist0
 :sp_delist
 del splist.txt
 cls
 call :program_logo
 echo -----------------------------------------------
-echo æ‹†åˆ†æ¨¡å¼å·²æ¿€æ´»
+echo ²ğ·ÖÄ£Ê½ÒÑ¼¤»î
 echo -----------------------------------------------
 echo ..................................
-echo ä½ å·²ç»å¼€å§‹ä¸€ä¸ªæ–°çš„åˆ—è¡¨
+echo ÄãÒÑ¾­¿ªÊ¼Ò»¸öĞÂµÄÁĞ±í
 echo ..................................
 :sp_manual_INIT
 endlocal
 ECHO ***********************************************
-echo è¾“å…¥"1"ï¼Œå°†æ–‡ä»¶å¤¹æ·»åŠ åˆ°åˆ—è¡¨ä¸­
-echo è¾“å…¥"2"ï¼Œå°†æ–‡ä»¶æ·»åŠ åˆ°åˆ—è¡¨ä¸­
-echo è¾“å…¥"3"ï¼Œé€šè¿‡æœ¬åœ°æ–‡ä»¶åº“ï¼Œå°†æ–‡ä»¶æ·»åŠ åˆ°åˆ—è¡¨
-echo è¾“å…¥"4"ï¼Œé€šè¿‡folder-walkeré€’å½’çš„æ–¹å¼ï¼Œå°†æ–‡ä»¶æ·»åŠ åˆ°åˆ—è¡¨
-echo è¾“å…¥"0"ï¼Œè¿”å›æ¨¡å¼é€‰æ‹©èœå•
+echo ÊäÈë"1"£¬½«ÎÄ¼ş¼ĞÌí¼Óµ½ÁĞ±íÖĞ
+echo ÊäÈë"2"£¬½«ÎÄ¼şÌí¼Óµ½ÁĞ±íÖĞ
+echo ÊäÈë"3"£¬Í¨¹ı±¾µØÎÄ¼ş¿â£¬½«ÎÄ¼şÌí¼Óµ½ÁĞ±í
+echo ÊäÈë"4"£¬Í¨¹ıfolder-walkerµİ¹éµÄ·½Ê½£¬½«ÎÄ¼şÌí¼Óµ½ÁĞ±í
+echo ÊäÈë"0"£¬·µ»ØÄ£Ê½Ñ¡Ôñ²Ëµ¥
 ECHO ***********************************************
 echo.
 %pycommand% "%squirrel%" -t nsp xci nsz xcz -tfile "%prog_dir%splist.txt" -uin "%uinput%" -ff "uinput"
@@ -2442,22 +2442,22 @@ if /i "%eval%"=="4" ( %pycommand% "%squirrel_lb%" -lib_call picker_walker get_fi
 
 echo.
 :sp_checkagain
-echo ä½ æƒ³åšä»€ä¹ˆï¼Ÿ
+echo ÄãÏë×öÊ²Ã´£¿
 echo ......................................................................
-echo "æ‹–åŠ¨å¦ä¸€ä¸ªæ–‡ä»¶æˆ–æ–‡ä»¶å¤¹ï¼Œç„¶åæŒ‰å›è½¦é”®å°†é¡¹ç›®æ·»åŠ åˆ°åˆ—è¡¨ä¸­"
+echo "ÍÏ¶¯ÁíÒ»¸öÎÄ¼ş»òÎÄ¼ş¼Ğ£¬È»ºó°´»Ø³µ¼ü½«ÏîÄ¿Ìí¼Óµ½ÁĞ±íÖĞ"
 echo.
-echo è¾“å…¥"1"ï¼Œå¼€å§‹å¤„ç†
-echo è¾“å…¥"2"ï¼Œå°†å¦ä¸€ä¸ªæ–‡ä»¶å¤¹æ·»åŠ åˆ°åˆ—è¡¨
-echo è¾“å…¥"3"ï¼Œå°†å¦ä¸€ä¸ªæ–‡ä»¶æ·»åŠ åˆ°åˆ—è¡¨
-echo è¾“å…¥"4"ï¼Œé€šè¿‡æœ¬åœ°æ–‡ä»¶åº“ï¼Œå°†æ–‡ä»¶æ·»åŠ åˆ°åˆ—è¡¨
-echo è¾“å…¥"5"ï¼Œé€šè¿‡folder-walkeré€’å½’çš„æ–¹å¼ï¼Œå°†æ–‡ä»¶æ·»åŠ åˆ°åˆ—è¡¨
-echo è¾“å…¥"e"ï¼Œé€€å‡º
-echo è¾“å…¥"i"ï¼ŒæŸ¥çœ‹è¦å¤„ç†çš„æ–‡ä»¶åˆ—è¡¨
-echo è¾“å…¥"r"ï¼Œåˆ é™¤ä¸€äº›æ–‡ä»¶ï¼ˆä»åº•éƒ¨å¼€å§‹è®¡æ•°ï¼‰
-echo è¾“å…¥"z"ï¼Œåˆ é™¤æ•´ä¸ªåˆ—è¡¨
+echo ÊäÈë"1"£¬¿ªÊ¼´¦Àí
+echo ÊäÈë"2"£¬½«ÁíÒ»¸öÎÄ¼ş¼ĞÌí¼Óµ½ÁĞ±í
+echo ÊäÈë"3"£¬½«ÁíÒ»¸öÎÄ¼şÌí¼Óµ½ÁĞ±í
+echo ÊäÈë"4"£¬Í¨¹ı±¾µØÎÄ¼ş¿â£¬½«ÎÄ¼şÌí¼Óµ½ÁĞ±í
+echo ÊäÈë"5"£¬Í¨¹ıfolder-walkerµİ¹éµÄ·½Ê½£¬½«ÎÄ¼şÌí¼Óµ½ÁĞ±í
+echo ÊäÈë"e"£¬ÍË³ö
+echo ÊäÈë"i"£¬²é¿´Òª´¦ÀíµÄÎÄ¼şÁĞ±í
+echo ÊäÈë"r"£¬É¾³ıÒ»Ğ©ÎÄ¼ş£¨´Óµ×²¿¿ªÊ¼¼ÆÊı£©
+echo ÊäÈë"z"£¬É¾³ıÕû¸öÁĞ±í
 echo ......................................................................
 ECHO *************************************************
-echo æˆ–è¾“å…¥"0"ï¼Œè¿”å›æ¨¡å¼é€‰æ‹©èœå•
+echo »òÊäÈë"0"£¬·µ»ØÄ£Ê½Ñ¡Ôñ²Ëµ¥
 ECHO *************************************************
 echo.
 %pycommand% "%squirrel%" -t nsp xci nsz xcz -tfile "%prog_dir%splist.txt" -uin "%uinput%" -ff "uinput"
@@ -2482,7 +2482,7 @@ if /i "%eval%"=="z" del splist.txt
 goto sp_checkagain
 
 :sp_r_files
-set /p bs="è¾“å…¥è¦åˆ é™¤çš„æ–‡ä»¶æ•°ï¼ˆä»åº•éƒ¨å¼€å§‹ï¼‰ï¼š "
+set /p bs="ÊäÈëÒªÉ¾³ıµÄÎÄ¼şÊı£¨´Óµ×²¿¿ªÊ¼£©£º "
 set bs=%bs:"=%
 
 setlocal enabledelayedexpansion
@@ -2515,10 +2515,10 @@ endlocal
 cls
 call :program_logo
 echo -------------------------------------------------
-echo æ‹†åˆ†æ¨¡å¼å·²æ¿€æ´»
+echo ²ğ·ÖÄ£Ê½ÒÑ¼¤»î
 echo -------------------------------------------------
 ECHO -------------------------------------------------
-ECHO                è¦å¤„ç†çš„æ–‡ä»¶
+ECHO                Òª´¦ÀíµÄÎÄ¼ş
 ECHO -------------------------------------------------
 for /f "tokens=*" %%f in (splist.txt) do (
 echo %%f
@@ -2529,28 +2529,28 @@ for /f "tokens=*" %%f in (splist.txt) do (
 set /a conta=!conta! + 1
 )
 echo .................................................
-echo æ‚¨å·²æ·»åŠ äº† !conta! ä¸ªè¦å¤„ç†çš„æ–‡ä»¶
+echo ÄúÒÑÌí¼ÓÁË !conta! ¸öÒª´¦ÀíµÄÎÄ¼ş
 echo .................................................
 endlocal
 
 goto sp_checkagain
 
 :sp_cl_wrongchoice
-echo é”™è¯¯çš„é€‰æ‹©
+echo ´íÎóµÄÑ¡Ôñ
 echo ............
 :sp_start_cleaning
 echo *******************************************************
-echo æ¥ä¸‹æ¥é€‰æ‹©æ‚¨è¦æ‰§è¡Œçš„æ“ä½œ
+echo ½ÓÏÂÀ´Ñ¡ÔñÄúÒªÖ´ĞĞµÄ²Ù×÷
 echo *******************************************************
-echo è¾“å…¥"1"ï¼Œé‡æ–°æ‰“åŒ…ä¸ºNSP
-echo è¾“å…¥"2"ï¼Œé‡æ–°æ‰“åŒ…ä¸ºXCI
-echo è¾“å…¥"3"ï¼Œé‡æ–°æ‰“åŒ…ä¸ºNSPå’ŒXCI
+echo ÊäÈë"1"£¬ÖØĞÂ´ò°üÎªNSP
+echo ÊäÈë"2"£¬ÖØĞÂ´ò°üÎªXCI
+echo ÊäÈë"3"£¬ÖØĞÂ´ò°üÎªNSPºÍXCI
 echo.
 ECHO ******************************************
-echo æˆ–è¾“å…¥"b"ï¼Œè¿”å›åˆ—è¡¨é€‰é¡¹
+echo »òÊäÈë"b"£¬·µ»ØÁĞ±íÑ¡Ïî
 ECHO ******************************************
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set bs=%bs:"=%
 set vrepack=none
 if /i "%bs%"=="b" goto sp_checkagain
@@ -2589,18 +2589,18 @@ endlocal
 rem call :sp_contador_NF
 )
 ECHO ---------------------------------------------------
-ECHO *********** æ‰€æœ‰æ–‡ä»¶éƒ½å·²å¤„ç†ï¼ *************
+ECHO *********** ËùÓĞÎÄ¼ş¶¼ÒÑ´¦Àí£¡ *************
 ECHO ---------------------------------------------------
 :SPLIT_exit_choice
 if exist splist.txt del splist.txt
-if /i "%va_exit%"=="true" echo  ç¨‹åºå°†ç«‹å³å…³é—­
+if /i "%va_exit%"=="true" echo  ³ÌĞò½«Á¢¼´¹Ø±Õ
 if /i "%va_exit%"=="true" ( PING -n 2 127.0.0.1 >NUL 2>&1 )
 if /i "%va_exit%"=="true" goto salida
 echo.
-echo è¾“å…¥"0"ï¼Œè¿”å›æ¨¡å¼é€‰æ‹©èœå•
-echo è¾“å…¥"1"ï¼Œé€€å‡ºç¨‹åº
+echo ÊäÈë"0"£¬·µ»ØÄ£Ê½Ñ¡Ôñ²Ëµ¥
+echo ÊäÈë"1"£¬ÍË³ö³ÌĞò
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set bs=%bs:"=%
 if /i "%bs%"=="0" goto manual_Reentry
 if /i "%bs%"=="1" goto salida
@@ -2670,7 +2670,7 @@ for /f "tokens=*" %%f in (splist.txt) do (
 set /a conta=!conta! + 1
 )
 echo ...................................................
-echo ä»æœ‰ !conta! ä¸ªè¦å¤„ç†çš„æ–‡ä»¶
+echo ÈÔÓĞ !conta! ¸öÒª´¦ÀíµÄÎÄ¼ş
 echo ...................................................
 PING -n 2 127.0.0.1 >NUL 2>&1
 set /a conta=0
@@ -2679,14 +2679,14 @@ exit /B
 
 ::///////////////////////////////////////////////////
 ::///////////////////////////////////////////////////
-:: æ•°æ®åº“æ¨¡å¼
+:: Êı¾İ¿âÄ£Ê½
 ::///////////////////////////////////////////////////
 ::///////////////////////////////////////////////////
 :DBMODE
 cls
 call :program_logo
 echo -----------------------------------------------
-echo æ•°æ®åº“ç”Ÿæˆæ¨¡å¼å·²æ¿€æ´»
+echo Êı¾İ¿âÉú³ÉÄ£Ê½ÒÑ¼¤»î
 echo -----------------------------------------------
 if exist "DBL.txt" goto DBprevlist
 goto DBmanual_INIT
@@ -2703,46 +2703,46 @@ if !conta! LEQ 0 ( del DBL.txt )
 endlocal
 if not exist "DBL.txt" goto DBmanual_INIT
 ECHO .......................................................
-ECHO å‘ç°äº†ä»¥å‰çš„åˆ—è¡¨, ä½ æƒ³åšä»€ä¹ˆï¼Ÿ
+ECHO ·¢ÏÖÁËÒÔÇ°µÄÁĞ±í, ÄãÏë×öÊ²Ã´£¿
 :DBprevlist0
 ECHO .......................................................
-echo è¾“å…¥"1"ï¼Œä»ä¸Šä¸€åˆ—è¡¨è‡ªåŠ¨å¼€å§‹å¤„ç†
-echo è¾“å…¥"2"ï¼Œåˆ é™¤åˆ—è¡¨å¹¶åˆ›å»ºæ–°åˆ—è¡¨.
-echo è¾“å…¥"3"ï¼Œç»§ç»­æ„å»ºä¸Šä¸€ä¸ªåˆ—è¡¨
+echo ÊäÈë"1"£¬´ÓÉÏÒ»ÁĞ±í×Ô¶¯¿ªÊ¼´¦Àí
+echo ÊäÈë"2"£¬É¾³ıÁĞ±í²¢´´½¨ĞÂÁĞ±í.
+echo ÊäÈë"3"£¬¼ÌĞø¹¹½¨ÉÏÒ»¸öÁĞ±í
 echo .......................................................
-echo æ³¨æ„ï¼šé€šè¿‡è¾“å…¥3ï¼Œæ‚¨å°†åœ¨å¼€å§‹å¤„ç†æ–‡ä»¶ä¹‹å‰çœ‹åˆ°å‰ä¸€ä¸ªåˆ—è¡¨ï¼Œ
-echo å¹¶ä¸”å¯ä»¥ä»åˆ—è¡¨ä¸­æ·»åŠ å’Œåˆ é™¤é¡¹ç›®
+echo ×¢Òâ£ºÍ¨¹ıÊäÈë3£¬Äú½«ÔÚ¿ªÊ¼´¦ÀíÎÄ¼şÖ®Ç°¿´µ½Ç°Ò»¸öÁĞ±í£¬
+echo ²¢ÇÒ¿ÉÒÔ´ÓÁĞ±íÖĞÌí¼ÓºÍÉ¾³ıÏîÄ¿
 echo.
 ECHO *************************************************
-echo æˆ–è¾“å…¥"0"ï¼Œè¿”å›æ¨¡å¼é€‰æ‹©èœå•
+echo »òÊäÈë"0"£¬·µ»ØÄ£Ê½Ñ¡Ôñ²Ëµ¥
 ECHO *************************************************
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set bs=%bs:"=%
 if /i "%bs%"=="3" goto DBshowlist
 if /i "%bs%"=="2" goto DBdelist
 if /i "%bs%"=="1" goto DBstart_cleaning
 if /i "%bs%"=="0" goto manual_Reentry
 echo.
-echo é”™è¯¯çš„é€‰æ‹©
+echo ´íÎóµÄÑ¡Ôñ
 goto DBprevlist0
 :DBdelist
 del DBL.txt
 cls
 call :program_logo
 echo -----------------------------------------------
-echo å•æ–‡ä»¶å¤„ç†å·²æ¿€æ´»
+echo µ¥ÎÄ¼ş´¦ÀíÒÑ¼¤»î
 echo -----------------------------------------------
 echo ..................................
-echo ä½ å·²ç»å¼€å§‹ä¸€ä¸ªæ–°çš„åˆ—è¡¨
+echo ÄãÒÑ¾­¿ªÊ¼Ò»¸öĞÂµÄÁĞ±í
 echo ..................................
 :DBmanual_INIT
 endlocal
 ECHO ***********************************************
-echo è¾“å…¥"0"è¿”å›æ¨¡å¼é€‰æ‹©èœå•
+echo ÊäÈë"0"·µ»ØÄ£Ê½Ñ¡Ôñ²Ëµ¥
 ECHO ***********************************************
 echo.
-set /p bs="è¯·å°†æ–‡ä»¶æˆ–æ–‡ä»¶å¤¹æ‹–åˆ°çª—å£ä¸Šï¼Œç„¶åæŒ‰å›è½¦é”®ï¼š "
+set /p bs="Çë½«ÎÄ¼ş»òÎÄ¼ş¼ĞÍÏµ½´°¿ÚÉÏ£¬È»ºó°´»Ø³µ¼ü£º "
 set bs=%bs:"=%
 if /i "%bs%"=="0" goto manual_Reentry
 set "targt=%bs%"
@@ -2758,21 +2758,21 @@ goto DBcheckagain
 goto DBcheckagain
 echo.
 :DBcheckagain
-echo ä½ æƒ³åšä»€ä¹ˆï¼Ÿ
+echo ÄãÏë×öÊ²Ã´£¿
 echo ......................................................................
-echo "æ‹–åŠ¨å¦ä¸€ä¸ªæ–‡ä»¶æˆ–æ–‡ä»¶å¤¹ï¼Œç„¶åæŒ‰å›è½¦é”®å°†é¡¹ç›®æ·»åŠ åˆ°åˆ—è¡¨ä¸­"
+echo "ÍÏ¶¯ÁíÒ»¸öÎÄ¼ş»òÎÄ¼ş¼Ğ£¬È»ºó°´»Ø³µ¼ü½«ÏîÄ¿Ìí¼Óµ½ÁĞ±íÖĞ"
 echo.
-echo è¾“å…¥"1"ï¼Œå¼€å§‹å¤„ç†
-echo è¾“å…¥"e"ï¼Œé€€å‡º
-echo è¾“å…¥"i"ï¼ŒæŸ¥çœ‹è¦å¤„ç†çš„æ–‡ä»¶åˆ—è¡¨
-echo è¾“å…¥"r"ï¼Œåˆ é™¤ä¸€äº›æ–‡ä»¶ï¼ˆä»åº•éƒ¨å¼€å§‹è®¡æ•°ï¼‰
-echo è¾“å…¥"z"ï¼Œåˆ é™¤æ•´ä¸ªåˆ—è¡¨
+echo ÊäÈë"1"£¬¿ªÊ¼´¦Àí
+echo ÊäÈë"e"£¬ÍË³ö
+echo ÊäÈë"i"£¬²é¿´Òª´¦ÀíµÄÎÄ¼şÁĞ±í
+echo ÊäÈë"r"£¬É¾³ıÒ»Ğ©ÎÄ¼ş£¨´Óµ×²¿¿ªÊ¼¼ÆÊı£©
+echo ÊäÈë"z"£¬É¾³ıÕû¸öÁĞ±í
 echo ......................................................................
 ECHO *************************************************
-echo æˆ–è¾“å…¥"0"ï¼Œè¿”å›æ¨¡å¼é€‰æ‹©èœå•
+echo »òÊäÈë"0"£¬·µ»ØÄ£Ê½Ñ¡Ôñ²Ëµ¥
 ECHO *************************************************
 echo.
-set /p bs="æ‹–æ”¾æ–‡ä»¶/æ–‡ä»¶å¤¹æˆ–è®¾ç½®é€‰é¡¹ï¼š "
+set /p bs="ÍÏ·ÅÎÄ¼ş/ÎÄ¼ş¼Ğ»òÉèÖÃÑ¡Ïî£º "
 set bs=%bs:"=%
 if /i "%bs%"=="0" goto manual_Reentry
 if /i "%bs%"=="1" goto DBstart_cleaning
@@ -2788,7 +2788,7 @@ goto DBcheckfile
 goto DBsalida
 
 :DBr_files
-set /p bs="è¾“å…¥è¦åˆ é™¤çš„æ–‡ä»¶æ•°ï¼ˆä»åº•éƒ¨å¼€å§‹ï¼‰ï¼š "
+set /p bs="ÊäÈëÒªÉ¾³ıµÄÎÄ¼şÊı£¨´Óµ×²¿¿ªÊ¼£©£º "
 set bs=%bs:"=%
 
 setlocal enabledelayedexpansion
@@ -2821,10 +2821,10 @@ endlocal
 cls
 call :program_logo
 echo -------------------------------------------------
-echo å•æ–‡ä»¶å¤„ç†å·²æ¿€æ´»
+echo µ¥ÎÄ¼ş´¦ÀíÒÑ¼¤»î
 echo -------------------------------------------------
 ECHO -------------------------------------------------
-ECHO                 è¦å¤„ç†çš„æ–‡ä»¶
+ECHO                 Òª´¦ÀíµÄÎÄ¼ş
 ECHO -------------------------------------------------
 for /f "tokens=*" %%f in (DBL.txt) do (
 echo %%f
@@ -2835,31 +2835,31 @@ for /f "tokens=*" %%f in (DBL.txt) do (
 set /a conta=!conta! + 1
 )
 echo .................................................
-echo æ‚¨å·²æ·»åŠ äº† !conta! ä¸ªè¦å¤„ç†çš„æ–‡ä»¶
+echo ÄúÒÑÌí¼ÓÁË !conta! ¸öÒª´¦ÀíµÄÎÄ¼ş
 echo .................................................
 endlocal
 
 goto DBcheckagain
 
 :DBs_cl_wrongchoice
-echo é”™è¯¯çš„é€‰æ‹©
+echo ´íÎóµÄÑ¡Ôñ
 echo ............
 :DBstart_cleaning
 echo *******************************************************
-echo æ¥ä¸‹æ¥é€‰æ‹©æ‚¨è¦æ‰§è¡Œçš„æ“ä½œ
+echo ½ÓÏÂÀ´Ñ¡ÔñÄúÒªÖ´ĞĞµÄ²Ù×÷
 echo *******************************************************
-echo è¾“å…¥"1"ï¼ŒNUTDBæ•°æ®åº“ç”Ÿæˆ
-echo è¾“å…¥"2"ï¼Œæ‰©å±•æ•°æ®åº“ç”Ÿæˆ
-echo è¾“å…¥"3"ï¼Œç”Ÿæˆæ— é’¥æ•°æ®åº“ï¼ˆæ‰©å±•ï¼‰
-echo è¾“å…¥"4"ï¼Œç”Ÿæˆç®€å•æ•°æ®åº“
-echo è¾“å…¥"5"ï¼Œç”Ÿæˆä»¥ä¸Š4ä¸ªæ•°æ®åº“
-echo è¾“å…¥"Z"ï¼Œç”ŸæˆZIPæ–‡ä»¶
+echo ÊäÈë"1"£¬NUTDBÊı¾İ¿âÉú³É
+echo ÊäÈë"2"£¬À©Õ¹Êı¾İ¿âÉú³É
+echo ÊäÈë"3"£¬Éú³ÉÎŞÔ¿Êı¾İ¿â£¨À©Õ¹£©
+echo ÊäÈë"4"£¬Éú³É¼òµ¥Êı¾İ¿â
+echo ÊäÈë"5"£¬Éú³ÉÒÔÉÏ4¸öÊı¾İ¿â
+echo ÊäÈë"Z"£¬Éú³ÉZIPÎÄ¼ş
 echo.
 ECHO ******************************************
-echo æˆ–è¾“å…¥"0"ï¼Œè¿”å›åˆ—è¡¨é€‰é¡¹
+echo »òÊäÈë"0"£¬·µ»ØÁĞ±íÑ¡Ïî
 ECHO ******************************************
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set bs=%bs:"=%
 set vrepack=none
 if /i "%bs%"=="0" goto DBcheckagain
@@ -2900,18 +2900,18 @@ if "%%~nxf"=="%%~nf.XCZ" call :DBnsp_manual
 rem call :DBcontador_NF
 )
 ECHO ---------------------------------------------------
-ECHO *********** æ‰€æœ‰æ–‡ä»¶éƒ½å·²å¤„ç†ï¼ *************
+ECHO *********** ËùÓĞÎÄ¼ş¶¼ÒÑ´¦Àí£¡ *************
 ECHO ---------------------------------------------------
 :DBs_exit_choice
 if exist DBL.txt del DBL.txt
-if /i "%va_exit%"=="true" echo  ç¨‹åºå°†ç«‹å³å…³é—­
+if /i "%va_exit%"=="true" echo  ³ÌĞò½«Á¢¼´¹Ø±Õ
 if /i "%va_exit%"=="true" ( PING -n 2 127.0.0.1 >NUL 2>&1 )
 if /i "%va_exit%"=="true" goto salida
 echo.
-echo è¾“å…¥"0"ï¼Œè¿”å›æ¨¡å¼é€‰æ‹©èœå•
-echo è¾“å…¥"1"ï¼Œé€€å‡ºç¨‹åº
+echo ÊäÈë"0"£¬·µ»ØÄ£Ê½Ñ¡Ôñ²Ëµ¥
+echo ÊäÈë"1"£¬ÍË³ö³ÌĞò
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set bs=%bs:"=%
 if /i "%bs%"=="0" goto manual_Reentry
 if /i "%bs%"=="1" goto salida
@@ -2961,7 +2961,7 @@ rem if "%workers%" NEQ "-threads 1" ( call :DBcontador_NF )
 )
 :DBs_fin
 ECHO ---------------------------------------------------
-ECHO *********** æ‰€æœ‰æ–‡ä»¶éƒ½å·²å¤„ç†ï¼ *************
+ECHO *********** ËùÓĞÎÄ¼ş¶¼ÒÑ´¦Àí£¡ *************
 ECHO ---------------------------------------------------
 if exist "%dbdir%temp" ( RD /S /Q "%dbdir%temp" ) >NUL 2>&1
 goto DBs_exit_choice
@@ -2989,7 +2989,7 @@ for /f "tokens=*" %%f in (DBL.txt) do (
 set /a conta=!conta! + 1
 )
 echo ...................................................
-echo ä»æœ‰ !conta! ä¸ªè¦å¤„ç†çš„æ–‡ä»¶
+echo ÈÔÓĞ !conta! ¸öÒª´¦ÀíµÄÎÄ¼ş
 echo ...................................................
 PING -n 2 127.0.0.1 >NUL 2>&1
 set /a conta=0
@@ -2998,7 +2998,7 @@ exit /B
 
 
 ::///////////////////////////////////////////////////
-::NSCBæ–‡ä»¶ä¿¡æ¯æ¨¡å¼
+::NSCBÎÄ¼şĞÅÏ¢Ä£Ê½
 ::///////////////////////////////////////////////////
 :INFMODE
 call "%infobat%" "%prog_dir%"
@@ -3006,7 +3006,7 @@ cls
 goto TOP_INIT
 
 ::///////////////////////////////////////////////////
-::NSCB_options.cmdé…ç½®è„šæœ¬
+::NSCB_options.cmdÅäÖÃ½Å±¾
 ::///////////////////////////////////////////////////
 :OPT_CONFIG
 call "%batconfig%" "%op_file%" "%listmanager%" "%batdepend%"
@@ -3015,7 +3015,7 @@ goto TOP_INIT
 
 
 ::///////////////////////////////////////////////////
-::å­ç¨‹åº
+::×Ó³ÌĞò
 ::///////////////////////////////////////////////////
 
 :squirrell
@@ -3068,7 +3068,7 @@ echo (____@)  \
 echo (__o)_    \
 echo       \    \
 echo.
-echo å¸Œæœ›ä½ ç©çš„å¼€å¿ƒ
+echo Ï£ÍûÄãÍæµÄ¿ªĞÄ
 exit /B
 
 :getname
@@ -3101,7 +3101,7 @@ exit /B
 
 :makezip
 echo.
-echo æ­£åœ¨ä¸º %ziptarget% åˆ›å»ºzipå‹ç¼©æ–‡ä»¶
+echo ÕıÔÚÎª %ziptarget% ´´½¨zipÑ¹ËõÎÄ¼ş
 echo.
 %pycommand% "%squirrel%" %buffer% %patchRSV% %vkey% %capRSV% -o "%w_folder%\zip" --zip_combo "%ziptarget%"
 %pycommand% "%squirrel%" -o "%w_folder%\zip" --NSP_c_KeyBlock "%ziptarget%"
@@ -3127,7 +3127,7 @@ RD /S /Q "%w_folder%\zip" >NUL 2>&1
 exit /B
 
 :processing_message
-echo æ­£åœ¨å¤„ç† %showname%
+echo ÕıÔÚ´¦Àí %showname%
 echo.
 exit /B
 
@@ -3183,7 +3183,7 @@ exit /B
 :missing_things
 call :program_logo
 echo ....................................
-echo æ‚¨ç¼ºå°‘ä»¥ä¸‹å†…å®¹                     :
+echo ÄúÈ±ÉÙÒÔÏÂÄÚÈİ                     :
 echo ....................................
 echo.
 if not exist "%op_file%" echo - The config file is not correctly pointed or is missing.
@@ -3196,13 +3196,13 @@ if not exist "%hacbuild%" echo - "hacbuild.exe" is not correctly pointed or is m
 if not exist "%listmanager%" echo - "listmanager.py" is not correctly pointed or is missing.
 if not exist "%batconfig%" echo - "NSCB_config.bat" is not correctly pointed or is missing.
 if not exist "%infobat%" echo - "info.bat" is not correctly pointed or is missing.
-::æ–‡ä»¶å®Œæ•´è·¯å¾„
-if not exist "%dec_keys%" echo - "keys.txt"æ–‡ä»¶æŒ‡å‘ä¸æ­£ç¡®æˆ–è€…ç¼ºå¤±ã€‚
+::ÎÄ¼şÍêÕûÂ·¾¶
+if not exist "%dec_keys%" echo - "keys.txt"ÎÄ¼şÖ¸Ïò²»ÕıÈ·»òÕßÈ±Ê§¡£
 echo.
 pause
-echo ç¨‹åºå³å°†é€€å‡º
+echo ³ÌĞò¼´½«ÍË³ö
 PING -n 2 127.0.0.1 >NUL 2>&1
 goto salida
 :salida
-::æš‚åœ
+::ÔİÍ£
 exit

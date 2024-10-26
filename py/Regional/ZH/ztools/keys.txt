@@ -1,0 +1,31 @@
+aes_kek_generation_source = 4d870986c45d20722fba1053da92e8a9
+aes_key_generation_source = 89615ee05c31b6805fe58f3da24f7aa8
+titlekek_source = 1edc7b3b60e6b4d878b81715985e629b
+
+key_area_key_application_source = 7f59971e629f36a13098066f2144c30d
+key_area_key_ocean_source = 327d36085ad1758dab4e6fbaa555d882
+key_area_key_system_source = 8745f1bba6be79647d048ba67b5fda4a
+
+master_key_00 = c2caaff089b9aed55694876055271c7d
+master_key_01 = 54e1b8e999c2fd16cd07b66109acaaa6
+master_key_02 = 4f6b10d33072af2f250562bff06b6da3
+master_key_03 = 84e04ec20b9373818c540829cf147f3d
+master_key_04 = cfa2176790a53ff74974bff2af180921
+master_key_05 = c1dbedcebf0dd6956079e506cfa1af6e
+master_key_06 = 0aa90e6330cdc12d819b3254d11a4e1e
+master_key_07 = 929f86fbfe4ef7732892bf3462511b0e
+master_key_08 = 23cfb792c3cb50cd715da0f84880c877
+master_key_09 = 75c93b716255319b8e03e14c19dea64e
+master_key_0a = 73767484c73088f629b0eeb605f64aa6
+master_key_0b = 8500b14bf4766b855a26ffc614097a8f
+master_key_0c = b3c503709135d4b35de31be4b0b9c0f7
+master_key_0d = 6d2b26416ab030dc504cbfd6bb2977b7
+master_key_0e = 3b995e3bf23207c3cacb07f8c57415e6
+master_key_0f = ff22454d86237004c750e2dcb4b16c80
+master_key_10 = 252c7d95f296d07f2369bdba6d42c615
+master_key_11 = 03d1d722e91bf7f2c8f3c00283bf5c6c
+master_key_12 = 32ecadc8986540f930f54d159fcba88e
+
+header_key = aeaab1ca08adf9bef12991f369e3c567d6881e4e4a6a47a51f6e4877062d542d
+
+xci_header_key = 01C58FE7002D135AB29A3F69339574B1

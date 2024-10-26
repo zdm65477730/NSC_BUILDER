@@ -5,23 +5,23 @@ set "batdepend=%~3"
 cls
 call :logo
 echo ********************************************************
-echo é€‰é¡¹-é…ç½®
+echo Ñ¡Ïî-ÅäÖÃ
 echo ********************************************************
-echo è¾“å…¥"1"ï¼Œè‡ªåŠ¨æ¨¡å¼é€‰é¡¹
-echo è¾“å…¥"2"ï¼Œå…¨å±€å’Œæ‰‹åŠ¨æ¨¡å¼é€‰é¡¹
-echo è¾“å…¥"3"ï¼ŒéªŒè¯å¯†é’¥æ–‡ä»¶keys.txt
-echo è¾“å…¥"4"ï¼Œæ›´æ–°nutdb
-echo è¾“å…¥"5"ï¼Œç•Œé¢é€‰é¡¹
-echo è¾“å…¥"6"ï¼ŒæœåŠ¡å™¨é€‰é¡¹
-echo è¾“å…¥"7"ï¼Œè°·æ­Œç½‘ç›˜é€‰é¡¹
-echo è¾“å…¥"8"ï¼ŒMTPé€‰é¡¹
+echo ÊäÈë"1"£¬×Ô¶¯Ä£Ê½Ñ¡Ïî
+echo ÊäÈë"2"£¬È«¾ÖºÍÊÖ¶¯Ä£Ê½Ñ¡Ïî
+echo ÊäÈë"3"£¬ÑéÖ¤ÃÜÔ¿ÎÄ¼þkeys.txt
+echo ÊäÈë"4"£¬¸üÐÂnutdb
+echo ÊäÈë"5"£¬½çÃæÑ¡Ïî
+echo ÊäÈë"6"£¬·þÎñÆ÷Ñ¡Ïî
+echo ÊäÈë"7"£¬¹È¸èÍøÅÌÑ¡Ïî
+echo ÊäÈë"8"£¬MTPÑ¡Ïî
 echo.
-echo è¾“å…¥"c"ï¼Œè¯»å–å½“å‰é…ç½®æ–‡ä»¶
-echo è¾“å…¥"d"ï¼Œè®¾ç½®é»˜è®¤è®¾ç½®
-echo è¾“å…¥"0"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"c"£¬¶ÁÈ¡µ±Ç°ÅäÖÃÎÄ¼þ
+echo ÊäÈë"d"£¬ÉèÖÃÄ¬ÈÏÉèÖÃ
+echo ÊäÈë"0"£¬·µ»ØÖ÷³ÌÐò
 echo .......................................................
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 if /i "%bs%"=="1" goto sc2
 if /i "%bs%"=="2" goto sc3
 if /i "%bs%"=="3" goto verify_keys
@@ -42,7 +42,7 @@ if /i "%bs%"=="d" echo.
 if /i "%bs%"=="d" pause
 
 if /i "%bs%"=="0" goto salida
-echo é”™è¯¯çš„é€‰æ‹©
+echo ´íÎóµÄÑ¡Ôñ
 echo.
 goto sc1
 
@@ -50,20 +50,20 @@ goto sc1
 cls
 call :logo
 echo ********************************************************
-echo è‡ªåŠ¨æ¨¡å¼é…ç½®
+echo ×Ô¶¯Ä£Ê½ÅäÖÃ
 echo ********************************************************
-echo è¾“å…¥"1"ï¼Œæ›´æ”¹é‡æ–°æ‰“åŒ…é…ç½®
-echo è¾“å…¥"2"ï¼Œæ›´æ”¹æ–‡ä»¶å¤¹çš„å¤„ç†æ–¹å¼
-echo è¾“å…¥"3"ï¼Œæ›´æ”¹RSVä¿®è¡¥é…ç½®
-echo è¾“å…¥"4"ï¼Œä»¥æ›´æ”¹å¯†é’¥ç”Ÿæˆé…ç½®
+echo ÊäÈë"1"£¬¸ü¸ÄÖØÐÂ´ò°üÅäÖÃ
+echo ÊäÈë"2"£¬¸ü¸ÄÎÄ¼þ¼ÐµÄ´¦Àí·½Ê½
+echo ÊäÈë"3"£¬¸ü¸ÄRSVÐÞ²¹ÅäÖÃ
+echo ÊäÈë"4"£¬ÒÔ¸ü¸ÄÃÜÔ¿Éú³ÉÅäÖÃ
 echo.
-echo è¾“å…¥"c"ï¼Œè¯»å–å½“å‰è‡ªåŠ¨æ¨¡å¼è®¾ç½®
-echo è¾“å…¥"d"ï¼Œè®¾ç½®é»˜è®¤è‡ªåŠ¨æ¨¡å¼è®¾ç½®
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"c"£¬¶ÁÈ¡µ±Ç°×Ô¶¯Ä£Ê½ÉèÖÃ
+echo ÊäÈë"d"£¬ÉèÖÃÄ¬ÈÏ×Ô¶¯Ä£Ê½ÉèÖÃ
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo .......................................................
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 if /i "%bs%"=="1" goto op_repack
 if /i "%bs%"=="2" goto op_pfolder
 if /i "%bs%"=="3" goto op_RSV
@@ -80,7 +80,7 @@ if /i "%bs%"=="d" goto sc1
 
 if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="e" goto salida
-echo é”™è¯¯çš„é€‰æ‹©
+echo ´íÎóµÄÑ¡Ôñ
 echo.
 goto sc2
 
@@ -88,22 +88,22 @@ goto sc2
 cls
 call :logo
 echo *******************************************************
-echo é‡æ–°æ‰“åŒ…é…ç½®
+echo ÖØÐÂ´ò°üÅäÖÃ
 echo *******************************************************
-echo è‡ªåŠ¨æ¨¡å¼é€‰æ‹©
+echo ×Ô¶¯Ä£Ê½Ñ¡Ôñ
 echo .......................................................
-echo è¾“å…¥"1"ï¼Œé‡æ–°æ‰“åŒ…ä¸ºNSP
-echo è¾“å…¥"2"ï¼Œé‡æ–°æ‰“åŒ…ä¸ºXCI
-echo è¾“å…¥"3"ï¼Œå…¨éƒ¨éƒ½è¦
-echo è¾“å…¥"4"ï¼Œä»Žå‡çº§åŒ…é‡Œåˆ é™¤å¢žé‡éƒ¨åˆ†
-echo è¾“å…¥"5"ï¼ŒæŒ‰cnmté¡ºåºé‡å»ºNSPs
+echo ÊäÈë"1"£¬ÖØÐÂ´ò°üÎªNSP
+echo ÊäÈë"2"£¬ÖØÐÂ´ò°üÎªXCI
+echo ÊäÈë"3"£¬È«²¿¶¼Òª
+echo ÊäÈë"4"£¬´ÓÉý¼¶°üÀïÉ¾³ýÔöÁ¿²¿·Ö
+echo ÊäÈë"5"£¬°´cnmtË³ÐòÖØ½¨NSPs
 echo.
-echo è¾“å…¥"b"ï¼Œè¿”å›žè‡ªåŠ¨æ¨¡å¼-é…ç½®
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"b"£¬·µ»Ø×Ô¶¯Ä£Ê½-ÅäÖÃ
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo .......................................................
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set "v_rep=none"
 if /i "%bs%"=="1" set "v_rep=nsp"
 if /i "%bs%"=="2" set "v_rep=xci"
@@ -115,7 +115,7 @@ if /i "%bs%"=="b" goto sc2
 if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="e" goto salida
 
-if "%v_rep%"=="none" echo é”™è¯¯çš„é€‰æ‹©
+if "%v_rep%"=="none" echo ´íÎóµÄÑ¡Ôñ
 if "%v_rep%"=="none" echo.
 if "%v_rep%"=="none" goto op_repack
 
@@ -132,20 +132,20 @@ goto sc2
 cls
 call :logo
 echo **********************************************************************
-echo æ–‡ä»¶å¤¹å¤„ç†
+echo ÎÄ¼þ¼Ð´¦Àí
 echo **********************************************************************
-echo å¦‚ä½•åœ¨è‡ªåŠ¨æ¨¡å¼ä¸‹å¤„ç†æ–‡ä»¶å¤¹
+echo ÈçºÎÔÚ×Ô¶¯Ä£Ê½ÏÂ´¦ÀíÎÄ¼þ¼Ð
 echo ......................................................................
-echo è¾“å…¥"1"ï¼Œå•ç‹¬é‡æ–°æ‰“åŒ…æ–‡ä»¶å¤¹çš„æ–‡ä»¶ï¼ˆå•ä¸ªå†…å®¹æ–‡ä»¶ï¼‰
-echo è¾“å…¥"2"ï¼Œå°†æ–‡ä»¶å¤¹çš„æ–‡ä»¶é‡æ–°æ‰“åŒ…åœ¨ä¸€èµ·ï¼ˆå¤šå†…å®¹æ–‡ä»¶ï¼‰
-echo è¾“å…¥"3"ï¼Œé€šè¿‡BASE IDé‡æ–°æ‰“åŒ…æ–‡ä»¶å¤¹çš„æ–‡ä»¶
+echo ÊäÈë"1"£¬µ¥¶ÀÖØÐÂ´ò°üÎÄ¼þ¼ÐµÄÎÄ¼þ£¨µ¥¸öÄÚÈÝÎÄ¼þ£©
+echo ÊäÈë"2"£¬½«ÎÄ¼þ¼ÐµÄÎÄ¼þÖØÐÂ´ò°üÔÚÒ»Æð£¨¶àÄÚÈÝÎÄ¼þ£©
+echo ÊäÈë"3"£¬Í¨¹ýBASE IDÖØÐÂ´ò°üÎÄ¼þ¼ÐµÄÎÄ¼þ
 echo.
-echo è¾“å…¥"b"ï¼Œè¿”å›žè‡ªåŠ¨æ¨¡å¼-é…ç½®
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"b"£¬·µ»Ø×Ô¶¯Ä£Ê½-ÅäÖÃ
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo ......................................................................
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set "v_fold=none"
 if /i "%bs%"=="1" set "v_fold=indiv"
 if /i "%bs%"=="2" set "v_fold=multi"
@@ -155,7 +155,7 @@ if /i "%bs%"=="b" goto sc2
 if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="e" goto salida
 
-if "%v_fold%"=="none" echo é”™è¯¯çš„é€‰æ‹©
+if "%v_fold%"=="none" echo ´íÎóµÄÑ¡Ôñ
 if "%v_fold%"=="none" echo.
 if "%v_fold%"=="none" goto op_pfolder
 
@@ -172,21 +172,21 @@ goto sc2
 cls
 call :logo
 echo ***************************************************************************
-echo é­”æ”¹æ‰€éœ€çš„ç³»ç»Ÿç‰ˆæœ¬
+echo Ä§¸ÄËùÐèµÄÏµÍ³°æ±¾
 echo ***************************************************************************
-echo è¡¥ä¸meta NCAä¸­ä¸ºæ‰€è¦æ±‚çš„ç³»ç»Ÿç‰ˆæœ¬ï¼ˆè‡ªåŠ¨æ¨¡å¼ï¼‰
+echo ²¹¶¡meta NCAÖÐÎªËùÒªÇóµÄÏµÍ³°æ±¾£¨×Ô¶¯Ä£Ê½£©
 echo ...........................................................................
-echo è¡¥ä¸æ‰€éœ€çš„ç³»ç»Ÿç‰ˆæœ¬ï¼Œä»¥ä¾¿æŽ§åˆ¶å°ä¸è¦æ±‚æ›´æ–°æ›´å¤§çš„æ‰€éœ€å›ºä»¶ç‰ˆæœ¬æ¥è§£å¯†å¯†é’¥
+echo ²¹¶¡ËùÐèµÄÏµÍ³°æ±¾£¬ÒÔ±ã¿ØÖÆÌ¨²»ÒªÇó¸üÐÂ¸ü´óµÄËùÐè¹Ì¼þ°æ±¾À´½âÃÜÃÜÔ¿
 echo.
-echo è¾“å…¥"1"ï¼Œé­”æ”¹
-echo è¾“å…¥"2"ï¼Œä¸é­”æ”¹
+echo ÊäÈë"1"£¬Ä§¸Ä
+echo ÊäÈë"2"£¬²»Ä§¸Ä
 echo.
-echo è¾“å…¥"b"ï¼Œè¿”å›žè‡ªåŠ¨æ¨¡å¼-é…ç½®
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"b"£¬·µ»Ø×Ô¶¯Ä£Ê½-ÅäÖÃ
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo ...........................................................................
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set "v_RSV=none"
 if /i "%bs%"=="1" set "v_RSV=-pv true"
 if /i "%bs%"=="2" set "v_RSV=-pv false"
@@ -195,7 +195,7 @@ if /i "%bs%"=="b" goto sc2
 if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="e" goto salida
 
-if "%v_RSV%"=="none" echo é”™è¯¯çš„é€‰æ‹©
+if "%v_RSV%"=="none" echo ´íÎóµÄÑ¡Ôñ
 if "%v_RSV%"=="none" echo.
 if "%v_RSV%"=="none" goto op_RSV
 
@@ -212,40 +212,40 @@ goto sc2
 cls
 call :logo
 echo ***************************************************************************
-echo æ‰€éœ€ç³»ç»Ÿç‰ˆæœ¬
+echo ËùÐèÏµÍ³°æ±¾
 echo ***************************************************************************
-echo å¦‚æžœå¤§äºŽè®¾å®šå€¼ï¼Œåˆ™æ›´æ”¹é”®ç”Ÿæˆï¼ˆè‡ªåŠ¨æ¨¡å¼ï¼‰
+echo Èç¹û´óÓÚÉè¶¨Öµ£¬Ôò¸ü¸Ä¼üÉú³É£¨×Ô¶¯Ä£Ê½£©
 echo ...........................................................................
-echo æ›´æ”¹åŠ¨æ€ç”Ÿæˆå¹¶é‡æ–°è®¡ç®—å¯†é’¥å—ï¼Œä»¥ä½¿ç”¨è¾ƒä½Žçš„ä¸»å¯†é’¥è§£å¯†ncaã€‚
+echo ¸ü¸Ä¶¯Ì¬Éú³É²¢ÖØÐÂ¼ÆËãÃÜÔ¿¿é£¬ÒÔÊ¹ÓÃ½ÏµÍµÄÖ÷ÃÜÔ¿½âÃÜnca¡£
 echo.
-echo è¾“å…¥"f"ï¼Œä¸é­”æ”¹
-echo è¾“å…¥"0"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 1.0
-echo è¾“å…¥"1"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 2.0-2.3
-echo è¾“å…¥"2"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 3.0
-echo è¾“å…¥"3"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 3.0.1-3.0.2
-echo è¾“å…¥"4"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 4.0.0-4.1.0
-echo è¾“å…¥"5"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 5.0.0-5.1.0
-echo è¾“å…¥"6"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 6.0.0-6.1.0
-echo è¾“å…¥"7"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 6.2.0
-echo è¾“å…¥"8"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 7.0.0-8.0.1
-echo è¾“å…¥"9"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 8.1.0
-echo è¾“å…¥"10"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 9.0.0-9.0.1
-echo è¾“å…¥"11"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 9.1.0-11.0.3
-echo è¾“å…¥"12"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 12.1.0
-echo è¾“å…¥"13"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 13.0.0-13.2.1
-echo è¾“å…¥"14"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 14.0.0-14.1.2
-echo è¾“å…¥"15"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 15.0.0-15.0.1
-echo è¾“å…¥"16"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 16.0.0-16.1.0
-echo è¾“å…¥"17"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 17.0.0-17.0.1
-echo è¾“å…¥"18"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 18.0.0-18.1.0
-echo è¾“å…¥"19"ï¼Œé­”æ”¹ç‰ˆæœ¬FW 19.0.0
+echo ÊäÈë"f"£¬²»Ä§¸Ä
+echo ÊäÈë"0"£¬Ä§¸Ä°æ±¾FW 1.0
+echo ÊäÈë"1"£¬Ä§¸Ä°æ±¾FW 2.0-2.3
+echo ÊäÈë"2"£¬Ä§¸Ä°æ±¾FW 3.0
+echo ÊäÈë"3"£¬Ä§¸Ä°æ±¾FW 3.0.1-3.0.2
+echo ÊäÈë"4"£¬Ä§¸Ä°æ±¾FW 4.0.0-4.1.0
+echo ÊäÈë"5"£¬Ä§¸Ä°æ±¾FW 5.0.0-5.1.0
+echo ÊäÈë"6"£¬Ä§¸Ä°æ±¾FW 6.0.0-6.1.0
+echo ÊäÈë"7"£¬Ä§¸Ä°æ±¾FW 6.2.0
+echo ÊäÈë"8"£¬Ä§¸Ä°æ±¾FW 7.0.0-8.0.1
+echo ÊäÈë"9"£¬Ä§¸Ä°æ±¾FW 8.1.0
+echo ÊäÈë"10"£¬Ä§¸Ä°æ±¾FW 9.0.0-9.0.1
+echo ÊäÈë"11"£¬Ä§¸Ä°æ±¾FW 9.1.0-11.0.3
+echo ÊäÈë"12"£¬Ä§¸Ä°æ±¾FW 12.1.0
+echo ÊäÈë"13"£¬Ä§¸Ä°æ±¾FW 13.0.0-13.2.1
+echo ÊäÈë"14"£¬Ä§¸Ä°æ±¾FW 14.0.0-14.1.2
+echo ÊäÈë"15"£¬Ä§¸Ä°æ±¾FW 15.0.0-15.0.1
+echo ÊäÈë"16"£¬Ä§¸Ä°æ±¾FW 16.0.0-16.1.0
+echo ÊäÈë"17"£¬Ä§¸Ä°æ±¾FW 17.0.0-17.0.1
+echo ÊäÈë"18"£¬Ä§¸Ä°æ±¾FW 18.0.0-18.1.0
+echo ÊäÈë"19"£¬Ä§¸Ä°æ±¾FW 19.0.0
 echo.
-echo è¾“å…¥"b"ï¼Œè¿”å›žè‡ªåŠ¨æ¨¡å¼-é…ç½®
-echo è¾“å…¥"c"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"b"£¬·µ»Ø×Ô¶¯Ä£Ê½-ÅäÖÃ
+echo ÊäÈë"c"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo ...........................................................................
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set "v_KGEN=none"
 set "v_CAPRSV="
 if /i "%bs%"=="f" set "v_KGEN=-kp false"
@@ -294,7 +294,7 @@ if /i "%bs%"=="b" goto sc2
 if /i "%bs%"=="c" goto sc1
 if /i "%bs%"=="e" goto salida
 
-if "%v_KGEN%"=="none" echo é”™è¯¯çš„é€‰æ‹©
+if "%v_KGEN%"=="none" echo ´íÎóµÄÑ¡Ôñ
 if "%v_KGEN%"=="none" echo.
 if "%v_KGEN%"=="none" goto op_KGEN
 
@@ -315,31 +315,31 @@ goto sc2
 cls
 call :logo
 echo **********************************************
-echo å…¨å±€é€‰é¡¹-é…ç½®
+echo È«¾ÖÑ¡Ïî-ÅäÖÃ
 echo **********************************************
-echo è¾“å…¥"1"ï¼Œæ›´æ”¹æ–‡æœ¬å’ŒèƒŒæ™¯è‰²
-echo è¾“å…¥"2"ï¼Œæ›´æ”¹å·¥ä½œæ–‡ä»¶å¤¹çš„åç§°
-echo è¾“å…¥"3"ï¼Œæ›´æ”¹è¾“å‡ºæ–‡ä»¶å¤¹çš„åç§°
-echo è¾“å…¥"4"ï¼Œæ›´æ”¹å¢žé‡æ–‡ä»¶å¤„ç†
-echo è¾“å…¥"5"ï¼Œæ›´æ”¹zipé…ç½® (LEGACY)
-echo è¾“å…¥"6"ï¼Œæ›´æ”¹è‡ªåŠ¨é€€å‡ºé…ç½®
-echo è¾“å…¥"7"ï¼Œè·³è¿‡å¯†é’¥ç”Ÿæˆæç¤º
-echo è¾“å…¥"8"ï¼Œè®¾ç½®æ–‡ä»¶æµç¼“å†²åŒº
-echo è¾“å…¥"9"ï¼Œè®¾ç½®æ–‡ä»¶fat32\exfaté€‰é¡¹
-echo è¾“å…¥"10"ï¼Œç»„ç»‡è¾“å‡ºæ–‡ä»¶
-echo è¾“å…¥"11"ï¼Œè®¾ç½®æ–°æ¨¡å¼æˆ–æ—§æ¨¡å¼
-echo è¾“å…¥"12"ï¼Œè®¾ç½®ç½—é©¬å­—æ¯åå½“ä½¿ç”¨direct-multi
-echo è¾“å…¥"13"ï¼Œåœ¨æ–‡ä»¶ä¿¡æ¯ä¸­ç¿»è¯‘æ¸¸æˆæè¿°è¡Œ
-echo è¾“å…¥"14" to æ›´æ”¹å·¥ä½œçº¿ç¨‹æ•°é‡ï¼ˆæš‚æ—¶ç¦ç”¨ï¼‰
-echo è¾“å…¥"15" to è®¾ç½®ç”¨æˆ·é¢„è®¾NSZåŽ‹ç¼©
-echo è¾“å…¥"16" to è®¾ç½®åŽ‹ç¼©çš„XCIå¯¼å‡ºæ ¼å¼
+echo ÊäÈë"1"£¬¸ü¸ÄÎÄ±¾ºÍ±³¾°É«
+echo ÊäÈë"2"£¬¸ü¸Ä¹¤×÷ÎÄ¼þ¼ÐµÄÃû³Æ
+echo ÊäÈë"3"£¬¸ü¸ÄÊä³öÎÄ¼þ¼ÐµÄÃû³Æ
+echo ÊäÈë"4"£¬¸ü¸ÄÔöÁ¿ÎÄ¼þ´¦Àí
+echo ÊäÈë"5"£¬¸ü¸ÄzipÅäÖÃ (LEGACY)
+echo ÊäÈë"6"£¬¸ü¸Ä×Ô¶¯ÍË³öÅäÖÃ
+echo ÊäÈë"7"£¬Ìø¹ýÃÜÔ¿Éú³ÉÌáÊ¾
+echo ÊäÈë"8"£¬ÉèÖÃÎÄ¼þÁ÷»º³åÇø
+echo ÊäÈë"9"£¬ÉèÖÃÎÄ¼þfat32\exfatÑ¡Ïî
+echo ÊäÈë"10"£¬×éÖ¯Êä³öÎÄ¼þ
+echo ÊäÈë"11"£¬ÉèÖÃÐÂÄ£Ê½»ò¾ÉÄ£Ê½
+echo ÊäÈë"12"£¬ÉèÖÃÂÞÂí×ÖÄ¸Ãûµ±Ê¹ÓÃdirect-multi
+echo ÊäÈë"13"£¬ÔÚÎÄ¼þÐÅÏ¢ÖÐ·­ÒëÓÎÏ·ÃèÊöÐÐ
+echo ÊäÈë"14" to ¸ü¸Ä¹¤×÷Ïß³ÌÊýÁ¿£¨ÔÝÊ±½ûÓÃ£©
+echo ÊäÈë"15" to ÉèÖÃÓÃ»§Ô¤ÉèNSZÑ¹Ëõ
+echo ÊäÈë"16" to ÉèÖÃÑ¹ËõµÄXCIµ¼³ö¸ñÊ½
 echo.
-echo è¾“å…¥"c"ï¼Œè¯»å–å½“å‰å…¨å±€è®¾ç½®
-echo è¾“å…¥"d"ï¼Œè®¾ç½®é»˜è®¤å…¨å±€è®¾ç½®
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"c"£¬¶ÁÈ¡µ±Ç°È«¾ÖÉèÖÃ
+echo ÊäÈë"d"£¬ÉèÖÃÄ¬ÈÏÈ«¾ÖÉèÖÃ
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 
 if /i "%bs%"=="1" goto op_color
 if /i "%bs%"=="2" goto op_wfolder
@@ -370,7 +370,7 @@ if /i "%bs%"=="d" goto sc1
 if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="e" goto salida
 
-echo é”™è¯¯çš„é€‰æ‹©
+echo ´íÎóµÄÑ¡Ôñ
 echo.
 goto sc3
 
@@ -378,34 +378,34 @@ goto sc3
 cls
 call :logo
 echo ********************************************************
-echo é¢œè‰²-é…ç½®                              
+echo ÑÕÉ«-ÅäÖÃ                              
 echo ********************************************************
 echo --------------------------------------------------------
-echo å‰æ™¯é¢œè‰²ï¼ˆæ–‡æœ¬é¢œè‰²ï¼‰                     
+echo Ç°¾°ÑÕÉ«£¨ÎÄ±¾ÑÕÉ«£©                     
 echo --------------------------------------------------------
-echo è¾“å…¥"1"ï¼Œå°†æ–‡æœ¬é¢œè‰²æ›´æ”¹ä¸ºäº®ç™½è‰²ï¼ˆé»˜è®¤ï¼‰
-echo è¾“å…¥"2"ï¼Œå°†æ–‡æœ¬é¢œè‰²æ›´æ”¹ä¸ºé»‘è‰²
-echo è¾“å…¥"3"ï¼Œå°†æ–‡æœ¬é¢œè‰²æ›´æ”¹ä¸ºè“è‰²
-echo è¾“å…¥"4"ï¼Œå°†æ–‡æœ¬é¢œè‰²æ›´æ”¹ä¸ºç»¿è‰²
-echo è¾“å…¥"5"ï¼Œå°†æ–‡æœ¬é¢œè‰²æ›´æ”¹ä¸ºæ°´ç»¿è‰²
-echo è¾“å…¥"6"ï¼Œå°†æ–‡æœ¬é¢œè‰²æ›´æ”¹ä¸ºçº¢è‰²
-echo è¾“å…¥"7"ï¼Œå°†æ–‡æœ¬é¢œè‰²æ›´æ”¹ä¸ºç´«è‰²
-echo è¾“å…¥"8"ï¼Œå°†æ–‡æœ¬é¢œè‰²æ›´æ”¹ä¸ºé»„è‰²
-echo è¾“å…¥"9"ï¼Œå°†æ–‡æœ¬é¢œè‰²æ›´æ”¹ä¸ºç™½è‰²
-echo è¾“å…¥"10"ï¼Œå°†æ–‡æœ¬é¢œè‰²æ›´æ”¹ä¸ºç°è‰²
-echo è¾“å…¥"11"ï¼Œå°†æ–‡æœ¬é¢œè‰²æ›´æ”¹ä¸ºæµ…è“è‰²
-echo è¾“å…¥"12"ï¼Œå°†æ–‡æœ¬é¢œè‰²æ›´æ”¹ä¸ºæµ…ç»¿è‰²
-echo è¾“å…¥"13"ï¼Œå°†æ–‡æœ¬é¢œè‰²æ›´æ”¹ä¸ºæµ…æ°´ç»¿è‰²
-echo è¾“å…¥"14"ï¼Œå°†æ–‡æœ¬é¢œè‰²æ›´æ”¹ä¸ºæµ…çº¢è‰²
-echo è¾“å…¥"15"ï¼Œå°†æ–‡æœ¬é¢œè‰²æ›´æ”¹ä¸ºæµ…ç´«è‰²
-echo è¾“å…¥"16"ï¼Œå°†æ–‡æœ¬é¢œè‰²æ›´æ”¹ä¸ºæµ…é»„è‰²
+echo ÊäÈë"1"£¬½«ÎÄ±¾ÑÕÉ«¸ü¸ÄÎªÁÁ°×É«£¨Ä¬ÈÏ£©
+echo ÊäÈë"2"£¬½«ÎÄ±¾ÑÕÉ«¸ü¸ÄÎªºÚÉ«
+echo ÊäÈë"3"£¬½«ÎÄ±¾ÑÕÉ«¸ü¸ÄÎªÀ¶É«
+echo ÊäÈë"4"£¬½«ÎÄ±¾ÑÕÉ«¸ü¸ÄÎªÂÌÉ«
+echo ÊäÈë"5"£¬½«ÎÄ±¾ÑÕÉ«¸ü¸ÄÎªË®ÂÌÉ«
+echo ÊäÈë"6"£¬½«ÎÄ±¾ÑÕÉ«¸ü¸ÄÎªºìÉ«
+echo ÊäÈë"7"£¬½«ÎÄ±¾ÑÕÉ«¸ü¸ÄÎª×ÏÉ«
+echo ÊäÈë"8"£¬½«ÎÄ±¾ÑÕÉ«¸ü¸ÄÎª»ÆÉ«
+echo ÊäÈë"9"£¬½«ÎÄ±¾ÑÕÉ«¸ü¸ÄÎª°×É«
+echo ÊäÈë"10"£¬½«ÎÄ±¾ÑÕÉ«¸ü¸ÄÎª»ÒÉ«
+echo ÊäÈë"11"£¬½«ÎÄ±¾ÑÕÉ«¸ü¸ÄÎªÇ³À¶É«
+echo ÊäÈë"12"£¬½«ÎÄ±¾ÑÕÉ«¸ü¸ÄÎªÇ³ÂÌÉ«
+echo ÊäÈë"13"£¬½«ÎÄ±¾ÑÕÉ«¸ü¸ÄÎªÇ³Ë®ÂÌÉ«
+echo ÊäÈë"14"£¬½«ÎÄ±¾ÑÕÉ«¸ü¸ÄÎªÇ³ºìÉ«
+echo ÊäÈë"15"£¬½«ÎÄ±¾ÑÕÉ«¸ü¸ÄÎªÇ³×ÏÉ«
+echo ÊäÈë"16"£¬½«ÎÄ±¾ÑÕÉ«¸ü¸ÄÎªÇ³»ÆÉ«
 echo.
-echo è¾“å…¥"d"ï¼Œè®¾ç½®é»˜è®¤é¢œè‰²é…ç½®
-echo è¾“å…¥"b"ï¼Œè¿”å›žå…¨å±€é€‰é¡¹
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"d"£¬ÉèÖÃÄ¬ÈÏÑÕÉ«ÅäÖÃ
+echo ÊäÈë"b"£¬·µ»ØÈ«¾ÖÑ¡Ïî
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo.
-set /p bd="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bd="ÊäÈëÄúµÄÑ¡Ôñ£º "
 
 set "v_colF=F"
 if /i "%bd%"=="1" set "v_colF=F"
@@ -434,31 +434,31 @@ if /i "%bd%"=="0" goto sc1
 if /i "%bd%"=="e" goto salida
 
 echo -----------------------------------------------------
-echo èƒŒæ™¯è‰²
+echo ±³¾°É«
 echo -----------------------------------------------------
-echo è¾“å…¥"1"ï¼Œå°†èƒŒæ™¯è‰²æ›´æ”¹ä¸ºè“è‰²ï¼ˆé»˜è®¤ï¼‰
-echo è¾“å…¥"2"ï¼Œå°†èƒŒæ™¯è‰²æ›´æ”¹ä¸ºé»‘è‰²
-echo è¾“å…¥"3"ï¼Œå°†èƒŒæ™¯è‰²æ›´æ”¹ä¸ºç»¿è‰²
-echo è¾“å…¥"4"ï¼Œå°†èƒŒæ™¯è‰²æ›´æ”¹ä¸ºæ°´ç»¿è‰²
-echo è¾“å…¥"5"ï¼Œå°†èƒŒæ™¯è‰²æ›´æ”¹ä¸ºçº¢è‰²
-echo è¾“å…¥"6"ï¼Œå°†èƒŒæ™¯è‰²æ›´æ”¹ä¸ºç´«è‰²
-echo è¾“å…¥"7"ï¼Œå°†èƒŒæ™¯è‰²æ›´æ”¹ä¸ºé»„è‰²
-echo è¾“å…¥"8"ï¼Œå°†èƒŒæ™¯è‰²æ›´æ”¹ä¸ºç™½è‰²
-echo è¾“å…¥"9"ï¼Œå°†èƒŒæ™¯è‰²æ›´æ”¹ä¸ºç°è‰²
-echo è¾“å…¥"10"ï¼Œå°†èƒŒæ™¯è‰²æ›´æ”¹ä¸ºäº®ç™½è‰²
-echo è¾“å…¥"11"ï¼Œå°†èƒŒæ™¯è‰²æ›´æ”¹ä¸ºæµ…è“è‰²
-echo è¾“å…¥"12"ï¼Œå°†èƒŒæ™¯è‰²æ›´æ”¹ä¸ºæµ…ç»¿è‰²
-echo è¾“å…¥"13"ï¼Œå°†èƒŒæ™¯è‰²æ›´æ”¹ä¸ºæµ…æ°´ç»¿è‰²
-echo è¾“å…¥"14"ï¼Œå°†èƒŒæ™¯è‰²æ›´æ”¹ä¸ºæµ…çº¢è‰²
-echo è¾“å…¥"15"ï¼Œå°†èƒŒæ™¯è‰²æ›´æ”¹ä¸ºæµ…ç´«è‰²
-echo è¾“å…¥"16"ï¼Œå°†èƒŒæ™¯è‰²æ›´æ”¹ä¸ºæµ…é»„è‰²
+echo ÊäÈë"1"£¬½«±³¾°É«¸ü¸ÄÎªÀ¶É«£¨Ä¬ÈÏ£©
+echo ÊäÈë"2"£¬½«±³¾°É«¸ü¸ÄÎªºÚÉ«
+echo ÊäÈë"3"£¬½«±³¾°É«¸ü¸ÄÎªÂÌÉ«
+echo ÊäÈë"4"£¬½«±³¾°É«¸ü¸ÄÎªË®ÂÌÉ«
+echo ÊäÈë"5"£¬½«±³¾°É«¸ü¸ÄÎªºìÉ«
+echo ÊäÈë"6"£¬½«±³¾°É«¸ü¸ÄÎª×ÏÉ«
+echo ÊäÈë"7"£¬½«±³¾°É«¸ü¸ÄÎª»ÆÉ«
+echo ÊäÈë"8"£¬½«±³¾°É«¸ü¸ÄÎª°×É«
+echo ÊäÈë"9"£¬½«±³¾°É«¸ü¸ÄÎª»ÒÉ«
+echo ÊäÈë"10"£¬½«±³¾°É«¸ü¸ÄÎªÁÁ°×É«
+echo ÊäÈë"11"£¬½«±³¾°É«¸ü¸ÄÎªÇ³À¶É«
+echo ÊäÈë"12"£¬½«±³¾°É«¸ü¸ÄÎªÇ³ÂÌÉ«
+echo ÊäÈë"13"£¬½«±³¾°É«¸ü¸ÄÎªÇ³Ë®ÂÌÉ«
+echo ÊäÈë"14"£¬½«±³¾°É«¸ü¸ÄÎªÇ³ºìÉ«
+echo ÊäÈë"15"£¬½«±³¾°É«¸ü¸ÄÎªÇ³×ÏÉ«
+echo ÊäÈë"16"£¬½«±³¾°É«¸ü¸ÄÎªÇ³»ÆÉ«
 echo.
-echo è¾“å…¥"d"ï¼Œè®¾ç½®é»˜è®¤é¢œè‰²é…ç½®
-echo è¾“å…¥"b"ï¼Œè¿”å›žå…¨å±€é€‰é¡¹
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"d"£¬ÉèÖÃÄ¬ÈÏÑÕÉ«ÅäÖÃ
+echo ÊäÈë"b"£¬·µ»ØÈ«¾ÖÑ¡Ïî
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 
 set /a "v_colB=1"
 if /i "%bs%"=="1" set /a "v_colB=1"
@@ -502,13 +502,13 @@ goto sc3
 cls
 call :logo
 echo ***********************************
-echo å·¥ä½œæ–‡ä»¶å¤¹åç§°-é…ç½®
+echo ¹¤×÷ÎÄ¼þ¼ÐÃû³Æ-ÅäÖÃ
 echo ***********************************
-echo è¾“å…¥"1"ï¼Œä»¥è®¾ç½®é»˜è®¤å·¥ä½œæ–‡ä»¶å¤¹çš„åç§°
+echo ÊäÈë"1"£¬ÒÔÉèÖÃÄ¬ÈÏ¹¤×÷ÎÄ¼þ¼ÐµÄÃû³Æ
 echo.
-echo è¾“å…¥"b"ï¼Œè¿”å›žå…¨å±€é€‰é¡¹
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"b"£¬·µ»ØÈ«¾ÖÑ¡Ïî
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo.
 set /p bs="Or type a new name: "
 set "v_wf=%bs%"
@@ -533,13 +533,13 @@ goto sc3
 cls
 call :logo
 echo *************************************
-echo è¾“å‡ºæ–‡ä»¶å¤¹çš„åç§°-é…ç½®
+echo Êä³öÎÄ¼þ¼ÐµÄÃû³Æ-ÅäÖÃ
 echo *************************************
-echo è¾“å…¥"1"ï¼Œè®¾ç½®é»˜è®¤è¾“å‡ºæ–‡ä»¶å¤¹çš„åç§°
+echo ÊäÈë"1"£¬ÉèÖÃÄ¬ÈÏÊä³öÎÄ¼þ¼ÐµÄÃû³Æ
 echo.
-echo è¾“å…¥"b"ï¼Œè¿”å›žå…¨å±€é€‰é¡¹
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"b"£¬·µ»ØÈ«¾ÖÑ¡Ïî
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo.
 set /p bs="Or type a new name: "
 set "v_of=%bs%"
@@ -564,23 +564,23 @@ goto sc3
 cls
 call :logo
 echo ***************************************************************************
-echo å¢žé‡æ–‡ä»¶å¤„ç†-é…ç½®
+echo ÔöÁ¿ÎÄ¼þ´¦Àí-ÅäÖÃ
 echo ***************************************************************************
-echo æå–æ›´æ–°æ—¶è·³è¿‡å¢žé‡NCAæ–‡ä»¶
+echo ÌáÈ¡¸üÐÂÊ±Ìø¹ýÔöÁ¿NCAÎÄ¼þ
 echo ...........................................................................
-echo å¢žé‡ç”¨äºŽå°†ä»¥å‰çš„æ›´æ–°è½¬æ¢ä¸ºæ–°çš„æ›´æ–°ï¼Œæ›´æ–°å¯ä»¥åŒ…å«å®Œæ•´çš„æ›´æ–°+å¢žé‡ã€‚
-echo å¢žé‡éƒ¨åˆ†å¯¹äºŽxciè€Œè¨€æ˜¯ä¸å¿…è¦çš„ï¼Œä½†å®ƒä»¬å¯ç”¨äºŽå®‰è£…æ›´å¿«çš„nspå¹¶å°†å…ˆå‰çš„æ›´æ–°è½¬æ¢ä¸ºæ–°çš„æ›´æ–°ã€‚
-echo æ²¡æœ‰å¢žé‡æ›´æ–°ï¼Œæ‚¨çš„æ—§æ›´æ–°å°†ä¿ç•™åœ¨ç³»ç»Ÿä¸­ï¼Œæ‚¨éœ€è¦å°†å…¶å¸è½½ã€‚
+echo ÔöÁ¿ÓÃÓÚ½«ÒÔÇ°µÄ¸üÐÂ×ª»»ÎªÐÂµÄ¸üÐÂ£¬¸üÐÂ¿ÉÒÔ°üº¬ÍêÕûµÄ¸üÐÂ+ÔöÁ¿¡£
+echo ÔöÁ¿²¿·Ö¶ÔÓÚxci¶øÑÔÊÇ²»±ØÒªµÄ£¬µ«ËüÃÇ¿ÉÓÃÓÚ°²×°¸ü¿ìµÄnsp²¢½«ÏÈÇ°µÄ¸üÐÂ×ª»»ÎªÐÂµÄ¸üÐÂ¡£
+echo Ã»ÓÐÔöÁ¿¸üÐÂ£¬ÄúµÄ¾É¸üÐÂ½«±£ÁôÔÚÏµÍ³ÖÐ£¬ÄúÐèÒª½«ÆäÐ¶ÔØ¡£
 echo.
-echo è¾“å…¥"1"ï¼Œè·³è¿‡å¢žé‡ï¼ˆé»˜è®¤é…ç½®ï¼‰
-echo è¾“å…¥"2"ï¼Œé‡æ–°æ‰“åŒ…å¢žé‡éƒ¨åˆ†
+echo ÊäÈë"1"£¬Ìø¹ýÔöÁ¿£¨Ä¬ÈÏÅäÖÃ£©
+echo ÊäÈë"2"£¬ÖØÐÂ´ò°üÔöÁ¿²¿·Ö
 echo.
-echo è¾“å…¥"b"ï¼Œè¿”å›žå…¨å±€é€‰é¡¹
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"b"£¬·µ»ØÈ«¾ÖÑ¡Ïî
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo ...........................................................................
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set "v_delta=none"
 if /i "%bs%"=="1" set "v_delta=--C_clean_ND"
 if /i "%bs%"=="1" set "v_delta2_=-ND true"
@@ -591,7 +591,7 @@ if /i "%bs%"=="b" goto sc3
 if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="e" goto salida
 
-if "%v_delta%"=="none" echo é”™è¯¯çš„é€‰æ‹©
+if "%v_delta%"=="none" echo ´íÎóµÄÑ¡Ôñ
 if "%v_delta%"=="none" echo.
 if "%v_delta%"=="none" goto op_delta
 
@@ -615,20 +615,20 @@ goto sc3
 cls
 call :logo
 echo ***************************************************************************
-echo zipæ–‡ä»¶ç”Ÿæˆ
+echo zipÎÄ¼þÉú³É
 echo ***************************************************************************
-echo ä½¿ç”¨é”®å—å’Œæ–‡ä»¶ä¿¡æ¯ç”Ÿæˆzipæ–‡ä»¶
+echo Ê¹ÓÃ¼ü¿éºÍÎÄ¼þÐÅÏ¢Éú³ÉzipÎÄ¼þ
 echo ...........................................................................
 echo.
-echo è¾“å…¥"1"ï¼Œç”Ÿæˆzipæ–‡ä»¶
-echo è¾“å…¥"2"ï¼Œä¸ç”Ÿæˆzipæ–‡ä»¶ï¼ˆé»˜è®¤é…ç½®ï¼‰
+echo ÊäÈë"1"£¬Éú³ÉzipÎÄ¼þ
+echo ÊäÈë"2"£¬²»Éú³ÉzipÎÄ¼þ£¨Ä¬ÈÏÅäÖÃ£©
 echo.
-echo è¾“å…¥"b"ï¼Œè¿”å›žå…¨å±€é€‰é¡¹
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"b"£¬·µ»ØÈ«¾ÖÑ¡Ïî
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo ...........................................................................
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set "v_gzip=none"
 if /i "%bs%"=="1" set "v_gzip=true"
 if /i "%bs%"=="2" set "v_gzip=false"
@@ -637,7 +637,7 @@ if /i "%bs%"=="b" goto sc3
 if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="e" goto salida
 
-if "%v_gzip%"=="none" echo é”™è¯¯çš„é€‰æ‹©
+if "%v_gzip%"=="none" echo ´íÎóµÄÑ¡Ôñ
 if "%v_gzip%"=="none" echo.
 if "%v_gzip%"=="none" goto op_zip
 
@@ -654,20 +654,20 @@ goto sc3
 cls
 call :logo
 echo ***************************************************************************
-echo è‡ªåŠ¨é€€å‡ºé…ç½®ï¼ˆæ‰‹åŠ¨æ¨¡å¼ï¼‰
+echo ×Ô¶¯ÍË³öÅäÖÃ£¨ÊÖ¶¯Ä£Ê½£©
 echo ***************************************************************************
-echo å¤„ç†å®Œæ–‡ä»¶åŽè‡ªåŠ¨é€€å‡ºæˆ–è¯·æ±‚ä¸‹ä¸€æ­¥å¤„ç†ã€‚
+echo ´¦ÀíÍêÎÄ¼þºó×Ô¶¯ÍË³ö»òÇëÇóÏÂÒ»²½´¦Àí¡£
 echo ...........................................................................
 echo.
-echo è¾“å…¥"1"ï¼Œä»¥è®¾ç½®è‡ªåŠ¨é€€å‡ºï¼ˆé»˜è®¤é…ç½®ï¼‰
-echo è¾“å…¥"2"ï¼Œè®¾ç½®ä¸ºè‡ªåŠ¨é€€å‡º
+echo ÊäÈë"1"£¬ÒÔÉèÖÃ×Ô¶¯ÍË³ö£¨Ä¬ÈÏÅäÖÃ£©
+echo ÊäÈë"2"£¬ÉèÖÃÎª×Ô¶¯ÍË³ö
 echo.
-echo è¾“å…¥"b"ï¼Œè¿”å›žå…¨å±€é€‰é¡¹
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"b"£¬·µ»ØÈ«¾ÖÑ¡Ïî
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo ...........................................................................
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set "v_exit=none"
 if /i "%bs%"=="1" set "v_exit=false"
 if /i "%bs%"=="2" set "v_exit=true"
@@ -676,7 +676,7 @@ if /i "%bs%"=="b" goto sc3
 if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="e" goto salida
 
-if "%v_exit%"=="none" echo é”™è¯¯çš„é€‰æ‹©
+if "%v_exit%"=="none" echo ´íÎóµÄÑ¡Ôñ
 if "%v_exit%"=="none" echo.
 if "%v_exit%"=="none" goto op_aexit
 
@@ -693,18 +693,18 @@ goto sc3
 cls
 call :logo
 echo ***************************************************************************
-echo æ˜¾ç¤º\è·³è¿‡æ‰€éœ€çš„ç³»ç»Ÿç‰ˆæœ¬å’Œå¯†é’¥ç”Ÿæˆæ›´æ”¹å±žæ€§
+echo ÏÔÊ¾\Ìø¹ýËùÐèµÄÏµÍ³°æ±¾ºÍÃÜÔ¿Éú³É¸ü¸ÄÊôÐÔ
 echo ***************************************************************************
 echo.
-echo è¾“å…¥"1"ï¼Œæ˜¾ç¤ºRSVæç¤ºï¼ˆé»˜è®¤é…ç½®ï¼‰
-echo è¾“å…¥"2"ï¼Œä¸æ˜¾ç¤ºRSVæç¤º
+echo ÊäÈë"1"£¬ÏÔÊ¾RSVÌáÊ¾£¨Ä¬ÈÏÅäÖÃ£©
+echo ÊäÈë"2"£¬²»ÏÔÊ¾RSVÌáÊ¾
 echo.
-echo è¾“å…¥"b"ï¼Œè¿”å›žå…¨å±€é€‰é¡¹
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"b"£¬·µ»ØÈ«¾ÖÑ¡Ïî
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo ...........................................................................
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set "skipRSVprompt=none"
 if /i "%bs%"=="1" set "skipRSVprompt=false"
 if /i "%bs%"=="2" set "skipRSVprompt=true"
@@ -713,7 +713,7 @@ if /i "%bs%"=="b" goto sc3
 if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="e" goto salida
 
-if "%skipRSVprompt%"=="none" echo é”™è¯¯çš„é€‰æ‹©
+if "%skipRSVprompt%"=="none" echo ´íÎóµÄÑ¡Ôñ
 if "%skipRSVprompt%"=="none" echo.
 if "%skipRSVprompt%"=="none" goto op_kgprompt
 
@@ -730,29 +730,29 @@ goto sc3
 cls
 call :logo
 echo ***************************************************************************
-echo ä¸ºNSPæˆ–XCIçš„æ–‡ä»¶å¤åˆ¶è®¾ç½®é™„åŠ ç¼“å†²åŒº
+echo ÎªNSP»òXCIµÄÎÄ¼þ¸´ÖÆÉèÖÃ¸½¼Ó»º³åÇø
 echo ***************************************************************************
-echo æ­¤é€‰é¡¹ä¼šå½±å“è¿›ç¨‹çš„é€Ÿåº¦ã€‚ç†æƒ³çš„ç¼“å†²å–å†³äºŽä½ çš„ç³»ç»Ÿã€‚
-echo é»˜è®¤è®¾ç½®ä¸º64kb
+echo ´ËÑ¡Ïî»áÓ°Ïì½ø³ÌµÄËÙ¶È¡£ÀíÏëµÄ»º³åÈ¡¾öÓÚÄãµÄÏµÍ³¡£
+echo Ä¬ÈÏÉèÖÃÎª64kb
 echo.
-echo è¾“å…¥"1"ï¼Œå°†ç¼“å†²åŒºæ›´æ”¹ä¸º80KB
-echo è¾“å…¥"2"ï¼Œå°†ç¼“å†²åŒºæ›´æ”¹ä¸º72kb
-echo è¾“å…¥"3"ï¼Œå°†ç¼“å†²åŒºæ›´æ”¹ä¸º64KBï¼ˆé»˜è®¤ï¼‰
-echo è¾“å…¥"4"ï¼Œå°†ç¼“å†²åŒºæ›´æ”¹ä¸º56KB
-echo è¾“å…¥"5"ï¼Œå°†ç¼“å†²åŒºæ›´æ”¹ä¸º48kb
-echo è¾“å…¥"6"ï¼Œå°†ç¼“å†²åŒºæ›´æ”¹ä¸º40KB
-echo è¾“å…¥"7"ï¼Œå°†ç¼“å†²åŒºæ›´æ”¹ä¸º32KB
-echo è¾“å…¥"8"ï¼Œå°†ç¼“å†²åŒºæ›´æ”¹ä¸º24kb
-echo è¾“å…¥"9"ï¼Œå°†ç¼“å†²åŒºæ›´æ”¹ä¸º16KB
-echo è¾“å…¥"10"ï¼Œå°†ç¼“å†²åŒºæ›´æ”¹ä¸º8kb
+echo ÊäÈë"1"£¬½«»º³åÇø¸ü¸ÄÎª80KB
+echo ÊäÈë"2"£¬½«»º³åÇø¸ü¸ÄÎª72kb
+echo ÊäÈë"3"£¬½«»º³åÇø¸ü¸ÄÎª64KB£¨Ä¬ÈÏ£©
+echo ÊäÈë"4"£¬½«»º³åÇø¸ü¸ÄÎª56KB
+echo ÊäÈë"5"£¬½«»º³åÇø¸ü¸ÄÎª48kb
+echo ÊäÈë"6"£¬½«»º³åÇø¸ü¸ÄÎª40KB
+echo ÊäÈë"7"£¬½«»º³åÇø¸ü¸ÄÎª32KB
+echo ÊäÈë"8"£¬½«»º³åÇø¸ü¸ÄÎª24kb
+echo ÊäÈë"9"£¬½«»º³åÇø¸ü¸ÄÎª16KB
+echo ÊäÈë"10"£¬½«»º³åÇø¸ü¸ÄÎª8kb
 
 echo.
-echo è¾“å…¥"b"ï¼Œè¿”å›žå…¨å±€é€‰é¡¹
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"b"£¬·µ»ØÈ«¾ÖÑ¡Ïî
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo ...........................................................................
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set "v_buffer=none"
 if /i "%bs%"=="1" set "v_buffer=-b 81920"
 if /i "%bs%"=="2" set "v_buffer=-b 73728"
@@ -769,7 +769,7 @@ if /i "%bs%"=="b" goto sc3
 if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="e" goto salida
 
-if "%v_buffer%"=="none" echo é”™è¯¯çš„é€‰æ‹©
+if "%v_buffer%"=="none" echo ´íÎóµÄÑ¡Ôñ
 if "%v_buffer%"=="none" echo.
 if "%v_buffer%"=="none" goto op_buffer
 
@@ -786,22 +786,22 @@ goto sc3
 cls
 call :logo
 echo ***************************************************************************
-echo è®¾ç½®å°†SDå¡çš„æ–‡ä»¶ç³»ç»Ÿæ ¼å¼
+echo ÉèÖÃ½«SD¿¨µÄÎÄ¼þÏµÍ³¸ñÊ½
 echo ***************************************************************************
-echo SX OS ROMèœå•æ”¯æŒåˆ†å‰²åŽçš„ns0ï¼Œns1...nspæ–‡ä»¶ï¼šä»¥åŠå·²å½’æ¡£æ–‡ä»¶å¤¹ä¸­çš„00ã€01æ–‡ä»¶ï¼Œä»¥å¯¹åº”æ‰€æä¾›çš„è¿™2ä¸ªé€‰é¡¹ã€‚
+echo SX OS ROM²Ëµ¥Ö§³Ö·Ö¸îºóµÄns0£¬ns1...nspÎÄ¼þ£ºÒÔ¼°ÒÑ¹éµµÎÄ¼þ¼ÐÖÐµÄ00¡¢01ÎÄ¼þ£¬ÒÔ¶ÔÓ¦ËùÌá¹©µÄÕâ2¸öÑ¡Ïî¡£
 echo.
-echo è¾“å…¥"1"ï¼Œå°†å¡æ ¼å¼æ›´æ”¹ä¸ºexfatï¼ˆé»˜è®¤ï¼‰
-echo è¾“å…¥"2"ï¼Œå°†å¡æ ¼å¼æ›´æ”¹ä¸ºFAT32ï¼ˆXC0å’ŒNS0æ–‡ä»¶ï¼‰
-echo è¾“å…¥"3"ï¼Œå°†æ‰€æœ‰CFWçš„å¡æ ¼å¼æ›´æ”¹ä¸ºFAT32ï¼ˆå­˜æ¡£æ–‡ä»¶å¤¹ï¼‰
+echo ÊäÈë"1"£¬½«¿¨¸ñÊ½¸ü¸ÄÎªexfat£¨Ä¬ÈÏ£©
+echo ÊäÈë"2"£¬½«¿¨¸ñÊ½¸ü¸ÄÎªFAT32£¨XC0ºÍNS0ÎÄ¼þ£©
+echo ÊäÈë"3"£¬½«ËùÓÐCFWµÄ¿¨¸ñÊ½¸ü¸ÄÎªFAT32£¨´æµµÎÄ¼þ¼Ð£©
 echo.
-echo æ³¨æ„ï¼šå­˜æ¡£æ–‡ä»¶å¤¹é€‰é¡¹å°†NSPæ–‡ä»¶ä»½æ–‡ä»¶å¯¼å‡ºä¸ºæ–‡ä»¶å¤¹å’ŒXCIæ–‡ä»¶ã€‚
+echo ×¢Òâ£º´æµµÎÄ¼þ¼ÐÑ¡Ïî½«NSPÎÄ¼þ·ÝÎÄ¼þµ¼³öÎªÎÄ¼þ¼ÐºÍXCIÎÄ¼þ¡£
 echo.
-echo è¾“å…¥"b"ï¼Œè¿”å›žå…¨å±€é€‰é¡¹
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"b"£¬·µ»ØÈ«¾ÖÑ¡Ïî
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo ...........................................................................
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set "v_fat1=none"
 set "v_fat2=none"
 if /i "%bs%"=="1" set "v_fat1=-fat exfat"
@@ -815,10 +815,10 @@ if /i "%bs%"=="b" goto sc3
 if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="e" goto salida
 
-if "%v_fat1%"=="none" echo é”™è¯¯çš„é€‰æ‹©
+if "%v_fat1%"=="none" echo ´íÎóµÄÑ¡Ôñ
 if "%v_fat1%"=="none" echo.
 if "%v_fat1%"=="none" goto op_fat
-if "%v_fat2%"=="none" echo é”™è¯¯çš„é€‰æ‹©
+if "%v_fat2%"=="none" echo ´íÎóµÄÑ¡Ôñ
 if "%v_fat2%"=="none" echo.
 if "%v_fat2%"=="none" goto op_fat
 
@@ -841,18 +841,18 @@ goto sc3
 cls
 call :logo
 echo ***************************************************************************
-echo è¾“å‡ºæ–‡ä»¶å¤¹ä¸­è¾“å‡ºé¡¹çš„ç»„ç»‡æ ¼å¼
+echo Êä³öÎÄ¼þ¼ÐÖÐÊä³öÏîµÄ×éÖ¯¸ñÊ½
 echo ***************************************************************************
 echo.
-echo è¾“å…¥"1"ï¼Œå•ç‹¬ç»„ç»‡æ–‡ä»¶ï¼ˆé»˜è®¤ï¼‰
-echo è¾“å…¥"2"ï¼Œç»„ç»‡æŒ‰å†…å®¹è®¾ç½®çš„æ–‡ä»¶å¤¹ä¸­çš„æ–‡ä»¶
+echo ÊäÈë"1"£¬µ¥¶À×éÖ¯ÎÄ¼þ£¨Ä¬ÈÏ£©
+echo ÊäÈë"2"£¬×éÖ¯°´ÄÚÈÝÉèÖÃµÄÎÄ¼þ¼ÐÖÐµÄÎÄ¼þ
 echo.
-echo è¾“å…¥"b"ï¼Œè¿”å›žå…¨å±€é€‰é¡¹
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"b"£¬·µ»ØÈ«¾ÖÑ¡Ïî
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo ...........................................................................
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set "v_oforg=none"
 if /i "%bs%"=="1" set "v_oforg=inline"
 if /i "%bs%"=="2" set "v_oforg=subfolder"
@@ -861,7 +861,7 @@ if /i "%bs%"=="b" goto sc3
 if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="e" goto salida
 
-if "%v_oforg%"=="none" echo é”™è¯¯çš„é€‰æ‹©
+if "%v_oforg%"=="none" echo ´íÎóµÄÑ¡Ôñ
 if "%v_oforg%"=="none" echo.
 if "%v_oforg%"=="none" goto op_oforg
 
@@ -878,18 +878,18 @@ goto sc3
 cls
 call :logo
 echo ***************************************************************************
-echo æ–°æ¨¡å¼æˆ–æ—§æ¨¡å¼å¯åŠ¨ç¨‹åº
+echo ÐÂÄ£Ê½»ò¾ÉÄ£Ê½Æô¶¯³ÌÐò
 echo ***************************************************************************
 echo.
-echo è¾“å…¥"1"ï¼Œä»¥å¼€å§‹æ–°æ¨¡å¼ï¼ˆé»˜è®¤ï¼‰
-echo è¾“å…¥"2"ï¼Œä»¥ä»Žæ—§æ¨¡å¼å¼€å§‹
+echo ÊäÈë"1"£¬ÒÔ¿ªÊ¼ÐÂÄ£Ê½£¨Ä¬ÈÏ£©
+echo ÊäÈë"2"£¬ÒÔ´Ó¾ÉÄ£Ê½¿ªÊ¼
 echo.
-echo è¾“å…¥"b"ï¼Œè¿”å›žå…¨å±€é€‰é¡¹
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"b"£¬·µ»ØÈ«¾ÖÑ¡Ïî
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo ...........................................................................
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set "v_nscbmode=none"
 if /i "%bs%"=="1" set "v_nscbmode=new"
 if /i "%bs%"=="2" set "v_nscbmode=legacy"
@@ -898,7 +898,7 @@ if /i "%bs%"=="b" goto sc3
 if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="e" goto salida
 
-if "%v_nscbmode%"=="none" echo é”™è¯¯çš„é€‰æ‹©
+if "%v_nscbmode%"=="none" echo ´íÎóµÄÑ¡Ôñ
 if "%v_nscbmode%"=="none" echo.
 if "%v_nscbmode%"=="none" goto op_nscbmode
 
@@ -915,18 +915,18 @@ goto sc3
 cls
 call :logo
 echo ***************************************************************************
-echo ç›´æŽ¥å¤šåŠŸèƒ½çš„ç½—é©¬å­—æ¯ç»“æžœåç§°
+echo Ö±½Ó¶à¹¦ÄÜµÄÂÞÂí×ÖÄ¸½á¹ûÃû³Æ
 echo ***************************************************************************
 echo.
-echo è¾“å…¥"1"ï¼Œè½¬æ¢æ—¥æ–‡æˆ–äºšæ´²åç§°åˆ°ç½—é©¬æ–‡ï¼ˆé»˜è®¤ï¼‰
-echo è¾“å…¥"2"ï¼Œä¿ç•™è¯»åˆ°çš„ä¸»æµåŸºæœ¬æ–‡ä»¶å
+echo ÊäÈë"1"£¬×ª»»ÈÕÎÄ»òÑÇÖÞÃû³Æµ½ÂÞÂíÎÄ£¨Ä¬ÈÏ£©
+echo ÊäÈë"2"£¬±£Áô¶Áµ½µÄÖ÷Á÷»ù±¾ÎÄ¼þÃû
 echo.
-echo è¾“å…¥"b"ï¼Œè¿”å›žå…¨å±€é€‰é¡¹
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"b"£¬·µ»ØÈ«¾ÖÑ¡Ïî
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo ...........................................................................
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set "v_roma=none"
 if /i "%bs%"=="1" set "v_roma=TRUE"
 if /i "%bs%"=="2" set "v_roma=FALSE"
@@ -935,7 +935,7 @@ if /i "%bs%"=="b" goto sc3
 if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="e" goto salida
 
-if "%v_roma%"=="none" echo é”™è¯¯çš„é€‰æ‹©
+if "%v_roma%"=="none" echo ´íÎóµÄÑ¡Ôñ
 if "%v_roma%"=="none" echo.
 if "%v_roma%"=="none" goto op_romanize
 
@@ -952,20 +952,20 @@ goto sc3
 cls
 call :logo
 echo *****************************************************************************
-echo å°†æ¸¸æˆè¯´æ˜Žè¡Œä»Žæ—¥è¯­ï¼Œä¸­æ–‡ï¼ŒéŸ©è¯­ç¿»è¯‘æˆè‹±è¯­
+echo ½«ÓÎÏ·ËµÃ÷ÐÐ´ÓÈÕÓï£¬ÖÐÎÄ£¬º«Óï·­Òë³ÉÓ¢Óï
 echo *****************************************************************************
 echo.
-echo æ³¨æ„ï¼šä¸Žromajiçš„ç¿»è¯‘ä¸åŒï¼ŒNSCBå‘GOOGLE TRANSLATEè¿›è¡ŒAPIè°ƒç”¨
+echo ×¢Òâ£ºÓëromajiµÄ·­Òë²»Í¬£¬NSCBÏòGOOGLE TRANSLATE½øÐÐAPIµ÷ÓÃ
 echo.
-echo è¾“å…¥"1"ï¼Œç¿»è¯‘æè¿°ï¼ˆé»˜è®¤ï¼‰
-echo è¾“å…¥"2"ï¼Œä¿ç•™ä»Žnutdbæ–‡ä»¶é‡Œè¯»åˆ°çš„æè¿°
+echo ÊäÈë"1"£¬·­ÒëÃèÊö£¨Ä¬ÈÏ£©
+echo ÊäÈë"2"£¬±£Áô´ÓnutdbÎÄ¼þÀï¶Áµ½µÄÃèÊö
 echo.
-echo è¾“å…¥"b"ï¼Œè¿”å›žå…¨å±€é€‰é¡¹
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"b"£¬·µ»ØÈ«¾ÖÑ¡Ïî
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo ...........................................................................
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set "v_trans=none"
 if /i "%bs%"=="1" set "v_trans=TRUE"
 if /i "%bs%"=="2" set "v_trans=FALSE"
@@ -974,7 +974,7 @@ if /i "%bs%"=="b" goto sc3
 if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="e" goto salida
 
-if "%v_trans%"=="none" echo é”™è¯¯çš„é€‰æ‹©
+if "%v_trans%"=="none" echo ´íÎóµÄÑ¡Ôñ
 if "%v_trans%"=="none" echo.
 if "%v_trans%"=="none" goto op_translate
 
@@ -991,30 +991,30 @@ goto sc3
 cls
 call :logo
 echo ***************************************************************************
-echo è®¾ç½®çº¿ç¨‹æ“ä½œçš„å·¥ä½œçº¿ç¨‹æ•°
+echo ÉèÖÃÏß³Ì²Ù×÷µÄ¹¤×÷Ïß³ÌÊý
 echo ***************************************************************************
-echo å½“å‰ç”¨äºŽé‡å‘½åå™¨å’Œæ•°æ®åº“æž„å»ºæ¨¡å¼
-echo æœ‰å…³æ›´å¤šå€¼ï¼Œè¯·ä½¿ç”¨æ–‡æœ¬ç¼–è¾‘å™¨ç¼–è¾‘NSCB_options.cmd
+echo µ±Ç°ÓÃÓÚÖØÃüÃûÆ÷ºÍÊý¾Ý¿â¹¹½¨Ä£Ê½
+echo ÓÐ¹Ø¸ü¶àÖµ£¬ÇëÊ¹ÓÃÎÄ±¾±à¼­Æ÷±à¼­NSCB_options.cmd
 echo.
-echo è¾“å…¥"1"ï¼Œä½¿ç”¨1ä¸ªçº¿ç¨‹ï¼ˆé»˜è®¤æˆ–æ²¡æœ‰æ¿€æ´»ï¼‰
-echo è¾“å…¥"2"ï¼Œä½¿ç”¨5ä¸ªçº¿ç¨‹
-echo è¾“å…¥"3"ï¼Œä½¿ç”¨10ä¸ªçº¿ç¨‹
-echo è¾“å…¥"4"ï¼Œä½¿ç”¨20ä¸ªçº¿ç¨‹
-echo è¾“å…¥"5"ï¼Œä½¿ç”¨30ä¸ªçº¿ç¨‹
-echo è¾“å…¥"6"ï¼Œä½¿ç”¨40ä¸ªçº¿ç¨‹
-echo è¾“å…¥"7"ï¼Œä½¿ç”¨50ä¸ªçº¿ç¨‹
-echo è¾“å…¥"8"ï¼Œä½¿ç”¨60ä¸ªçº¿ç¨‹
-echo è¾“å…¥"9"ï¼Œä½¿ç”¨70ä¸ªçº¿ç¨‹
-echo è¾“å…¥"10"ï¼Œä½¿ç”¨80ä¸ªçº¿ç¨‹
-echo è¾“å…¥"11"ï¼Œä½¿ç”¨90ä¸ªçº¿ç¨‹
-echo è¾“å…¥"12"ï¼Œä½¿ç”¨100ä¸ªçº¿ç¨‹
+echo ÊäÈë"1"£¬Ê¹ÓÃ1¸öÏß³Ì£¨Ä¬ÈÏ»òÃ»ÓÐ¼¤»î£©
+echo ÊäÈë"2"£¬Ê¹ÓÃ5¸öÏß³Ì
+echo ÊäÈë"3"£¬Ê¹ÓÃ10¸öÏß³Ì
+echo ÊäÈë"4"£¬Ê¹ÓÃ20¸öÏß³Ì
+echo ÊäÈë"5"£¬Ê¹ÓÃ30¸öÏß³Ì
+echo ÊäÈë"6"£¬Ê¹ÓÃ40¸öÏß³Ì
+echo ÊäÈë"7"£¬Ê¹ÓÃ50¸öÏß³Ì
+echo ÊäÈë"8"£¬Ê¹ÓÃ60¸öÏß³Ì
+echo ÊäÈë"9"£¬Ê¹ÓÃ70¸öÏß³Ì
+echo ÊäÈë"10"£¬Ê¹ÓÃ80¸öÏß³Ì
+echo ÊäÈë"11"£¬Ê¹ÓÃ90¸öÏß³Ì
+echo ÊäÈë"12"£¬Ê¹ÓÃ100¸öÏß³Ì
 echo.
-echo è¾“å…¥"b"ï¼Œè¿”å›žå…¨å±€é€‰é¡¹
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"b"£¬·µ»ØÈ«¾ÖÑ¡Ïî
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo ...........................................................................
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set "v_workers=none"
 if /i "%bs%"=="1" set "v_workers=-threads 1"
 if /i "%bs%"=="2" set "v_workers=-threads 5"
@@ -1033,7 +1033,7 @@ if /i "%bs%"=="b" goto sc3
 if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="e" goto salida
 
-if "%v_workers%"=="none" echo é”™è¯¯çš„é€‰æ‹©
+if "%v_workers%"=="none" echo ´íÎóµÄÑ¡Ôñ
 if "%v_workers%"=="none" echo.
 if "%v_workers%"=="none" goto op_threads
 
@@ -1050,23 +1050,23 @@ goto sc3
 cls
 call :logo
 echo ***************************************************************************
-echo ç”¨æˆ·åŽ‹ç¼©é€‰é¡¹
+echo ÓÃ»§Ñ¹ËõÑ¡Ïî
 echo ***************************************************************************
 echo ************************
-echo è¾“å…¥åŽ‹ç¼©çº§åˆ«
+echo ÊäÈëÑ¹Ëõ¼¶±ð
 echo ************************
-echo è¾“å…¥1åˆ°22ä¹‹é—´çš„åŽ‹ç¼©çº§åˆ«
-echo æ³¨ï¼š
-echo  + Level 1 - å¿«é€Ÿä½†åŽ‹ç¼©æ¯”å°
-echo  + Level 22 - ç¼“æ…¢ä½†æ›´å¥½çš„åŽ‹ç¼©æ¯”
-echo  Levels 10-17 æŽ¨è
+echo ÊäÈë1µ½22Ö®¼äµÄÑ¹Ëõ¼¶±ð
+echo ×¢£º
+echo  + Level 1 - ¿ìËÙµ«Ñ¹Ëõ±ÈÐ¡
+echo  + Level 22 - »ºÂýµ«¸üºÃµÄÑ¹Ëõ±È
+echo  Levels 10-17 ÍÆ¼ö
 echo.
-echo è¾“å…¥"b"ï¼Œè¿”å›žå…¨å±€é€‰é¡¹
-echo è¾“å…¥"x"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"b"£¬·µ»ØÈ«¾ÖÑ¡Ïî
+echo ÊäÈë"x"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo ...........................................................................
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set "v_nszlevels=none"
 
 if /i "%bs%"=="b" goto sc3
@@ -1076,7 +1076,7 @@ if /i "%bs%"=="e" goto salida
 set "v_nszlevels=%bs%"
 set v_nszlevels="compression_lv=%v_nszlevels%"
 set v_nszlevels="%v_nszlevels%"
-if "%v_nszlevels%"=="none" echo é”™è¯¯çš„é€‰æ‹©
+if "%v_nszlevels%"=="none" echo ´íÎóµÄÑ¡Ôñ
 if "%v_nszlevels%"=="none" echo.
 if "%v_nszlevels%"=="none" goto op_NSZ1
 %pycommand% "%listmanager%" -cl "%op_file%" -ln "158" -nl "set %v_nszlevels%"
@@ -1085,20 +1085,20 @@ echo.
 :op_NSZ2
 echo.
 echo *******************************************************
-echo è¾“å…¥è¦ä½¿ç”¨çš„çº¿ç¨‹æ•°
+echo ÊäÈëÒªÊ¹ÓÃµÄÏß³ÌÊý
 echo *******************************************************
-echo è¾“å…¥è¦åœ¨0å’Œ4ä¹‹é—´ä½¿ç”¨çš„çº¿ç¨‹æ•°
-echo æ³¨ï¼š
-echo + é€šè¿‡ä½¿ç”¨çº¿ç¨‹ï¼Œæ‚¨å¯èƒ½ä¼šèŽ·å¾—ä¸€äº›å‡é€Ÿï¼Œä½†ä¼šé™ä½ŽåŽ‹ç¼©çŽ‡
-echo + 22çº§å’Œ4ä¸ªçº¿ç¨‹å¯èƒ½ä¼šè€—å°½æ‚¨çš„å†…å­˜
-echo + å»ºè®®çš„æœ€å¤§çº¿ç¨‹åŽ‹ç¼©çº§åˆ«ä¸º17ï¼Œä½†ä¼šæŸå¤±åŽ‹ç¼©çŽ‡
+echo ÊäÈëÒªÔÚ0ºÍ4Ö®¼äÊ¹ÓÃµÄÏß³ÌÊý
+echo ×¢£º
+echo + Í¨¹ýÊ¹ÓÃÏß³Ì£¬Äú¿ÉÄÜ»á»ñµÃÒ»Ð©¼õËÙ£¬µ«»á½µµÍÑ¹ËõÂÊ
+echo + 22¼¶ºÍ4¸öÏß³Ì¿ÉÄÜ»áºÄ¾¡ÄúµÄÄÚ´æ
+echo + ½¨ÒéµÄ×î´óÏß³ÌÑ¹Ëõ¼¶±ðÎª17£¬µ«»áËðÊ§Ñ¹ËõÂÊ
 echo.
-echo è¾“å…¥"b"ï¼Œè¿”å›žå…¨å±€é€‰é¡¹
-echo è¾“å…¥"x"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"b"£¬·µ»ØÈ«¾ÖÑ¡Ïî
+echo ÊäÈë"x"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo ...........................................................................
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set "v_nszthreads=none"
 
 if /i "%bs%"=="b" goto sc3
@@ -1108,7 +1108,7 @@ if /i "%bs%"=="e" goto salida
 set "v_nszthreads=%bs%"
 set v_nszthreads="compression_threads=%v_nszthreads%"
 set v_nszthreads="%v_nszthreads%"
-if "%v_nszthreads%"=="none" echo é”™è¯¯çš„é€‰æ‹©
+if "%v_nszthreads%"=="none" echo ´íÎóµÄÑ¡Ôñ
 if "%v_nszthreads%"=="none" echo.
 if "%v_nszthreads%"=="none" goto op_NSZ2
 %pycommand% "%listmanager%" -cl "%op_file%" -ln "159" -nl "set %v_nszthreads%"
@@ -1119,24 +1119,24 @@ goto sc3
 :op_NSZ3
 echo.
 echo *******************************************************
-echo å¯¼å‡ºXCIçš„æ ¼å¼
+echo µ¼³öXCIµÄ¸ñÊ½
 echo *******************************************************
 echo.
-echo è¾“å…¥"1"ï¼Œå¯¼å‡ºä¸ºXCZ-è¶…çº§ä¿®å‰ªï¼ˆé»˜è®¤å€¼ï¼‰
-echo è¾“å…¥"2"ï¼Œå¯¼å‡ºä¸ºNSZ
+echo ÊäÈë"1"£¬µ¼³öÎªXCZ-³¬¼¶ÐÞ¼ô£¨Ä¬ÈÏÖµ£©
+echo ÊäÈë"2"£¬µ¼³öÎªNSZ
 echo.
-echo è®°ä½ï¼Œtinfoilå¯ä»¥åŒæ—¶å®‰è£…ä¸¤ç§æ ¼å¼ï¼Œå› æ­¤ä¸å»ºè®®å¯¼å‡ºä¸ºnszã€‚
-echo å¦‚æžœæ‚¨çœŸçš„æƒ³å°†å®ƒä»¬ä½œä¸ºnszï¼Œè¯·ä»¥è¿™ç§æ–¹å¼è¿›è¡Œæ“ä½œï¼Œä»¥ä½¿æ¸¸æˆä¸­çš„ncaæ–‡ä»¶å¯æ¢å¤ã€‚
-echo æ³¨æ„ï¼šå½“å‰ï¼Œæ­¤è¿˜åŽŸéœ€è¦é¦–å…ˆå°†æ–‡ä»¶è§£åŽ‹ç¼©ä¸ºnspï¼Œæ›´å¥½çš„ç›´æŽ¥è¿˜åŽŸåŠŸèƒ½å°†å¾ˆå¿«æ·»åŠ è¿›æ¥ã€‚
+echo ¼Ç×¡£¬tinfoil¿ÉÒÔÍ¬Ê±°²×°Á½ÖÖ¸ñÊ½£¬Òò´Ë²»½¨Òéµ¼³öÎªnsz¡£
+echo Èç¹ûÄúÕæµÄÏë½«ËüÃÇ×÷Îªnsz£¬ÇëÒÔÕâÖÖ·½Ê½½øÐÐ²Ù×÷£¬ÒÔÊ¹ÓÎÏ·ÖÐµÄncaÎÄ¼þ¿É»Ö¸´¡£
+echo ×¢Òâ£ºµ±Ç°£¬´Ë»¹Ô­ÐèÒªÊ×ÏÈ½«ÎÄ¼þ½âÑ¹ËõÎªnsp£¬¸üºÃµÄÖ±½Ó»¹Ô­¹¦ÄÜ½«ºÜ¿ìÌí¼Ó½øÀ´¡£
 
 echo.echo.
-echo è¾“å…¥"b"ï¼Œè¿”å›žå…¨å±€é€‰é¡¹
-echo è¾“å…¥"x"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"b"£¬·µ»ØÈ«¾ÖÑ¡Ïî
+echo ÊäÈë"x"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo ...........................................................................
 echo.
 set "v_xcz_export=none"
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 
 if /i "%bs%"=="b" goto sc3
 if /i "%bs%"=="x" goto sc1
@@ -1146,7 +1146,7 @@ if /i "%bs%"=="1" set "v_xcz_export=xcz"
 if /i "%bs%"=="2" set "v_xcz_export=nsz"
 set v_xcz_export="xci_export=%v_xcz_export%"
 set v_xcz_export="%v_xcz_export%"
-if "%v_xcz_export%"=="none" echo é”™è¯¯çš„é€‰æ‹©
+if "%v_xcz_export%"=="none" echo ´íÎóµÄÑ¡Ôñ
 if "%v_xcz_export%"=="none" echo.
 if "%v_xcz_export%"=="none" goto op_NSZ3
 %pycommand% "%listmanager%" -cl "%op_file%" -ln "160" -nl "set %v_xcz_export%"
@@ -1157,7 +1157,7 @@ goto sc3
 
 :def_set1
 echo.
-echo **è‡ªåŠ¨æ¨¡å¼é€‰é¡¹**
+echo **×Ô¶¯Ä£Ê½Ñ¡Ïî**
 REM vrepack
 set "v_rep=both"
 set v_rep="vrepack=%v_rep%"
@@ -1190,7 +1190,7 @@ exit /B
 
 :def_set2
 echo.
-echo **å…¨å±€é€‰é¡¹**
+echo **È«¾ÖÑ¡Ïî**
 REM OP_COLOR
 set "v_colF=F"
 set /a "v_colB=1"
@@ -1323,7 +1323,7 @@ exit /B
 
 :curr_set1
 echo.
-echo **å½“å‰è‡ªåŠ¨æ¨¡å¼é€‰é¡¹**
+echo **µ±Ç°×Ô¶¯Ä£Ê½Ñ¡Ïî**
 REM vrepack
 %pycommand% "%listmanager%" -rl "%op_file%" -ln "57" -nl "File repack is set to: "
 
@@ -1340,7 +1340,7 @@ exit /B
 
 :curr_set2
 echo.
-echo **å½“å‰å…¨å±€é€‰é¡¹**
+echo **µ±Ç°È«¾ÖÑ¡Ïî**
 REM OP_COLOR
 %pycommand% "%listmanager%" -rl "%op_file%" -ln "3" -nl "Color is set to: "
 endlocal
@@ -1397,17 +1397,17 @@ exit /B
 cls
 call :logo
 echo ***************************************************************************
-echo æ ¹æ®æ­£ç¡®çš„å¯†é’¥sha256æ•£åˆ—å€¼éªŒè¯keys.txtä¸­çš„å¯†é’¥
+echo ¸ù¾ÝÕýÈ·µÄÃÜÔ¿sha256É¢ÁÐÖµÑéÖ¤keys.txtÖÐµÄÃÜÔ¿
 echo ***************************************************************************
 
 %pycommand% "%squirrel%" -nint_keys "%dec_keys%"
 
 echo ...........................................................................
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"1"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"1"£¬·µ»ØÖ÷³ÌÐò
 echo ...........................................................................
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set bs=%bs:"=%
 
 if /i "%bs%"=="0" goto sc1
@@ -1420,17 +1420,17 @@ exit /B
 cls
 call :logo
 echo ***************************************************************************
-echo å¼ºåˆ¶NUT_DBæ›´æ–°
+echo Ç¿ÖÆNUT_DB¸üÐÂ
 echo ***************************************************************************
 
 %pycommand% "%squirrel_lb%" -lib_call nutdb force_refresh
 
 echo ...........................................................................
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"1"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"1"£¬·µ»ØÖ÷³ÌÐò
 echo ...........................................................................
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set bs=%bs:"=%
 
 if /i "%bs%"=="0" goto sc1
@@ -1440,23 +1440,23 @@ if /i "%bs%"=="e" goto salida
 cls
 call :logo
 echo ********************************************************
-echo è°·æ­Œç½‘ç›˜ - é…ç½®
+echo ¹È¸èÍøÅÌ - ÅäÖÃ
 echo ********************************************************
-echo è¾“å…¥"1"ï¼Œæ³¨å†Œè´¦æˆ·
-echo è¾“å…¥"2"ï¼Œåˆ·æ–°è¿œç¨‹åº“æ–‡ä»¶ç¼“å­˜
+echo ÊäÈë"1"£¬×¢²áÕË»§
+echo ÊäÈë"2"£¬Ë¢ÐÂÔ¶³Ì¿âÎÄ¼þ»º´æ
 echo.
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo .......................................................
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 if /i "%bs%"=="1" goto op_google_drive_account
 if /i "%bs%"=="2" ( %pycommand% "%squirrel_lb%" -lib_call workers concurrent_cache )
 if /i "%bs%"=="2" goto google_drive
 
 if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="e" goto salida
-echo é”™è¯¯çš„é€‰é¡¹
+echo ´íÎóµÄÑ¡Ïî
 echo.
 goto google_drive
 
@@ -1464,17 +1464,17 @@ goto google_drive
 cls
 call :logo
 echo ***************************************************************************
-echo æ³¨å†Œè°·æ­Œç½‘ç›˜è´¦æˆ·
+echo ×¢²á¹È¸èÍøÅÌÕË»§
 echo ***************************************************************************
-echo æ‚¨éœ€è¦ä¸€ä¸ªcertificate.jsonï¼Œå®ƒå¯ä»¥ç§°ä¸ºcertificate.jsonæˆ–æ‚¨å°†ç”Ÿæˆçš„ä»¤ç‰Œçš„åç§°.jsonã€‚
-echo certificate.jsonå¯ä»¥ä¸Žè®¸å¤šå¸æˆ·ä¸€èµ·ä½¿ç”¨ä»¥ç”Ÿæˆä»¤ç‰Œï¼Œä½†æ˜¯å¦‚æžœå°†å…¶ä¸Žç”Ÿæˆè¯¥å¸æˆ·çš„å¸æˆ·ä½¿ç”¨çš„å¸æˆ·ä¸åŒï¼Œåˆ™ä¼šæ”¶åˆ°è­¦å‘Šã€‚
-echo ç³»ç»Ÿå®žçŽ°ä¸ºåœ¨å‡­æ®æ–‡ä»¶å¤¹ä¸­æœ‰è®¸å¤šå‡­æ®jsonã€‚é˜…è¯»ä¸ŽNSCBä¸€èµ·åˆ†å‘çš„æ–‡æ¡£ï¼Œå¹¶äº†è§£å¦‚ä½•èŽ·å–è¯¥æ–‡ä»¶ã€‚
+echo ÄúÐèÒªÒ»¸öcertificate.json£¬Ëü¿ÉÒÔ³ÆÎªcertificate.json»òÄú½«Éú³ÉµÄÁîÅÆµÄÃû³Æ.json¡£
+echo certificate.json¿ÉÒÔÓëÐí¶àÕÊ»§Ò»ÆðÊ¹ÓÃÒÔÉú³ÉÁîÅÆ£¬µ«ÊÇÈç¹û½«ÆäÓëÉú³É¸ÃÕÊ»§µÄÕÊ»§Ê¹ÓÃµÄÕÊ»§²»Í¬£¬Ôò»áÊÕµ½¾¯¸æ¡£
+echo ÏµÍ³ÊµÏÖÎªÔÚÆ¾¾ÝÎÄ¼þ¼ÐÖÐÓÐÐí¶àÆ¾¾Ýjson¡£ÔÄ¶ÁÓëNSCBÒ»Æð·Ö·¢µÄÎÄµµ£¬²¢ÁË½âÈçºÎ»ñÈ¡¸ÃÎÄ¼þ¡£
 echo.
-echo æ³¨æ„ï¼šæ‚¨åœ¨æ­¤æ­¥éª¤ä¸­è¾“å…¥çš„åç§°å°†ç”¨äºŽä¿å­˜ä»¤ç‰Œå’Œè·¯å¾„ã€‚
+echo ×¢Òâ£ºÄúÔÚ´Ë²½ÖèÖÐÊäÈëµÄÃû³Æ½«ÓÃÓÚ±£´æÁîÅÆºÍÂ·¾¶¡£
 echo.
-echo ç¤ºä¾‹ï¼šåä¸º"drive"çš„ä»¤ç‰Œå°†ä½¿ç”¨drive:/folder/file.nspä¹‹ç±»çš„è·¯å¾„
+echo Ê¾Àý£ºÃûÎª"drive"µÄÁîÅÆ½«Ê¹ÓÃdrive:/folder/file.nspÖ®ÀàµÄÂ·¾¶
 echo.
-set /p bs="è¾“å…¥ä»¤ç‰Œä½¿ç”¨çš„å®Œæ•´è·¯å¾„: "
+set /p bs="ÊäÈëÁîÅÆÊ¹ÓÃµÄÍêÕûÂ·¾¶: "
 set "token=%bs%"
 echo.
 %pycommand% "%squirrel_lb%" -lib_call Drive.Private create_token -xarg "%token%" headless="False"
@@ -1485,21 +1485,21 @@ goto google_drive
 cls
 call :logo
 echo ********************************************************
-echo è‡ªåŠ¨æ¨¡å¼ - é…ç½®
+echo ×Ô¶¯Ä£Ê½ - ÅäÖÃ
 echo ********************************************************
-echo è¾“å…¥"1"ï¼Œå¯åŠ¨å¯è§†åŒ–é…ç½®
-echo è¾“å…¥"2"ï¼Œé€‰æ‹©æµè§ˆå™¨æ¥é…ç½®ç•Œé¢
-echo è¾“å…¥"3"ï¼Œåœç”¨è§†é¢‘æ’­æ”¾
-echo è¾“å…¥"4"ï¼Œè®¾ç½®ç«¯å£
-echo è¾“å…¥"5"ï¼Œè®¾ç½®ä¸»æœº
-echo è¾“å…¥"6"ï¼Œè®¾ç½®GUIæŽ§åˆ¶å°å‚æ•°
+echo ÊäÈë"1"£¬Æô¶¯¿ÉÊÓ»¯ÅäÖÃ
+echo ÊäÈë"2"£¬Ñ¡Ôñä¯ÀÀÆ÷À´ÅäÖÃ½çÃæ
+echo ÊäÈë"3"£¬Í£ÓÃÊÓÆµ²¥·Å
+echo ÊäÈë"4"£¬ÉèÖÃ¶Ë¿Ú
+echo ÊäÈë"5"£¬ÉèÖÃÖ÷»ú
+echo ÊäÈë"6"£¬ÉèÖÃGUI¿ØÖÆÌ¨²ÎÊý
 echo.
-echo è¾“å…¥"d"ï¼Œè¿˜åŽŸé»˜è®¤ç•Œé¢é…ç½®
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"d"£¬»¹Ô­Ä¬ÈÏ½çÃæÅäÖÃ
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo .......................................................
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 if /i "%bs%"=="1" goto op_interface_consolevisibility
 if /i "%bs%"=="2" goto op_interface_browser
 if /i "%bs%"=="3" goto op_interface_video_playback
@@ -1510,7 +1510,7 @@ if /i "%bs%"=="6" goto op_interface_noconsole
 if /i "%bs%"=="d" goto op_interface_defaults
 if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="e" goto salida
-echo é”™è¯¯çš„é€‰æ‹©
+echo ´íÎóµÄÑ¡Ôñ
 echo.
 goto interface
 
@@ -1518,20 +1518,20 @@ goto interface
 cls
 call :logo
 echo ***************************************************************************
-echo å¯åŠ¨INTERFACE.BATæœ€å°åŒ–ï¼Ÿ
+echo Æô¶¯INTERFACE.BAT×îÐ¡»¯£¿
 echo ***************************************************************************
-echo æŽ§åˆ¶è°ƒè¯•æŽ§åˆ¶å°æ˜¯å¦ä¸ŽWebç•Œé¢ä¸€èµ·æœ€å°åŒ–å¯åŠ¨
-echo ç•Œé¢
+echo ¿ØÖÆµ÷ÊÔ¿ØÖÆÌ¨ÊÇ·ñÓëWeb½çÃæÒ»Æð×îÐ¡»¯Æô¶¯
+echo ½çÃæ
 echo.
-echo è¾“å…¥"1"ï¼Œå¼€å§‹æœ€å°åŒ–
-echo è¾“å…¥"2"ï¼Œä¸å¼€å§‹æœ€å°åŒ–
-echo è¾“å…¥"D"ï¼Œé»˜è®¤ï¼ˆæœªæœ€å°åŒ–ï¼‰
+echo ÊäÈë"1"£¬¿ªÊ¼×îÐ¡»¯
+echo ÊäÈë"2"£¬²»¿ªÊ¼×îÐ¡»¯
+echo ÊäÈë"D"£¬Ä¬ÈÏ£¨Î´×îÐ¡»¯£©
 echo.
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"b"ï¼Œè¿”å›žç•Œé¢èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"b"£¬·µ»Ø½çÃæ²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set "v_interface=none"
 if /i "%bs%"=="1" set "v_interface=yes"
 if /i "%bs%"=="2" set "v_interface=no"
@@ -1541,7 +1541,7 @@ if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="b" goto interface
 if /i "%bs%"=="e" goto salida
 
-if "%v_interface%"=="none" echo é”™è¯¯çš„é€‰æ‹©
+if "%v_interface%"=="none" echo ´íÎóµÄÑ¡Ôñ
 if "%v_interface%"=="none" echo.
 if "%v_interface%"=="none" goto op_interface_consolevisibility
 
@@ -1558,33 +1558,33 @@ goto interface
 cls
 call :logo
 echo ***************************************************************************
-echo é€‰æ‹©æµè§ˆå™¨ä»¥å¯åŠ¨ç•Œé¢
+echo Ñ¡Ôñä¯ÀÀÆ÷ÒÔÆô¶¯½çÃæ
 echo ***************************************************************************
-echo é€‰æ‹©ç”¨äºŽå¯åŠ¨ç•Œé¢çš„æµè§ˆå™¨ï¼š
-echo é€‰é¡¹ï¼š
-echo 1. è‡ªåŠ¨ã€‚é¡ºåºæ˜¯åœ¨ztools\chromiumæˆ–ç³»ç»Ÿä¸­å®‰è£…çš„æµè§ˆå™¨çš„åŸºç¡€ä¸Šè®¾ç½®çš„ã€‚
-echo è¿™æ˜¯ç”±squirrelæŒ‰ä»¥ä¸‹é¡ºåºè‡ªåŠ¨è®¾ç½®çš„ï¼š
-echo    I.   ztools\chromiumï¼ˆChromiumä¾¿æºç‰ˆæˆ–Slimjetä¾¿æºç‰ˆï¼‰
-echo    II.  ç³»ç»Ÿä¸­å®‰è£…çš„Chromeæˆ–Chromium
-echo    III. Microsoft Edge ï¼ˆä¸æŽ¨èï¼‰
-echo 2. ç³»ç»Ÿé»˜è®¤ã€‚ä½¿ç”¨é»˜è®¤ç³»ç»Ÿæµè§ˆå™¨ï¼ˆå…¼å®¹æ€§ä½Žï¼‰
-echo 3. é€šè¿‡ä»¥ä¸‹æ–¹æ³•ä¹‹ä¸€å°†åŽŸå§‹è·¯å¾„è®¾ç½®ä¸ºçº¯chromiumæµè§ˆå™¨ã€‚
-echo    I.   æµè§ˆå™¨çš„ç»å¯¹è·¯å¾„ï¼Œä»¥.exeç»“å°¾
-echo    II.  .lnkæ–‡ä»¶çš„ç»å¯¹è·¯å¾„ï¼ˆWindowså¿«æ·æ–¹å¼ï¼‰
-echo    III. ztools\chromiumä¸­çš„.lnkæ–‡ä»¶çš„åç§°ï¼ˆä»¥.lnkç»“å°¾ï¼‰
-echo         ä¾‹å¦‚: brave.lnk
-echo         è¿™å°†è¯»å–ztools\chromium\brave.lnkå¹¶é‡å®šå‘åˆ°å¯åŠ¨braveæµè§ˆå™¨çš„exeè·¯å¾„
+echo Ñ¡ÔñÓÃÓÚÆô¶¯½çÃæµÄä¯ÀÀÆ÷£º
+echo Ñ¡Ïî£º
+echo 1. ×Ô¶¯¡£Ë³ÐòÊÇÔÚztools\chromium»òÏµÍ³ÖÐ°²×°µÄä¯ÀÀÆ÷µÄ»ù´¡ÉÏÉèÖÃµÄ¡£
+echo ÕâÊÇÓÉsquirrel°´ÒÔÏÂË³Ðò×Ô¶¯ÉèÖÃµÄ£º
+echo    I.   ztools\chromium£¨Chromium±ãÐ¯°æ»òSlimjet±ãÐ¯°æ£©
+echo    II.  ÏµÍ³ÖÐ°²×°µÄChrome»òChromium
+echo    III. Microsoft Edge £¨²»ÍÆ¼ö£©
+echo 2. ÏµÍ³Ä¬ÈÏ¡£Ê¹ÓÃÄ¬ÈÏÏµÍ³ä¯ÀÀÆ÷£¨¼æÈÝÐÔµÍ£©
+echo 3. Í¨¹ýÒÔÏÂ·½·¨Ö®Ò»½«Ô­Ê¼Â·¾¶ÉèÖÃÎª´¿chromiumä¯ÀÀÆ÷¡£
+echo    I.   ä¯ÀÀÆ÷µÄ¾ø¶ÔÂ·¾¶£¬ÒÔ.exe½áÎ²
+echo    II.  .lnkÎÄ¼þµÄ¾ø¶ÔÂ·¾¶£¨Windows¿ì½Ý·½Ê½£©
+echo    III. ztools\chromiumÖÐµÄ.lnkÎÄ¼þµÄÃû³Æ£¨ÒÔ.lnk½áÎ²£©
+echo         ÀýÈç: brave.lnk
+echo         Õâ½«¶ÁÈ¡ztools\chromium\brave.lnk²¢ÖØ¶¨Ïòµ½Æô¶¯braveä¯ÀÀÆ÷µÄexeÂ·¾¶
 echo.
-echo è¾“å…¥"1"æˆ–"d"ï¼Œè®¾ç½®å˜é‡ä¸ºè‡ªåŠ¨
-echo è¾“å…¥"2"ï¼Œè®¾ç½®å˜é‡ä¸ºç³»ç»Ÿé»˜è®¤
-echo è¾“å…¥3.IIIæ–¹æ³•çš„shortcut.lnkåç§°
-echo è¾“å…¥æµè§ˆå™¨æˆ–3.Iæˆ–3.IIæ–¹æ³•çš„å¿«æ·æ–¹å¼çš„ç»å¯¹è·¯å¾„
+echo ÊäÈë"1"»ò"d"£¬ÉèÖÃ±äÁ¿Îª×Ô¶¯
+echo ÊäÈë"2"£¬ÉèÖÃ±äÁ¿ÎªÏµÍ³Ä¬ÈÏ
+echo ÊäÈë3.III·½·¨µÄshortcut.lnkÃû³Æ
+echo ÊäÈëä¯ÀÀÆ÷»ò3.I»ò3.II·½·¨µÄ¿ì½Ý·½Ê½µÄ¾ø¶ÔÂ·¾¶
 echo.
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"b"ï¼Œè¿”å›žç•Œé¢èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žæœ±è°Œæ—­
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"b"£¬·µ»Ø½çÃæ²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖìÚÈÐñ
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set "v_interface_browser=%bs%"
 if /i "%bs%"=="1" set "v_interface_browser=auto"
 if /i "%bs%"=="2" set "v_interface_browser=default"
@@ -1608,20 +1608,20 @@ goto interface
 cls
 call :logo
 echo ***************************************************************************
-echo åœç”¨è§†é¢‘æ’­æ”¾
+echo Í£ÓÃÊÓÆµ²¥·Å
 echo ***************************************************************************
-echo åœç”¨Nintendo.comè§†é¢‘çš„HLSæ’­æ”¾å™¨ã€‚
-echo è¿™é€‚ç”¨äºŽHLS javascriptæ’­æ”¾å™¨ä¸èƒ½æ­£å¸¸å·¥ä½œçš„æ—§è®¡ç®—æœº
+echo Í£ÓÃNintendo.comÊÓÆµµÄHLS²¥·ÅÆ÷¡£
+echo ÕâÊÊÓÃÓÚHLS javascript²¥·ÅÆ÷²»ÄÜÕý³£¹¤×÷µÄ¾É¼ÆËã»ú
 echo.
-echo è¾“å…¥"1"ï¼Œè‡ªç”¨è§†é¢‘æ’­æ”¾
-echo è¾“å…¥"2"ï¼Œåœç”¨è§†é¢‘æ’­æ”¾
-echo è¾“å…¥"D"ï¼Œé»˜è®¤ï¼ˆä¸æœ€å°åŒ–ï¼‰
+echo ÊäÈë"1"£¬×ÔÓÃÊÓÆµ²¥·Å
+echo ÊäÈë"2"£¬Í£ÓÃÊÓÆµ²¥·Å
+echo ÊäÈë"D"£¬Ä¬ÈÏ£¨²»×îÐ¡»¯£©
 echo.
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"b"ï¼Œè¿”å›žç•Œé¢èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"b"£¬·µ»Ø½çÃæ²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š "
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º "
 set "v_video_playback=none"
 if /i "%bs%"=="1" set "v_video_playback=true"
 if /i "%bs%"=="2" set "v_video_playback=false"
@@ -1631,7 +1631,7 @@ if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="b" goto interface
 if /i "%bs%"=="e" goto salida
 
-if "%v_video_playback%"=="none" echo é”™è¯¯çš„é€‰é¡¹
+if "%v_video_playback%"=="none" echo ´íÎóµÄÑ¡Ïî
 if "%v_video_playback%"=="none" echo.
 if "%v_video_playback%"=="none" goto op_interface_video_playback
 
@@ -1648,19 +1648,19 @@ goto interface
 cls
 call :logo
 echo ***************************************************************************
-echo é€‰æ‹©ç•Œé¢ç«¯å£
+echo Ñ¡Ôñ½çÃæ¶Ë¿Ú
 echo ***************************************************************************
 echo.
-echo æ³¨æ„ï¼Œ"rg8000"æŒ‡ä½äºŽ8000å’Œ8999ä¹‹é—´çš„å¼€æ”¾ç«¯å£, å®ƒå…è®¸åŒæ—¶æ‰“å¼€å¤šä¸ªç•Œé¢çª—å£ã€‚è¿™æ˜¯é»˜è®¤å‚æ•°
+echo ×¢Òâ£¬"rg8000"Ö¸Î»ÓÚ8000ºÍ8999Ö®¼äµÄ¿ª·Å¶Ë¿Ú, ËüÔÊÐíÍ¬Ê±´ò¿ª¶à¸ö½çÃæ´°¿Ú¡£ÕâÊÇÄ¬ÈÏ²ÎÊý
 echo.
-echo è¾“å…¥"1"æˆ–"d"ï¼Œè®¾ç½®ç«¯å£å˜é‡ä¸ºrg8000
-echo æˆ–è¾“å…¥ä¸€ä¸ªç«¯å£å·
+echo ÊäÈë"1"»ò"d"£¬ÉèÖÃ¶Ë¿Ú±äÁ¿Îªrg8000
+echo »òÊäÈëÒ»¸ö¶Ë¿ÚºÅ
 echo.
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"b"ï¼Œè¿”å›žç•Œé¢èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"b"£¬·µ»Ø½çÃæ²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š"
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º"
 set "v_interface_port=%bs%"
 if /i "%bs%"=="1" set "v_interface_port=rg8000"
 if /i "%bs%"=="d" set "v_interface_port=rg8000"
@@ -1683,19 +1683,19 @@ goto interface
 cls
 call :logo
 echo ***************************************************************************
-echo é€‰æ‹©ç•Œé¢ç«¯å£
+echo Ñ¡Ôñ½çÃæ¶Ë¿Ú
 echo ***************************************************************************
-echo Localhost. ç•Œé¢ä»…åœ¨æœ¬åœ°å¯è§ï¼ˆé»˜è®¤ï¼‰
-echo 0.0.0.0. ç•Œé¢å¯ä»¥åœ¨åŒä¸€ç½‘ç»œä¸Šå¯è§
+echo Localhost. ½çÃæ½öÔÚ±¾µØ¿É¼û£¨Ä¬ÈÏ£©
+echo 0.0.0.0. ½çÃæ¿ÉÒÔÔÚÍ¬Ò»ÍøÂçÉÏ¿É¼û
 echo.
-echo è¾“å…¥"1"æˆ–"d"ï¼Œè®¾ç½®ä¸»æœºä¸ºLOCALHOST
-echo è¾“å…¥"2"ï¼Œè®¾ç½®ä¸»æœºä¸º0.0.0.0
+echo ÊäÈë"1"»ò"d"£¬ÉèÖÃÖ÷»úÎªLOCALHOST
+echo ÊäÈë"2"£¬ÉèÖÃÖ÷»úÎª0.0.0.0
 echo.
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"b"ï¼Œè¿”å›žç•Œé¢èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"b"£¬·µ»Ø½çÃæ²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š"
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º"
 set "v_interface_host=none"
 if /i "%bs%"=="1" set "v_interface_host=localhost"
 if /i "%bs%"=="2" set "v_interface_host=0.0.0.0"
@@ -1705,7 +1705,7 @@ if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="b" goto interface
 if /i "%bs%"=="e" goto salida
 
-if "%v_interface_host%"=="none" echo é”™è¯¯çš„é€‰é¡¹
+if "%v_interface_host%"=="none" echo ´íÎóµÄÑ¡Ïî
 if "%v_interface_host%"=="none" echo.
 if "%v_interface_host%"=="none" goto op_interface_host
 
@@ -1722,19 +1722,19 @@ goto interface
 cls
 call :logo
 echo ***************************************************************************
-echo éšè—ç•Œé¢çš„æŽ§åˆ¶å°
+echo Òþ²Ø½çÃæµÄ¿ØÖÆÌ¨
 echo ***************************************************************************
-echo NoConsole=True. éšè—å‘½ä»¤æŽ§åˆ¶å°å¹¶å°†æŽ§åˆ¶å°æ‰“å°é‡å®šå‘åˆ°ç•Œé¢ï¼Œè¿™æ˜¯é»˜è®¤å‚æ•°ã€‚
-echo NoConsole=False. æ˜¾ç¤ºå‘½ä»¤æŽ§åˆ¶å°
+echo NoConsole=True. Òþ²ØÃüÁî¿ØÖÆÌ¨²¢½«¿ØÖÆÌ¨´òÓ¡ÖØ¶¨Ïòµ½½çÃæ£¬ÕâÊÇÄ¬ÈÏ²ÎÊý¡£
+echo NoConsole=False. ÏÔÊ¾ÃüÁî¿ØÖÆÌ¨
 echo.
-echo è¾“å…¥"1"æˆ–"d"ï¼Œé…ç½®NOCONSOLEä¸ºTRUE
-echo è¾“å…¥"2"ï¼Œé…ç½®NOCONSOLEä¸ºFALSE
+echo ÊäÈë"1"»ò"d"£¬ÅäÖÃNOCONSOLEÎªTRUE
+echo ÊäÈë"2"£¬ÅäÖÃNOCONSOLEÎªFALSE
 echo.
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"b"ï¼Œè¿”å›žç•Œé¢èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"b"£¬·µ»Ø½çÃæ²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š"
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º"
 set "v_interface_noconsole=none"
 if /i "%bs%"=="1" set "v_interface_noconsole=true"
 if /i "%bs%"=="2" set "v_interface_noconsole=false"
@@ -1744,7 +1744,7 @@ if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="b" goto interface
 if /i "%bs%"=="e" goto salida
 
-if "%v_interface_noconsole%"=="none" echo é”™è¯¯çš„é€‰é¡¹
+if "%v_interface_noconsole%"=="none" echo ´íÎóµÄÑ¡Ïî
 if "%v_interface_noconsole%"=="none" echo.
 if "%v_interface_noconsole%"=="none" goto op_interface_noconsole
 
@@ -1760,35 +1760,35 @@ goto interface
 :op_interface_defaults
 cls
 call :logo
-::å¯åŠ¨
+::Æô¶¯
 set v_interface="start_minimized=no"
 set v_interface="%v_interface%"
 %pycommand% "%listmanager%" -cl "%opt_interface%" -ln "17" -nl "set %v_interface%"
 %pycommand% "%listmanager%" -rl "%opt_interface%" -ln "17" -nl "Line in config was changed to: "
 echo.
-::æµè§ˆå™¨è·¯å¾„
+::ä¯ÀÀÆ÷Â·¾¶
 set v_interface_browser="browserpath=auto"
 set v_interface_browser="%v_interface_browser%"
 %pycommand% "%listmanager%" -cl "%opt_interface%" -ln "31" -nl "set %v_interface_browser%"
 %pycommand% "%listmanager%" -rl "%opt_interface%" -ln "31" -nl "Line in config was changed to: "
 echo.
-::è§†é¢‘æ’­æ”¾
+::ÊÓÆµ²¥·Å
 set v_video_playback="videoplayback=true"
 set v_video_playback="%v_video_playback%"
 %pycommand% "%listmanager%" -cl "%opt_interface%" -ln "35" -nl "set %v_video_playback%"
 %pycommand% "%listmanager%" -rl "%opt_interface%" -ln "35" -nl "Line in config was changed to: "
-::ç«¯å£
+::¶Ë¿Ú
 set v_interface_port="port=rg8000"
 set v_interface_port="%v_interface_port%"
 %pycommand% "%listmanager%" -cl "%opt_interface%" -ln "48" -nl "set %v_interface_port%"
 %pycommand% "%listmanager%" -rl "%opt_interface%" -ln "48" -nl "Line in config was changed to: "
-::ä¸»æœº
+::Ö÷»ú
 set v_interface_host="host=localhost"
 set v_interface_host="%v_interface_host%"
 %pycommand% "%listmanager%" -cl "%opt_interface%" -ln "55" -nl "set %v_interface_host%"
 %pycommand% "%listmanager%" -rl "%opt_interface%" -ln "55" -nl "Line in config was changed to: "
 
-::GUIæŽ§åˆ¶å°
+::GUI¿ØÖÆÌ¨
 set v_interface_noconsole="noconsole=true"
 set v_interface_noconsole="%v_interface_noconsole%"
 %pycommand% "%listmanager%" -cl "%opt_interface%" -ln "61" -nl "set %v_interface_noconsole%"
@@ -1800,21 +1800,21 @@ goto sc1
 cls
 call :logo
 echo ********************************************************
-echo æœåŠ¡å™¨ - é…ç½®
+echo ·þÎñÆ÷ - ÅäÖÃ
 echo ********************************************************
-echo è¾“å…¥"1"ï¼Œä¿®æ”¹å¯åŠ¨å¯è§†åŒ–é…ç½®
-echo è¾“å…¥"2"ï¼Œç¦æ­¢è§†é¢‘æ’­æ”¾
-echo è¾“å…¥"3"ï¼Œè®¾ç½®ç«¯å£å·
-echo è¾“å…¥"4"ï¼Œè®¾ç½®ä¸»æœº
-echo è¾“å…¥"5"ï¼Œè®¾ç½®GUIæŽ§åˆ¶å°å‚æ•°
-echo è¾“å…¥"6"ï¼Œè®¾ç½®SSLå‚æ•°
+echo ÊäÈë"1"£¬ÐÞ¸ÄÆô¶¯¿ÉÊÓ»¯ÅäÖÃ
+echo ÊäÈë"2"£¬½ûÖ¹ÊÓÆµ²¥·Å
+echo ÊäÈë"3"£¬ÉèÖÃ¶Ë¿ÚºÅ
+echo ÊäÈë"4"£¬ÉèÖÃÖ÷»ú
+echo ÊäÈë"5"£¬ÉèÖÃGUI¿ØÖÆÌ¨²ÎÊý
+echo ÊäÈë"6"£¬ÉèÖÃSSL²ÎÊý
 echo.
-echo è¾“å…¥"d"ï¼Œæ¢å¤æœåŠ¡å™¨é»˜è®¤é…ç½®
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"d"£¬»Ö¸´·þÎñÆ÷Ä¬ÈÏÅäÖÃ
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo .......................................................
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š"
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º"
 if /i "%bs%"=="1" goto op_server_consolevisibility
 if /i "%bs%"=="2" goto op_server_video_playback
 if /i "%bs%"=="3" goto op_server_port
@@ -1825,7 +1825,7 @@ if /i "%bs%"=="6" goto op_server_ssl
 if /i "%bs%"=="d" goto op_server_defaults
 if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="e" goto salida
-echo é”™è¯¯çš„é€‰é¡¹
+echo ´íÎóµÄÑ¡Ïî
 echo.
 goto server
 
@@ -1833,19 +1833,19 @@ goto server
 cls
 call :logo
 echo ***************************************************************************
-echo å¯åŠ¨SERVER.BATæœ€å°åŒ–?
+echo Æô¶¯SERVER.BAT×îÐ¡»¯?
 echo ***************************************************************************
-echo æŽ§åˆ¶è°ƒè¯•æŽ§åˆ¶å°æ˜¯å¦ä¸ŽWebç•Œé¢ä¸€èµ·æœ€å°åŒ–å¯åŠ¨
+echo ¿ØÖÆµ÷ÊÔ¿ØÖÆÌ¨ÊÇ·ñÓëWeb½çÃæÒ»Æð×îÐ¡»¯Æô¶¯
 echo.
-echo è¾“å…¥"1"ï¼Œæœ€å°åŒ–å¯åŠ¨
-echo è¾“å…¥"2"ï¼Œæ­£å¸¸å¯åŠ¨
-echo è¾“å…¥"d"ï¼Œé»˜è®¤ï¼ˆéžæœ€å°åŒ–å¯åŠ¨ï¼‰
+echo ÊäÈë"1"£¬×îÐ¡»¯Æô¶¯
+echo ÊäÈë"2"£¬Õý³£Æô¶¯
+echo ÊäÈë"d"£¬Ä¬ÈÏ£¨·Ç×îÐ¡»¯Æô¶¯£©
 echo.
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"b"ï¼Œè¿”å›žæœåŠ¡å™¨èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"b"£¬·µ»Ø·þÎñÆ÷²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š"
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º"
 set "v_server_vis=none"
 if /i "%bs%"=="1" set "v_server_vis=yes"
 if /i "%bs%"=="2" set "v_server_vis=no"
@@ -1855,7 +1855,7 @@ if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="b" goto server
 if /i "%bs%"=="e" goto salida
 
-if "%v_server_vis%"=="none" echo é”™è¯¯çš„é€‰é¡¹
+if "%v_server_vis%"=="none" echo ´íÎóµÄÑ¡Ïî
 if "%v_server_vis%"=="none" echo.
 if "%v_server_vis%"=="none" goto op_server_consolevisibility
 
@@ -1872,20 +1872,20 @@ goto server
 cls
 call :logo
 echo ***************************************************************************
-echo ç¦ç”¨è§†é¢‘æ’­æ”¾
+echo ½ûÓÃÊÓÆµ²¥·Å
 echo ***************************************************************************
-echo ç¦ç”¨HLSæ’­æ”¾å™¨æ’­æ”¾Nintendo.comè§†é¢‘ã€‚
-echo è¿™é€‚ç”¨äºŽå¯èƒ½ä¼šå› HLS javascriptæ’­æ”¾å™¨å¡ä½çš„æ—§è®¡ç®—æœº
+echo ½ûÓÃHLS²¥·ÅÆ÷²¥·ÅNintendo.comÊÓÆµ¡£
+echo ÕâÊÊÓÃÓÚ¿ÉÄÜ»áÒòHLS javascript²¥·ÅÆ÷¿¨×¡µÄ¾É¼ÆËã»ú
 echo.
-echo è¾“å…¥"1"ï¼Œå¯ç”¨è§†é¢‘æ’­æ”¾
-echo è¾“å…¥"2"ï¼Œç¦ç”¨è§†é¢‘æ’­æ”¾
-echo è¾“å…¥"d"ï¼Œé»˜è®¤ï¼ˆå¯ç”¨ï¼‰
+echo ÊäÈë"1"£¬ÆôÓÃÊÓÆµ²¥·Å
+echo ÊäÈë"2"£¬½ûÓÃÊÓÆµ²¥·Å
+echo ÊäÈë"d"£¬Ä¬ÈÏ£¨ÆôÓÃ£©
 echo.
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"b"ï¼Œè¿”å›žæœåŠ¡å™¨èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"b"£¬·µ»Ø·þÎñÆ÷²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š"
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º"
 set "v_video_playback=none"
 if /i "%bs%"=="1" set "v_video_playback=true"
 if /i "%bs%"=="2" set "v_video_playback=false"
@@ -1895,7 +1895,7 @@ if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="b" goto server
 if /i "%bs%"=="e" goto salida
 
-if "%v_video_playback%"=="none" echo é”™è¯¯çš„é€‰é¡¹
+if "%v_video_playback%"=="none" echo ´íÎóµÄÑ¡Ïî
 if "%v_video_playback%"=="none" echo.
 if "%v_video_playback%"=="none" goto op_server_video_playback
 
@@ -1912,19 +1912,19 @@ goto server
 cls
 call :logo
 echo ***************************************************************************
-echo é€‰æ‹©æœåŠ¡å™¨ç«¯å£
+echo Ñ¡Ôñ·þÎñÆ÷¶Ë¿Ú
 echo ***************************************************************************
 echo.
-echo æ³¨æ„ï¼šâ€œrg8000â€ä½äºŽ8000å’Œ8999ä¹‹é—´çš„å¼€æ”¾ç«¯å£ä¸Šï¼Œå®ƒå…è®¸åŒæ—¶æ‰“å¼€å¤šä¸ªæŽ¥å£çª—å£ã€‚è¿™æ˜¯é»˜è®¤å‚æ•°ã€‚
+echo ×¢Òâ£º¡°rg8000¡±Î»ÓÚ8000ºÍ8999Ö®¼äµÄ¿ª·Å¶Ë¿ÚÉÏ£¬ËüÔÊÐíÍ¬Ê±´ò¿ª¶à¸ö½Ó¿Ú´°¿Ú¡£ÕâÊÇÄ¬ÈÏ²ÎÊý¡£
 echo.
-echo è¾“å…¥"1"æˆ–"d"ï¼Œè®¾ç½®å˜é‡ä¸ºrg8000
-echo æˆ–è€…è¾“å…¥ä¸€ä¸ªç«¯å£å·
+echo ÊäÈë"1"»ò"d"£¬ÉèÖÃ±äÁ¿Îªrg8000
+echo »òÕßÊäÈëÒ»¸ö¶Ë¿ÚºÅ
 echo.
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"b"ï¼Œè¿”å›žæœåŠ¡å™¨èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"b"£¬·µ»Ø·þÎñÆ÷²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š"
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º"
 set "v_server_port=%bs%"
 if /i "%bs%"=="1" set "v_server_port=rg8000"
 if /i "%bs%"=="d" set "v_server_port=rg8000"
@@ -1947,19 +1947,19 @@ goto server
 cls
 call :logo
 echo ***************************************************************************
-echo é…ç½®ç•Œé¢ä¸»æœº
+echo ÅäÖÃ½çÃæÖ÷»ú
 echo ***************************************************************************
-echo Localhost. æœåŠ¡å™¨ä»…åœ¨æœ¬åœ°å¯è§ï¼ˆé»˜è®¤ï¼‰
-echo 0.0.0.0. ç•Œé¢å¯ä»¥åœ¨åŒä¸€ç½‘ç»œä¸Šå¯è§
+echo Localhost. ·þÎñÆ÷½öÔÚ±¾µØ¿É¼û£¨Ä¬ÈÏ£©
+echo 0.0.0.0. ½çÃæ¿ÉÒÔÔÚÍ¬Ò»ÍøÂçÉÏ¿É¼û
 echo.
-echo è¾“å…¥"1"æˆ–"d"ï¼Œè®¾ç½®ä¸»æœºä¸ºLOCALHOST
-echo è¾“å…¥"2"ï¼Œè®¾ç½®ä¸»æœºä¸º0.0.0.0
+echo ÊäÈë"1"»ò"d"£¬ÉèÖÃÖ÷»úÎªLOCALHOST
+echo ÊäÈë"2"£¬ÉèÖÃÖ÷»úÎª0.0.0.0
 echo.
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"b"ï¼Œè¿”å›žæœåŠ¡å™¨èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"b"£¬·µ»Ø·þÎñÆ÷²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š"
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º"
 set "v_server_host=none"
 if /i "%bs%"=="1" set "v_server_host=localhost"
 if /i "%bs%"=="2" set "v_server_host=0.0.0.0"
@@ -1969,7 +1969,7 @@ if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="b" goto server
 if /i "%bs%"=="e" goto salida
 
-if "%v_server_host%"=="none" echo é”™è¯¯çš„é€‰é¡¹
+if "%v_server_host%"=="none" echo ´íÎóµÄÑ¡Ïî
 if "%v_server_host%"=="none" echo.
 if "%v_server_host%"=="none" goto op_server_host
 
@@ -1986,19 +1986,19 @@ goto server
 cls
 call :logo
 echo ***************************************************************************
-echo éšè—æœåŠ¡å™¨çš„æŽ§åˆ¶å°
+echo Òþ²Ø·þÎñÆ÷µÄ¿ØÖÆÌ¨
 echo ***************************************************************************
-echo NoConsole=True. éšè—å‘½ä»¤æŽ§åˆ¶å°å¹¶å°†æŽ§åˆ¶å°æ‰“å°é‡å®šå‘åˆ°æœåŠ¡å™¨ï¼Œè¿™æ˜¯é»˜è®¤å‚æ•°ã€‚
-echo NoConsole=False. æ˜¾ç¤ºå‘½ä»¤æŽ§åˆ¶å°
+echo NoConsole=True. Òþ²ØÃüÁî¿ØÖÆÌ¨²¢½«¿ØÖÆÌ¨´òÓ¡ÖØ¶¨Ïòµ½·þÎñÆ÷£¬ÕâÊÇÄ¬ÈÏ²ÎÊý¡£
+echo NoConsole=False. ÏÔÊ¾ÃüÁî¿ØÖÆÌ¨
 echo.
-echo è¾“å…¥"1"æˆ–"d"ï¼Œè®¾ç½®NOCONSOLEä¸ºTRUE
-echo è¾“å…¥"2"ï¼Œè®¾ç½®NOCONSOLEä¸ºFALSE
+echo ÊäÈë"1"»ò"d"£¬ÉèÖÃNOCONSOLEÎªTRUE
+echo ÊäÈë"2"£¬ÉèÖÃNOCONSOLEÎªFALSE
 echo.
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"b"ï¼Œè¿”å›žæœåŠ¡å™¨èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"b"£¬·µ»Ø·þÎñÆ÷²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š"
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º"
 set "v_server_noconsole=none"
 if /i "%bs%"=="1" set "v_server_noconsole=true"
 if /i "%bs%"=="2" set "v_server_noconsole=false"
@@ -2008,7 +2008,7 @@ if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="b" goto server
 if /i "%bs%"=="e" goto salida
 
-if "%v_server_noconsole%"=="none" echo é”™è¯¯çš„é€‰é¡¹
+if "%v_server_noconsole%"=="none" echo ´íÎóµÄÑ¡Ïî
 if "%v_server_noconsole%"=="none" echo.
 if "%v_server_noconsole%"=="none" goto op_server_noconsole
 
@@ -2025,20 +2025,20 @@ goto server
 cls
 call :logo
 echo ***************************************************************************
-echo SSLåè®®
+echo SSLÐ­Òé
 echo ***************************************************************************
-echo å¦‚æžœä¸ºtrueï¼Œåˆ™æœåŠ¡å™¨å°†ä½¿ç”¨httpsåè®®ï¼›
-echo å¦‚æžœzconfigä¸­å­˜åœ¨æ­£ç¡®ç­¾åçš„certificate.pemå’Œkey.pemæ–‡ä»¶ï¼Œåˆ™å¯ä»¥ä½¿ç”¨è¯¥æœåŠ¡å™¨ã€‚
-echo å¦‚æžœæ‰¾ä¸åˆ°è¿™äº›æ–‡ä»¶ï¼Œsquirrelå°†å›žé€€åˆ°httpã€‚
+echo Èç¹ûÎªtrue£¬Ôò·þÎñÆ÷½«Ê¹ÓÃhttpsÐ­Òé£»
+echo Èç¹ûzconfigÖÐ´æÔÚÕýÈ·Ç©ÃûµÄcertificate.pemºÍkey.pemÎÄ¼þ£¬Ôò¿ÉÒÔÊ¹ÓÃ¸Ã·þÎñÆ÷¡£
+echo Èç¹ûÕÒ²»µ½ÕâÐ©ÎÄ¼þ£¬squirrel½«»ØÍËµ½http¡£
 echo.
-echo è¾“å…¥"1"æˆ–"D"ï¼Œè®¾ç½®SSLä¸ºOFFï¼ˆé»˜è®¤ï¼‰
-echo è¾“å…¥"2"ï¼Œè®¾ç½®SSLä¸ºON
+echo ÊäÈë"1"»ò"D"£¬ÉèÖÃSSLÎªOFF£¨Ä¬ÈÏ£©
+echo ÊäÈë"2"£¬ÉèÖÃSSLÎªON
 echo.
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"b"ï¼Œè¿”å›žæœåŠ¡å™¨èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"b"£¬·µ»Ø·þÎñÆ÷²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š"
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º"
 set "v_server_SSL=none"
 if /i "%bs%"=="1" set "v_server_SSL=false"
 if /i "%bs%"=="2" set "v_server_SSL=true"
@@ -2048,7 +2048,7 @@ if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="b" goto server
 if /i "%bs%"=="e" goto salida
 
-if "%v_server_SSL%"=="none" echo é”™è¯¯çš„é€‰é¡¹
+if "%v_server_SSL%"=="none" echo ´íÎóµÄÑ¡Ïî
 if "%v_server_SSL%"=="none" echo.
 if "%v_server_SSL%"=="none" goto op_server_ssl
 
@@ -2064,28 +2064,28 @@ goto server
 :op_server_defaults
 cls
 call :logo
-::å¯åŠ¨
+::Æô¶¯
 set v_interface="start_minimized=no"
 set v_interface="%v_interface%"
 %pycommand% "%listmanager%" -cl "%opt_server%" -ln "17" -nl "set %v_interface%"
 %pycommand% "%listmanager%" -rl "%opt_server%" -ln "17" -nl "Line in config was changed to: "
 echo.
-::è§†é¢‘æ’­æ”¾
+::ÊÓÆµ²¥·Å
 set v_video_playback="videoplayback=true"
 set v_video_playback="%v_video_playback%"
 %pycommand% "%listmanager%" -cl "%opt_server%" -ln "21" -nl "set %v_video_playback%"
 %pycommand% "%listmanager%" -rl "%opt_server%" -ln "21" -nl "Line in config was changed to: "
-::ç«¯å£
+::¶Ë¿Ú
 set v_interface_port="port=rg8000"
 set v_interface_port="%v_interface_port%"
 %pycommand% "%listmanager%" -cl "%opt_server%" -ln "29" -nl "set %v_interface_port%"
 %pycommand% "%listmanager%" -rl "%opt_server%" -ln "29" -nl "Line in config was changed to: "
-::ä¸»æœº
+::Ö÷»ú
 set v_interface_host="host=localhost"
 set v_interface_host="%v_interface_host%"
 %pycommand% "%listmanager%" -cl "%opt_server%" -ln "36" -nl "set %v_interface_host%"
 %pycommand% "%listmanager%" -rl "%opt_server%" -ln "36" -nl "Line in config was changed to: "
-::GUIæŽ§åˆ¶å°
+::GUI¿ØÖÆÌ¨
 set v_interface_noconsole="noconsole=true"
 set v_interface_noconsole="%v_interface_noconsole%"
 %pycommand% "%listmanager%" -cl "%opt_server%" -ln "42" -nl "set %v_interface_noconsole%"
@@ -2103,28 +2103,28 @@ goto sc1
 cls
 call :logo
 echo ********************************************************
-echo MTP - é…ç½®
+echo MTP - ÅäÖÃ
 echo ********************************************************
-echo è¾“å…¥"1"ï¼Œä¸ºé¢„è£…è®¾ç½®æ ¡éªŒ
-echo è¾“å…¥"2"ï¼Œè‡ªåŠ¨æ›´æ–°è®¾å¤‡æ—¶ä¼˜å…ˆé€‰æ‹©NSZ
-echo è¾“å…¥"3"ï¼Œæ¿€æ´»æ ‡å‡†åŠ å¯†å®‰è£…
-echo è¾“å…¥"4"ï¼Œåœ¨è‡ªåŠ¨æ›´æ–°ä¸­å®‰è£…æ›´æ–°æ—¶æŽ’é™¤XCI
-echo è¾“å…¥"5"ï¼ŒSDå’ŒEMMCä¹‹é—´çš„åˆ‡æ¢å–å†³äºŽå¯ç”¨ç©ºé—´
-echo è¾“å…¥"6"ï¼Œå®‰è£…å‰æ£€æŸ¥æŽ§åˆ¶å°ä¸Šçš„å›ºä»¶
-echo è¾“å…¥"7"ï¼Œå¿…è¦æ—¶ä¿®è¡¥æ–‡ä»¶çš„å¯†é’¥ç”Ÿæˆ
-echo è¾“å…¥"8"ï¼Œè¯·åœ¨å®‰è£…å‰æ£€æŸ¥æ˜¯å¦å·²å®‰è£…åŸºæœ¬å†…å®¹
-echo è¾“å…¥"9"ï¼Œåœ¨å®‰è£…å‰æ£€æŸ¥æ˜¯å¦å®‰è£…äº†æ—§çš„æ›´æ–°æˆ–DLC
-echo è¾“å…¥"10"ï¼Œåœ¨è½¬å‚¨æ—¶é€‰æ‹©æ–‡ä»¶å¤¹è®¾ç½®
-echo è¾“å…¥"11"ï¼Œåœ¨è½¬å‚¨å­˜æ¡£æ—¶ï¼Œé€‰æ‹©æ˜¯å¦æ·»åŠ titleidå’Œç‰ˆæœ¬ä¿¡æ¯
-echo è¾“å…¥"12"ï¼Œé€‰æ‹©å¦‚ä½•å°†æ–‡ä»¶æ·»åŠ åˆ°å…¬å…±é“¾æŽ¥çš„è¿œç¨‹é«˜é€Ÿç¼“å­˜
-echo è¾“å…¥"13"ï¼Œæ›´æ”¹è¡¥ä¸æ–‡ä»¶å’ŒXCIå®‰è£…è§„èŒƒ
+echo ÊäÈë"1"£¬ÎªÔ¤×°ÉèÖÃÐ£Ñé
+echo ÊäÈë"2"£¬×Ô¶¯¸üÐÂÉè±¸Ê±ÓÅÏÈÑ¡ÔñNSZ
+echo ÊäÈë"3"£¬¼¤»î±ê×¼¼ÓÃÜ°²×°
+echo ÊäÈë"4"£¬ÔÚ×Ô¶¯¸üÐÂÖÐ°²×°¸üÐÂÊ±ÅÅ³ýXCI
+echo ÊäÈë"5"£¬SDºÍEMMCÖ®¼äµÄÇÐ»»È¡¾öÓÚ¿ÉÓÃ¿Õ¼ä
+echo ÊäÈë"6"£¬°²×°Ç°¼ì²é¿ØÖÆÌ¨ÉÏµÄ¹Ì¼þ
+echo ÊäÈë"7"£¬±ØÒªÊ±ÐÞ²¹ÎÄ¼þµÄÃÜÔ¿Éú³É
+echo ÊäÈë"8"£¬ÇëÔÚ°²×°Ç°¼ì²éÊÇ·ñÒÑ°²×°»ù±¾ÄÚÈÝ
+echo ÊäÈë"9"£¬ÔÚ°²×°Ç°¼ì²éÊÇ·ñ°²×°ÁË¾ÉµÄ¸üÐÂ»òDLC
+echo ÊäÈë"10"£¬ÔÚ×ª´¢Ê±Ñ¡ÔñÎÄ¼þ¼ÐÉèÖÃ
+echo ÊäÈë"11"£¬ÔÚ×ª´¢´æµµÊ±£¬Ñ¡ÔñÊÇ·ñÌí¼ÓtitleidºÍ°æ±¾ÐÅÏ¢
+echo ÊäÈë"12"£¬Ñ¡ÔñÈçºÎ½«ÎÄ¼þÌí¼Óµ½¹«¹²Á´½ÓµÄÔ¶³Ì¸ßËÙ»º´æ
+echo ÊäÈë"13"£¬¸ü¸Ä²¹¶¡ÎÄ¼þºÍXCI°²×°¹æ·¶
 echo.
-echo è¾“å…¥"d"ï¼Œæ¢å¤MTPé»˜è®¤é…ç½®
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"d"£¬»Ö¸´MTPÄ¬ÈÏÅäÖÃ
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo .......................................................
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š"
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º"
 if /i "%bs%"=="1" goto op_MTP_verification
 if /i "%bs%"=="2" goto op_MTP_prioritize_NSZ
 if /i "%bs%"=="3" goto op_MTP_standard_crypto
@@ -2142,7 +2142,7 @@ if /i "%bs%"=="13" goto op_MTP_ptch_install_spec
 if /i "%bs%"=="d" goto op_mtp_defaults
 if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="e" goto salida
-echo é”™è¯¯çš„é€‰é¡¹
+echo ´íÎóµÄÑ¡Ïî
 echo.
 goto MTP
 
@@ -2150,21 +2150,21 @@ goto MTP
 cls
 call :logo
 echo ***************************************************************************
-echo æ¿€æ´»æ–‡ä»¶æ ¡éªŒé¢„å®‰è£…
+echo ¼¤»îÎÄ¼þÐ£ÑéÔ¤°²×°
 echo ***************************************************************************
-echo False: ç¦ç”¨æ ¡éªŒ
-echo Level 2 verification: NCAå¯è¯»ï¼Œæ²¡æœ‰æ–‡ä»¶ä¸¢å¤±ï¼Œtitlekeyæ˜¯æ­£ç¡®çš„ï¼Œå¹¶ä¸”ç­¾å1æ¥è‡ªåˆæ³•å¯éªŒè¯çš„æ¥æºã€‚ï¼ˆé»˜è®¤ï¼‰
-echo Hash: Level 2éªŒè¯ + HashéªŒè¯
+echo False: ½ûÓÃÐ£Ñé
+echo Level 2 verification: NCA¿É¶Á£¬Ã»ÓÐÎÄ¼þ¶ªÊ§£¬titlekeyÊÇÕýÈ·µÄ£¬²¢ÇÒÇ©Ãû1À´×ÔºÏ·¨¿ÉÑéÖ¤µÄÀ´Ô´¡££¨Ä¬ÈÏ£©
+echo Hash: Level 2ÑéÖ¤ + HashÑéÖ¤
 echo.
-echo è¾“å…¥"1"æˆ–"D"ï¼Œè®¾ç½®VERIFICATIONä¸ºLEVEL2
-echo è¾“å…¥"2"ï¼Œè®¾ç½®VERIFICATIONä¸ºHASH
-echo è¾“å…¥"3"ï¼Œç¦ç”¨æ ¡éªŒ
+echo ÊäÈë"1"»ò"D"£¬ÉèÖÃVERIFICATIONÎªLEVEL2
+echo ÊäÈë"2"£¬ÉèÖÃVERIFICATIONÎªHASH
+echo ÊäÈë"3"£¬½ûÓÃÐ£Ñé
 echo.
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"b"ï¼Œè¿”å›žMTPé…ç½®
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"b"£¬·µ»ØMTPÅäÖÃ
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š"
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º"
 set "v_mtp_verification=none"
 if /i "%bs%"=="1" set "v_mtp_verification=True"
 if /i "%bs%"=="2" set "v_mtp_verification=Hash"
@@ -2175,7 +2175,7 @@ if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="b" goto MTP
 if /i "%bs%"=="e" goto salida
 
-if "%v_mtp_verification%"=="none" echo é”™è¯¯çš„é€‰é¡¹
+if "%v_mtp_verification%"=="none" echo ´íÎóµÄÑ¡Ïî
 if "%v_mtp_verification%"=="none" echo.
 if "%v_mtp_verification%"=="none" goto op_MTP_verification
 
@@ -2192,17 +2192,17 @@ goto MTP
 cls
 call :logo
 echo ***************************************************************************
-echo åœ¨æ£€æŸ¥åº“ä¸­çš„æ–°æ›´æ–°å’ŒDLCæ—¶ï¼Œå°†é€‰æ‹©NSZä¼˜å…ˆäºŽNSP
+echo ÔÚ¼ì²é¿âÖÐµÄÐÂ¸üÐÂºÍDLCÊ±£¬½«Ñ¡ÔñNSZÓÅÏÈÓÚNSP
 echo ***************************************************************************
 echo.
-echo è¾“å…¥"1"æˆ–"D"ï¼Œä¼˜å…ˆé€‰æ‹©NSZ
-echo è¾“å…¥"2"ï¼Œä¸ä¼˜å…ˆé€‰æ‹©NSZ
+echo ÊäÈë"1"»ò"D"£¬ÓÅÏÈÑ¡ÔñNSZ
+echo ÊäÈë"2"£¬²»ÓÅÏÈÑ¡ÔñNSZ
 echo.
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"b"ï¼Œè¿”å›žMTPé…ç½®
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"b"£¬·µ»ØMTPÅäÖÃ
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š"
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º"
 set "v_MTP_prioritize_NSZ=none"
 if /i "%bs%"=="1" set "v_MTP_prioritize_NSZ=True"
 if /i "%bs%"=="3" set "v_MTP_prioritize_NSZ=False"
@@ -2212,7 +2212,7 @@ if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="b" goto MTP
 if /i "%bs%"=="e" goto salida
 
-if "%v_MTP_prioritize_NSZ%"=="none" echo é”™è¯¯çš„é€‰æ‹©
+if "%v_MTP_prioritize_NSZ%"=="none" echo ´íÎóµÄÑ¡Ôñ
 if "%v_MTP_prioritize_NSZ%"=="none" echo.
 if "%v_MTP_prioritize_NSZ%"=="none" goto op_MTP_prioritize_NSZ
 
@@ -2229,17 +2229,17 @@ goto MTP
 cls
 call :logo
 echo ***************************************************************************
-echo ä»Žè‡ªåŠ¨æ›´æ–°æ£€æŸ¥ä¸­æŽ’é™¤XCIä»¥èŽ·å–æ–°å†…å®¹
+echo ´Ó×Ô¶¯¸üÐÂ¼ì²éÖÐÅÅ³ýXCIÒÔ»ñÈ¡ÐÂÄÚÈÝ
 echo ***************************************************************************
 echo.
-echo è¾“å…¥"1"æˆ–"D"ï¼Œä»Žè‡ªåŠ¨æ›´æ–°æ£€æŸ¥ä¸­æŽ’é™¤XCI
-echo è¾“å…¥"2"ï¼Œä¸ä»Žè‡ªåŠ¨æ›´æ–°æ£€æŸ¥ä¸­æŽ’é™¤XCI
+echo ÊäÈë"1"»ò"D"£¬´Ó×Ô¶¯¸üÐÂ¼ì²éÖÐÅÅ³ýXCI
+echo ÊäÈë"2"£¬²»´Ó×Ô¶¯¸üÐÂ¼ì²éÖÐÅÅ³ýXCI
 echo.
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"b"ï¼Œè¿”å›žMTPé…ç½®
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"b"£¬·µ»ØMTPÅäÖÃ
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š"
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º"
 set "v_MTP_exclude_xci_autinst=none"
 if /i "%bs%"=="1" set "v_MTP_exclude_xci_autinst=True"
 if /i "%bs%"=="2" set "v_MTP_exclude_xci_autinst=False"
@@ -2249,7 +2249,7 @@ if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="b" goto MTP
 if /i "%bs%"=="e" goto salida
 
-if "%v_MTP_exclude_xci_autinst%"=="none" echo é”™è¯¯çš„é€‰é¡¹
+if "%v_MTP_exclude_xci_autinst%"=="none" echo ´íÎóµÄÑ¡Ïî
 if "%v_MTP_exclude_xci_autinst%"=="none" echo.
 if "%v_MTP_exclude_xci_autinst%"=="none" goto op_MTP_exclude_xci_autinst
 
@@ -2266,18 +2266,18 @@ goto MTP
 cls
 call :logo
 echo ***************************************************************************
-echo æ ¹æ®è®¾å¤‡ä¸Šçš„ç©ºé—´è‡ªåŠ¨æ›´æ”¹ä»‹è´¨
+echo ¸ù¾ÝÉè±¸ÉÏµÄ¿Õ¼ä×Ô¶¯¸ü¸Ä½éÖÊ
 echo ***************************************************************************
-echo å½“æ‰€é€‰ä»‹è´¨ä¸­çš„ç©ºé—´ä¸è¶³æ—¶ï¼Œå¦‚æžœSDå’ŒEMMCä¹‹é—´ä¸ºtrueï¼Œåˆ™æ›´æ”¹ã€‚å¦‚æžœä¸ºfalseï¼Œåˆ™è·³è¿‡å®‰è£…ã€‚
+echo µ±ËùÑ¡½éÖÊÖÐµÄ¿Õ¼ä²»×ãÊ±£¬Èç¹ûSDºÍEMMCÖ®¼äÎªtrue£¬Ôò¸ü¸Ä¡£Èç¹ûÎªfalse£¬ÔòÌø¹ý°²×°¡£
 echo.
-echo è¾“å…¥"1"æˆ–"D"ï¼Œæ ¹æ®è®¾å¤‡ä¸Šçš„ç©ºé—´æ›´æ”¹ä»‹è´¨
-echo è¾“å…¥"2"ï¼Œä¸æ ¹æ®è®¾å¤‡ä¸Šçš„ç©ºé—´æ›´æ”¹ä»‹è´¨
+echo ÊäÈë"1"»ò"D"£¬¸ù¾ÝÉè±¸ÉÏµÄ¿Õ¼ä¸ü¸Ä½éÖÊ
+echo ÊäÈë"2"£¬²»¸ù¾ÝÉè±¸ÉÏµÄ¿Õ¼ä¸ü¸Ä½éÖÊ
 echo.
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"b"ï¼Œè¿”å›žMTPé…ç½®
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"b"£¬·µ»ØMTPÅäÖÃ
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š"
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º"
 set "v_MTP_aut_ch_medium=none"
 if /i "%bs%"=="1" set "v_MTP_aut_ch_medium=True"
 if /i "%bs%"=="2" set "v_MTP_aut_ch_medium=False"
@@ -2287,7 +2287,7 @@ if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="b" goto MTP
 if /i "%bs%"=="e" goto salida
 
-if "%v_MTP_aut_ch_medium%"=="none" echo é”™è¯¯çš„é€‰é¡¹
+if "%v_MTP_aut_ch_medium%"=="none" echo ´íÎóµÄÑ¡Ïî
 if "%v_MTP_aut_ch_medium%"=="none" echo.
 if "%v_MTP_aut_ch_medium%"=="none" goto op_MTP_aut_ch_medium
 
@@ -2304,17 +2304,17 @@ goto MTP
 cls
 call :logo
 echo ***************************************************************************
-echo æ£€æŸ¥è®¾å¤‡ä¸Šå’Œæ–‡ä»¶ä¸Šçš„å›ºä»¶
+echo ¼ì²éÉè±¸ÉÏºÍÎÄ¼þÉÏµÄ¹Ì¼þ
 echo ***************************************************************************
 echo.
-echo è¾“å…¥"1"æˆ–"D"ï¼Œä¸æ£€æŸ¥å›ºä»¶ï¼ˆé»˜è®¤ï¼‰
-echo è¾“å…¥"2"ï¼Œæ£€æŸ¥å›ºä»¶
+echo ÊäÈë"1"»ò"D"£¬²»¼ì²é¹Ì¼þ£¨Ä¬ÈÏ£©
+echo ÊäÈë"2"£¬¼ì²é¹Ì¼þ
 echo.
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"b"ï¼Œè¿”å›žMTPé…ç½®
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"b"£¬·µ»ØMTPÅäÖÃ
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š"
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º"
 set "v_MTP_chk_fw=none"
 if /i "%bs%"=="1" set "v_MTP_chk_fw=False"
 if /i "%bs%"=="2" set "v_MTP_chk_fw=True"
@@ -2324,7 +2324,7 @@ if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="b" goto MTP
 if /i "%bs%"=="e" goto salida
 
-if "%v_MTP_chk_fw%"=="none" echo é”™è¯¯çš„é€‰é¡¹
+if "%v_MTP_chk_fw%"=="none" echo ´íÎóµÄÑ¡Ïî
 if "%v_MTP_chk_fw%"=="none" echo.
 if "%v_MTP_chk_fw%"=="none" goto op_MTP_chk_fw
 
@@ -2341,19 +2341,19 @@ goto MTP
 cls
 call :logo
 echo ***************************************************************************
-echo æ£€æŸ¥è®¾å¤‡ä¸Šå’Œæ–‡ä»¶ä¸Šçš„å›ºä»¶
+echo ¼ì²éÉè±¸ÉÏºÍÎÄ¼þÉÏµÄ¹Ì¼þ
 echo ***************************************************************************
-echo åœ¨æŽ§åˆ¶å°ä¸Šæ£€æŸ¥å›ºä»¶å’Œæ–‡ä»¶åŽï¼Œhteç¨‹åºå°†åŸºäºŽæ­¤é€‰é¡¹å†³å®šæ˜¯å¦åº”ä¿®è¡¥æˆ–è·³è¿‡æ–‡ä»¶ã€‚
-echo æ³¨æ„ï¼šç›®å‰ï¼Œåœ¨é€šè¿‡MTPæŽ¨é€æ–‡ä»¶ä¹‹å‰ï¼Œéœ€è¦å…ˆç”Ÿæˆä¸€ä¸ªæ–°æ–‡ä»¶ï¼Œå› ä¸ºå°šæœªåœ¨mtpæŒ‚é’©ä¸Šå®žçŽ°åŠ¨æ€ä¿®è¡¥æµçš„åŠŸèƒ½ã€‚
+echo ÔÚ¿ØÖÆÌ¨ÉÏ¼ì²é¹Ì¼þºÍÎÄ¼þºó£¬hte³ÌÐò½«»ùÓÚ´ËÑ¡Ïî¾ö¶¨ÊÇ·ñÓ¦ÐÞ²¹»òÌø¹ýÎÄ¼þ¡£
+echo ×¢Òâ£ºÄ¿Ç°£¬ÔÚÍ¨¹ýMTPÍÆËÍÎÄ¼þÖ®Ç°£¬ÐèÒªÏÈÉú³ÉÒ»¸öÐÂÎÄ¼þ£¬ÒòÎªÉÐÎ´ÔÚmtp¹Ò¹³ÉÏÊµÏÖ¶¯Ì¬ÐÞ²¹Á÷µÄ¹¦ÄÜ¡£
 echo.
-echo è¾“å…¥"1"æˆ–"D"ï¼Œä¸å¯¹æ–‡ä»¶æ‰“è¡¥ä¸ï¼ˆé»˜è®¤ï¼‰
-echo è¾“å…¥"2"ï¼Œå¯¹æ–‡ä»¶æ‰“è¡¥ä¸
+echo ÊäÈë"1"»ò"D"£¬²»¶ÔÎÄ¼þ´ò²¹¶¡£¨Ä¬ÈÏ£©
+echo ÊäÈë"2"£¬¶ÔÎÄ¼þ´ò²¹¶¡
 echo.
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"b"ï¼Œè¿”å›žMTPé…ç½®
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"b"£¬·µ»ØMTPÅäÖÃ
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š"
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º"
 set "v_MTP_prepatch_kg=none"
 if /i "%bs%"=="1" set "v_MTP_prepatch_kg=False"
 if /i "%bs%"=="2" set "v_MTP_prepatch_kg=True"
@@ -2363,7 +2363,7 @@ if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="b" goto MTP
 if /i "%bs%"=="e" goto salida
 
-if "%v_MTP_prepatch_kg%"=="none" echo é”™è¯¯çš„é€‰é¡¹
+if "%v_MTP_prepatch_kg%"=="none" echo ´íÎóµÄÑ¡Ïî
 if "%v_MTP_prepatch_kg%"=="none" echo.
 if "%v_MTP_prepatch_kg%"=="none" goto op_MTP_prepatch_kg
 
@@ -2380,18 +2380,18 @@ goto MTP
 cls
 call :logo
 echo ***************************************************************************
-echo æ£€æŸ¥æ˜¯å¦å·²åœ¨è®¾å¤‡ä¸­å®‰è£…åŸºæœ¬æ¸¸æˆ
+echo ¼ì²éÊÇ·ñÒÑÔÚÉè±¸ÖÐ°²×°»ù±¾ÓÎÏ·
 echo ***************************************************************************
-echo å¦‚æžœè®¾å¤‡ä¸­è£…æœ‰åŸºæœ¬æ¸¸æˆï¼Œåˆ™å¦‚æžœæ¿€æ´»ï¼Œå°†è·³è¿‡å®‰è£…ã€‚å¦‚æžœå–æ¶ˆæ¿€æ´»ï¼Œå®‰è£…å°†è¢«è¦†ç›–ã€‚
+echo Èç¹ûÉè±¸ÖÐ×°ÓÐ»ù±¾ÓÎÏ·£¬ÔòÈç¹û¼¤»î£¬½«Ìø¹ý°²×°¡£Èç¹ûÈ¡Ïû¼¤»î£¬°²×°½«±»¸²¸Ç¡£
 echo.
-echo è¾“å…¥"1"æˆ–"D"ï¼Œå·²å®‰è£…æ£€æŸ¥å’Œè·³è¿‡æ¸¸æˆï¼ˆé»˜è®¤ï¼‰
-echo è¾“å…¥"2"ï¼Œä¸æ£€æŸ¥å¹¶è·³è¿‡å·²å®‰è£…çš„æ¸¸æˆ
+echo ÊäÈë"1"»ò"D"£¬ÒÑ°²×°¼ì²éºÍÌø¹ýÓÎÏ·£¨Ä¬ÈÏ£©
+echo ÊäÈë"2"£¬²»¼ì²é²¢Ìø¹ýÒÑ°²×°µÄÓÎÏ·
 echo.
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"b"ï¼Œè¿”å›žMTPé…ç½®
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"b"£¬·µ»ØMTPÅäÖÃ
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š"
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º"
 set "v_MTP_prechk_Base=none"
 if /i "%bs%"=="1" set "v_MTP_prechk_Base=True"
 if /i "%bs%"=="2" set "v_MTP_prechk_Base=False"
@@ -2401,7 +2401,7 @@ if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="b" goto MTP
 if /i "%bs%"=="e" goto salida
 
-if "%v_MTP_prechk_Base%"=="none" echo é”™è¯¯çš„é€‰é¡¹
+if "%v_MTP_prechk_Base%"=="none" echo ´íÎóµÄÑ¡Ïî
 if "%v_MTP_prechk_Base%"=="none" echo.
 if "%v_MTP_prechk_Base%"=="none" goto op_MTP_prechk_Base
 
@@ -2418,20 +2418,20 @@ goto MTP
 cls
 call :logo
 echo ***************************************************************************
-echo æ£€æŸ¥æ›´æ–°æ˜¯å¦å·²å®‰è£…åœ¨è®¾å¤‡ä¸­
+echo ¼ì²é¸üÐÂÊÇ·ñÒÑ°²×°ÔÚÉè±¸ÖÐ
 echo ***************************************************************************
-echo å¦‚æžœæ¿€æ´»è¯¥é€‰é¡¹ï¼Œåˆ™æ£€æŸ¥è®¾å¤‡ä¸­æ˜¯å¦å­˜åœ¨æ›´æ–°æˆ–dlcï¼ˆå¦‚æžœç‰ˆæœ¬ä½ŽäºŽå‘è¡Œç‰ˆæœ¬ï¼‰ï¼Œ
-echo åˆ™åˆ é™¤æ—§çš„é¢„å®‰è£…ä»¥åœ¨å®‰è£…è¿‡ç¨‹ä¹‹å‰å›žæ”¶ç©ºé—´ï¼ˆå¦‚æžœè®¾å¤‡ä¸­çš„ç‰ˆæœ¬ç­‰äºŽæˆ–æ›´é«˜ï¼Œåˆ™è·³è¿‡ï¼‰ã€‚
-echo å¦‚æžœåœç”¨ï¼Œåˆ™å…è®¸å®‰è£…è®¢å•æ›´æ–°æˆ–dlcä»¥åŠè¦†ç›–å…·æœ‰ç›¸åŒç‰ˆæœ¬å·çš„æ›´æ–°ã€‚
+echo Èç¹û¼¤»î¸ÃÑ¡Ïî£¬Ôò¼ì²éÉè±¸ÖÐÊÇ·ñ´æÔÚ¸üÐÂ»òdlc£¨Èç¹û°æ±¾µÍÓÚ·¢ÐÐ°æ±¾£©£¬
+echo ÔòÉ¾³ý¾ÉµÄÔ¤°²×°ÒÔÔÚ°²×°¹ý³ÌÖ®Ç°»ØÊÕ¿Õ¼ä£¨Èç¹ûÉè±¸ÖÐµÄ°æ±¾µÈÓÚ»ò¸ü¸ß£¬ÔòÌø¹ý£©¡£
+echo Èç¹ûÍ£ÓÃ£¬ÔòÔÊÐí°²×°¶©µ¥¸üÐÂ»òdlcÒÔ¼°¸²¸Ç¾ßÓÐÏàÍ¬°æ±¾ºÅµÄ¸üÐÂ¡£
 echo.
-echo è¾“å…¥"1"æˆ–"D"ï¼Œä¸æ£€æŸ¥å’Œè·³è¿‡æ›´æ–°æˆ–å·²ç»å®‰è£…çš„dlcï¼ˆé»˜è®¤ï¼‰
-echo è¾“å…¥"2"ï¼Œæ£€æŸ¥å’Œè·³è¿‡æ›´æ–°æˆ–å·²ç»å®‰è£…çš„dlc
+echo ÊäÈë"1"»ò"D"£¬²»¼ì²éºÍÌø¹ý¸üÐÂ»òÒÑ¾­°²×°µÄdlc£¨Ä¬ÈÏ£©
+echo ÊäÈë"2"£¬¼ì²éºÍÌø¹ý¸üÐÂ»òÒÑ¾­°²×°µÄdlc
 echo.
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"b"ï¼Œè¿”å›žMTPé…ç½®
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"b"£¬·µ»ØMTPÅäÖÃ
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š"
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º"
 set "v_MTP_prechk_Upd=none"
 if /i "%bs%"=="1" set "v_MTP_prechk_Upd=False"
 if /i "%bs%"=="2" set "v_MTP_prechk_Upd=True"
@@ -2441,7 +2441,7 @@ if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="b" goto MTP
 if /i "%bs%"=="e" goto salida
 
-if "%v_MTP_prechk_Upd%"=="none" echo é”™è¯¯çš„é€‰é¡¹
+if "%v_MTP_prechk_Upd%"=="none" echo ´íÎóµÄÑ¡Ïî
 if "%v_MTP_prechk_Upd%"=="none" echo.
 if "%v_MTP_prechk_Upd%"=="none" goto op_MTP_prechk_Upd
 
@@ -2458,17 +2458,17 @@ goto MTP
 cls
 call :logo
 echo ***************************************************************************
-echo åœ¨æ–‡ä»¶å¤¹æˆ–ç›´æŽ¥ä¿å­˜æ¸¸æˆè½¬å‚¨
+echo ÔÚÎÄ¼þ¼Ð»òÖ±½Ó±£´æÓÎÏ·×ª´¢
 echo ***************************************************************************
 echo.
-echo è¾“å…¥"1"æˆ–"D"ï¼Œå°†æ¸¸æˆä¿å­˜åœ¨æ–‡ä»¶å¤¹ä¸­ï¼ˆé»˜è®¤ï¼‰
-echo è¾“å…¥"2"ï¼Œç›´æŽ¥ä¿å­˜æ¸¸æˆ
+echo ÊäÈë"1"»ò"D"£¬½«ÓÎÏ·±£´æÔÚÎÄ¼þ¼ÐÖÐ£¨Ä¬ÈÏ£©
+echo ÊäÈë"2"£¬Ö±½Ó±£´æÓÎÏ·
 echo.
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"b"ï¼Œè¿”å›žMTPé…ç½®
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"b"£¬·µ»ØMTPÅäÖÃ
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š"
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º"
 set "v_MTP_saves_Inline=none"
 if /i "%bs%"=="1" set "v_MTP_saves_Inline=False"
 if /i "%bs%"=="2" set "v_MTP_saves_Inline=True"
@@ -2478,7 +2478,7 @@ if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="b" goto MTP
 if /i "%bs%"=="e" goto salida
 
-if "%v_MTP_saves_Inline%"=="none" echo é”™è¯¯çš„é€‰æ‹©
+if "%v_MTP_saves_Inline%"=="none" echo ´íÎóµÄÑ¡Ôñ
 if "%v_MTP_saves_Inline%"=="none" echo.
 if "%v_MTP_saves_Inline%"=="none" goto op_MTP_saves_Inline
 
@@ -2495,18 +2495,18 @@ goto MTP
 cls
 call :logo
 echo ***************************************************************************
-echo æ·»åŠ æ ‡é¢˜å’Œç‰ˆæœ¬æ ‡ç­¾ä»¥ä¿å­˜æ¸¸æˆ
+echo Ìí¼Ó±êÌâºÍ°æ±¾±êÇ©ÒÔ±£´æÓÎÏ·
 echo ***************************************************************************
-echo è¿™æ˜¯ä¸ºäº†åœ¨è¿›è¡Œä¿å­˜æ—¶çŸ¥é“è®¾å¤‡ä¸Šçš„æ¸¸æˆç‰ˆæœ¬ï¼Œä»¥é¿å…å…¼å®¹æ€§é—®é¢˜ã€‚
+echo ÕâÊÇÎªÁËÔÚ½øÐÐ±£´æÊ±ÖªµÀÉè±¸ÉÏµÄÓÎÏ·°æ±¾£¬ÒÔ±ÜÃâ¼æÈÝÐÔÎÊÌâ¡£
 echo.
-echo è¾“å…¥"1"æˆ–"D"ï¼Œå°†titleidå’Œç‰ˆæœ¬æ ‡ç­¾æ·»åŠ åˆ°æ–‡ä»¶ä¸­ï¼ˆé»˜è®¤ï¼‰
-echo è¾“å…¥"2"ï¼Œä¸å°†titleidå’Œç‰ˆæœ¬æ ‡ç­¾æ·»åŠ åˆ°æ–‡ä»¶ä¸­
+echo ÊäÈë"1"»ò"D"£¬½«titleidºÍ°æ±¾±êÇ©Ìí¼Óµ½ÎÄ¼þÖÐ£¨Ä¬ÈÏ£©
+echo ÊäÈë"2"£¬²»½«titleidºÍ°æ±¾±êÇ©Ìí¼Óµ½ÎÄ¼þÖÐ
 echo.
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"b"ï¼Œè¿”å›žMTPé…ç½®
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"b"£¬·µ»ØMTPÅäÖÃ
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š"
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º"
 set "v_MTP_saves_AddTIDandVer=none"
 if /i "%bs%"=="1" set "v_MTP_saves_AddTIDandVer=False"
 if /i "%bs%"=="2" set "v_MTP_saves_AddTIDandVer=True"
@@ -2516,7 +2516,7 @@ if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="b" goto MTP
 if /i "%bs%"=="e" goto salida
 
-if "%v_MTP_saves_AddTIDandVer%"=="none" echo é”™è¯¯çš„é€‰é¡¹
+if "%v_MTP_saves_AddTIDandVer%"=="none" echo ´íÎóµÄÑ¡Ïî
 if "%v_MTP_saves_AddTIDandVer%"=="none" echo.
 if "%v_MTP_saves_AddTIDandVer%"=="none" goto op_MTP_saves_AddTIDandVer
 
@@ -2533,21 +2533,21 @@ goto MTP
 cls
 call :logo
 echo ***************************************************************************
-echo æ·»åŠ æ ‡é¢˜å’Œç‰ˆæœ¬æ ‡ç­¾ä»¥ä¿å­˜æ¸¸æˆ
+echo Ìí¼Ó±êÌâºÍ°æ±¾±êÇ©ÒÔ±£´æÓÎÏ·
 echo ***************************************************************************
-echo ä»ŽGoogleäº‘ç«¯ç¡¬ç›˜å…¬å…±é“¾æŽ¥å®‰è£…æˆ–è½¬ç§»æ¸¸æˆæ—¶ï¼ŒNSCBéœ€è¦åœ¨Googleäº‘ç«¯ç¡¬ç›˜å¸æˆ·ä¸­è®¾ç½®ä»¤ç‰Œèº«ä»½éªŒè¯å’Œç¼“å­˜æ–‡ä»¶å¤¹è®¾ç½®ï¼Œä»¥å®žçŽ°æ›´å¥½çš„å…¼å®¹æ€§ã€‚
+echo ´ÓGoogleÔÆ¶ËÓ²ÅÌ¹«¹²Á´½Ó°²×°»ò×ªÒÆÓÎÏ·Ê±£¬NSCBÐèÒªÔÚGoogleÔÆ¶ËÓ²ÅÌÕÊ»§ÖÐÉèÖÃÁîÅÆÉí·ÝÑéÖ¤ºÍ»º´æÎÄ¼þ¼ÐÉèÖÃ£¬ÒÔÊµÏÖ¸üºÃµÄ¼æÈÝÐÔ¡£
 echo.
-echo å¤åˆ¶æ¸¸æˆä»¥èŽ·å¾—æ‰€æœ‰æƒåˆ°ç¼“å­˜æ–‡ä»¶å¤¹ï¼Œå¦‚æžœå¯ç”¨äº†TRUECOPYï¼Œä¹Ÿå¯ä»¥é¿å…é…é¢é—®é¢˜ã€‚
-echo å¦‚æžœç¦ç”¨TRUECOPYï¼Œåˆ™å°†æ¸¸æˆä½œä¸ºç¬¦å·é“¾æŽ¥æ·»åŠ åˆ°ç¼“å­˜æ–‡ä»¶å¤¹ä¸­ï¼Œè¿™å°†å…è®¸ä½¿ç”¨authä»¤ç‰Œè°ƒç”¨æ–‡ä»¶ï¼Œä½†æ˜¯å¦‚æžœå…±äº«é“¾æŽ¥ï¼Œåˆ™ä¼šå‡ºçŽ°é…é¢é—®é¢˜ã€‚
+echo ¸´ÖÆÓÎÏ·ÒÔ»ñµÃËùÓÐÈ¨µ½»º´æÎÄ¼þ¼Ð£¬Èç¹ûÆôÓÃÁËTRUECOPY£¬Ò²¿ÉÒÔ±ÜÃâÅä¶îÎÊÌâ¡£
+echo Èç¹û½ûÓÃTRUECOPY£¬Ôò½«ÓÎÏ·×÷Îª·ûºÅÁ´½ÓÌí¼Óµ½»º´æÎÄ¼þ¼ÐÖÐ£¬Õâ½«ÔÊÐíÊ¹ÓÃauthÁîÅÆµ÷ÓÃÎÄ¼þ£¬µ«ÊÇÈç¹û¹²ÏíÁ´½Ó£¬Ôò»á³öÏÖÅä¶îÎÊÌâ¡£
 echo.
-echo è¾“å…¥"1"æˆ–"D"ï¼Œæ¿€æ´»TRUECOPYï¼ˆé»˜è®¤ï¼‰
-echo è¾“å…¥"2"ï¼Œç¦ç”¨TRUECOPY
+echo ÊäÈë"1"»ò"D"£¬¼¤»îTRUECOPY£¨Ä¬ÈÏ£©
+echo ÊäÈë"2"£¬½ûÓÃTRUECOPY
 echo.
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"b"ï¼Œè¿”å›žMTPé…ç½®
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"b"£¬·µ»ØMTPÅäÖÃ
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š"
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º"
 set "v_op_MTP_pdrive_truecopy=none"
 if /i "%bs%"=="1" set "v_op_MTP_pdrive_truecopy=True"
 if /i "%bs%"=="2" set "v_op_MTP_pdrive_truecopy=False"
@@ -2557,7 +2557,7 @@ if /i "%bs%"=="0" goto sc1
 if /i "%bs%"=="b" goto MTP
 if /i "%bs%"=="e" goto salida
 
-if "%v_op_MTP_pdrive_truecopy%"=="none" echo é”™è¯¯çš„é€‰é¡¹
+if "%v_op_MTP_pdrive_truecopy%"=="none" echo ´íÎóµÄÑ¡Ïî
 if "%v_op_MTP_pdrive_truecopy%"=="none" echo.
 if "%v_op_MTP_pdrive_truecopy%"=="none" goto op_MTP_pdrive_truecopy
 
@@ -2574,18 +2574,18 @@ goto MTP
 cls
 call :logo
 echo ***************************************************************************
-echo ä»¥æ ‡å‡†åŠ å¯†æ–¹å¼å®‰è£…æ‰€æœ‰NSPæ–‡ä»¶
+echo ÒÔ±ê×¼¼ÓÃÜ·½Ê½°²×°ËùÓÐNSPÎÄ¼þ
 echo ***************************************************************************
-echo è¿™æ„å‘³ç€å°†å®‰è£…æ²¡æœ‰ç¥¨è¯å’Œå† åæƒçš„NSPæ–‡ä»¶ï¼Œä»¥ä½¿æŽ§åˆ¶å°ä¸­çš„ç¥¨è¯ä¿æŒå¹²å‡€ã€‚
+echo ÕâÒâÎ¶×Å½«°²×°Ã»ÓÐÆ±Ö¤ºÍ¹ÚÃûÈ¨µÄNSPÎÄ¼þ£¬ÒÔÊ¹¿ØÖÆÌ¨ÖÐµÄÆ±Ö¤±£³Ö¸É¾»¡£
 echo.
-echo è¾“å…¥"1"æˆ–"D"ï¼Œç”¨å† åæƒå®‰è£…ï¼ˆé»˜è®¤ï¼‰
-echo è¾“å…¥"2"ï¼Œä»¥æ ‡å‡†åŠ å¯†æ–¹å¼å®‰è£…
+echo ÊäÈë"1"»ò"D"£¬ÓÃ¹ÚÃûÈ¨°²×°£¨Ä¬ÈÏ£©
+echo ÊäÈë"2"£¬ÒÔ±ê×¼¼ÓÃÜ·½Ê½°²×°
 echo.
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"b"ï¼Œè¿”å›žMTPèœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"b"£¬·µ»ØMTP²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š"
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º"
 set "v_MTP_standard_crypto=none"
 if /i "%bs%"=="1" set "v_MTP_standard_crypto=False"
 if /i "%bs%"=="2" set "v_MTP_standard_crypto=True"
@@ -2612,19 +2612,19 @@ goto MTP
 cls
 call :logo
 echo ***************************************************************************
-echo ä¿®è¡¥NSPå’ŒXCIçš„å®‰è£…è§„èŒƒ
+echo ÐÞ²¹NSPºÍXCIµÄ°²×°¹æ·¶
 echo ***************************************************************************
-echo æ—§ç‰ˆå°†åˆ›å»ºä¿®è¡¥æ–‡ä»¶æˆ–è½¬æ¢åŽçš„æ–‡ä»¶ï¼Œç„¶åŽå°†å…¶ä¼ è¾“åˆ°æŽ§åˆ¶å°ã€‚
-echo Spec1åˆ›å»ºä¸€ä¸ªè¡¥ä¸æ¥åŠ¨æ€ä¿®è¡¥æµã€‚Spec1å°†å¤šæ–‡ä»¶è§†ä¸ºè§¦å‘å¤šä¸ªè¿žç»­å®‰è£…çš„ä¸åŒæ–‡ä»¶ã€‚
+echo ¾É°æ½«´´½¨ÐÞ²¹ÎÄ¼þ»ò×ª»»ºóµÄÎÄ¼þ£¬È»ºó½«Æä´«Êäµ½¿ØÖÆÌ¨¡£
+echo Spec1´´½¨Ò»¸ö²¹¶¡À´¶¯Ì¬ÐÞ²¹Á÷¡£Spec1½«¶àÎÄ¼þÊÓÎª´¥·¢¶à¸öÁ¬Ðø°²×°µÄ²»Í¬ÎÄ¼þ¡£
 echo.
-echo è¾“å…¥"1"æˆ–"D"ï¼Œä½¿ç”¨SPECIFICATION1ï¼ˆé»˜è®¤ï¼‰
-echo è¾“å…¥"2"ï¼Œä½¿ç”¨ä¼ ç»Ÿè§„èŒƒ
+echo ÊäÈë"1"»ò"D"£¬Ê¹ÓÃSPECIFICATION1£¨Ä¬ÈÏ£©
+echo ÊäÈë"2"£¬Ê¹ÓÃ´«Í³¹æ·¶
 echo.
-echo è¾“å…¥"0"ï¼Œè¿”å›žé…ç½®èœå•
-echo è¾“å…¥"b"ï¼Œè¿”å›žMTPèœå•
-echo è¾“å…¥"e"ï¼Œè¿”å›žä¸»ç¨‹åº
+echo ÊäÈë"0"£¬·µ»ØÅäÖÃ²Ëµ¥
+echo ÊäÈë"b"£¬·µ»ØMTP²Ëµ¥
+echo ÊäÈë"e"£¬·µ»ØÖ÷³ÌÐò
 echo.
-set /p bs="è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š"
+set /p bs="ÊäÈëÄúµÄÑ¡Ôñ£º"
 set "v_MTP_ptch_install_spec=none"
 if /i "%bs%"=="1" set "v_MTP_ptch_install_spec=spec1"
 if /i "%bs%"=="2" set "v_MTP_ptch_install_spec=legacy"

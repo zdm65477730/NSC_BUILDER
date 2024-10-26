@@ -6,12 +6,12 @@ set "ofile_name=%bat_name%_options.cmd"
 Title NSC_Builder v1.01-b -- Profile: %ofile_name% -- by JulesOnTheRoad
 set "list_folder=%prog_dir%lists"
 ::-----------------------------------------------------
-::ç¼–è¾‘æ­¤å˜é‡ä»¥é“¾æ¥å…¶ä»–é€‰é¡¹æ–‡ä»¶
+::±à¼­´Ë±äÁ¿ÒÔÁ´½ÓÆäËûÑ¡ÏîÎÄ¼ş
 ::-----------------------------------------------------
 set "op_file=%~dp0zconfig\%ofile_name%"
 
 ::-----------------------------------------------------
-::ä»é€‰é¡¹æ–‡ä»¶å¤åˆ¶é€‰é¡¹
+::´ÓÑ¡ÏîÎÄ¼ş¸´ÖÆÑ¡Ïî
 ::-----------------------------------------------------
 setlocal
 if exist "%op_file%" call "%op_file%"
@@ -27,20 +27,20 @@ set "port=%port%"
 set "host=%host%"
 set "noconsole=%noconsole%"
 set "pycommandw=%pycommandw%"
-REM ç¨‹åº
+REM ³ÌĞò
 set "squirrel=%nut%"
-REM æ–‡ä»¶
+REM ÎÄ¼ş
 set "dec_keys=%dec_keys%"
 )
 ::-----------------------------------------------------
-::è®¾ç½®ç»å¯¹è·¯å¾„
+::ÉèÖÃ¾ø¶ÔÂ·¾¶
 ::-----------------------------------------------------
-::ç¨‹åºå®Œæ•´è·¯å¾„
+::³ÌĞòÍêÕûÂ·¾¶
 if exist "%~dp0%squirrel%" set "squirrel=%~dp0%squirrel%"
 
-::é‡è¦æ–‡ä»¶å®Œæ•´è·¯å¾„
+::ÖØÒªÎÄ¼şÍêÕûÂ·¾¶
 if exist "%~dp0%dec_keys%"  set "dec_keys=%~dp0%dec_keys%"
-::è¾“å‡ºæ–‡ä»¶å¤¹
+::Êä³öÎÄ¼ş¼Ğ
 CD /d "%~dp0"
 if not exist "%dec_keys%" ( goto missing_things )
 
@@ -62,16 +62,16 @@ goto salida
 
 :missing_things
 echo ....................................
-echo æ‚¨ç¼ºå°‘ä»¥ä¸‹å†…å®¹ï¼š
+echo ÄúÈ±ÉÙÒÔÏÂÄÚÈİ£º
 echo ....................................
 echo.
-::æ–‡ä»¶å®Œæ•´è·¯å¾„
-if not exist "%dec_keys%" echo - "keys.txt"æ–‡ä»¶æŒ‡å‘ä¸æ­£ç¡®æˆ–è€…ä¸¢å¤±ã€‚
+::ÎÄ¼şÍêÕûÂ·¾¶
+if not exist "%dec_keys%" echo - "keys.txt"ÎÄ¼şÖ¸Ïò²»ÕıÈ·»òÕß¶ªÊ§¡£
 echo.
 pause
-echo ç¨‹åºå³å°†é€€å‡º
+echo ³ÌĞò¼´½«ÍË³ö
 PING -n 2 127.0.0.1 >NUL 2>&1
 goto salida
 :salida
-REM æš‚åœ
+REM ÔİÍ£
 exit

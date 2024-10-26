@@ -7,8 +7,8 @@ rem color 1F
 ::--------------------------------------------------------------
 set "nut=ztools\squirrel.py"
 ::python命令
-set "pycommand=py -3"
-set "pycommandw=pyw -3"
+set "pycommand=python3"
+set "pycommandw=pythonw3"
 ::--------------------------------------------------------------
 ::服务器选项
 ::--------------------------------------------------------------
