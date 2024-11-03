@@ -83,3 +83,4 @@ py/ztools/dev_keys.txt
 *.rar
 py/ztools/lib/Install_server.py
 py/ztools/lib/plaintext.py
+py/Regional/ZH/ztools/keys.txt
