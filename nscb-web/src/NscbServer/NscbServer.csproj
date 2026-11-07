@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <!-- GUI subsystem: no console window on double-click; logging goes to file + the in-app Logs view. -->
+    <OutputType>WinExe</OutputType>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>true</SelfContained>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+    <!-- Serve wwwroot from embedded resources → single self-contained exe (no side-by-side wwwroot). -->
+    <StaticWebAssetsEnabled>false</StaticWebAssetsEnabled>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NscbCore\NscbCore.csproj" />
+    <ProjectReference Include="..\NscbJobs\NscbJobs.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Do not copy wwwroot next to the exe (it is embedded below). -->
+    <Content Update="wwwroot\**\*" CopyToOutputDirectory="Never" CopyToPublishDirectory="Never" />
+    <EmbeddedResource Include="wwwroot\**\*" LogicalName="NscbServer.wwwroot.%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.4314.35" />
+  </ItemGroup>
+
+</Project>

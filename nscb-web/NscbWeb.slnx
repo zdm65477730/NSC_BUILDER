@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/NscbCore/NscbCore.csproj" />
+    <Project Path="src/NscbJobs/NscbJobs.csproj" />
+    <Project Path="src/NscbServer/NscbServer.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/NscbCore.Tests/NscbCore.Tests.csproj" />
+  </Folder>
+</Solution>

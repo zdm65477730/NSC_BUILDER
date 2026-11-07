@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NSC_BUILDER</title>
+<link rel="stylesheet" href="css/metro-colors.min.css">
+<link rel="stylesheet" href="css/metro-icons.min.css">
+<link rel="stylesheet" href="app.css?v=18">
+</head>
+<body>
+
+<!-- ── App bar (Metro) ─────────────────────────────────────────────────────────── -->
+<header class="app-bar">
+  <button class="ab-toggle" id="btn-nav-toggle" title="Menu"><span class="mif-menu"></span></button>
+  <span class="ab-title">NSC_BUILDER</span>
+  <span class="ab-spacer"></span>
+  <button id="keys-badge" class="ab-badge">…</button>
+  <select id="sel-lang" class="ab-sel" title="Language">
+    <option value="zh-CN">中文</option><option value="en-US">English</option>
+    <option value="ja-JP">日本語</option><option value="ko-KR">한국어</option>
+  </select>
+  <button id="btn-logs" class="ab-btn" title="日志"><span class="mif-file-text"></span></button>
+  <button id="btn-settings" class="ab-btn" title="设置"><span class="mif-cogs"></span></button>
+</header>
+
+<div class="app">
+
+  <!-- ── Left navview ──────────────────────────────────────────────────────────── -->
+  <nav class="navview" id="navview">
+    <ul class="nv-menu" id="nv-menu"></ul>
+  </nav>
+
+  <!-- ── Workspace ─────────────────────────────────────────────────────────────── -->
+  <main class="workspace">
+
+    <!-- prominent prompt to update titles.json (manual or automatic) before operations -->
+    <div id="titles-notice" class="tnotice is-hidden">
+      <span class="tn-icon">⚠</span>
+      <span id="tn-text"></span>
+      <span class="ab-spacer"></span>
+      <label class="tn-auto"><input id="tn-auto" type="checkbox"> <span data-i18n="tnAuto">自动更新</span></label>
+      <button id="tn-update" class="btn-sm primary" data-i18n="tnUpdate">立即更新</button>
+      <button id="tn-dismiss" class="btn-sm ghost" data-i18n="tnDismiss">忽略</button>
+    </div>
+
+    <!-- file picking lives per-page: info facets show their own pick bar; each operation has its own add buttons -->
+
+    <!-- materialtabs (info facets) — visible in info mode -->
+    <ul class="mat-tabs" id="mat-tabs">
+      <li><a data-facet="Info"    data-i18n="facetInfo">信息</a></li>
+      <li><a data-facet="Titles"   data-i18n="facetTitles">Titles</a></li>
+      <li><a data-facet="Nacp"     data-i18n="facetNacp">Nacp</a></li>
+      <li><a data-facet="Npdm"     data-i18n="facetNpdm">Npdm</a></li>
+      <li><a data-facet="Cnmt"     data-i18n="facetCnmt">Cnmt</a></li>
+      <li><a data-facet="Verify"   data-i18n="facetVerify">校验</a></li>
+      <li><a data-facet="Database"  data-i18n="facetDatabase">数据库</a></li>
+    </ul>
+
+    <div class="ws-content" id="ws-content"><!-- rendered by app.js --></div>
+  </main>
+
+</div>
+
+<!-- ── Bottom console bar ──────────────────────────────────────────────────────── -->
+<footer class="console-bar">
+  <span class="cb-label" data-i18n="consoleTitle">控制台</span>
+  <span class="cb-line" id="cb-line">—</span>
+  <span class="ab-spacer"></span>
+  <span id="cb-jobs">—</span>
+</footer>
+
+<!-- ── Settings modal ──────────────────────────────────────────────────────────── -->
+<div id="modal-overlay" class="modal-overlay hidden">
+  <div class="modal">
+    <div class="modal-title"><span data-i18n="settings">设置</span><button id="btn-close-settings" class="btn-sm">✕</button></div>
+    <div class="modal-body">
+    <label class="field-label" data-i18n="prodKeys">prod.keys 路径</label>
+    <div class="row"><input id="set-prodkeys" type="text" placeholder="prod.keys"><button class="btn-browse" data-target="set-prodkeys" data-filemode="1" data-any="1" data-i18n="browse">浏览</button></div>
+    <label class="field-label" data-i18n="titlesDb">titles.json（标题数据库 — 仅元数据）</label>
+    <div class="row"><input id="set-titlesdb" type="text" placeholder="titles.json"><button class="btn-browse" data-target="set-titlesdb" data-filemode="1" data-any="1" data-i18n="browse">浏览</button><button id="btn-fetch-db" class="btn-sm" data-i18n="fetchDb">获取更新</button></div>
+    <div class="row"><span id="db-status" class="hint"></span></div>
+    <label class="field-label" data-i18n="outputDir">默认输出目录（留空 = 同输入目录）</label>
+    <div class="row"><input id="set-outdir" type="text"><button class="btn-browse" data-target="set-outdir" data-i18n="browse">浏览</button></div>
+    <label class="field-label" data-i18n="setWorkers">同时运行任务数 (workers)</label>
+    <div class="row"><input id="set-workers" type="number" min="1" max="64" value="1"></div>
+    <label class="field-label" data-i18n="setThreads">压缩/解压线程数</label>
+    <div class="row"><input id="set-threads" type="number" min="1" max="64" value="1"><button id="set-threads-rec" class="btn-browse" type="button">推荐</button></div>
+    <label class="field-label" data-i18n="setCompressLevel">默认压缩等级 (1–22)</label>
+    <div class="row"><input id="set-compresslevel" type="number" min="1" max="22" value="17"><button class="btn-sm lvl-preset" data-lvl="12" type="button" data-i18n="lvlSpeed">速度</button><button class="btn-sm lvl-preset" data-lvl="17" type="button" data-i18n="lvlBalanced">均衡</button><button class="btn-sm lvl-preset" data-lvl="22" type="button" data-i18n="lvlSize">体积</button></div>
+    <div class="row"><span class="hint" data-i18n="levelHint">等级越高体积越小但越慢，日常建议 12–17。</span></div>
+    <label class="field-label" data-i18n="defaultPage">默认页面</label>
+    <div class="row"><select id="set-defaultview"></select></div>
+    <div class="row"><label class="chk"><input id="set-logs" type="checkbox"> <span data-i18n="logsEnableHint">写入日志文件（控制台与“日志”查看始终开启）</span></label></div>
+    </div>
+    <div class="modal-foot"><button id="btn-save-settings" class="btn-primary" data-i18n="save">保存</button><span id="settings-hint" class="hint"></span></div>
+  </div>
+</div>
+
+<!-- ── Directory / file picker ─────────────────────────────────────────────────── -->
+<div id="dirpicker-overlay" class="modal-overlay hidden">
+  <div class="modal modal-wide">
+    <div class="modal-title"><span id="dirpicker-title" data-i18n="chooseDir">选择目录</span><button id="btn-close-dirpicker" class="btn-sm">✕</button></div>
+    <div class="panel-hdr"><button id="btn-dp-up" class="btn-sm">↑</button><input id="dp-path" type="text" spellcheck="false"><button id="btn-dp-go" class="btn-sm" data-i18n="go">跳转</button></div>
+    <div id="dp-list" class="scroll-area scroll-area-lg"></div>
+    <div class="modal-foot"><button id="btn-dp-ok" class="btn-primary" data-i18n="chooseThisDir">选择当前目录</button></div>
+  </div>
+</div>
+
+<!-- ── Logs modal (full console) ───────────────────────────────────────────────── -->
+<div id="log-overlay" class="modal-overlay hidden">
+  <div class="modal modal-wide">
+    <div class="modal-title"><span data-i18n="logs">日志</span><button id="btn-close-logs" class="btn-sm">✕</button></div>
+    <div class="log-toolbar">
+      <button id="btn-log-refresh" class="btn-sm" data-i18n="logRefresh">刷新</button>
+      <label class="log-auto"><input id="chk-log-auto" type="checkbox"> <span data-i18n="logAuto">自动</span></label>
+      <span class="ab-spacer"></span><button id="btn-log-copy" class="btn-sm">⧉</button>
+    </div>
+    <pre id="log-body" class="log-body scroll-area scroll-area-lg"></pre>
+  </div>
+</div>
+
+<div id="dropzone" class="dropzone is-hidden"><div class="dz-inner"><span class="mif-download2"></span><span id="dz-text"></span></div></div>
+
+<script src="i18n.js?v=35"></script>
+<script src="app.js?v=66"></script>
+</body>
+</html>

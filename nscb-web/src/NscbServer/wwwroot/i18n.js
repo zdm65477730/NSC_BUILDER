@@ -1,0 +1,475 @@
+/* ── NSC_BUILDER i18n ── tiny dictionary + switcher, no build step ────────────────
+ * Add a language by extending I18N with a full key set. Keys missing in the active
+ * locale fall back to en-US, then to the key itself. */
+'use strict';
+
+const I18N = {
+  'en-US': {
+    keysLoading: 'Loading keys…', keysLoaded: 'Keys loaded', keysFailed: 'Key load failed',
+    keysNone: 'No keys configured', settings: 'Settings', fileBrowser: 'File Browser',
+    parentDir: 'Parent directory', pathPh: 'Path…', go: 'Go', selected: 'Selected Files',
+    clear: 'Clear', actions: 'Actions', submit: 'Submit Job', infoTitle: 'File Info',
+    infoHint: 'Select a file, then click “View info”.', jobsQueue: 'Job Queue',
+    prodKeys: 'prod.keys path',
+    outputDir: 'Default output dir (blank = same as input)', browse: 'Browse', save: 'Save',
+    setWorkers: 'Concurrent tasks (workers)', setThreads: 'Compress / decompress threads', threadsRecommended: 'Recommended', setCompressLevel: 'Default compress level (1–22)', lvlSpeed: 'Speed 12', lvlBalanced: 'Balanced 17', lvlSize: 'Size 22', levelHint: 'Higher = smaller but slower; 12–17 recommended for daily use.', optBaseAsCard: 'Rebuild base game as card (XCI/XCZ)', optBaseAsCardHint: 'The Application title becomes an XCI/XCZ card image; updates and DLC stay as NSP/NSZ.',
+    navView: 'View', navConvert: 'Convert', navPack: 'Pack / Split', navModify: 'Modify', navTidy: 'Organize',
+    addFiles: 'File', addFolder: 'Folder',
+    pickFile: 'Choose file (or drop)', pickFolder: 'Choose folder (or drop)', consoleTitle: 'Console',
+    pickHint: 'No file selected — choose a file, or drag & drop one here.',
+    facetInfo: 'Info', facetTitles: 'Titles', facetNacp: 'Nacp', facetNpdm: 'Npdm', facetCnmt: 'Cnmt', facetVerify: 'Verify', facetDatabase: 'Database',
+    defaultPage: 'Default page',
+    logsEnableHint: 'Write log file (console & “Logs” view always active)',
+    verifyPass: 'Verified — all NCA hashes OK', verifyFail: 'Verification failed',
+    verifyRunning: 'Verifying NCA hashes… this may take a while for NSZ.', verifyChecked: 'Checked', verifyFailList: 'Issues', verifyRerun: 'Re-check',
+    npdmLoading: 'Reading NPDM… (decompressing the Program NCA for NSZ can take a moment)',
+    verifyResult: 'Result', verifyOk: 'Pass', verifyBad: 'Fail',
+    tnUpToDate: 'titles.json is up to date',
+    titlesDb: 'titles.json (title DB — metadata only)', fetchDb: 'Fetch update', fetching: 'Downloading…', fetched: 'Updated', dbLoaded: 'DB loaded:', dbNone: 'No titles.json — set a path or click Fetch.', fetchTimeout: 'Download timed out — the server did not respond in time. Try again later or switch networks.', fetchHttpFail: 'Server returned an error', fetchNetFail: 'Network error', fetchBadContent: 'The server did not return a valid titles.json (possibly an error page).', fetchDbOk: 'Update succeeded, loaded',
+    tnNeed: 'Update titles.json for full game metadata (name, publisher, genre, region).', tnStale: 'titles.json may be outdated', tnAuto: 'Auto-update', tnUpdate: 'Update now', tnDismiss: 'Dismiss',
+    tnBig: '(large file, please wait…)',
+    dropHint: 'Drop files/folders here, or pick with the buttons above',
+    dropNoPath: 'Drop needs an absolute path; use +File / +Folder to pick.',
+    settingsBtn: 'Settings', configureKeys: 'Configure keys', keysNoneHint: 'No keys detected — prod.keys is required for most operations (⚙ to set).',
+    chooseDir: 'Choose Directory', chooseThisDir: 'Choose This Directory', add: 'Add',
+    infoBtn: 'Info', emptyDir: 'Empty folder', cannotBrowse: 'Cannot browse: ',
+    stagesDetail: 'Steps / time', noJobs: 'No jobs', cancel: 'Cancel', loading: 'Loading…', saved: 'Saved',
+    'st.Queued': 'Queued', 'st.Running': 'Running', 'st.Done': 'Done', 'st.Failed': 'Failed', 'st.Cancelled': 'Cancelled',
+    saveFailed: 'Save failed: ', needFiles: 'Add at least one file from the browser first.',
+    submitted: 'Job submitted (ID: ', submitFailed: 'Submit failed: ',
+    errKeys: 'Key problem (prod.keys)', errFormat: 'Unrecognized or corrupt file/container',
+    errNoInput: 'No file selected', errGeneric: 'Operation failed', errUnsupported: 'Not supported for this file',
+    logs: 'Logs', logRefresh: 'Refresh', logAuto: 'Auto', logEmpty: 'No log entries', logCopied: 'Copied',
+    lblTitle: 'Title', lblPublisher: 'Publisher', lblTitleId: 'TitleID', lblBaseId: 'BaseID',
+    lblVersion: 'Version', lblType: 'Type', lblFwReq: 'Firmware req.', lblKeyGen: 'KeyGen',
+    lblTitleKey: 'TitleKey', lblYes: 'Yes', lblNo: 'No', lblFormat: 'Format',
+    lblFileCount: 'Files', lblTotalSize: 'Total size', lblFileList: 'Files',
+    optLevel: 'Compression level', optParallel: 'Parallelism', optTargetFw: 'Target firmware',
+    optFwPh: 'e.g. 15.0.0 or 150000000', optFwHint: 'Accepts dotted version or decimal RSV',
+    optOutName: 'Output file name', optPhAuto: '(auto if blank)', optOutDir: 'Output directory',
+    optOutDirPh: '(blank = same as input)', optFilter: 'Type', optAll: 'All', optOutPath: 'Output path',
+    optNewTitleId: 'New TitleID (hex)', optTitleIdPh: 'e.g. 0100563010E0C000',
+    optNewVersion: 'New Version (dec/hex)', optVersionPh: 'e.g. 131072 or 0x20000',
+    hintUpdBase: 'Select 1 base NSP + at least 1 update (add them in order with “+”).',
+    optApplyDeltas: 'Apply update deltas (materialize into base)',
+    'act.Database': 'Database (mass info export)', optFormat: 'Format',
+    hintDatabase: 'Scan files/folders and export title info to CSV/TSV/JSON/TXT.',
+    optKeygen: 'Target keygen',
+    hintKeygen: 'Re-wrap the key area to an older master-key generation (standard-crypto NCAs only; needs prod.keys).',
+    'act.Rename': 'Rename to content', optRmApply: 'Apply (rename in place)', optRmVersion: 'Include version',
+    optRmTypeTag: 'Include type tag', optRmContentName: 'Use content name',
+    hintRename: 'Rename to {name} [id][vVersion][Base/UPD/DLC]; uncheck to drop parts; uncheck Apply for a dry-run preview.',
+    'act.Restore': 'Restore modified file', hintRestore: 'Revert a file modified by this tool (GameCard/Download distribution) back to original; the result is proven by the NCA RSA-PSS signature.',
+    hintSetCgame: 'Flips only the NCA header distribution flag to GameCard (container format unchanged; needs header_key).',
+    hintSetEshop: 'Flips only the NCA header distribution flag to Download (container format unchanged; needs header_key).',
+    hintTitleId: 'Change the Meta cnmt TitleID and rebuild the hash chain (strict-valid).',
+    hintVersion: 'Change the Meta cnmt TitleVersion and rebuild the hash chain.',
+    hintRemoveTitleKey: 'Convert a title-key NSP to null-crypto (needs prod.keys; the title key is derived from the container ticket); installs without a ticket.',
+    'act.Info': 'View info', 'act.ConvertNspToXci': 'NSP → XCI', 'act.ConvertXciToNsp': 'XCI → NSP',
+    'act.CompressNsz': 'NSP → NSZ', 'act.DecompressNsz': 'NSZ → NSP',
+    'act.CompressXcz': 'XCI → XCZ', 'act.DecompressXcz': 'XCZ → XCI',
+    'act.PatchRsv': 'Old-firmware compat', 'act.PackXci': 'Pack multiple files',
+    'act.SplitFat32': 'FAT32 split', 'act.MergeFat32': 'Merge split parts',
+    'act.SplitTitles': 'Split pack', 'act.Extract': 'Unpack / extract contents',
+    dropHere: 'Drop to add', folderEmpty: 'No supported game files in this folder',
+    'desc.ConvertNspToXci': 'Convert an NSP/NSZ into an XCI cartridge image.', 'desc.ConvertXciToNsp': 'Restore an XCI back into an NSP.',
+    'desc.CompressNsz': 'Compress an NSP to NSZ (zstd).', 'desc.DecompressNsz': 'Decompress an NSZ back to NSP.',
+    'desc.CompressXcz': 'Compress an XCI to XCZ (zstd).', 'desc.DecompressXcz': 'Decompress an XCZ back to XCI.',
+    'desc.PackXci': 'Pack multiple files/folders into one XCI.', 'desc.Extract': 'Unpack a container and export its NCA/contents.',
+    'desc.SplitTitles': 'Split a pack into separate app/update/DLC NSPs.', 'desc.UpdBase': 'Merge an update into the base to build an all-in-one pack.',
+    'desc.PatchRsv': 'Lowers BOTH the cnmt RequiredSystemVersion (RSV) and the NCA key generation to the same target firmware for old-system compat; NSZ/XCZ are auto decompressed, patched, recompressed.',
+    'desc.RemoveTitleKey': 'Remove the title key (drop RightsID so no key is needed).', 'desc.Restore': 'Restore a previously modified container from backup.',
+    'desc.SetCgame': 'Flips only the NCA header distribution flag to GameCard (cartridge). Does NOT change the container format — use the Convert menu for NSP↔XCI / NSZ↔XCZ. Needs header_key; reversible via Restore modified files.', 'desc.SetEshop': 'Flips only the NCA header distribution flag to Download (digital). Does NOT change the container format. Needs header_key; reversible via Restore modified files.',
+    'desc.SetCnmtTitleId': 'Change the TitleId in the cnmt.', 'desc.SetCnmtVersion': 'Change the version in the cnmt.',
+    'desc.RelinkAccount': 'Re-link the ticket/account.', 'desc.TrimXci': 'Trim the XCI (drop the update partition).',
+    'desc.SuperTrimXci': 'Super-trim the XCI (keep the latest update).', 'desc.EraseDeltas': 'Erase delta fragments in the XCI.',
+    'desc.GenXml': 'Generate the cnmt XML.', 'desc.Rename': 'Batch-rename files in a folder by rule.',
+    'desc.SplitFat32': 'Split into FAT32-compatible 4GB parts.', 'desc.MergeFat32': 'Merge split parts (.00/.01…) back into one file.',
+    'desc.JoinFile': 'Manually join split files.', 'desc.Database': 'Export a folder of games to the database (batch info).',
+    'desc.ReadNpdm': 'Read NPDM access-control info.',
+    'act.GenXml': 'Generate cnmt XML', 'act.Verify': 'Verify NCA hashes',
+    'act.TrimXci': 'Trim XCI', 'act.SuperTrimXci': 'Super-trim XCI',
+    'act.EraseDeltas': 'Erase delta fragments', 'act.UpdBase': 'Merge update into base',
+    'act.ReadNpdm': 'Read NPDM access control', 'act.JoinFile': 'Merge parts / extract zip',
+    'act.RelinkAccount': 'Clear ticket account', 'act.SetCgame': 'Set as GameCard',
+    'act.SetEshop': 'Set as Download', 'act.SetCnmtTitleId': 'Set cnmt TitleID',
+    'act.SetCnmtVersion': 'Set cnmt Version', 'act.RemoveTitleKey': 'Remove title key',
+    jInfo: 'Info', jNsp2Xci: 'NSP→XCI', jXci2Nsp: 'XCI→NSP', jNszC: 'NSZ compress', jNszD: 'NSZ extract',
+    jXczC: 'XCZ compress', jXczD: 'XCZ extract', jRsv: 'Lower FW', jPack: 'Pack XCI',
+    jTrim: 'Trim XCI', jSuper: 'Super-trim', jDelta: 'Erase delta', jUpdBase: 'Merge update',
+    jNpdm: 'NPDM info', jJoin: 'Merge parts', jRelink: 'Ticket unlink', jCgame: 'Set GameCard',
+    jEshop: 'Set Download', jTitleId: 'Set TitleID', jVersion: 'Set version', jRtrnca: 'Remove titlekey',
+    jFatSplit: 'FAT32 split', jFatMerge: 'Merge parts', jVerify: 'Verify',
+  },
+};
+
+// Chinese (default, matches the original UI).
+I18N['zh-CN'] = {
+  keysLoading: '加载密钥', keysLoaded: '密钥已加载', keysFailed: '密钥加载失败',
+  keysNone: '未配置密钥', settings: '设置', fileBrowser: '文件浏览器',
+  parentDir: '上级目录', pathPh: '路径…', go: '跳转', selected: '已选文件',
+  clear: '清空', actions: '操作', submit: '提交任务', infoTitle: '文件信息',
+  infoHint: '选择文件后点击「查看信息」。', jobsQueue: '任务队列',
+  prodKeys: 'prod.keys 路径',
+  outputDir: '默认输出目录（留空 = 同输入目录）', browse: '浏览', save: '保存',
+  setWorkers: '同时运行任务数 (workers)', setThreads: '压缩/解压线程数', threadsRecommended: '推荐', setCompressLevel: '默认压缩等级 (1–22)', lvlSpeed: '速度 12', lvlBalanced: '均衡 17', lvlSize: '体积 22', levelHint: '等级越高体积越小但越慢，日常建议 12–17。', optBaseAsCard: '基座本体还原为卡带 (XCI/XCZ)', optBaseAsCardHint: '拆分时把本体(Application)还原成 XCI/XCZ 卡带镜像；更新与 DLC 仍为 NSP/NSZ。',
+  navView: '查看', navConvert: '转换', navPack: '打包 / 拆包', navModify: '修改', navTidy: '整理',
+  addFiles: '文件', addFolder: '文件夹',
+  pickFile: '选择文件（或拖放）', pickFolder: '选择文件夹（或拖放）', consoleTitle: '控制台',
+  pickHint: '尚未选择文件——选择一个，或将文件/文件夹拖放到此处。',
+  facetInfo: '信息', facetTitles: 'Titles', facetNacp: 'Nacp', facetNpdm: 'Npdm', facetCnmt: 'Cnmt', facetVerify: '校验', facetDatabase: '数据库',
+  defaultPage: '默认页面',
+  logsEnableHint: '写入日志文件（控制台与“日志”查看始终开启）',
+  verifyPass: '校验通过（所有 NCA 哈希一致）', verifyFail: '校验失败',
+  verifyRunning: '正在校验 NCA 哈希… NSZ 可能需要较久。', verifyChecked: '已校验', verifyFailList: '问题项', verifyRerun: '重新校验',
+  npdmLoading: '正在读取 NPDM…（NSZ 需解压 Program NCA，请稍候）',
+  verifyResult: '结果', verifyOk: '通过', verifyBad: '失败',
+  tnUpToDate: 'titles.json 已是最新',
+  titlesDb: 'titles.json（标题数据库 — 仅元数据）', fetchDb: '获取更新', fetching: '下载中…', fetched: '已更新', dbLoaded: '数据库已加载：', dbNone: '未加载 titles.json——设置路径或点“获取更新”。', fetchTimeout: '下载超时：服务器一段时间内未响应，请稍后重试或更换网络。', fetchHttpFail: '服务器返回异常', fetchNetFail: '网络错误', fetchBadContent: '服务器返回内容不是有效的 titles.json（可能是错误页）。', fetchDbOk: '更新成功，已加载',
+  tnNeed: '建议先更新 titles.json——可补全游戏元数据（名称/发行商/类型/地区等）。', tnStale: 'titles.json 可能已过期', tnAuto: '自动更新', tnUpdate: '立即更新', tnDismiss: '忽略',
+  tnBig: '（文件较大，请稍候…）',
+  dropHint: '拖放文件/文件夹到此，或用上方按钮选择',
+  dropNoPath: '拖放需绝对路径；请用 ＋文件 / ＋文件夹 选择。',
+  settingsBtn: '设置', configureKeys: '配置密钥', keysNoneHint: '未检测到密钥——大多数操作需要 prod.keys（点右上角⚙配置，或把 prod.keys 放到程序同目录）。',
+  chooseDir: '选择目录', chooseThisDir: '选择当前目录', add: '添加',
+  infoBtn: '信息', emptyDir: '空目录', cannotBrowse: '无法浏览：',
+  stagesDetail: '步骤 / 耗时', noJobs: '暂无任务', cancel: '取消', loading: '加载中…', saved: '已保存',
+  'st.Queued': '排队中', 'st.Running': '运行中', 'st.Done': '完成', 'st.Failed': '失败', 'st.Cancelled': '已取消',
+  saveFailed: '保存失败：', needFiles: '请先从文件浏览器添加至少一个文件。',
+  submitted: '任务已提交（ID: ', submitFailed: '提交失败：',
+  errKeys: '密钥问题（prod.keys）', errFormat: '无法识别或损坏的文件/容器',
+  errNoInput: '未选择文件', errGeneric: '操作失败', errUnsupported: '该文件不支持此操作',
+  logs: '日志', logRefresh: '刷新', logAuto: '自动', logEmpty: '暂无日志', logCopied: '已复制',
+  lblTitle: '标题', lblPublisher: '发行商', lblTitleId: 'TitleID', lblBaseId: 'BaseID',
+  lblVersion: '版本', lblType: '类型', lblFwReq: '固件要求', lblKeyGen: 'KeyGen',
+  lblTitleKey: 'TitleKey', lblYes: '有', lblNo: '无', lblFormat: '格式',
+  lblFileCount: '文件数', lblTotalSize: '总大小', lblFileList: '文件列表',
+  optLevel: '压缩级别', optParallel: '并行度', optTargetFw: '目标固件',
+  optFwPh: '如 15.0.0 或 150000000', optFwHint: '支持点分版本或十进制 RSV',
+  optOutName: '输出文件名', optPhAuto: '（留空自动）', optOutDir: '输出目录',
+  optOutDirPh: '（留空 = 同输入目录）', optFilter: '类型', optAll: '全部', optOutPath: '输出路径',
+  optNewTitleId: '新 TitleID(十六进制)', optTitleIdPh: '如 0100563010E0C000',
+  optNewVersion: '新版本(十进制/十六进制)', optVersionPh: '如 131072 或 0x20000',
+  hintUpdBase: '选择 1 个 base NSP + 至少 1 个 update（用“+”依次加入）。',
+  optApplyDeltas: '应用更新 delta（物化合入 base）',
+  'act.Database': '数据库导出(批量信息)', optFormat: '格式',
+  hintDatabase: '扫描文件/文件夹，将标题信息导出为 CSV/TSV/JSON/TXT。',
+  optKeygen: '目标 keygen',
+  hintKeygen: '将 keyarea 重新包裹到更旧的 master-key 版本（仅标准加密 NCA；需 prod.keys）。',
+  'act.Rename': '重命名', optRmApply: '应用(就地重命名)', optRmVersion: '含版本',
+  optRmTypeTag: '含类型标签', optRmContentName: '用内容名称',
+  hintRename: '重命名为 {name} [id][vVersion][Base/UPD/DLC]；取消勾选可去掉对应部分；不勾应用则为预览。',
+  'act.Restore': '还原修改过的文件', hintRestore: '将本工具改过的文件（实体卡/下载分布）改回原始；结果由 NCA 的 RSA-PSS 签名验证。',
+  hintSetCgame: '仅翻转 NCA 头部“分布类型”标记为 GameCard（不改变容器格式；需 header_key）。',
+  hintSetEshop: '仅翻转 NCA 头部“分布类型”标记为 Download（不改变容器格式；需 header_key）。',
+  hintTitleId: '改 Meta cnmt 的 TitleID 并重建哈希链（严格有效）。',
+  hintVersion: '改 Meta cnmt 的 TitleVersion 并重建哈希链。',
+  hintRemoveTitleKey: '将 title-key 加密的 NSP 转为 null-crypto（需 prod.keys，title key 由自带 ticket 推导），无需 ticket 即可安装。',
+  'act.Info': '查看信息', 'act.ConvertNspToXci': 'NSP → XCI', 'act.ConvertXciToNsp': 'XCI → NSP',
+  'act.CompressNsz': 'NSP → NSZ', 'act.DecompressNsz': 'NSZ → NSP',
+  'act.CompressXcz': 'XCI → XCZ', 'act.DecompressXcz': 'XCZ → XCI',
+  'act.PatchRsv': '兼容旧固件', 'act.PackXci': '多文件打包',
+  'act.SplitFat32': 'FAT32 分卷', 'act.MergeFat32': '合并分卷',
+  'act.SplitTitles': '拆分整合包', 'act.Extract': '拆包 / 提取内容',
+  dropHere: '拖到此处添加', folderEmpty: '该文件夹内没有支持的游戏文件',
+  'desc.ConvertNspToXci': '将 NSP/NSZ 转换为 XCI 卡带镜像。', 'desc.ConvertXciToNsp': '将 XCI 还原为 NSP。',
+  'desc.CompressNsz': '将 NSP 压缩为 NSZ（zstd）。', 'desc.DecompressNsz': '将 NSZ 解压还原为 NSP。',
+  'desc.CompressXcz': '将 XCI 压缩为 XCZ（zstd）。', 'desc.DecompressXcz': '将 XCZ 解压还原为 XCI。',
+  'desc.PackXci': '将多个文件/文件夹打包为一个 XCI。', 'desc.Extract': '拆包，导出容器内的 NCA 等内容。',
+  'desc.SplitTitles': '拆分整合包，按类型输出 app/update/DLC 各自的 NSP。', 'desc.UpdBase': '把 update 合并进 base，生成含更新的整合包。',
+  'desc.PatchRsv': '把 cnmt 所需固件(RSV)与 NCA 密钥版本(keygen)一起降到同一目标固件，以兼容旧系统；NSZ/XCZ 会自动解压→改→重压缩。',
+  'desc.RemoveTitleKey': '移除 title key（去掉 RightsID，可免密钥）。', 'desc.Restore': '从备份还原被修改过的容器。',
+  'desc.SetCgame': '仅就地翻转每个 NCA 头部的“分布类型”标记为 GameCard（卡带），不改变容器格式（NSP↔XCI、NSZ↔XCZ 互转请用“转换”菜单）；需 header_key，可用“还原修改过的文件”复原。', 'desc.SetEshop': '仅就地翻转每个 NCA 头部的“分布类型”标记为 Download（下载版），不改变容器格式；需 header_key，可用“还原修改过的文件”复原。',
+  'desc.SetCnmtTitleId': '修改 cnmt 的 TitleId。', 'desc.SetCnmtVersion': '修改 cnmt 的版本号。',
+  'desc.RelinkAccount': '重新绑定 ticket/账户。', 'desc.TrimXci': '剪裁 XCI（移除 update 分区）。',
+  'desc.SuperTrimXci': '超级剪裁 XCI（保留最新 update）。', 'desc.EraseDeltas': '清除 XCI 中的 delta 碎片。',
+  'desc.GenXml': '生成 cnmt 对应的 XML。', 'desc.Rename': '按规则批量重命名（文件夹）。',
+  'desc.SplitFat32': '拆分为 FAT32 兼容的 4GB 分卷。', 'desc.MergeFat32': '合并分卷（.00/.01…）为原文件。',
+  'desc.JoinFile': '手动连接分卷文件。', 'desc.Database': '批量导出文件夹内游戏的数据库/信息。',
+  'desc.ReadNpdm': '读取 NPDM 权限信息。',
+  'act.GenXml': '生成 cnmt XML', 'act.Verify': '校验 NCA hash',
+  'act.TrimXci': 'XCI 剪裁', 'act.SuperTrimXci': 'XCI 超级剪裁',
+  'act.EraseDeltas': 'XCI 去 delta 碎片', 'act.UpdBase': '合并 update 到 base',
+  'act.ReadNpdm': '读取 NPDM 权限信息', 'act.JoinFile': '合并分卷 / 解压 zip',
+  'act.RelinkAccount': '清除 ticket 账号绑定', 'act.SetCgame': '转为实体卡格式',
+  'act.SetEshop': '转为下载格式', 'act.SetCnmtTitleId': '改 cnmt TitleID',
+  'act.SetCnmtVersion': '改 cnmt 版本', 'act.RemoveTitleKey': '去除 title key',
+  jInfo: '信息', jNsp2Xci: 'NSP→XCI', jXci2Nsp: 'XCI→NSP', jNszC: '压缩NSZ', jNszD: '解压NSZ',
+  jXczC: '压缩XCZ', jXczD: '解压XCZ', jRsv: '降固件', jPack: '打包XCI',
+  jTrim: '剪裁XCI', jSuper: '超级剪裁', jDelta: '去delta', jUpdBase: '合并update',
+  jNpdm: 'NPDM信息', jJoin: '合并分卷', jRelink: '解绑ticket', jCgame: '转实体卡',
+  jEshop: '转下载格式', jTitleId: '改cnmt TitleID', jVersion: '改cnmt版本', jRtrnca: '去titlekey',
+  jFatSplit: 'FAT32分卷', jFatMerge: '合并分卷', jVerify: '校验',
+};
+
+// Japanese.
+I18N['ja-JP'] = {
+  keysLoading: '鍵を読み込み中…', keysLoaded: '鍵を読み込み済み', keysFailed: '鍵の読み込みに失敗',
+  keysNone: '鍵未設定', settings: '設定', fileBrowser: 'ファイルブラウザ',
+  parentDir: '親ディレクトリ', pathPh: 'パス…', go: '移動', selected: '選択済み',
+  clear: 'クリア', actions: '操作', submit: 'ジョブ実行', infoTitle: 'ファイル情報',
+  infoHint: 'ファイルを選んで「情報表示」をクリック。', jobsQueue: 'ジョブキュー',
+  prodKeys: 'prod.keys のパス',
+  outputDir: '既定の出力先（空 = 入力と同じ）', browse: '参照', save: '保存',
+  setWorkers: '同時実行タスク数 (workers)', setThreads: '圧縮/解凍スレッド数', threadsRecommended: '推奨', setCompressLevel: '既定の圧縮 レベル (1–22)', lvlSpeed: '速度 12', lvlBalanced: 'バランス 17', lvlSize: '容量 22', levelHint: '高いほど小さいが遅い。通常は 12–17 推奨。', optBaseAsCard: '本体をカード(XCI/XCZ)で復元', optBaseAsCardHint: '分割時に本体(Application)を XCI/XCZ カードに。更新・DLC は NSP/NSZ のまま。',
+  navView: '表示', navConvert: '変換', navPack: 'パック / 分割', navModify: '変更', navTidy: '整理',
+  addFiles: 'ファイル', addFolder: 'フォルダ',
+  pickFile: 'ファイル選択（ドロップ可）', pickFolder: 'フォルダ選択（ドロップ可）', consoleTitle: 'コンソール',
+  pickHint: 'ファイル未選択——選択するか、ここにドラッグ＆ドロップ。',
+  facetInfo: '情報', facetTitles: 'Titles', facetNacp: 'Nacp', facetNpdm: 'Npdm', facetCnmt: 'Cnmt', facetVerify: '検証', facetDatabase: 'データベース',
+  defaultPage: '既定ページ',
+  logsEnableHint: 'ログファイルに書込（コンソールと“日志”表示は常時有効）',
+  verifyPass: '検証OK（全NCAハッシュ一致）', verifyFail: '検証失敗',
+  verifyRunning: 'NCAハッシュを検証中… NSZは時間がかかる場合があります。', verifyChecked: '検証済', verifyFailList: '問題項目', verifyRerun: '再検証',
+  npdmLoading: 'NPDMを読み込み中…（NSZはProgram NCAの解凍に時間がかかる場合があります）',
+  verifyResult: '結果', verifyOk: '合格', verifyBad: '失敗',
+  tnUpToDate: 'titles.json は最新です',
+  titlesDb: 'titles.json（タイトルDB — メタのみ）', fetchDb: '取得', fetching: 'ダウンロード中…', fetched: '更新完了', dbLoaded: 'DB読込済み：', dbNone: 'titles.json 未読込——パス設定か「取得」。', fetchTimeout: 'ダウンロードがタイムアウトしました。時間を置いて再試行するか回線を変更してください。', fetchHttpFail: 'サーバーがエラーを返しました', fetchNetFail: 'ネットワークエラー', fetchBadContent: 'サーバーが有効な titles.json を返しませんでした（エラーページの可能性）。', fetchDbOk: '更新成功、読込',
+  tnNeed: 'titles.json を更新してゲームメタデータ（名称/発行元/ジャンル/地域）を補完。', tnStale: 'titles.json が古い可能', tnAuto: '自動更新', tnUpdate: '今すぐ更新', tnDismiss: '無視',
+  tnBig: '（ファイル大きめ、しばらくお待ち…）',
+  dropHint: 'ファイル/フォルダをここにドロップ、上のボタンで選択も可',
+  dropNoPath: 'ドロップは絶対パスが必要。＋ファイル / ＋フォルダ で選択。',
+  settingsBtn: '設定', configureKeys: '鍵を設定', keysNoneHint: '鍵が未検出——ほとんどの操作に prod.keys が必要（右上 ⚙ で設定、または prod.keys をプログラムと同じフォルダに）。',
+  chooseDir: 'ディレクトリ選択', chooseThisDir: 'このディレクトリを選択', add: '追加',
+  infoBtn: '情報', emptyDir: '空のフォルダ', cannotBrowse: '表示できません：',
+  stagesDetail: 'ステップ / 所要時間', noJobs: 'ジョブなし', cancel: '取消', loading: '読み込み中…', saved: '保存しました',
+  'st.Queued': '待機中', 'st.Running': '実行中', 'st.Done': '完了', 'st.Failed': '失敗', 'st.Cancelled': '取消済み',
+  saveFailed: '保存失敗：', needFiles: 'まずファイルブラウザからファイルを追加してください。',
+  submitted: 'ジョブ送信済み（ID: ', submitFailed: '送信失敗：',
+  errKeys: '鍵の問題（prod.keys）', errFormat: '認識できない/破損したファイル',
+  errNoInput: 'ファイル未選択', errGeneric: '操作に失敗しました', errUnsupported: 'このファイルは未対応です',
+  logs: 'ログ', logRefresh: '更新', logAuto: '自動', logEmpty: 'ログなし', logCopied: 'コピーしました',
+  lblTitle: 'タイトル', lblPublisher: '発売元', lblTitleId: 'TitleID', lblBaseId: 'BaseID',
+  lblVersion: 'バージョン', lblType: '種別', lblFwReq: '必要 Firmware', lblKeyGen: 'KeyGen',
+  lblTitleKey: 'TitleKey', lblYes: '有', lblNo: '無', lblFormat: '形式',
+  lblFileCount: 'ファイル数', lblTotalSize: '合計サイズ', lblFileList: 'ファイル一覧',
+  optLevel: '圧縮レベル', optParallel: '並列度', optTargetFw: '対象 Firmware',
+  optFwPh: '例: 15.0.0 または 150000000', optFwHint: 'ドット付きバージョンまたは10進 RSV に対応',
+  optOutName: '出力ファイル名', optPhAuto: '（空で自動）', optOutDir: '出力ディレクトリ',
+  optOutDirPh: '（空 = 入力と同じ）', optFilter: '種別', optAll: 'すべて', optOutPath: '出力パス',
+  optNewTitleId: '新しい TitleID(16進)', optTitleIdPh: '例 0100563010E0C000',
+  optNewVersion: '新しいバージョン(10進/16進)', optVersionPh: '例 131072 または 0x20000',
+  hintUpdBase: 'base NSP を1つ＋ update を少なくとも1つ（「+」で順に追加）。',
+  optApplyDeltas: '更新の delta を適用（base に物化して合成）',
+  'act.Database': 'データベース出力(一括情報)', optFormat: '形式',
+  hintDatabase: 'ファイル/フォルダを走査しタイトル情報を CSV/TSV/JSON/TXT に出力。',
+  optKeygen: '目標 keygen',
+  hintKeygen: 'keyarea を古い master-key 世代に再ラップ（標準暗号 NCA のみ；prod.keys 要）。',
+  'act.Rename': '内容でリネーム', optRmApply: '適用(その場で改名)', optRmVersion: 'バージョン付与',
+  optRmTypeTag: '種別タグ付与', optRmContentName: '内容名を使用',
+  hintRename: '{name} [id][vVersion][Base/UPD/DLC] に改名。外したい物は解除。適用オフはプレビュー。',
+  'act.Restore': '変更ファイルを復元', hintRestore: '本ツールで変更したファイル(GameCard/Download 配布)を原版に戻す。結果は NCA の RSA-PSS 署名で検証。',
+  hintSetCgame: 'NCAヘッダの配布種別フラグのみをGameCardに反転（コンテナ形式は不変。header_key必須）。',
+  hintSetEshop: 'NCAヘッダの配布種別フラグのみをDownloadに反転（コンテナ形式は不変。header_key必須）。',
+  hintTitleId: 'Meta cnmt の TitleID を変更しハッシュチェーンを再構築（厳密検証可）。',
+  hintVersion: 'Meta cnmt の TitleVersion を変更しハッシュチェーンを再構築。',
+  hintRemoveTitleKey: 'title-key 暗号化の NSP を null-crypto に変換（prod.keys 必須、title key は container の ticket から導出）。チケット無しで導入可。',
+  'act.Info': '情報表示', 'act.ConvertNspToXci': 'NSP → XCI', 'act.ConvertXciToNsp': 'XCI → NSP',
+  'act.CompressNsz': 'NSP → NSZ', 'act.DecompressNsz': 'NSZ → NSP',
+  'act.CompressXcz': 'XCI → XCZ', 'act.DecompressXcz': 'XCZ → XCI',
+  'act.PatchRsv': '低ファーム対応', 'act.PackXci': '複数ファイルをパック',
+  'act.SplitFat32': 'FAT32 分割', 'act.MergeFat32': '分割を結合',
+  'act.SplitTitles': '統合パックを分割', 'act.Extract': '解包 / 内容抽出',
+  dropHere: 'ここにドロップして追加', folderEmpty: 'このフォルダに対応ファイルなし',
+  'desc.ConvertNspToXci': 'NSP/NSZ を XCI カートリッジに変換。', 'desc.ConvertXciToNsp': 'XCI を NSP に復元。',
+  'desc.CompressNsz': 'NSP を NSZ(zstd) に圧縮。', 'desc.DecompressNsz': 'NSZ を NSP に解凍。',
+  'desc.CompressXcz': 'XCI を XCZ(zstd) に圧縮。', 'desc.DecompressXcz': 'XCZ を XCI に解凍。',
+  'desc.PackXci': '複数ファイル/フォルダを一つの XCI にパック。', 'desc.Extract': 'コンテナを解包し NCA 等を抽出。',
+  'desc.SplitTitles': '統合パックを app/update/DLC の各 NSP に分割。', 'desc.UpdBase': 'update を base に統合し更新入りパックを作成。',
+  'desc.PatchRsv': 'cnmt の必要ファーム(RSV)と NCA の keygen を同じ目標ファームに同時に下げて旧機互換に。NSZ/XCZ は自動で解凍→改変→再圧縮。',
+  'desc.RemoveTitleKey': 'title key を除去(RightsID 解除、鍵不要)。', 'desc.Restore': '変更前のコンテナをバックアップから復元。',
+  'desc.SetCgame': '各NCAヘッダの配布種別フラグのみをGameCard(実体)に反転します。コンテナ形式は変更しません(NSP↔XCI、NSZ↔XCZの変換は「変換」メニュー)。header_key必須、「修正ファイルの復元」で元に戻せます。', 'desc.SetEshop': '各NCAヘッダの配布種別フラグのみをDownload(デジタル)に反転します。コンテナ形式は変更しません。header_key必須、「修正ファイルの復元」で元に戻せます。',
+  'desc.SetCnmtTitleId': 'cnmt の TitleId を変更。', 'desc.SetCnmtVersion': 'cnmt のバージョンを変更。',
+  'desc.RelinkAccount': 'ticket/アカウントを再紐付け。', 'desc.TrimXci': 'XCI をトリム(update パーティション削除)。',
+  'desc.SuperTrimXci': 'XCI を高度トリム(最新 update を保持)。', 'desc.EraseDeltas': 'XCI の delta 断片を除去。',
+  'desc.GenXml': 'cnmt の XML を生成。', 'desc.Rename': 'フォルダ内を規約で一括リネーム。',
+  'desc.SplitFat32': 'FAT32 互換の 4GB 分割に分割。', 'desc.MergeFat32': '分割(.00/.01…)を元ファイルに結合。',
+  'desc.JoinFile': '分割ファイルを手動結合。', 'desc.Database': 'フォルダ内ゲームを一括で DB/情報出力。',
+  'desc.ReadNpdm': 'NPDM アクセス制御情報を表示。',
+  'act.GenXml': 'cnmt XML を生成', 'act.Verify': 'NCA ハッシュ検証',
+  'act.TrimXci': 'XCI をトリム', 'act.SuperTrimXci': 'XCI 高度トリム',
+  'act.EraseDeltas': 'delta 断片を除去', 'act.UpdBase': 'update を base に統合',
+  'act.ReadNpdm': 'NPDM アクセス制御を読む', 'act.JoinFile': '分割結合 / zip 解凍',
+  'act.RelinkAccount': 'ticket のアカウント解除', 'act.SetCgame': 'GameCard 化',
+  'act.SetEshop': 'Download 化', 'act.SetCnmtTitleId': 'cnmt TitleID 変更',
+  'act.SetCnmtVersion': 'cnmt バージョン変更', 'act.RemoveTitleKey': 'titlekey 除去',
+  jInfo: '情報', jNsp2Xci: 'NSP→XCI', jXci2Nsp: 'XCI→NSP', jNszC: 'NSZ圧縮', jNszD: 'NSZ解凍',
+  jXczC: 'XCZ圧縮', jXczD: 'XCZ解凍', jRsv: 'FW引下', jPack: 'XCIパック',
+  jTrim: 'XCIトリム', jSuper: '高度トリム', jDelta: 'delta除去', jUpdBase: 'update統合',
+  jNpdm: 'NPDM情報', jJoin: '分割結合', jRelink: 'ticket解除', jCgame: 'GameCard化',
+  jEshop: 'Download化', jTitleId: 'TitleID変更', jVersion: 'バージョン変更', jRtrnca: 'titlekey除去',
+  jFatSplit: 'FAT32分割', jFatMerge: '分割結合', jVerify: '検証',
+};
+
+// Korean.
+I18N['ko-KR'] = {
+  keysLoading: '키 로드 중…', keysLoaded: '키가 로드됨', keysFailed: '키 로드 실패',
+  keysNone: '키 미설정', settings: '설정', fileBrowser: '파일 탐색기',
+  parentDir: '상위 폴더', pathPh: '경로…', go: '이동', selected: '선택된 파일',
+  clear: '지우기', actions: '작업', submit: '작업 제출', infoTitle: '파일 정보',
+  infoHint: '파일을 선택한 뒤 “정보 보기”를 클릭하세요.', jobsQueue: '작업 대기열',
+  prodKeys: 'prod.keys 경로',
+  outputDir: '기본 출력 폴더 (비우면 입력과 동일)', browse: '찾아보기', save: '저장',
+  setWorkers: '동시 작업 수 (workers)', setThreads: '압축/해제 스레드 수', threadsRecommended: '추천', setCompressLevel: '기본 압축 레벨 (1–22)', lvlSpeed: '속도 12', lvlBalanced: '균형 17', lvlSize: '용량 22', levelHint: '높을수록 작지만 느립니다. 일상적으로 12–17 권장.', optBaseAsCard: '본체를 카드로 복원 (XCI/XCZ)', optBaseAsCardHint: '분할 시 본체(Application)를 XCI/XCZ 카드로. 업데이트·DLC는 NSP/NSZ 유지.',
+  navView: '보기', navConvert: '변환', navPack: '포장 / 분할', navModify: '수정', navTidy: '정리',
+  addFiles: '파일', addFolder: '폴더',
+  pickFile: '파일 선택 (또는 놓기)', pickFolder: '폴더 선택 (또는 놓기)', consoleTitle: '콘솔',
+  pickHint: '파일 미선택 — 파일을 선택하거나 여기로 드래그＆드롭하세요.',
+  facetInfo: '정보', facetTitles: 'Titles', facetNacp: 'Nacp', facetNpdm: 'Npdm', facetCnmt: 'Cnmt', facetVerify: '검증', facetDatabase: '데이터베이스',
+  defaultPage: '기본 페이지',
+  logsEnableHint: '로그 파일 기록(콘솔 및 “로그” 보기는 항상 켜짐)',
+  verifyPass: '검증 통과 (모든 NCA 해시 일치)', verifyFail: '검증 실패',
+  verifyRunning: 'NCA 해시 검증 중… NSZ는 시간이 걸릴 수 있습니다.', verifyChecked: '검증됨', verifyFailList: '문제 항목', verifyRerun: '다시 검증',
+  npdmLoading: 'NPDM 읽는 중…(NSZ는 Program NCA 해제에 시간이 걸릴 수 있음)',
+  verifyResult: '결과', verifyOk: '통과', verifyBad: '실패',
+  tnUpToDate: 'titles.json이 최신 상태입니다',
+  titlesDb: 'titles.json(타이틀 DB — 메타만)', fetchDb: '가져오기', fetching: '다운로드 중…', fetched: '업데이트됨', dbLoaded: 'DB 로드됨:', dbNone: 'titles.json 미로드 — 경로 설정 또는 가져오기.', fetchTimeout: '다운로드 시간 초과 — 서버가 정해진 시간 내에 응답하지 않았습니다. 잠시 후 다시 시도하거나 네트워크를 변경하세요.', fetchHttpFail: '서버 오류 반환', fetchNetFail: '네트워크 오류', fetchBadContent: '서버가 유효한 titles.json을 반환하지 않았습니다(오류 페이지일 수 있음).', fetchDbOk: '업데이트 성공, 로드됨',
+  tnNeed: 'titles.json 업데이트로 게임 메타데이터(이름/발행/장르/지역)를 채우세요.', tnStale: 'titles.json이 오래됨', tnAuto: '자동 업데이트', tnUpdate: '지금 업데이트', tnDismiss: '무시',
+  tnBig: '(대용량 파일, 잠시 기다려…)',
+  dropHint: '파일/폴더를 여기에 놓거나 위 버튼으로 선택',
+  dropNoPath: '드래그는 절대 경로가 필요합니다. +파일 / +폴더 로 선택하세요.',
+  settingsBtn: '설정', configureKeys: '키 설정', keysNoneHint: '키 미감지 — 대부분의 작업에 prod.keys 가 필요합니다 (오른쪽 위 ⚙ 또는 프로그램 폴더에 prod.keys 배치).',
+  chooseDir: '폴더 선택', chooseThisDir: '이 폴더 선택', add: '추가',
+  infoBtn: '정보', emptyDir: '빈 폴더', cannotBrowse: '탐색 불가: ',
+  stagesDetail: '단계 / 소요시간', noJobs: '작업 없음', cancel: '취소', loading: '불러오는 중…', saved: '저장됨',
+  'st.Queued': '대기 중', 'st.Running': '실행 중', 'st.Done': '완료', 'st.Failed': '실패', 'st.Cancelled': '취소됨',
+  saveFailed: '저장 실패: ', needFiles: '먼저 파일 탐색기에서 파일을 추가하세요.',
+  submitted: '작업 제출됨 (ID: ', submitFailed: '제출 실패: ',
+  errKeys: '키 문제 (prod.keys)', errFormat: '인식 불가 또는 손상된 파일',
+  errNoInput: '파일 선택 안 됨', errGeneric: '작업 실패', errUnsupported: '이 파일은 지원하지 않습니다',
+  logs: '로그', logRefresh: '새로고침', logAuto: '자동', logEmpty: '로그 없음', logCopied: '복사됨',
+  lblTitle: '제목', lblPublisher: '발매사', lblTitleId: 'TitleID', lblBaseId: 'BaseID',
+  lblVersion: '버전', lblType: '유형', lblFwReq: '필요 펌웨어', lblKeyGen: 'KeyGen',
+  lblTitleKey: 'TitleKey', lblYes: '있음', lblNo: '없음', lblFormat: '형식',
+  lblFileCount: '파일 수', lblTotalSize: '총 크기', lblFileList: '파일 목록',
+  optLevel: '압축 수준', optParallel: '병렬도', optTargetFw: '대상 펌웨어',
+  optFwPh: '예: 15.0.0 또는 150000000', optFwHint: '점 구분 버전 또는 10진 RSV 지원',
+  optOutName: '출력 파일명', optPhAuto: '(비우면 자동)', optOutDir: '출력 폴더',
+  optOutDirPh: '(비우면 입력과 동일)', optFilter: '유형', optAll: '전체', optOutPath: '출력 경로',
+  optNewTitleId: '새 TitleID(16진)', optTitleIdPh: '예 0100563010E0C000',
+  optNewVersion: '새 버전(10진/16진)', optVersionPh: '예 131072 또는 0x20000',
+  hintUpdBase: 'base NSP 1개 + update 최소 1개(“+”로 순서대로 추가).',
+  optApplyDeltas: '업데이트 delta 적용(base에 병합)',
+  'act.Database': '데이터베이스 내보내기(일괄 정보)', optFormat: '형식',
+  hintDatabase: '파일/폴더를 스캔하여 타이틀 정보를 CSV/TSV/JSON/TXT로 내보냅니다.',
+  optKeygen: '목표 keygen',
+  hintKeygen: 'keyarea를 더 낮은 master-key 세대로 재포장(표준 암호 NCA만; prod.keys 필요).',
+  'act.Rename': '내용으로 이름변경', optRmApply: '적용(그 자리에서 변경)', optRmVersion: '버전 포함',
+  optRmTypeTag: '유형 태그 포함', optRmContentName: '내용 이름 사용',
+  hintRename: '{name} [id][vVersion][Base/UPD/DLC]로 이름변경. 원치 않으면 해제. 적용 해제시 미리보기.',
+  'act.Restore': '수정 파일 복원', hintRestore: '이 도구로 수정한 파일(GameCard/Download 배포)을 원복. 결과는 NCA RSA-PSS 서명으로 검증됩니다.',
+  hintSetCgame: 'NCA 헤더 배포 유형 플래그만 GameCard로 뒤집음(컨테이너 형식 불변. header_key 필요).',
+  hintSetEshop: 'NCA 헤더 배포 유형 플래그만 Download로 뒤집음(컨테이너 형식 불변. header_key 필요).',
+  hintTitleId: 'Meta cnmt TitleID 변경 후 해시 체인 재구성 (엄밀 검증 통과).',
+  hintVersion: 'Meta cnmt TitleVersion 변경 후 해시 체인 재구성.',
+  hintRemoveTitleKey: 'title-key 암호화 NSP를 null-crypto로 변환 (prod.keys 필요, title key는 컨테이너 티켓에서 파생), 티켓 없이 설치 가능.',
+  'act.Info': '정보 보기', 'act.ConvertNspToXci': 'NSP → XCI', 'act.ConvertXciToNsp': 'XCI → NSP',
+  'act.CompressNsz': 'NSP → NSZ', 'act.DecompressNsz': 'NSZ → NSP',
+  'act.CompressXcz': 'XCI → XCZ', 'act.DecompressXcz': 'XCZ → XCI',
+  'act.PatchRsv': '구 펌웨어 호환', 'act.PackXci': '여러 파일 패키징',
+  'act.SplitFat32': 'FAT32 분할', 'act.MergeFat32': '분할 병합',
+  'act.SplitTitles': '통합 팩 분할', 'act.Extract': '추출 / 내용',
+  dropHere: '여기에 놓어 추가', folderEmpty: '이 폴더에 지원 파일이 없습니다',
+  'desc.ConvertNspToXci': 'NSP/NSZ를 XCI 카트리지로 변환.', 'desc.ConvertXciToNsp': 'XCI를 NSP로 복원.',
+  'desc.CompressNsz': 'NSP를 NSZ(zstd)로 압축.', 'desc.DecompressNsz': 'NSZ를 NSP로 해제.',
+  'desc.CompressXcz': 'XCI를 XCZ(zstd)로 압축.', 'desc.DecompressXcz': 'XCZ를 XCI로 해제.',
+  'desc.PackXci': '여러 파일/폴더를 하나의 XCI로 패키징.', 'desc.Extract': '컨테이너를 분해해 NCA 등 추출.',
+  'desc.SplitTitles': '통합 팩을 app/update/DLC 각각의 NSP로 분할.', 'desc.UpdBase': 'update를 base에 병합해 올인원 팩 생성.',
+  'desc.PatchRsv': 'cnmt 요구 펌웨어(RSV)와 NCA keygen을 동일한 펌웨어로 함께 낮춰 구 시스템 호환. NSZ/XCZ는 자동 해제→패치→재압축.',
+  'desc.RemoveTitleKey': 'title key 제거(RightsID 해제, 키 불필요).', 'desc.Restore': '수정 전 컨테이너를 백업에서 복원.',
+  'desc.SetCgame': '각 NCA 헤더의 배포 유형 플래그만 GameCard(실물)로 뒤집습니다. 컨테이너 형식은 변경하지 않습니다(NSP↔XCI, NSZ↔XCZ 변환은 변환 메뉴 사용). header_key 필요, 수정 파일 복원으로 되돌릴 수 있습니다.', 'desc.SetEshop': '각 NCA 헤더의 배포 유형 플래그만 Download(디지털)로 뒤집습니다. 컨테이너 형식은 변경하지 않습니다. header_key 필요, 수정 파일 복원으로 되돌릴 수 있습니다.',
+  'desc.SetCnmtTitleId': 'cnmt의 TitleId 변경.', 'desc.SetCnmtVersion': 'cnmt의 버전 변경.',
+  'desc.RelinkAccount': 'ticket/계정 재연결.', 'desc.TrimXci': 'XCI 트리밍(update 파티션 제거).',
+  'desc.SuperTrimXci': 'XCI 슈퍼 트리밍(최신 update 유지).', 'desc.EraseDeltas': 'XCI의 delta 조각 제거.',
+  'desc.GenXml': 'cnmt XML 생성.', 'desc.Rename': '폴더 안 파일을 규칙에 따라 일괄 이름변경.',
+  'desc.SplitFat32': 'FAT32 호환 4GB 분할로 분할.', 'desc.MergeFat32': '분할(.00/.01…)을 원본으로 병합.',
+  'desc.JoinFile': '분할 파일 수동 결합.', 'desc.Database': '폴더 안 게임 일괄 DB/정보 내보내기.',
+  'desc.ReadNpdm': 'NPDM 접근 제어 정보 읽기.',
+  'act.GenXml': 'cnmt XML 생성', 'act.Verify': 'NCA 해시 검증',
+  'act.TrimXci': 'XCI 트리밍', 'act.SuperTrimXci': 'XCI 슈퍼 트리밍',
+  'act.EraseDeltas': 'delta 조각 제거', 'act.UpdBase': 'update를 base에 병합',
+  'act.ReadNpdm': 'NPDM 접근 제어 읽기', 'act.JoinFile': '분할 병합 / zip 해제',
+  'act.RelinkAccount': 'ticket 계정 해제', 'act.SetCgame': 'GameCard로 변환',
+  'act.SetEshop': 'Download로 변환', 'act.SetCnmtTitleId': 'cnmt TitleID 변경',
+  'act.SetCnmtVersion': 'cnmt 버전 변경', 'act.RemoveTitleKey': 'title key 제거',
+  jInfo: '정보', jNsp2Xci: 'NSP→XCI', jXci2Nsp: 'XCI→NSP', jNszC: 'NSZ 압축', jNszD: 'NSZ 해제',
+  jXczC: 'XCZ 압축', jXczD: 'XCZ 해제', jRsv: '펌웨어 인하', jPack: 'XCI 패키징',
+  jTrim: 'XCI 트리밍', jSuper: '슈퍼 트리밍', jDelta: 'delta 제거', jUpdBase: 'update 병합',
+  jNpdm: 'NPDM 정보', jJoin: '분할 병합', jRelink: 'ticket 해제', jCgame: 'GameCard화',
+  jEshop: 'Download화', jTitleId: 'TitleID 변경', jVersion: '버전 변경', jRtrnca: 'titlekey 제거',
+  jFatSplit: 'FAT32 분할', jFatMerge: '분할 병합', jVerify: '검증',
+};
+
+const LANGS = ['zh-CN', 'en-US', 'ja-JP', 'ko-KR'];
+let _lang = 'zh-CN';
+
+function t(key) {
+  return (I18N[_lang] && I18N[_lang][key]) || I18N['en-US'][key] || key;
+}
+
+function setLang(code) {
+  if (!I18N[code]) code = 'en-US';
+  _lang = code;
+  try { localStorage.setItem('nscb-lang', code); } catch (_) {}
+  const docEl = document.documentElement;
+  if (docEl) docEl.lang = code;
+  applyI18n();
+}
+
+function getLang() { return _lang; }
+
+// Replace text/title/placeholder for any [data-i18n*] element.
+function applyI18n() {
+  document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t(el.dataset.i18n); });
+  document.querySelectorAll('[data-i18n-title]').forEach(el => { el.title = t(el.dataset.i18nTitle); });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => { el.placeholder = t(el.dataset.i18nPlaceholder); });
+  const sel = document.getElementById('sel-lang');
+  if (sel && sel.value !== _lang) sel.value = _lang;
+}
+
+// Restore a saved/persisted language on load.
+function initLang() {
+  let saved = null;
+  try { saved = localStorage.getItem('nscb-lang'); } catch (_) {}
+  if (saved && I18N[saved]) _lang = saved;
+  else {
+    const nav = (navigator.language || 'zh-CN');
+    const match = LANGS.find(l => l.toLowerCase() === nav.toLowerCase())
+      || LANGS.find(l => nav.toLowerCase().startsWith(l.split('-')[0]));
+    if (match) _lang = match;
+  }
+  document.documentElement.lang = _lang;
+}
+
+// ── Locale-aware formatting (Intl) ───────────────────────────────────────────────
+const LOCALE_TAG = { 'zh-CN': 'zh-CN', 'en-US': 'en-US', 'ja-JP': 'ja-JP', 'ko-KR': 'ko-KR' };
+function localeTag() { return LOCALE_TAG[_lang] || 'en-US'; }
+
+// Grouped integer, e.g. 1234567 -> "1,234,567" (zh) / "1.234.567" (de-style) per locale.
+function fmtNum(n) {
+  try { return new Intl.NumberFormat(localeTag()).format(n); } catch (_) { return String(n); }
+}
+// Locale-aware byte size: thousands-separated mantissa + unit.
+function fmtBytesFmt(bytes) {
+  if (!bytes || bytes <= 0) return '';
+  const units = ['B', 'KB', 'MB', 'GB', 'TB'];
+  let i = 0, v = bytes;
+  while (v >= 1024 && i < units.length - 1) { v /= 1024; i++; }
+  const num = i === 0 ? fmtNum(Math.round(v)) : fmtNumWith(v, 1);
+  return num + ' ' + units[i];
+}
+function fmtNumWith(v, digits) {
+  try { return new Intl.NumberFormat(localeTag(), { minimumFractionDigits: digits, maximumFractionDigits: digits }).format(v); }
+  catch (_) { return v.toFixed(digits); }
+}
+// ISO timestamp -> locale date+time. Job API returns UTC; Intl renders in the browser tz.
+function fmtDateTime(iso) {
+  if (!iso) return '';
+  try { return new Intl.DateTimeFormat(localeTag(), { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(iso)); }
+  catch (_) { return String(iso); }
+}
+function fmtDate(iso) {
+  if (!iso) return '';
+  try { return new Intl.DateTimeFormat(localeTag(), { dateStyle: 'medium' }).format(new Date(iso)); }
+  catch (_) { return String(iso); }
+}
