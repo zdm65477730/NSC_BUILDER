@@ -6,6 +6,8 @@
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
     <!-- GUI subsystem: no console window on double-click; logging goes to file + the in-app Logs view. -->
     <OutputType>WinExe</OutputType>
+    <!-- Embedded EXE/Window icon (multi-size 16..256). -->
+    <ApplicationIcon>App.ico</ApplicationIcon>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
