@@ -28,6 +28,15 @@ public static class RunOptions
         return Math.Min(want, Math.Max(1, cpuCap));
     }
 
+    /// <summary>
+    /// Auto CPU budget for a single job: the per‑job thread ceiling when N jobs share the machine, so the
+    /// total across concurrent jobs stays ≈ cores (no oversubscription). cores / activeJobs, floored to 1.
+    /// A lone job (activeJobs ≤ 1) gets the whole CPU; a batch of N gets ≈ cores/N each. Guards cores/active
+    /// inputs ≥ 1 so it can never return 0.
+    /// </summary>
+    public static int ThreadBudget(int cores, int activeJobs)
+        => Math.Max(1, Math.Max(1, cores) / Math.Max(1, activeJobs));
+
     /// <summary>Target RSV (u32) from the <c>rsv</c> option, or 0 when absent/invalid.</summary>
     public static uint ResolveRsv(IReadOnlyDictionary<string, string>? options)
         => options is not null && options.TryGetValue("rsv", out var v) && uint.TryParse(v, out var r) ? r : 0;

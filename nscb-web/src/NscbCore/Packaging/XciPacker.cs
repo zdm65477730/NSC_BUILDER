@@ -97,7 +97,10 @@ public static class XciPacker
         string folderPath, string outputPath, NscbKeys? keys,
         Action<long>? progress = null, CancellationToken ct = default)
     {
-        string[] supported = Directory.GetFiles(folderPath)
+        string[] files;
+        try { files = Directory.GetFiles(folderPath, "*", System.IO.SearchOption.AllDirectories); }   // include subfolders
+        catch { files = Directory.GetFiles(folderPath); }                                              // inaccessible dir → top-level
+        string[] supported = files
             .Where(f =>
             {
                 string ext = Path.GetExtension(f).ToLowerInvariant();

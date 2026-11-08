@@ -38,15 +38,37 @@ chmod +x start.sh
 ./start.sh
 ```
 
-### Manual build & publish the single-file exe (win-x64)
+### Manual build & publish — Windows single-file exe
 
 ```bash
-dotnet publish src/NscbServer -c Release -o dist/win-x64
-# Output: dist/win-x64/NscbServer.exe (single file, self-contained;
-#         win-x64 / PublishSingleFile / SelfContained etc. are already set in NscbServer.csproj — no flags needed)
+dotnet publish src/NscbServer -c Release -f net10.0-windows -o dist/win-x64
+# Output: dist/win-x64/NscbServer.exe — single-file, self-contained; native WinForms + WebView2 window
 ```
 
-`NscbServer.exe` is a single-file, self-contained executable with the Web UI embedded — copy it anywhere and run.
+### Manual build & publish — macOS / Linux single file (browser UI)
+
+The native window (WinForms + WebView2) is Windows-only, so on macOS/Linux the single file is the **headless
+server**: it serves the embedded UI and opens your system browser (`http://127.0.0.1:54321`). Same tool and
+features, just shown in a browser instead of a native window (the native OS file drag-drop is a Windows-only
+nicety; the file pickers work everywhere).
+
+```bash
+# Linux x64
+dotnet publish src/NscbServer -c Release -f net10.0 -r linux-x64 --self-contained -p:PublishSingleFile=true -o dist/linux-x64
+#   -> dist/linux-x64/NscbServer        (chmod +x, run it; the browser opens automatically)
+
+# macOS Apple Silicon (M1-M4)
+dotnet publish src/NscbServer -c Release -f net10.0 -r osx-arm64 --self-contained -p:PublishSingleFile=true -o dist/osx-arm64
+
+# macOS Intel
+dotnet publish src/NscbServer -c Release -f net10.0 -r osx-x64 --self-contained -p:PublishSingleFile=true -o dist/osx-x64
+```
+
+Run with `--serve` / `--no-open` for headless (no browser), or `--browser` to force the browser path.
+> Build the macOS targets **on a Mac** (or, when cross-compiling from another OS, allow NuGet to fetch the
+> `Microsoft.*.osx-*` runtime packs — the repo's `nuget.config` clears online sources, so a first cross-build
+> may need `--source https://api.nuget.org/v3/index.json`). The `-f` flag is required because the project now
+> multi-targets (`net10.0-windows` desktop + `net10.0` cross-platform).
 
 ## Configure keys
 
@@ -64,9 +86,10 @@ Settings are saved to `settings.json` (next to the program) and reloaded on the 
 # after cloning
 cd nscb-web
 dotnet build          # full compile
-dotnet test           # unit tests (207, synthetic data; no real samples / keys / network required)
-dotnet run --project src/NscbServer   # dev mode (hot reload)
+dotnet test           # unit tests (220, synthetic data; no real samples / keys / network required)
+dotnet run --project src/NscbServer -f net10.0-windows   # dev mode (Windows; use -f net10.0 on macOS/Linux)
 ./clean.sh            # remove build & temp artifacts (bin/obj/dist/...); Windows: clean.bat
+./tools/e2e_quick.sh  # real-sample E2E: auto-picks the smallest base+update game, decompresses, runs FAST (~1 min). Env: E2E_QUICK_FAST=0 full matrix, E2E_QUICK_KEEP=1 keep scratch, E2E_QUICK_LIB/E2E_QUICK_KEYS override paths
 ```
 
 ### Real-sample integration tests

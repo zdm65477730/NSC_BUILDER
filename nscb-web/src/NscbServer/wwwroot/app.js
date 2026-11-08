@@ -21,14 +21,42 @@ const OP_GROUPS = [
   { group: 'navConvert', items: ['ConvertNspToXci', 'ConvertXciToNsp', 'CompressNsz', 'DecompressNsz', 'CompressXcz', 'DecompressXcz'] },
   { group: 'navPack', items: ['PackXci', 'Extract', 'SplitTitles', 'UpdBase'] },
   { group: 'navModify', items: ['PatchRsv', 'RemoveTitleKey', 'Restore', 'SetCgame', 'SetEshop', 'SetCnmtTitleId', 'SetCnmtVersion', 'RelinkAccount'] },
-  { group: 'navTidy', items: ['TrimXci', 'SuperTrimXci', 'EraseDeltas', 'GenXml', 'Rename', 'SplitFat32', 'MergeFat32', 'JoinFile'] },
+  { group: 'navTidy', items: ['TrimXci', 'SuperTrimXci', 'EraseDeltas', 'GenXml', 'Rename', 'SplitFat32', 'JoinFile'] },
 ];
-const FOLDER_OK = new Set(['Database', 'Rename']);
-const MULTIFOLDER = new Set(['PackXci', 'UpdBase', 'MergeFat32']);   // offer “＋文件夹” that loads all supported files inside
-// Single-input tasks: they operate on ONE container (split/extract/…), so re-adding a file REPLACES the current
-// one instead of appending to a list. All other ops (combine: Pack/UpdBase/Merge/Join; or batch: compress/convert/
-// patch/trim/rename/database) legitimately keep a multi-file list.
-const SINGLE_INPUT = new Set(['SplitTitles', 'SplitFat32', 'Extract', 'GenXml', 'ReadNpdm']);
+// Two selection models:
+//  REPLACE (single-file-per-item ops): each "add files"/"add folder" REPLACES the whole list (you can still pick
+//          many files or a whole folder at once); picking again replaces the previous batch. Submitted as one job
+//          PER file so the queue runs them in parallel (bounded by workers).
+//  APPEND  (combine/accumulate ops: Pack, UpdBase, JoinFile): adds accumulate into the list, de-duplicated by path.
+//          Pack/UpdBase submit as ONE combined job (they need all inputs together); JoinFile fans out per unit.
+const REPLACE = new Set([
+  'ConvertNspToXci', 'ConvertXciToNsp', 'CompressNsz', 'DecompressNsz', 'CompressXcz', 'DecompressXcz',
+  'PatchRsv', 'RemoveTitleKey', 'Restore', 'SetCgame', 'SetEshop', 'SetCnmtTitleId', 'SetCnmtVersion', 'RelinkAccount',
+  'Extract', 'SplitTitles',
+  'TrimXci', 'SuperTrimXci', 'EraseDeltas', 'GenXml', 'SplitFat32', 'Rename',
+]);
+const APPEND = new Set(['PackXci', 'UpdBase', 'JoinFile']);
+const PER_FILE = new Set([...REPLACE, 'JoinFile']);   // fan out to one job per file
+// Accepted input type per op: 'game' (isGameFile), 'any', 'join' (.zip or a .NN split part), or an array of
+// lowercase extensions. Filters the picker, folder scans and drops so only the right type enters the list.
+const ACCEPT = {
+  ConvertNspToXci: ['.nsp', '.nsz'], ConvertXciToNsp: ['.xci', '.xcz'],
+  CompressNsz: ['.nsp'], DecompressNsz: ['.nsz'], CompressXcz: ['.xci'], DecompressXcz: ['.xcz'],
+  PatchRsv: ['.nsp', '.nsz', '.xci', '.xcz'], RemoveTitleKey: ['.nsp', '.nsz'], Restore: ['.nsp', '.nsz', '.xci', '.xcz'],
+  SetCgame: ['.nsp', '.nsz', '.xci', '.xcz'], SetEshop: ['.nsp', '.nsz', '.xci', '.xcz'],
+  SetCnmtTitleId: ['.nsp', '.nsz', '.xci', '.xcz'], SetCnmtVersion: ['.nsp', '.nsz', '.xci', '.xcz'], RelinkAccount: ['.nsp', '.nsz'],
+  Extract: ['.nsp', '.nsz', '.xci', '.xcz'], SplitTitles: ['.nsp', '.nsz', '.xci', '.xcz'],
+  TrimXci: ['.xci', '.xcz'], SuperTrimXci: ['.xci', '.xcz'], EraseDeltas: ['.xci', '.xcz'], GenXml: ['.nsp', '.nsz', '.xci', '.xcz'],
+  Rename: 'game', SplitFat32: 'any', JoinFile: 'join', PackXci: 'game', UpdBase: ['.nsp', '.nsz'],
+};
+function acceptFn(op) {
+  const a = ACCEPT[op];
+  if (a === 'any') return () => true;
+  if (a === 'join') return n => /\.zip$/i.test(n) || /\.\d{2}$/.test(n);
+  if (a === 'game') return isGameFile;
+  if (Array.isArray(a)) return n => { const l = n.toLowerCase(); return a.some(e => l.endsWith(e)); };
+  return isGameFile;   // default: game containers
+}
 const DESC_KEYS = { UpdBase: 'hintUpdBase', Rename: 'hintRename', Database: 'hintDatabase', Restore: 'hintRestore', SetCgame: 'hintSetCgame', SetEshop: 'hintSetEshop', SetCnmtTitleId: 'hintTitleId', SetCnmtVersion: 'hintVersion', RemoveTitleKey: 'hintRemoveTitleKey' };
 
 // ── Helpers ────────────────────────────────────────────────────────────────────────
@@ -191,30 +219,27 @@ function syncTabs() { $('mat-tabs').style.display = mode === 'info' ? 'flex' : '
 // ── Current file / folders ───────────────────────────────────────────────────────────
 function startHint() { return currentFile ? (currentFile.replace(/[/\\][^/\\]*$/, '') || currentFile) : (cachedSettings.outputDir || ''); }
 function setCurrentFile(p) { currentFile = p; lastInfo = null; const cf = $('cur-file'); if (cf) { cf.textContent = base(p); cf.title = p; } addEntry(p, false, true); mode = 'info'; renderNav(); syncTabs(); renderFacet(); prefetchCurrent(); }
-function addEntry(path, isDir, dedup) {
-  if (!path) return;
-  // Single-input tasks keep ONLY the latest file (replace, not append).
-  if (mode === 'op' && !isDir && SINGLE_INPUT.has(currentOp)) {
-    selectedFiles = [{ name: base(path), path, size: 0, isDir: false }];
-    renderSel(); return;
-  }
-  if (dedup && selectedFiles.some(f => f.path === path)) return;
-  if (!selectedFiles.some(f => f.path === path)) selectedFiles.push({ name: base(path), path, size: 0, isDir: !!isDir });
+function addEntry(path, isDir) { if (!path) return; if (isDir) { addFromFolder(path); return; } setSelection([path]); }
+// Replace-or-append the selection with these file paths, filtered by the op's accepted type.
+// REPLACE ops overwrite the whole list; APPEND ops accumulate (de-duplicated by full path).
+function setSelection(paths) {
+  const pred = acceptFn(currentOp), append = APPEND.has(currentOp);
+  const files = (paths || []).filter(p => p && !/[/\\]$/.test(p) && pred(base(p)));
+  if (append) { for (const p of files) if (!selectedFiles.some(f => f.path === p)) selectedFiles.push({ name: base(p), path: p, size: 0, isDir: false }); }
+  else { selectedFiles = files.map(p => ({ name: base(p), path: p, size: 0, isDir: false })); }
   if (mode === 'op') renderSel();
 }
 // A supported game container (incl. FAT32 split parts like *.nsp.00).
 function isGameFile(n) { return /\.(nsp|nsz|xci|xcz|nca|ncz)(\.\d{2,})?$/i.test(n); }
-// Pick a folder → auto-load every supported game file directly inside it.
+// Pick/drop a folder → load every accepted game file inside it, INCLUDING subfolders, then replace-or-append.
 async function addFromFolder(dir) {
   if (!dir) return;
-  // Folder-as-input operations keep the directory itself; everything else expands to files.
-  if (mode === 'op' && FOLDER_OK.has(currentOp)) { addEntry(dir, true); renderSel(); return; }
   try {
-    const r = await apiGet('/api/browse?path=' + encodeURIComponent(dir) + '&all=1');
-    const ents = (r.entries || []).filter(e => !e.isDir && isGameFile(e.name));
-    if (!ents.length) { toast(t('folderEmpty')); return; }
-    ents.forEach(e => addEntry(e.path, false, true));
-    renderSel();
+    const pred = acceptFn(currentOp);
+    const r = await apiGet('/api/browse?path=' + encodeURIComponent(dir) + '&recurse=1');
+    const paths = (r.entries || []).filter(e => !e.isDir && pred(e.name)).map(e => e.path);
+    if (!paths.length) { toast(t('folderEmpty')); return; }
+    setSelection(paths);
   } catch (err) { toast(mapError(err.message)); }
 }
 let _toastTimer = null;
@@ -250,14 +275,22 @@ function setupDrop() {
     withPath.forEach(f => addFromPath(f.path)); renderSel();
   });
 }
-// Route a dropped path: a game container → add it; otherwise treat as a folder and load its files.
-function addFromPath(p) { if (!p) return; if (isGameFile(base(p))) addEntry(p, false, true); else addFromFolder(p); }
+// Route a dropped path: a recognized file/container → batch-add; anything else → treat as a folder and load it.
+function looksLikeFile(n) { return isGameFile(n) || /\.zip$/i.test(n) || /\.\d{2}$/.test(n); }
+function addFromPath(p) { if (!p) return; if (looksLikeFile(base(p))) setSelection([p]); else addFromFolder(p); }
 window.__nativeDrop = function (paths) {
   window.__nscbDropPending = 0;
   try {
     const list = paths || [];
     if (mode === 'info') { const f = list.find(p => isGameFile(base(p))); if (f) { setCurrentFile(f); return; } }
-    list.forEach(addFromPath); renderSel();
+    if (mode === 'op') {
+      const files = list.filter(p => looksLikeFile(base(p)));
+      const dirs = list.filter(p => !looksLikeFile(base(p)));
+      if (files.length) setSelection(files);           // batch: REPLACE overwrites, APPEND accumulates
+      dirs.forEach(d => addFromFolder(d));             // folder(s) expand recursively
+      return;
+    }
+    list.forEach(p => addFromPath(p));
   } catch (_) {}
 };
 function removeFile(i) { selectedFiles.splice(i, 1); renderSel(); }
@@ -385,7 +418,7 @@ function renderOp() {
     <div class="files-sec">
       <div class="file-tools">
         <button id="btn-add-files" class="btn-sm">＋ ${esc(t('addFiles'))}</button>
-        ${FOLDER_OK.has(op) || MULTIFOLDER.has(op) ? `<button id="btn-add-dir" class="btn-sm">＋ ${esc(t('addFolder'))}</button>` : ''}
+        <button id="btn-add-dir" class="btn-sm">＋ ${esc(t('addFolder'))}</button>
         <button id="btn-clear-sel" class="btn-sm ghost">${esc(t('clear'))}</button>
         <input id="path-input" type="text" placeholder="${esc(t('pathPh'))}" spellcheck="false">
         <button id="btn-add-path" class="btn-sm">${esc(t('add'))}</button>
@@ -397,10 +430,10 @@ function renderOp() {
     <div id="op-jobs" class="job-list" style="margin-top:16px"></div>`;
   if (op === 'PackXci') _packnameEdited = false;
   renderSel(); renderOpJobs();
-  $('btn-add-files').onclick = () => openDirPickerEx({ fileMode: true, multi: true, start: startHint(), title: t('addFiles'), onPick: (p, isDir) => addEntry(p, isDir) });
-  if ($('btn-add-dir')) $('btn-add-dir').onclick = () => openDirPickerEx({ fileMode: false, start: startHint(), title: t('addFolder'), onPick: (p) => { if (FOLDER_OK.has(currentOp)) addEntry(p, true); else addFromFolder(p); } });
+  $('btn-add-files').onclick = () => openDirPickerEx({ fileMode: true, multi: true, anyFile: ACCEPT[currentOp] === 'any', start: startHint(), title: t('addFiles'), onMany: paths => setSelection(paths) });
+  if ($('btn-add-dir')) $('btn-add-dir').onclick = () => openDirPickerEx({ fileMode: false, start: startHint(), title: t('addFolder'), onPick: p => addFromFolder(p) });
   $('btn-clear-sel').onclick = () => { selectedFiles = []; renderSel(); };
-  $('btn-add-path').onclick = () => { const p = $('path-input').value.trim(); if (!p) return; const isDir = /[\\/]$/.test(p) || !/\.[a-z0-9]{2,5}$/i.test(base(p)); if (isDir && mode === 'op' && !FOLDER_OK.has(currentOp)) addFromFolder(p); else addEntry(p, isDir); $('path-input').value = ''; };
+  $('btn-add-path').onclick = () => { const p = $('path-input').value.trim(); if (!p) return; const isDir = /[\\/]$/.test(p) || !/\.[a-z0-9]{2,5}$/i.test(base(p)); if (isDir) addFromFolder(p); else setSelection([p]); $('path-input').value = ''; };
   $('path-input').onkeydown = e => { if (e.key === 'Enter') $('btn-add-path').click(); };
   $('btn-submit').onclick = submitJob;
 }
@@ -473,7 +506,19 @@ async function submitJob() {
   const inputs = selectedFiles.map(f => f.path), options = getActionOptions();
   if (currentOp === 'PatchRsv') { options.rsv = rsvToU32(options.rsvStr || ''); options.rsvLabel = options.rsvStr || ''; delete options.rsvStr; }
   $('btn-submit').disabled = true;
-  try { const res = await apiPost('/api/jobs', { type: currentOp, inputs, options }); hint.textContent = `${t('submitted')} ${res.id?.slice(0, 8)}）`; hint.className = 'hint ok'; await loadJobs(); renderOpJobs(); }
+  const perFile = PER_FILE.has(currentOp) && inputs.length > 1;   // single-file ops: one job per file → parallel via workers
+  try {
+    if (perFile) {
+      let n = 0, lastErr = null;
+      for (const f of inputs) { try { await apiPost('/api/jobs', { type: currentOp, inputs: [f], options }); n++; } catch (err) { lastErr = err; } }
+      if (!n && lastErr) throw lastErr;
+      hint.textContent = `${t('submittedMany')} ${n}）`; hint.className = 'hint ok';
+    } else {
+      const res = await apiPost('/api/jobs', { type: currentOp, inputs, options });
+      hint.textContent = `${t('submitted')} ${res.id?.slice(0, 8)}）`; hint.className = 'hint ok';
+    }
+    await loadJobs(); renderOpJobs();
+  }
   catch (err) { hint.textContent = mapError(err.message); hint.className = 'hint err'; }
   finally { $('btn-submit').disabled = false; }
 }
@@ -554,6 +599,7 @@ async function loadSettings() { await getSettings(); const s = cachedSettings; s
   $('set-outdir').value = s.outputDir || '';
   $('set-workers').value = s.workers || 1; const st = $('set-threads'); if (st) st.value = s.compressThreads || 1; $('set-compresslevel').value = s.compressLevel || 17;
   const trec = $('set-threads-rec'); if (trec) { const n = s.recommendedThreads || (navigator.hardwareConcurrency || 4); trec.textContent = `${t('threadsRecommended')} (${n})`; trec.onclick = () => { const el = $('set-threads'); if (el) el.value = String(n); }; }
+  const wrec = $('set-workers-rec'); if (wrec) { const n = s.recommendedWorkers || Math.max(2, Math.min(8, Math.floor((navigator.hardwareConcurrency || 4) / 2))); wrec.textContent = `${t('threadsRecommended')} (${n})`; wrec.onclick = () => { const el = $('set-workers'); if (el) el.value = String(n); }; }
   document.querySelectorAll('.lvl-preset').forEach(b => b.onclick = () => { const el = $('set-compresslevel'); if (el) el.value = b.dataset.lvl; });
   if ([...$('set-defaultview').options].some(o => o.value === (s.defaultView || 'info'))) $('set-defaultview').value = s.defaultView || 'info';
   const lg = $('set-logs'); if (lg) lg.checked = s.logsEnabled !== false;
@@ -640,10 +686,11 @@ function openDirPicker(targetInputId, fileMode, anyFile) {
   const cur = $(targetInputId)?.value || '';
   openDirPickerEx({ fileMode, anyFile, start: (fileMode && cur) ? cur.replace(/[/\\][^/\\]*$/, '') : cur, title: t('chooseDir'), onPick: p => { $(targetInputId).value = p; } });
 }
-function openDirPickerEx({ fileMode, start, title, onPick, multi, anyFile }) {
+function openDirPickerEx({ fileMode, start, title, onPick, onMany, multi, anyFile }) {
   // Prefer the native Windows file/folder dialog when running inside WebView2; fall back to the in-app browser otherwise.
-  if (nativePickAvailable()) { nativePick({ multi: !!multi, folders: !fileMode, anyFile: !!anyFile }).then(paths => (paths || []).forEach(p => onPick(p, !fileMode))); return; }
-  dirPickerFileMode = !!fileMode; dirPickerCallback = onPick;
+  const emit = (paths, isDir) => { if (onMany) onMany(paths); else paths.forEach(p => onPick(p, isDir)); };
+  if (nativePickAvailable()) { nativePick({ multi: !!multi, folders: !fileMode, anyFile: !!anyFile }).then(paths => emit(paths || [], !fileMode)); return; }
+  dirPickerFileMode = !!fileMode; dirPickerCallback = onMany ? (p, isDir) => onMany([p]) : onPick;
   $('dirpicker-title').textContent = title || t('chooseDir'); $('dp-path').value = start || ''; $('dirpicker-overlay').classList.remove('hidden'); dirPickerBrowse(start || undefined);
 }
 function nativePickAvailable() { return !!(window.chrome && window.chrome.webview && window.chrome.webview.postMessage); }

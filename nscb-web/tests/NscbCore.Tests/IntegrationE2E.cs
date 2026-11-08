@@ -33,6 +33,9 @@ public sealed class IntegrationE2E
     public IntegrationE2E(ITestOutputHelper o) => _out = o;
 
     private static string Dir => Environment.GetEnvironmentVariable("NSCB_E2E_DIR") ?? "";
+    // NSCB_E2E_FAST=1 → one small level (3) + threads {6} instead of the full {12,17}×{1,6} matrix: ~6x quicker
+    // re-run that still exercises the non-power-of-two MT/chunk-alignment guard. Default = full coverage.
+    private static bool Fast => Environment.GetEnvironmentVariable("NSCB_E2E_FAST") == "1";
     private static bool Available => Directory.Exists(Dir)
         && File.Exists(Path.Combine(Dir, "prod.keys"))
         && (Samples().Count > 0);
@@ -64,10 +67,11 @@ public sealed class IntegrationE2E
             if (!e.IsNca) continue;                       // plain .nca entries only
             fs.Position = e.Offset;
             using var sha = SHA256.Create();
-            // read exactly Size bytes
-            long rem = e.Size; var buf = new byte[1 << 20]; using var ms = new MemoryStream();
-            while (rem > 0) { int r = fs.Read(buf, 0, (int)Math.Min(buf.Length, rem)); if (r <= 0) break; ms.Write(buf, 0, r); rem -= r; }
-            dict[e.BaseName] = Convert.ToHexString(sha.ComputeHash(ms.ToArray()));
+            // Stream-hash the entry via TransformBlock so multi-GB NCAs don't blow the ~2GB MemoryStream cap.
+            long rem = e.Size; var buf = new byte[1 << 20];
+            while (rem > 0) { int r = fs.Read(buf, 0, (int)Math.Min(buf.Length, rem)); if (r <= 0) break; sha.TransformBlock(buf, 0, r, null, 0); rem -= r; }
+            sha.TransformFinalBlock(System.Array.Empty<byte>(), 0, 0);
+            dict[e.BaseName] = Convert.ToHexString(sha.Hash!);
         }
         return new NcaHashes(dict);
     }
@@ -94,8 +98,8 @@ public sealed class IntegrationE2E
         var info0 = new TitleInfoService(keys).GetFileInfo(nsp);
         Assert.True(Verifier.VerifyContainer(nsp, keys).Ok, "original NSP fails Verify");
 
-        foreach (int level in new[] { 12, 17 })
-            foreach (int threads in new[] { 1, 6 })   // 6 = non-power-of-two: regression guard for the
+        foreach (int level in (Fast ? new[] { 3 } : new[] { 12, 17 }))
+            foreach (int threads in (Fast ? new[] { 6 } : new[] { 1, 6 }))   // 6 = non-power-of-two: regression guard for the
             {                                          // "Offset must be a multiple of 16" chunk-alignment bug
                 string outNsz = Path.Combine(work, $"c{level}_t{threads}.nsz");
                 var sw = Stopwatch.StartNew();
@@ -157,11 +161,11 @@ public sealed class IntegrationE2E
             ContainerConverter.NspToXci(nsp, xci, keys, null, default, 4);
         }
         var orig = HashNcas(xci);
-        foreach (int threads in new[] { 1, 6 })   // 6 = non-power-of-two: chunk-alignment + MT regression guard
+        foreach (int threads in (Fast ? new[] { 6 } : new[] { 1, 6 }))   // 6 = non-power-of-two: chunk-alignment + MT regression guard
         {
             string outXcz = Path.Combine(work, $"x_t{threads}.xcz");
             var sw = Stopwatch.StartNew();
-            NszConverter.XciToXcz(xci, outXcz, keys, 17, null, default, threads);
+            NszConverter.XciToXcz(xci, outXcz, keys, Fast ? 3 : 17, null, default, threads);
             sw.Stop();
             double ratio = (double)new FileInfo(outXcz).Length / new FileInfo(xci).Length;
             _out.WriteLine($"XCI→XCZ threads={threads}: ratio={ratio:F3}  {sw.Elapsed.TotalSeconds:F1}s");
@@ -303,9 +307,14 @@ public sealed class IntegrationE2E
                     foreach (var (id, hash) in NcaCnmtPatcher.ReadContentHashes(dfs, m.Offset, m.Size, keys.KeySet))
                     {
                         if (!byId.TryGetValue(id, out var t)) continue;
-                        byte[] nb = new byte[t.Size]; dfs.Position = t.Offset; dfs.ReadExactly(nb);
-                        var calc = System.Security.Cryptography.SHA256.HashData(nb); tot++;
-                        if (!calc.AsSpan().SequenceEqual(hash)) mism++;
+                        long rem = t.Size; dfs.Position = t.Offset; var nb = new byte[1 << 20];
+                        using (var sha2 = System.Security.Cryptography.SHA256.Create())   // stream: NCA can exceed 2GB
+                        {
+                            while (rem > 0) { int rr = dfs.Read(nb, 0, (int)Math.Min(nb.Length, rem)); if (rr <= 0) break; sha2.TransformBlock(nb, 0, rr, null, 0); rem -= rr; }
+                            sha2.TransformFinalBlock(System.Array.Empty<byte>(), 0, 0);
+                            var calc = sha2.Hash!; tot++;
+                            if (!calc.AsSpan().SequenceEqual(hash)) mism++;
+                        }
                     }
                 }
                 _out.WriteLine($"  cnmt content-hash (NSGManager-style): {tot - mism}/{tot} match");

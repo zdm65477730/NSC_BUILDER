@@ -18,7 +18,7 @@ fi
 
 if [ "$needs_build" = "1" ]; then
   echo "Building NSC_BUILDER Web UI ..."
-  dotnet build src/NscbServer/NscbServer.csproj -c Release -v quiet
+  dotnet build src/NscbServer/NscbServer.csproj -c Release -f net10.0 -v quiet
   echo "Build done."
 fi
 
@@ -27,5 +27,5 @@ echo "Starting server on $URL  (Ctrl+C to stop)"
 # Open browser after a short delay
 ( sleep 2 && xdg-open "$URL" 2>/dev/null || true ) &
 
-dotnet run --project src/NscbServer -c Release --no-build -- \
+dotnet run --project src/NscbServer -c Release -f net10.0 --no-build -- \
   --urls "http://127.0.0.1:$PORT"

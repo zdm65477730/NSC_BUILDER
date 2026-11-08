@@ -6,12 +6,12 @@ cd /d "%~dp0"
 
 set PORT=54321
 set URL=http://127.0.0.1:%PORT%
-set EXE=src\NscbServer\bin\Release\net10.0\win-x64\publish\NscbServer.exe
+set EXE=dist\win-x64\NscbServer.exe
 
 if exist "%EXE%" goto :run
 
 echo Building NSC_BUILDER Web UI (first time, ~30s)...
-dotnet publish src\NscbServer\NscbServer.csproj -c Release -r win-x64 --self-contained true -v quiet
+dotnet publish src\NscbServer\NscbServer.csproj -c Release -f net10.0-windows -o dist\win-x64 -v quiet
 if errorlevel 1 ( echo Build failed. & pause & exit /b 1 )
 echo Build done.
 

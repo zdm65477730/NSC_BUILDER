@@ -11,10 +11,12 @@ using NscbJobs;
 using NscbServer;
 using System.Net.Http;
 using Microsoft.AspNetCore.StaticFiles;
+#if WINDOWS
 using Microsoft.Web.WebView2.Core;
 using Microsoft.Web.WebView2.WinForms;
 using System.Drawing;
 using System.Windows.Forms;
+#endif
 
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 {
@@ -37,7 +39,13 @@ builder.Services.AddSingleton(sp =>
     var settings = sp.GetRequiredService<AppSettings>();
     // Let the runner broadcast live progress (bars move; long jobs like Database no longer look frozen).
     JobRunner.PublishProgress = job => hub.Publish(new JobEvent(job.Id, "progress", job.ProgressPct, null, job.Status));
-    return new JobEngine(hub.Publish, (job, ct) => JobRunner.Run(job, ct, settings), Math.Clamp(settings.Workers, 1, 64));
+    return new JobEngine(hub.Publish, async (job, ct) =>
+    {
+        // Track how many jobs are running right now so GetParallel can split the CPU budget across them.
+        System.Threading.Interlocked.Increment(ref settings.ActiveJobs);
+        try { await JobRunner.Run(job, ct, settings); }
+        finally { System.Threading.Interlocked.Decrement(ref settings.ActiveJobs); }
+    }, Math.Clamp(settings.Workers, 1, 64));
 });
 
 builder.WebHost.ConfigureKestrel(k => k.ListenLocalhost(port));
@@ -66,7 +74,7 @@ app.UseStaticFiles(new StaticFileOptions
 
 // ── Browse ────────────────────────────────────────────────────────────────────────
 
-app.MapGet("/api/browse", (string? path, string? all) =>
+app.MapGet("/api/browse", (string? path, string? all, string? recurse) =>
 {
     bool listAll = !string.IsNullOrEmpty(all);
     try
@@ -78,6 +86,11 @@ app.MapGet("/api/browse", (string? path, string? all) =>
         var dir = new DirectoryInfo(path);
         if (!dir.Exists) return Results.Ok(new BrowseResult(path, null, Array.Empty<BrowseEntry>()));
         settings.LastBrowseDir = path;
+
+        // Recursive mode (used by "add folder"): return every supported game file under the tree so files
+        // in SUBFOLDERS are included too. Loop-guarded + access-tolerant; returns files only (no folders).
+        if (!string.IsNullOrEmpty(recurse))
+            return Results.Ok(new BrowseResult(path, dir.Parent?.FullName, RecurseGameFiles(dir)));
 
         var folders = SafeEnumerate(() => dir.EnumerateDirectories())
             .Where(d => !d.Attributes.HasFlag(FileAttributes.Hidden))
@@ -111,6 +124,24 @@ static IEnumerable<BrowseEntry> BrowseRoots()
     }
     if (roots.Count == 0) roots.Add(new BrowseEntry("/", "/", true, 0));   // Unix fallback
     return roots;
+}
+// Depth-first walk of subfolders collecting supported game files (loop-guarded via visited dirs,
+// access-tolerant per directory, skips hidden dirs). Used by recursive browse for "add folder".
+static IEnumerable<BrowseEntry> RecurseGameFiles(DirectoryInfo root)
+{
+    var outList = new List<BrowseEntry>();
+    var seen = new HashSet<string>(StringComparer.Ordinal);
+    var stack = new Stack<DirectoryInfo>(); stack.Push(root);
+    while (stack.Count > 0)
+    {
+        var d = stack.Pop();
+        try { if (!seen.Add(d.FullName)) continue; } catch { continue; }
+        foreach (var f in SafeEnumerate(() => d.EnumerateFiles()))
+            if (IsSupportedFile(f.Name)) outList.Add(new BrowseEntry(f.Name, f.FullName, false, SafeLength(f)));
+        foreach (var sub in SafeEnumerate(() => d.EnumerateDirectories()))
+        { try { if (!sub.Attributes.HasFlag(FileAttributes.Hidden)) stack.Push(sub); } catch { } }
+    }
+    return outList;
 }
 
 // ── Info ──────────────────────────────────────────────────────────────────────────
@@ -341,9 +372,9 @@ else if (args.Contains("--browser"))
 }
 else
 {
-    // Embed the UI in a native desktop window (Photino → WebView2 on Windows). WaitForClose blocks
-    // until the user closes it; we then stop the host. Falls back to the system browser if the native
-    // webview cannot start (e.g. WebView2 runtime missing).
+#if WINDOWS
+    // Embed the UI in a native desktop window (WinForms + WebView2 on Windows). Blocks until the user
+    // closes it; falls back to the system browser if the webview cannot start (e.g. runtime missing).
     try
     {
         OpenDesktopWindow(appUrl);
@@ -355,6 +386,13 @@ else
         await app.WaitForShutdownAsync();
     }
     await app.StopAsync();
+#else
+    // No native window on macOS/Linux (WinForms/WebView2 are Windows-only): run the server and open the
+    // UI in the system browser.
+    NSLog.Info("Native window is Windows-only; opening the UI in the system browser.");
+    TryOpenBrowser(appUrl);
+    await app.WaitForShutdownAsync();
+#endif
 }
 NSLog.Info("NSC_BUILDER web server stopped.");
 
@@ -387,6 +425,7 @@ static bool IsSupportedFile(string name)
     return NscbCore.Splitting.Fat32Splitter.IsSplitPart(name); // .00 / .01 / …
 }
 
+#if WINDOWS
 static void OpenDesktopWindow(string url)
 {
     // WinForms + WebView2 host: unlike Photino, this exposes the CoreWebView2 so we can receive
@@ -412,6 +451,7 @@ static void OpenDesktopWindow(string url)
     thread.Join();                 // block until the window closes
     if (error is not null) throw error;
 }
+#endif
 
 // File→content-type map covering the metroui icon font + vector assets we embed under wwwroot.
 static FileExtensionContentTypeProvider MetroContentTypes()
@@ -490,7 +530,12 @@ sealed class AppSettings
     public string Language { get; set; } = "zh-CN";
     public string Theme { get; set; } = "dark";
     // MODE0 global defaults (per-job options still override these).
-    public int Workers { get; set; } = 1;
+    // Workers = how many files/jobs run at once (batch parallelism). CPU-aware default; when >1 the per-file
+    // internal threads are auto-shared (cores / runningJobs), so total threads ≈ cores (no oversubscription).
+    public int Workers { get; set; } = Math.Max(2, Math.Min(8, Environment.ProcessorCount / 2));
+    // Live count of jobs executing right now (JobEngine inc/dec); GetParallel divides the core budget by this so a
+    // lone heavy file still uses all cores while a batch shares them. Runtime-only, never persisted.
+    [System.Text.Json.Serialization.JsonIgnore] public int ActiveJobs;
     // Thread budget for a compress/decompress job: split across files (file-parallel) AND fed to zstd as internal
     // MT workers per NCA (single-frame). MT is safe + format-compatible, so default to all cores (≈4-5× faster than 1).
     public int CompressThreads { get; set; } = Math.Max(1, Environment.ProcessorCount);
@@ -511,14 +556,15 @@ sealed class AppSettings
     private NscbKeys? _cachedKeys;
     private string? _cachedKeysPath;
 
-    // Unify a stored path to the OS-native separator (Windows → '\'), after ~ / %VAR% expansion, so the
-    // settings never mix "D:/Tools/x" and "D:\Tools\x". Does NOT resolve relative paths against the CWD.
-    // Applied on both Load and Apply, so an existing mixed-format settings.json is normalised on read.
+    // On Windows unify to '\'; after ~ / %VAR% / $VAR expansion, so the settings never mix
+    // "D:/Tools/x" and "D:\Tools\x". On macOS/Linux '/' is already native and '\' is a LEGAL filename
+    // character, so we must NOT convert it (that would corrupt real Unix paths). Relative paths are not
+    // resolved against CWD. Applied on both Load and Apply so a mixed Windows settings.json self-heals.
     private static string? NormPath(string? p)
     {
         if (string.IsNullOrWhiteSpace(p)) return p;
         p = NscbCore.Keys.NscbKeys.ExpandPath(p);
-        return Path.DirectorySeparatorChar == '\\' ? p.Replace('/', '\\') : p.Replace('\\', '/');
+        return Path.DirectorySeparatorChar == '\\' ? p.Replace('/', '\\') : p;
     }
 
     public void Load()
@@ -534,7 +580,7 @@ sealed class AppSettings
             OutputDir = NormPath(s.OutputDir);
             Language = s.Language;
             Theme = s.Theme;
-            Workers = s.Workers > 0 ? Math.Clamp(s.Workers, 1, 64) : 1;
+            Workers = s.Workers > 0 ? Math.Clamp(s.Workers, 1, 64) : Math.Max(2, Math.Min(8, Environment.ProcessorCount / 2));
             CompressThreads = s.CompressThreads > 0 ? Math.Clamp(s.CompressThreads, 1, 64) : Math.Max(1, Environment.ProcessorCount);
             CompressLevel = s.CompressLevel > 0 ? Math.Clamp(s.CompressLevel, 1, 22) : 17;
             DefaultView = string.IsNullOrWhiteSpace(s.DefaultView) ? "info" : s.DefaultView;
@@ -580,6 +626,7 @@ sealed class AppSettings
             language = Language,
             theme = Theme,
             workers = Workers,
+            recommendedWorkers = Math.Max(2, Math.Min(8, Environment.ProcessorCount / 2)),   // "推荐" one-click for concurrent files
             compressThreads = CompressThreads,
             recommendedThreads = Math.Max(1, Environment.ProcessorCount),   // Settings “推荐=核心数” one-click button
             compressLevel = CompressLevel,
@@ -1400,7 +1447,12 @@ static class JobRunner
         var list = new List<string>();
         foreach (var i in raw)
         {
-            if (Directory.Exists(i)) list.AddRange(Directory.EnumerateFiles(i).Where(Supported));
+            if (Directory.Exists(i))
+            {
+                // Include files in subfolders too (walk the tree; tolerate inaccessible dirs).
+                try { list.AddRange(Directory.EnumerateFiles(i, "*", System.IO.SearchOption.AllDirectories).Where(Supported)); }
+                catch { list.AddRange(Directory.EnumerateFiles(i).Where(Supported)); }
+            }
             else if (File.Exists(i)) list.Add(i);
         }
         return list;
@@ -1539,9 +1591,14 @@ static class JobRunner
     private static string MergeTargetExt(IEnumerable<string> inputs)
         => NscbCore.Packaging.OutputFormat.MergeTargetExt(inputs.Select(f => Path.GetExtension(f).ToLowerInvariant()));
 
-    private static int GetParallel(NscbJob job, AppSettings settings) =>
-        // Cap to the CPU count so file-parallelism × per-file MT never oversubscribes, whatever the user sets.
-        NscbCore.Packaging.RunOptions.ResolveThreads(job.Options, settings.CompressThreads, Math.Max(1, Environment.ProcessorCount));
+    private static int GetParallel(NscbJob job, AppSettings settings)
+    {
+        // Auto CPU budget: cores / (jobs running right now). A lone job gets the whole CPU; a batch of N shares it,
+        // so file-parallelism × per-file MT never oversubscribes. Per-job "parallel" option (if set) is still the
+        // request but capped to this budget. The division itself lives in RunOptions.ThreadBudget (unit-tested).
+        int budget = NscbCore.Packaging.RunOptions.ThreadBudget(Environment.ProcessorCount, settings.ActiveJobs);
+        return NscbCore.Packaging.RunOptions.ResolveThreads(job.Options, settings.CompressThreads, budget);
+    }
 
     private static void Mark(NscbJob job, string detail)
     {
@@ -1638,6 +1695,7 @@ static class JobRunner
     }
 }
 
+#if WINDOWS
 /// <summary>user32 helpers to pick a screen-resolution-adaptive initial window size + centered position.</summary>
 internal static class NativeScreen
 {
@@ -1810,3 +1868,4 @@ internal sealed class NscbWindow : Form
         try { _ = cv.ExecuteScriptAsync($"window.__onPick && window.__onPick({JsonSerializer.Serialize(picked)})"); } catch { }
     }
 }
+#endif

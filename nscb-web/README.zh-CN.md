@@ -39,14 +39,35 @@ chmod +x start.sh
 ./start.sh
 ```
 
-### 手动构建 & 发布单文件 exe（win-x64）
+### 手动构建 & 发布 — Windows 单文件 exe
 
 ```bash
-dotnet publish src/NscbServer -c Release -o dist/win-x64
-# 输出: dist/win-x64/NscbServer.exe（单文件自包含；win-x64 / 单文件 / 自包含 等选项已在 NscbServer.csproj 中设定，无需重复传参）
+dotnet publish src/NscbServer -c Release -f net10.0-windows -o dist/win-x64
+# 输出: dist/win-x64/NscbServer.exe — 单文件自包含；WinForms + WebView2 原生窗口
 ```
 
-`NscbServer.exe` 是单文件自包含可执行程序，WebUI 静态资源内嵌其中，拷贝即用。
+### 手动构建 & 发布 — macOS / Linux 单文件（浏览器 UI）
+
+原生窗口（WinForms + WebView2）仅限 Windows，所以在 macOS/Linux 上单文件是**无头服务器**：它服务内嵌的
+ UI 并自动打开系统浏览器（`http://127.0.0.1:54321`）。功能完全一致，只是用浏览器窗口而非原生窗口展示
+（原生 OS 拖放仅 Windows 可用；文件选择框各平台都可用）。
+
+```bash
+# Linux x64
+dotnet publish src/NscbServer -c Release -f net10.0 -r linux-x64 --self-contained -p:PublishSingleFile=true -o dist/linux-x64
+#   -> dist/linux-x64/NscbServer        (chmod +x 后直接运行；会自动开浏览器)
+
+# macOS Apple Silicon (M1-M4)
+dotnet publish src/NscbServer -c Release -f net10.0 -r osx-arm64 --self-contained -p:PublishSingleFile=true -o dist/osx-arm64
+
+# macOS Intel
+dotnet publish src/NscbServer -c Release -f net10.0 -r osx-x64 --self-contained -p:PublishSingleFile=true -o dist/osx-x64
+```
+
+加 `--serve` / `--no-open` 可无头运行（不开浏览器），`--browser` 强制走浏览器。
+> macOS 目标建议**在 Mac 上构建**（若从其它系统交叉编译，需允许 NuGet 拉取 `Microsoft.*.osx-*` 运行时包
+——本仓 `nuget.config` 已清空在线源，首次交叉构建可能要 `--source https://api.nuget.org/v3/index.json`）。
+因为项目现在**多目标**（`net10.0-windows` 桌面 + `net10.0` 跨平台），所以必须显式带 `-f`。
 
 ## 配置密钥
 
@@ -64,9 +85,10 @@ dotnet publish src/NscbServer -c Release -o dist/win-x64
 # 克隆仓库后
 cd nscb-web
 dotnet build          # 全量编译
-dotnet test           # 运行单元测试（207 个，合成数据，不依赖真实样本/密钥/网络）
-dotnet run --project src/NscbServer   # 开发模式（热重载）
+dotnet test           # 运行单元测试（220 个，合成数据，不依赖真实样本/密钥/网络）
+dotnet run --project src/NscbServer -f net10.0-windows   # 开发模式（Windows；macOS/Linux 用 -f net10.0）
 ./clean.sh          # 清理构建/临时产物（bin/obj/dist/…）；Windows 用 clean.bat
+./tools/e2e_quick.sh  # 真实样本 E2E：自动挑选最小的 base+update 游戏、解压、以 FAST 模式跑（约1分钟）。环境变量：E2E_QUICK_FAST=0 全矩阵、E2E_QUICK_KEEP=1 保留临时目录、E2E_QUICK_LIB/E2E_QUICK_KEYS 覆盖路径
 ```
 
 ### 真实样本集成测试

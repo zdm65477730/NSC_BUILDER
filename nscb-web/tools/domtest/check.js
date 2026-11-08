@@ -49,7 +49,7 @@ const src = (i18n + '\n' + app).replace(/^\s*['"]use strict['"];?\s*$/gm, '');
 window.eval(src);
 window.document.dispatchEvent(new window.Event('DOMContentLoaded'));
 
-const OPS = ['Info','ConvertNspToXci','ConvertXciToNsp','CompressNsz','DecompressNsz','CompressXcz','DecompressXcz','PackXci','UpdBase','PatchRsv','RemoveTitleKey','Restore','SetCgame','SetEshop','SetCnmtTitleId','SetCnmtVersion','RelinkAccount','TrimXci','SuperTrimXci','EraseDeltas','SplitTitles','Extract','GenXml','Rename','Database','ReadNpdm','Verify','SplitFat32','MergeFat32','JoinFile'];
+const OPS = ['Info','ConvertNspToXci','ConvertXciToNsp','CompressNsz','DecompressNsz','CompressXcz','DecompressXcz','PackXci','UpdBase','PatchRsv','RemoveTitleKey','Restore','SetCgame','SetEshop','SetCnmtTitleId','SetCnmtVersion','RelinkAccount','TrimXci','SuperTrimXci','EraseDeltas','SplitTitles','Extract','GenXml','Rename','Database','ReadNpdm','Verify','SplitFat32','JoinFile'];
 const FACETS = ['Info','Titles','Nacp','Npdm','Cnmt','Verify'];
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
@@ -86,6 +86,34 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   out.push([$('ws-content').textContent.trim().length > 3, 'jobs view', $('ws-content').textContent.trim().slice(0, 28)]);
   const jhtml = $('ws-content').innerHTML;
   out.push([/class="job-stages"/.test(jhtml) && /解压输入/.test(jhtml) && /1\.5s/.test(jhtml) && !/class="job-detail"/.test(jhtml), 'job card: expandable stage/time, no duplicate step line', /job-stages/.test(jhtml) ? (/class="job-detail"/.test(jhtml) ? 'DUP job-detail' : 'stages only ✓') : 'missing']);
+
+  // ── Client type filter (acceptFn) for the batch REPLACE/APPEND list semantics ─────────
+  try {
+    const af = window.acceptFn;
+    out.push([!!af && af('CompressNsz')('a.nsp') === true && af('CompressNsz')('a.xci') === false, 'acceptFn CompressNsz=.nsp only', af ? '' : 'no acceptFn']);
+    out.push([!!af && af('DecompressNsz')('a.nsz') === true && af('DecompressNsz')('a.nsp') === false, 'acceptFn DecompressNsz=.nsz only', '']);
+    out.push([!!af && af('ConvertXciToNsp')('a.xci') === true && af('ConvertXciToNsp')('a.nsp') === false, 'acceptFn ConvertXciToNsp=.xci', '']);
+    out.push([!!af && af('SplitFat32')('movie.mkv') === true, 'acceptFn SplitFat32=any', '']);
+    out.push([!!af && af('JoinFile')('g.nsp.00') === true && af('JoinFile')('a.zip') === true && af('JoinFile')('plain.nsp') === false, 'acceptFn JoinFile=.NN/.zip not plain', '']);
+    out.push([!!af && af('Rename')('a.nsz') === true && af('Rename')('notes.txt') === false, 'acceptFn Rename=game only', '']);
+  } catch (e) { out.push([false, 'acceptFn checks threw', String(e)]); }
+
+  // ── Client list semantics: REPLACE vs APPEND, type filter, dedupe (drives the real setSelection + DOM) ──
+  try {
+    const chips = () => [...doc.querySelectorAll('#selected-list .chip-name')].map(e => e.textContent.trim());
+    window.openView('CompressNsz'); await sleep(90);
+    window.setSelection(['x/a.nsp', 'x/b.xci', 'x/c.nsp']); await sleep(30);
+    let c = chips();
+    out.push([c.includes('a.nsp') && c.includes('c.nsp') && !c.includes('b.xci'), 'REPLACE+filter: CompressNsz keeps .nsp, drops .xci', c.join(',')]);
+    window.setSelection(['y/d.nsp']); await sleep(30);
+    c = chips();
+    out.push([c.length === 1 && c[0] === 'd.nsp', 'REPLACE: re-adding replaces the list', c.join(',')]);
+    window.openView('PackXci'); await sleep(90);
+    window.setSelection(['g1.nsp', 'g2.xci']); await sleep(30);
+    window.setSelection(['g2.xci', 'g3.nsz']); await sleep(30);
+    c = chips();
+    out.push([c.includes('g1.nsp') && c.includes('g2.xci') && c.includes('g3.nsz') && c.filter(x => x === 'g2.xci').length === 1, 'APPEND: accumulate + dedupe (PackXci)', c.join(',')]);
+  } catch (e) { out.push([false, 'list-semantics checks threw', String(e)]); }
 
   let fail = 0;
   for (const [ok, label, detail] of out) { if (!ok) fail++; console.log((ok ? 'PASS ' : 'FAIL ') + label.padEnd(26) + ' | ' + detail); }

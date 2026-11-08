@@ -1,28 +1,43 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net10.0-windows</TargetFramework>
-    <UseWindowsForms>true</UseWindowsForms>
-    <EnableWindowsTargeting>true</EnableWindowsTargeting>
-    <!-- GUI subsystem: no console window on double-click; logging goes to file + the in-app Logs view. -->
-    <OutputType>WinExe</OutputType>
-    <!-- Embedded EXE/Window icon (multi-size 16..256). -->
-    <ApplicationIcon>App.ico</ApplicationIcon>
+    <!-- Windows desktop (WinForms+WebView2) on the -windows TFM; plain net10.0 builds the macOS/Linux
+         single-file server (UI opens in the system browser). -->
+    <TargetFrameworks>net10.0-windows;net10.0</TargetFrameworks>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <PublishSingleFile>true</PublishSingleFile>
     <SelfContained>true</SelfContained>
-    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
     <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
-    <!-- Serve wwwroot from embedded resources → single self-contained exe (no side-by-side wwwroot). -->
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <!-- Serve wwwroot from embedded resources → single self-contained executable (no side-by-side wwwroot). -->
     <StaticWebAssetsEnabled>false</StaticWebAssetsEnabled>
+  </PropertyGroup>
+
+  <!-- Windows-only desktop host: WinForms + WebView2, no-console GUI, icon, manifest. -->
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net10.0-windows'">
+    <OutputType>WinExe</OutputType>
+    <UseWindowsForms>true</UseWindowsForms>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <ApplicationIcon>App.ico</ApplicationIcon>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <!-- Safety: ensure the WINDOWS symbol is defined for the native-host code, regardless of SDK defaults. -->
+    <DefineConstants>$(DefineConstants);WINDOWS</DefineConstants>
+  </PropertyGroup>
+
+  <!-- macOS / Linux: headless single-file server (console subsystem); the UI opens in the browser. -->
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net10.0'">
+    <OutputType>Exe</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\NscbCore\NscbCore.csproj" />
     <ProjectReference Include="..\NscbJobs\NscbJobs.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net10.0-windows'">
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.4314.35" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,15 +46,9 @@
     <EmbeddedResource Include="wwwroot\**\*" LogicalName="NscbServer.wwwroot.%(RecursiveDir)%(Filename)%(Extension)" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.4314.35" />
-  </ItemGroup>
-
-  <!-- The WebView2 package references its WPF control assembly on ALL net5.0+ apps, but this host uses
-       WinForms only. Microsoft.Web.WebView2.Wpf.dll drags WindowsBase 5.0 and triggers a benign
-       MSB3277 version-conflict warning vs the framework's 4.0. Drop the unused WPF reference so the
-       build is warning-free (and the WPF assembly isn't bundled). -->
-  <Target Name="DropUnusedWebView2WpfReference" BeforeTargets="ResolveAssemblyReferences">
+  <!-- The WebView2 package references its WPF control assembly on all net5.0+ apps, but this host uses
+       WinForms only; Microsoft.Web.WebView2.Wpf.dll drags WindowsBase 5.0 → benign MSB3277. Drop it. -->
+  <Target Name="DropUnusedWebView2WpfReference" Condition="'$(TargetFramework)' == 'net10.0-windows'" BeforeTargets="ResolveAssemblyReferences">
     <ItemGroup>
       <Reference Remove="@(Reference)" Condition="'%(Filename)' == 'Microsoft.Web.WebView2.Wpf'" />
     </ItemGroup>

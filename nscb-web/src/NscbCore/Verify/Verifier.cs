@@ -159,7 +159,10 @@ public static class Verifier
     public static List<VerifyResult> VerifyFolder(string folder, NscbKeys keys, CancellationToken ct = default)
     {
         var results = new List<VerifyResult>();
-        foreach (var f in Directory.EnumerateFiles(folder))
+        IEnumerable<string> walk;
+        try { walk = Directory.EnumerateFiles(folder, "*", System.IO.SearchOption.AllDirectories); }   // include subfolders
+        catch { walk = Directory.EnumerateFiles(folder); }                                              // inaccessible dir → top-level
+        foreach (var f in walk)
         {
             string ext = IOPath.GetExtension(f).ToLowerInvariant();
             if (ext is not (".nsp" or ".nsz" or ".xci" or ".xcz" or ".nca")) continue;

@@ -106,4 +106,26 @@ public class RunOptionsTests
     [Fact]
     public void SafeFileName_keepsUnicode()
         => Assert.Equal("あ漢 字", RunOptions.SafeFileName("あ漢 字"));
+
+    // ── ThreadBudget (auto CPU sharing across concurrent jobs) ─────────────────────
+    [Theory]
+    [InlineData(8, 1, 8)]    // lone job → whole CPU (no regression for single-file compress)
+    [InlineData(8, 2, 4)]    // batch of 2 → half each
+    [InlineData(8, 3, 2)]    // 8/3 integer-divides to 2
+    [InlineData(8, 8, 1)]
+    [InlineData(8, 16, 1)]   // never below 1
+    [InlineData(24, 8, 3)]
+    [InlineData(1, 4, 1)]    // 1 core → always 1
+    [InlineData(4, 0, 4)]    // activeJobs 0 (startup guard) → full CPU
+    public void ThreadBudget_splitsCpuAcrossJobs(int cores, int active, int expected)
+        => Assert.Equal(expected, RunOptions.ThreadBudget(cores, active));
+
+    [Theory]
+    [InlineData(0, 1)] [InlineData(-4, 1)] [InlineData(0, 8)] [InlineData(16, -2)]
+    public void ThreadBudget_neverBelowOne(int cores, int active)
+        => Assert.True(RunOptions.ThreadBudget(cores, active) >= 1);
+
+    [Fact]
+    public void ThreadBudget_loneJobEqualsCores()
+        => Assert.Equal(32, RunOptions.ThreadBudget(32, 1));
 }

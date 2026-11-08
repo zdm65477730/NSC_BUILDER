@@ -83,7 +83,7 @@
     <label class="field-label" data-i18n="outputDir">默认输出目录（留空 = 同输入目录）</label>
     <div class="row"><input id="set-outdir" type="text"><button class="btn-browse" data-target="set-outdir" data-i18n="browse">浏览</button></div>
     <label class="field-label" data-i18n="setWorkers">同时运行任务数 (workers)</label>
-    <div class="row"><input id="set-workers" type="number" min="1" max="64" value="1"></div>
+    <div class="row"><input id="set-workers" type="number" min="1" max="64" value="1"><button id="set-workers-rec" class="btn-browse" type="button">推荐</button></div>
     <label class="field-label" data-i18n="setThreads">压缩/解压线程数</label>
     <div class="row"><input id="set-threads" type="number" min="1" max="64" value="1"><button id="set-threads-rec" class="btn-browse" type="button">推荐</button></div>
     <label class="field-label" data-i18n="setCompressLevel">默认压缩等级 (1–22)</label>
@@ -122,7 +122,7 @@
 
 <div id="dropzone" class="dropzone is-hidden"><div class="dz-inner"><span class="mif-download2"></span><span id="dz-text"></span></div></div>
 
-<script src="i18n.js?v=35"></script>
-<script src="app.js?v=66"></script>
+<script src="i18n.js?v=36"></script>
+<script src="app.js?v=69"></script>
 </body>
 </html>
