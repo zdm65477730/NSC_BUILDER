@@ -1,3 +1,0 @@
-library_name|path
-Folder1|C:\Nintendo
-Folder2|C:\Switch

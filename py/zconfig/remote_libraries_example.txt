@@ -1,6 +1,0 @@
-library_name|path|TD_name|Update
-BASE|drive:/base|TD_Name|FALSE
-UPD|drive:/updates|None|TRUE
-DLC|drive:/dlc||TRUE
-XCI|drive:/XCI|TD_Name|FALSE
-CXCI|drive:/Custom xci|None|FALSE

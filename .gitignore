@@ -1,115 +1,41 @@
-*.nsp
-*.nsz
-*.nsx
-*.xcz
-*.xci
-*.ns*
-*.xc*
-*.nca
-*.ncz
-00
-0*
-*.7z
-*.zip
-*.lnk
-*.pdf
-*.cnmt
-*.dshlv
-*.bak
-*.zip
-*.pyc
-*.cs
-*.chm
-*.csv
-py/zconfig/*.json
-py/ztools/*.exe
-py/zconfig/*.pem
-py/ztools/web/_debug_/
-py/ztools/web/_cache_/
-py/ztools/.net_code/
-py/zconfig/remote_lib_cache/
-py/ztools/keys.txt
-py/ztools/install_server/
-py/install_dependencies - alt.bat
-py/INFO
-py/NSCB_output
-py/NSCB_extracted
-py/extract
-py/list.txt
-py/advlist.txt
-py/ztools/dbwork
-py/badfiles.txt
-py/mlist.txt
-py/splist.txt
-py/zconfig/DB/
-py/DBL.txt
-py/ztools/test.py
-py/ztools/Chromium/
-py/zzlist.txt
-py/mnglist.txt
-py/rstlist.txt
-py/zconfig/api.txt
-py/lists/
-py/ztools/private/
-py/ztools/cmd/
-py/zconfig/credentials
-py/testurl.txt
-py/ztools/Drive/Retriever.py
-py/ztools/Drive/Verify.py
-py/zconfig/download_libraries.txt
-py/zconfig/config_urls.txt
-py/zconfig/remote_libraries.txt
-py/Other
-py/zconfig/local_libraries.txt
-py/zconfig/NUT_DB_RAW.txt
-py/joinlist.txt
-py/zconfig/update_dbs_options.cmd
-py/update_dbs.bat
-py/zconfig/remote_cache_location.txt
-py/zconfig/mtp_SD_libraries.txt
-py/zconfig/mtp_source_libraries.txt
-py/ztools/_mtp_cache_/games_installed.txt
-py/ztools/_mtp_cache_/storage.csv
-py/zconfig/mtp_download_libraries.txt
-py/ztools/_mtp_cache_/valid_saves.txt
-py/MTP1GD.txt
-py/MTP2.txt
-py/ztools/_mtp_cache_/sd_xci.txt
-py/MTP1.txt
-py/zconfig/_playlog_/*
-py/mtpxci.txt
-py/MTP2GD.txt
-py/ztools/dev_keys.txt
-*.rar
-py/ztools/lib/Install_server.py
-py/ztools/lib/plaintext.py
-py/Regional/ZH/ztools/keys.txt
+# ── .NET build outputs (regenerable) ──────────────────────────────
+bin/
+obj/
+.vs/
+*.user
+*.suo
 
-# ── nscb-web (.NET / C# project) ──────────────────────────
-# Regenerable build outputs — keep the repo source-only.
-nscb-web/**/bin/
-nscb-web/**/obj/
-nscb-web/dist/
-nscb-web/**/*.user
+# ── publish / delivery artifacts ──────────────────────────────────
+dist/
 
-# The python-era global '*.cs' above must NOT hide C# sources.
-!nscb-web/**/*.cs
-!nscb-web/**/*.csproj
-!nscb-web/**/*.slnx
-!nscb-web/src/NscbServer/App.ico
+# ── test scratch & logs ───────────────────────────────────────────
+itest_out/
+_verify_out/
+nohup.out
+*.log
+*.tmp
+*.orig
+*.rej
 
-# Generated / temporary artifacts (regenerable, never source)
-nscb-web/**/itest_out/
-nscb-web/**/_verify_out/
-nscb-web/**/nohup.out
-nscb-web/**/*.log
-nscb-web/**/*.tmp
-nscb-web/**/*.orig
-nscb-web/**/*.rej
-nscb-web/pack_output.*
-
-# OS / editor junk
+# ── OS / editor junk ──────────────────────────────────────────────
 Thumbs.db
 ehthumbs.db
 desktop.ini
 .DS_Store
+
+# ── Switch sample / media files: never commit ─────────────────────
+*.nsp
+*.nsz
+*.nsx
+*.xci
+*.xcz
+*.nca
+*.ncz
+*.zip
+*.7z
+*.rar
+*.lnk
+*.pdf
+
+# NOTE: there is intentionally NO global '*.cs' rule here — this repo is
+# C# source and every *.cs file must be tracked.
