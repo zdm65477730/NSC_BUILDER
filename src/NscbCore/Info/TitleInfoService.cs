@@ -159,8 +159,11 @@ public sealed class TitleInfoService
             info.BaseTitleId = GetBaseTitleId(cnmt.TitleId, cnmt.Type).ToString("x16");
             info.TitleVersion = FormatTitleVersion(cnmt.TitleVersion);
             info.TitleVersionRaw = cnmt.TitleVersion.Version;
-            uint rsv = cnmt.MinimumSystemVersion.Version;
-            info.RequiredSystemVersion = FirmwareTables.FwStringFromRsv(rsv);
+            // Some cnmt — notably AddOnContent (DLC) — omit MinimumSystemVersion, so guard the access;
+            // otherwise GetFileInfo throws and callers (e.g. pack-name G/U/D classification) silently drop the title.
+            uint rsv = 0;
+            try { rsv = cnmt.MinimumSystemVersion.Version; } catch { rsv = 0; }
+            info.RequiredSystemVersion = rsv != 0 ? FirmwareTables.FwStringFromRsv(rsv) : null;
 
             foreach (var ce in cnmt.ContentEntries)
             {

@@ -403,4 +403,106 @@ public sealed class IntegrationE2E
         }
         return cnt;
     }
+
+    // Locks the DLC pack-name composition end-to-end on REAL samples: reads each container's title type via
+    // TitleInfoService.GetFileInfo (which used to NullReferenceException on a DLC's cnmt.MinimumSystemVersion,
+    // silently dropping the +1D), then asserts PackComposition renders "(1G+1U+1D)". Any container read that
+    // throws FAILS the test — so the null-guard regression cannot come back unnoticed. Needs one Application,
+    // one Update and one AddOnContent present in NSCB_E2E_DIR (any titles); skips if not all present.
+    [Fact] [Trait("Category", "E2E")]
+    public void PackName_composition_counts_base_update_and_dlc()
+    {
+        if (!Available) { _out.WriteLine("SKIPPED: set NSCB_E2E_DIR (with prod.keys + samples)."); return; }
+        var keys = Keys();
+        var svc = new TitleInfoService(keys);
+
+        string work = Path.DirectorySeparatorChar + "_e2e_work" + Path.DirectorySeparatorChar;
+        var probes = Directory.EnumerateFiles(Dir, "*", SearchOption.AllDirectories)
+            .Where(f => new[] { ".nsp", ".nsz", ".xci", ".xcz" }.Contains(Path.GetExtension(f).ToLowerInvariant()))
+            .Where(f => !f.Contains(work))                 // skip derived intermediates
+            .ToList();
+
+        string? app = null, upd = null, dlc = null;
+        foreach (var f in probes)
+        {
+            ContainerFileInfo ci;
+            try { ci = svc.GetFileInfo(f); }
+            catch (Exception ex) { Assert.Fail($"GetFileInfo threw on {Path.GetFileName(f)} (title-type read regressed): {ex.Message}"); return; }
+            switch (ci.TitleType)
+            {
+                case "Application": app ??= f; break;
+                case "Patch": case "Delta": case "SystemUpdate": upd ??= f; break;
+                case "AddOnContent": dlc ??= f; break;
+            }
+        }
+
+        if (app is null || upd is null || dlc is null)
+        {
+            _out.WriteLine($"SKIPPED composition: present app={app is not null} upd={upd is not null} dlc={dlc is not null} (need all three real containers).");
+            return;
+        }
+
+        var types = new[] { svc.GetFileInfo(app).TitleType, svc.GetFileInfo(upd).TitleType, svc.GetFileInfo(dlc).TitleType };
+        string tag = PackComposition.Tag(types);
+        _out.WriteLine($"composition [{Path.GetFileName(app)} | {Path.GetFileName(upd)} | {Path.GetFileName(dlc)}] → {tag}");
+        Assert.Equal("(1G+1U+1D)", tag);
+    }
+
+    // Groups REAL containers by BaseTitleId and validates the composition tag per group — including the
+    // "no base game present" case that falls out naturally: a DLC's BaseTitleId (titleId - 0x100000000) is
+    // usually NOT the base game that's staged, so its group has g==0. Asserts tag formatting against an
+    // independent recomputation from raw counts, that a segment appears iff its count>0, and that a base-less
+    // group has no "G" (and a pure-DLC group is exactly "(kD)"). Reading any container must not throw.
+    [Fact] [Trait("Category", "E2E")]
+    public void PackName_composition_per_baseTitleGroup_covers_no_base_groups()
+    {
+        if (!Available) { _out.WriteLine("SKIPPED: set NSCB_E2E_DIR (with prod.keys + samples)."); return; }
+        var keys = Keys();
+        var svc = new TitleInfoService(keys);
+        string work = Path.DirectorySeparatorChar + "_e2e_work" + Path.DirectorySeparatorChar;
+        var probes = Directory.EnumerateFiles(Dir, "*", SearchOption.AllDirectories)
+            .Where(f => new[] { ".nsp", ".nsz", ".xci", ".xcz" }.Contains(Path.GetExtension(f).ToLowerInvariant()))
+            .Where(f => !f.Contains(work))
+            .ToList();
+
+        var groups = new Dictionary<string, List<string?>>(StringComparer.OrdinalIgnoreCase);
+        foreach (var f in probes)
+        {
+            ContainerFileInfo ci;
+            try { ci = svc.GetFileInfo(f); }
+            catch (Exception ex) { Assert.Fail($"GetFileInfo threw on {Path.GetFileName(f)} (title-type read regressed): {ex.Message}"); return; }
+            string key = ci.BaseTitleId ?? ci.TitleId ?? "unknown";
+            if (!groups.TryGetValue(key, out var l)) groups[key] = l = new List<string?>();
+            l.Add(ci.TitleType);
+        }
+        if (groups.Count == 0) { _out.WriteLine("SKIPPED: no readable containers."); return; }
+
+        bool sawNoBaseGroup = false;
+        foreach (var (baseId, types) in groups)
+        {
+            var (g, u, d) = PackComposition.Classify(types);
+            string tag = PackComposition.Tag(types);
+
+            // Independent recomputation from the raw counts (catches format bugs on real numbers, not circular).
+            var p = new List<string>();
+            if (g > 0) p.Add(g + "G"); if (u > 0) p.Add(u + "U"); if (d > 0) p.Add(d + "D");
+            Assert.Equal(p.Count > 0 ? "(" + string.Join("+", p) + ")" : "(1G)", tag);
+            _out.WriteLine($"group {baseId}: g={g} u={u} d={d} → {tag}");
+
+            Assert.Equal(g > 0, tag.Contains("G"));   // a segment is present iff its count > 0
+            Assert.Equal(u > 0, tag.Contains("U"));
+            Assert.Equal(d > 0, tag.Contains("D"));
+
+            if (g == 0 && (u > 0 || d > 0))          // base-less group (update / DLC without its game staged)
+            {
+                sawNoBaseGroup = true;
+                Assert.DoesNotContain("G", tag);
+                if (types.All(t => t == "AddOnContent"))   // pure-DLC group → exactly "(kD)"
+                    Assert.Equal($"({d}D)", tag);
+            }
+        }
+        _out.WriteLine(sawNoBaseGroup
+            ? "Covered a no-base group (update/DLC present without their base game)."
+            : "Note: every staged group included a base game this run; no-base branch not exercised by these samples.");
+    }
 }

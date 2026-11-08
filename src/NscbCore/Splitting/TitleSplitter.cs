@@ -36,7 +36,7 @@ public static class TitleSplitter
                          || kind is ContainerKind.Xci or ContainerKind.Xcz)
                 .ToList();
 
-        int g = 0, u = 0, d = 0;
+        var types = new List<string?>();
         var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         using var src = File.OpenRead(containerPath);
         foreach (var meta in allEntries.Where(x =>
@@ -47,12 +47,9 @@ public static class TitleSplitter
             Cnmt? cn = TryReadCnmt(src, meta, keys);
             if (cn is null) continue;
             if (!seen.Add(cn.TitleId.ToString("x16"))) continue;
-            string t = cn.Type.ToString();
-            if (t == "Application") g++;
-            else if (t == "AddOnContent") d++;
-            else u++;
+            types.Add(cn.Type.ToString());   // tally centralized in PackComposition (unit-tested)
         }
-        return (g, u, d);
+        return NscbCore.Packaging.PackComposition.Classify(types);
     }
 
     /// <summary>

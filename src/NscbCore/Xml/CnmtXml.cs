@@ -88,7 +88,10 @@ public static class CnmtXml
         sb.AppendLine($"  <Type>{cn.Type}</Type>");
         sb.AppendLine($"  <Id>0x{cn.TitleId:x16}</Id>");
         sb.AppendLine($"  <Version>{cn.TitleVersion.Version}</Version>");
-        sb.AppendLine($"  <RequiredDownloadSystemVersion>{cn.MinimumSystemVersion.Version}</RequiredDownloadSystemVersion>");
+        // AddOnContent (DLC) cnmt can omit MinimumSystemVersion → guard, else GenXml throws on a DLC.
+        uint minSv = 0;
+        try { minSv = cn.MinimumSystemVersion.Version; } catch { minSv = 0; }
+        sb.AppendLine($"  <RequiredDownloadSystemVersion>{minSv}</RequiredDownloadSystemVersion>");
         foreach (var ce in cn.ContentEntries)
         {
             sb.AppendLine("  <Content>");

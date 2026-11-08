@@ -1468,7 +1468,7 @@ static class JobRunner
     {
         if (keys is null) return null;
         var svc = new TitleInfoService(keys);
-        int g = 0, u = 0, d = 0; string? appName = null, anyName = null, baseId = null; ulong ver = 0;
+        var types = new List<string?>(); string? appName = null, anyName = null, baseId = null; ulong ver = 0;
         foreach (var f in inputs)
         {
             try
@@ -1480,19 +1480,17 @@ static class JobRunner
                     if (m is not null) ci.TitleName = m.Name;
                 }
                 if (!string.IsNullOrWhiteSpace(ci.TitleName)) anyName ??= ci.TitleName;
+                types.Add(ci.TitleType);   // (g,u,d) tally happens once below via PackComposition (unit-tested)
                 switch (ci.TitleType)
                 {
-                    case "Application": appName ??= ci.TitleName; baseId ??= ci.TitleId ?? ci.BaseTitleId; if (ci.TitleVersionRaw is ulong v0 && ver == 0) ver = v0; g++; break;
-                    case "Patch": baseId ??= ci.BaseTitleId ?? ci.TitleId; if (ci.TitleVersionRaw is ulong v1 && v1 > ver) ver = v1; u++; break;
-                    case "AddOnContent": baseId ??= ci.BaseTitleId ?? ci.TitleId; d++; break;
-                    default: g++; break;
+                    case "Application": appName ??= ci.TitleName; baseId ??= ci.TitleId ?? ci.BaseTitleId; if (ci.TitleVersionRaw is ulong v0 && ver == 0) ver = v0; break;
+                    case "Patch": case "Delta": case "SystemUpdate": baseId ??= ci.BaseTitleId ?? ci.TitleId; if (ci.TitleVersionRaw is ulong v1 && v1 > ver) ver = v1; break;
+                    case "AddOnContent": baseId ??= ci.BaseTitleId ?? ci.TitleId; break;
                 }
             }
             catch { }
         }
-        var parts = new List<string>();
-        if (g > 0) parts.Add($"{g}G"); if (u > 0) parts.Add($"{u}U"); if (d > 0) parts.Add($"{d}D");
-        string counts = parts.Count > 0 ? "(" + string.Join("+", parts) + ")" : "(1G)";
+        string counts = NscbCore.Packaging.PackComposition.Tag(types);
         // Prefer the base game's title; fall back to any title, then a cleaned first filename (never "XCI").
         string name = !string.IsNullOrWhiteSpace(appName) ? appName!
                     : !string.IsNullOrWhiteSpace(anyName) ? anyName!
