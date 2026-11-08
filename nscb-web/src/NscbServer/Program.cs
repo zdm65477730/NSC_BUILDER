@@ -1697,7 +1697,9 @@ internal static class NativeScreen
     {
         try
         {
-            var wa = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea;
+            var scr = System.Windows.Forms.Screen.PrimaryScreen;
+            if (scr is null) return (1100, 760, 60, 40);
+            var wa = scr.WorkingArea;
             int availW = Math.Max(wa.Width - 16, 320), availH = Math.Max(wa.Height - 16, 320);
             int w = Math.Min(Math.Max((int)(wa.Width * frac), 640), maxW);
             int h = Math.Min(Math.Max((int)(wa.Height * frac), 480), maxH);

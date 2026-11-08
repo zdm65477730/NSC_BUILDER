@@ -35,4 +35,14 @@
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.4314.35" />
   </ItemGroup>
 
+  <!-- The WebView2 package references its WPF control assembly on ALL net5.0+ apps, but this host uses
+       WinForms only. Microsoft.Web.WebView2.Wpf.dll drags WindowsBase 5.0 and triggers a benign
+       MSB3277 version-conflict warning vs the framework's 4.0. Drop the unused WPF reference so the
+       build is warning-free (and the WPF assembly isn't bundled). -->
+  <Target Name="DropUnusedWebView2WpfReference" BeforeTargets="ResolveAssemblyReferences">
+    <ItemGroup>
+      <Reference Remove="@(Reference)" Condition="'%(Filename)' == 'Microsoft.Web.WebView2.Wpf'" />
+    </ItemGroup>
+  </Target>
+
 </Project>
