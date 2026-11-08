@@ -84,3 +84,32 @@ py/ztools/dev_keys.txt
 py/ztools/lib/Install_server.py
 py/ztools/lib/plaintext.py
 py/Regional/ZH/ztools/keys.txt
+
+# ── nscb-web (.NET / C# project) ──────────────────────────
+# Regenerable build outputs — keep the repo source-only.
+nscb-web/**/bin/
+nscb-web/**/obj/
+nscb-web/dist/
+nscb-web/**/*.user
+
+# The python-era global '*.cs' above must NOT hide C# sources.
+!nscb-web/**/*.cs
+!nscb-web/**/*.csproj
+!nscb-web/**/*.slnx
+!nscb-web/src/NscbServer/App.ico
+
+# Generated / temporary artifacts (regenerable, never source)
+nscb-web/**/itest_out/
+nscb-web/**/_verify_out/
+nscb-web/**/nohup.out
+nscb-web/**/*.log
+nscb-web/**/*.tmp
+nscb-web/**/*.orig
+nscb-web/**/*.rej
+nscb-web/pack_output.*
+
+# OS / editor junk
+Thumbs.db
+ehthumbs.db
+desktop.ini
+.DS_Store
